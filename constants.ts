@@ -54,9 +54,9 @@ export const PROJECTS: Project[] = [
     description: {
       en: 'The aesthetics of "distance" and "reverberation". Piano melodies trace invisible trajectories in space, reconstructed as auditory architecture through unique sound processing. An immersive live installation where sound particles emerge from silence to resonate with the audience\'s memories. Live Painting: Maria Noto.',
       ja: '「距離」と「残響」の美学。ピアノの旋律が空間に描く不可視の軌跡を、独自の音響処理によって聴覚的な建築として再構築します。静寂の中に浮かび上がる音の粒子が、鑑賞者の記憶と共振する没入型ライブインスタレーション。Live Painting: Maria Noto (能登真理亜)',
-      zh: '「距離」與「殘響」的美學。鋼琴旋律在空間中繪製的無形軌跡，透過獨特的音響處理重構為聽覺建築。寂靜中浮現的聲音粒子與觀眾記憶共鳴的沉浸式現場裝置。Live Painting: Maria Noto（能登真理亞）。'
+      zh: '「距離」與「殘響」的美學。鋼琴旋律在空間中繪製的無形軌跡，透過獨特的聲音處理重構為聽覺建築。寂靜中浮現的聲音粒子與觀眾記憶共鳴的沉浸式現場裝置。Live Painting: Maria Noto（能登真理亞）。'
     },
-    link: 'https://www.nakamurahiroyuki.info/distant-echo',
+    link: '/#/distant-echo',
     tags: ['Spatial Audio', 'Live Performance', 'Interactive']
   },
 

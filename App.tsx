@@ -11,6 +11,7 @@ import About from './components/About';
 import WorkGrid from './components/WorkGrid';
 import Academic from './components/Academic';
 import Contact from './components/Contact';
+import DistantEcho from './components/DistantEcho';
 import AmbientBackground from './components/AmbientBackground';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { translations } from './translations';
@@ -66,6 +67,7 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/academic" element={<Academic />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/distant-echo" element={<DistantEcho />} />
           </Routes>
           <Footer />
         </main>
