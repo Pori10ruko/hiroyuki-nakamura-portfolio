@@ -49,7 +49,7 @@ const About: React.FC = () => {
             <p className="text-xl md:text-2xl font-light leading-relaxed">
                 <span className="font-serif italic text-3xl mr-2">NAKAMURA Hiroyuki / 中村 浩之</span> 
                 <br /><br />
-                ピアニスト、作曲家、メディアアーティスト、CGアーティスト
+                {t.aboutIntro}
             </p>
             
             <p className="text-md md:text-lg opacity-80 leading-relaxed">

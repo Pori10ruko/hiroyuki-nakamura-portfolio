@@ -12,6 +12,7 @@ import WorkGrid from './components/WorkGrid';
 import Academic from './components/Academic';
 import Contact from './components/Contact';
 import DistantEcho from './components/DistantEcho';
+import Releases from './components/Releases';
 import AmbientBackground from './components/AmbientBackground';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { translations } from './translations';

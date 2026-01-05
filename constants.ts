@@ -378,28 +378,14 @@ export const PROJECTS: Project[] = [
     category: 'Music Releases',
     genre: 'RELEASES',
     year: '2023-2025',
-    image: 'https://bbm-sound.com/images/releases-placeholder.jpg',
+    image: 'https://bbm-sound.com/images/look-up.jpg',
     description: {
       en: 'Solo works and collaborative releases including bbco, UN.a, and other units. Available on streaming platforms and physical media.',
       ja: 'ソロ作品およびbbco、UN.a等のユニットでのリリース作品。サブスクリプションサービスおよびCDで配信中。',
       zh: '個人作品及bbco、UN.a等組合的發行作品。可於串流平台及實體媒體取得。'
     },
-    link: '#',
-    tags: ['Solo', 'bbco', 'UN.a'],
-    subCategories: [
-      {
-        name: 'Solo',
-        releases: []
-      },
-      {
-        name: 'bbco',
-        releases: []
-      },
-      {
-        name: 'UN.a',
-        releases: []
-      }
-    ]
+    link: '/#/releases',
+    tags: ['Solo', 'BBCO', 'UN.a', 'Produce', 'Other']
   },
 
   // ARCHIVE
