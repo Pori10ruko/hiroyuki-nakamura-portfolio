@@ -132,7 +132,7 @@ export const translations = {
     contactPage: 'コンタクトページ →',
     
     // Academic Projects
-    apichatpong2024Title: 'Apichatpong Weerasethakul's Workshop',
+    apichatpong2024Title: 'Apichatpong Weerasethakul\'s Workshop',
     apichatpong2024Subtitle: '多摩美術大学大学院',
     apichatpong2024Desc1: '「あなたとの距離と音楽について」',
     apichatpong2024Desc2: '映画監督アピチャッポン・ウィーラセタクン氏本人の招聘により、多摩美術大学大学院で実施された同監督のワークショップにて特別講義を担当。専門とするバイノーラル音響技術と芸術表現への応用について、学生やアーティストに向けて解説と実演を行いました。',

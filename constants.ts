@@ -43,12 +43,31 @@ export const PROJECTS: Project[] = [
   {
     id: '3',
     title: {
+      en: 'Gymnopédie / Jim\'s Petty',
+      ja: 'ジムノペディ / Jim\'s Petty',
+      zh: 'Gymnopédie / Jim\'s Petty'
+    },
+    category: 'Jim\'s Petty',
+    genre: 'MUSIC VIDEO',
+    year: '2024',
+    image: 'https://i.ytimg.com/vi/E5rObFc5Ed4/maxresdefault.jpg',
+    description: {
+      en: 'An audio-visual reinterpretation of Erik Satie\'s universal masterpiece, "Gymnopédie." Utilizing Nakamura\'s proprietary binaural audio technology, the work is constructed as an immersive soundscape where sound floats three-dimensionally through space, gently expanding the listener\'s perception. The minimalist visuals, created in unison with the music, further deepen this unique auditory experience.',
+      ja: 'エリック・サティの普遍的な名曲「ジムノペディ」を、独自に開発したバイノーラル音響技術で再解釈したオーディオ・ビジュアル作品。音が空間を立体的に浮遊し、聴き手の知覚を静かに拡張する没入型のサウンドスケープとして構築。音楽と一体となって展開されるミニマルな映像が、その聴覚体験をさらに深化させる。',
+      zh: '對 Erik Satie 不朽名作《Gymnopédie》的聲音與影像再詮釋。作品運用了中村獨自開發的雙耳音響技術，構築出沉浸式音景，聲音在空間中以三維方式漂浮，溫柔地擴展聆聽者的感知。與音樂同步生成的極簡視覺進一步深化了這段獨特的聽覺體驗。'
+    },
+    link: 'https://www.youtube.com/watch?v=E5rObFc5Ed4',
+    tags: ['Binaural Audio', 'Visual Art', 'Satie']
+  },
+  {
+    id: '4',
+    title: {
       en: 'Distant Echo',
       ja: 'Distant Echo',
       zh: 'Distant Echo（遙遠回聲）'
     },
     category: 'Piano & Live Painting',
-    genre: 'INSTALLATION',
+    genre: 'SPATIAL AUDIO',
     year: '2024',
     image: 'https://bbm-sound.com/images/distant-echo.avif',
     description: {
@@ -62,7 +81,7 @@ export const PROJECTS: Project[] = [
 
   // 2024 - INSTALLATION
   {
-    id: '4',
+    id: '5',
     title: {
       en: 'Alone Together',
       ja: 'Alone Together',
@@ -83,7 +102,7 @@ export const PROJECTS: Project[] = [
 
   // 2024 - PERFORMANCE
   {
-    id: '5',
+    id: '6',
     title: {
       en: 'Kawasaki City 100th Anniversary Pre-event "Encount"',
       ja: '川崎市政100周年プレイベント "Encount"',
@@ -104,14 +123,14 @@ export const PROJECTS: Project[] = [
 
   // 2024 - CLIENT WORKS
   {
-    id: '6',
+    id: '7',
     title: {
       en: 'Sen no Tsudoi (千の集い)',
       ja: 'Sen no Tsudoi (千の集い)',
       zh: 'Sen no Tsudoi（千の集い）'
     },
     category: 'Dragon\'s Eye Recordings',
-    genre: 'MUSIC VIDEO',
+    genre: 'SPATIAL AUDIO',
     year: '2024',
     image: 'https://i.ytimg.com/vi/6_keqXc2xZk/maxresdefault.jpg',
     description: {
@@ -123,7 +142,7 @@ export const PROJECTS: Project[] = [
     tags: ['Album', 'Post-Orchestral', 'CG']
   },
   {
-    id: '7',
+    id: '8',
     title: {
       en: 'YUKI concert tour "SUPER SLITS" 2024',
       ja: 'YUKI concert tour "SUPER SLITS" 2024',
@@ -142,7 +161,7 @@ export const PROJECTS: Project[] = [
     tags: ['Concert', 'Video Music']
   },
   {
-    id: '8',
+    id: '9',
     title: {
       en: 'パレードが続くなら / YUKI',
       ja: 'パレードが続くなら / YUKI',
@@ -161,7 +180,7 @@ export const PROJECTS: Project[] = [
     tags: ['Album Cover', 'CGI']
   },
   {
-    id: '9',
+    id: '10',
     title: {
       en: 'Tokyo International Forum Hall (Corporate Event)',
       ja: '東京国際フォーラム ホール（企業イベント）',
@@ -181,28 +200,28 @@ export const PROJECTS: Project[] = [
 
   // 2023 - INSTALLATION
   {
-    id: '10',
+    id: '11',
     title: {
       en: 'Look Up at the Stars',
       ja: 'Look Up at the Stars',
       zh: 'Look Up at the Stars（仰望星空）'
     },
     category: 'Live Painting Concert',
-    genre: 'INSTALLATION',
+    genre: 'MUSIC VIDEO',
     year: '2023',
     image: 'https://bbm-sound.com/images/look-up.jpg',
     description: {
-      en: 'The act of looking up at the stars—expressing this fundamental sensation through dialogue between sound and color. Maria Noto\'s vibrant colors and omnidirectional acoustic space intertwine in real-time, inviting viewers into infinite expanses.',
-      ja: '星を見上げる行為—その根源的な感覚を、音と色彩の対話によって表現します。能登真理亜の描く生命力溢れる色彩と、全方位から包み込む音響空間がリアルタイムに交错し、鑑賞者を無限の広がりへと誘います。',
-      zh: '仰望星空的行為——透過聲音與色彩的對話表達這種根本感覺。Maria Noto繪製的充滿生命力的色彩與全方位聲音空間即時交織，引領觀眾進入無限廣闊。'
+      en: 'The act of looking up at the stars—expressing this fundamental sensation through dialogue between sound and color. Maria Noto\'s vibrant colors and omnidirectional acoustic space intertwine in real-time, inviting viewers into infinite expanses. Music video series combining TouchDesigner, Blender, Unity, and AI tools.',
+      ja: '星を見上げる行為—その根源的な感覚を、音と色彩の対話によって表現します。能登真理亜の描く生命力溢れる色彩と、全方位から包み込む音響空間がリアルタイムに交错し、鑑賞者を無限の広がりへと誘います。TouchDesigner、Blender、Unity、AIツールなどを駆使したミュージックビデオシリーズ。',
+      zh: '仰望星空的行為——透過聲音與色彩的對話表達這種根本感覺。Maria Noto繪製的充滿生命力的色彩與全方位聲音空間即時交織，引領觀眾進入無限廣闊。結合TouchDesigner、Blender、Unity和AI工具的音樂影像系列。'
     },
-    link: 'https://www.youtube.com/watch?v=lI7Rq58b2Ys',
-    tags: ['Live Painting', 'Spatial Audio']
+    link: 'https://www.youtube.com/playlist?list=PLb_2IgACrNd-lGlXJJtvNebKjl9Nm_bAj',
+    tags: ['Live Painting', 'Spatial Audio', 'MV']
   },
 
   // 2023 - PERFORMANCE
   {
-    id: '11',
+    id: '12',
     title: {
       en: 'Electric Opera "VENUS Festival"',
       ja: 'エレクトリックオペラ "VENUSの祝祭"',
@@ -223,7 +242,7 @@ export const PROJECTS: Project[] = [
 
   // 2023 - MUSIC VIDEO
   {
-    id: '12',
+    id: '13',
     title: {
       en: 'Day Opener / XIDEN',
       ja: 'Day Opener / XIDEN',
@@ -242,7 +261,7 @@ export const PROJECTS: Project[] = [
     tags: ['VSinger', 'Music Production']
   },
   {
-    id: '13',
+    id: '14',
     title: {
       en: 'accompany / XIDEN',
       ja: 'accompany / XIDEN',
@@ -261,7 +280,7 @@ export const PROJECTS: Project[] = [
     tags: ['VSinger', 'Music Production']
   },
   {
-    id: '14',
+    id: '15',
     title: {
       en: '宿命 (Destiny) / XIDEN',
       ja: '宿命 / XIDEN',
@@ -280,7 +299,7 @@ export const PROJECTS: Project[] = [
     tags: ['VSinger', 'Music Production']
   },
   {
-    id: '15',
+    id: '16',
     title: {
       en: 'closer / XIDEN',
       ja: 'closer / XIDEN',
@@ -299,7 +318,7 @@ export const PROJECTS: Project[] = [
     tags: ['VSinger', 'Music Production']
   },
   {
-    id: '16',
+    id: '17',
     title: {
       en: 'higher / REVERBERATION',
       ja: 'higher / REVERBERATION',
@@ -318,7 +337,7 @@ export const PROJECTS: Project[] = [
     tags: ['Music Production', 'Electronic Pop']
   },
   {
-    id: '17',
+    id: '18',
     title: {
       en: 'Jelly-selfish / Yumekawa Kanau',
       ja: 'Jelly-selfish / 夢川かなう',
@@ -337,40 +356,7 @@ export const PROJECTS: Project[] = [
     tags: ['Music Production', 'Vtuber']
   },
   {
-    id: '18',
-    title: 'Sen no Tsudoi - River god',
-    category: 'Music Video',
-    genre: 'MUSIC VIDEO',
-    year: '2024',
-    image: 'https://i.ytimg.com/vi/6_keqXc2xZk/maxresdefault.jpg',
-    description: '「多くの歴史は鼓動している。それは同時に生まれるのではなく、振動によって集まる」呼吸のようなリズムが全体を整え、アジア的でも西洋的でもない声が石のような重層的な響きを持つ和声と融合する。',
-    link: 'https://www.youtube.com/watch?v=6_keqXc2xZk',
-    tags: ['Album', 'CG', 'TouchDesigner']
-  },
-  {
     id: '19',
-    title: 'Sen no Tsudoi - Distance to Soil',
-    category: 'Music Video',
-    genre: 'MUSIC VIDEO',
-    year: '2024',
-    image: 'https://i.ytimg.com/vi/Z0Y0laDQXHE/maxresdefault.jpg',
-    description: '「観察していくだけで、今あるものはドラマティックに展開していく」声が消え、空間が広がる。だが強い音がそれを切り裂き、意思ある音が新たなかたちで集まる。',
-    link: 'https://www.youtube.com/watch?v=Z0Y0laDQXHE',
-    tags: ['Album', 'CG', 'AI']
-  },
-  {
-    id: '20',
-    title: 'Look Up At The Stars - Sing',
-    category: 'Music Video',
-    genre: 'MUSIC VIDEO',
-    year: '2023',
-    image: 'https://i.ytimg.com/vi/kHcXBKJCcP8/maxresdefault.jpg',
-    description: 'TouchDesigner、Blender、Unity、AIツールなどを駆使し、自ら映像編集・生成を行い制作したミュージックビデオ。音楽と映像の境界を越える独自の表現を追求。',
-    link: 'https://www.youtube.com/watch?v=kHcXBKJCcP8',
-    tags: ['Visual Art', 'TouchDesigner', 'Blender']
-  },
-  {
-    id: '21',
     title: 'Electric Opera VENUS - 860 Tracks Mix',
     category: 'UN.a',
     genre: 'MUSIC VIDEO',
@@ -381,9 +367,44 @@ export const PROJECTS: Project[] = [
     tags: ['Opera', 'Mix']
   },
 
+  // RELEASES
+  {
+    id: '20',
+    title: {
+      en: 'Releases',
+      ja: 'リリース作品',
+      zh: '發行作品'
+    },
+    category: 'Music Releases',
+    genre: 'RELEASES',
+    year: '2023-2025',
+    image: 'https://bbm-sound.com/images/releases-placeholder.jpg',
+    description: {
+      en: 'Solo works and collaborative releases including bbco, UN.a, and other units. Available on streaming platforms and physical media.',
+      ja: 'ソロ作品およびbbco、UN.a等のユニットでのリリース作品。サブスクリプションサービスおよびCDで配信中。',
+      zh: '個人作品及bbco、UN.a等組合的發行作品。可於串流平台及實體媒體取得。'
+    },
+    link: '#',
+    tags: ['Solo', 'bbco', 'UN.a'],
+    subCategories: [
+      {
+        name: 'Solo',
+        releases: []
+      },
+      {
+        name: 'bbco',
+        releases: []
+      },
+      {
+        name: 'UN.a',
+        releases: []
+      }
+    ]
+  },
+
   // ARCHIVE
   {
-    id: '22',
+    id: '21',
     title: '土浦Soundアーカイブプロジェクト',
     category: 'Public Project',
     genre: 'ARCHIVE',
@@ -394,7 +415,7 @@ export const PROJECTS: Project[] = [
     tags: ['Archive', 'Field Recording', 'Public']
   },
   {
-    id: '23',
+    id: '22',
     title: 'BBM Net Radio',
     category: 'BBM',
     genre: 'ARCHIVE',
@@ -405,7 +426,7 @@ export const PROJECTS: Project[] = [
     tags: ['Radio', 'Podcast', 'Education']
   },
   {
-    id: '24',
+    id: '23',
     title: 'BBM Note',
     category: 'BBM',
     genre: 'ARCHIVE',
@@ -418,7 +439,7 @@ export const PROJECTS: Project[] = [
 
   // EDUCATION
   {
-    id: '25',
+    id: '24',
     title: 'Apichatpong Weerasethakul Workshop - 多摩美術大学',
     category: 'Tama Art University',
     genre: 'EDUCATION',
@@ -428,7 +449,7 @@ export const PROJECTS: Project[] = [
     tags: ['Lecture', 'Binaural Audio', 'University']
   },
   {
-    id: '26',
+    id: '25',
     title: '臺南國立大学 特別講義',
     category: 'National University of Tainan',
     genre: 'EDUCATION',
@@ -438,7 +459,7 @@ export const PROJECTS: Project[] = [
     tags: ['Taiwan', 'Workshop', 'Popular Music']
   },
   {
-    id: '27',
+    id: '26',
     title: '昭和音楽大学 研究発表',
     category: 'Showa Music University',
     genre: 'EDUCATION',
@@ -448,7 +469,7 @@ export const PROJECTS: Project[] = [
     tags: ['Research', 'Academic', 'Performance']
   },
   {
-    id: '28',
+    id: '27',
     title: 'BBM Workshop',
     category: 'BBM',
     genre: 'EDUCATION',
@@ -459,7 +480,7 @@ export const PROJECTS: Project[] = [
     tags: ['Workshop', 'Spatial Audio', 'Hands-on']
   },
   {
-    id: '29',
+    id: '28',
     title: '島村楽器 特別セミナー',
     category: 'Shimamura Music',
     genre: 'EDUCATION',
@@ -471,7 +492,7 @@ export const PROJECTS: Project[] = [
   }
 ];
 
-export const GENRES = ['ALL', 'INSTALLATION', 'PERFORMANCE', 'CLIENT WORKS', 'MUSIC VIDEO', 'APP', 'ARCHIVE', 'EDUCATION'] as const;
+export const GENRES = ['ALL', 'INSTALLATION', 'PERFORMANCE', 'CLIENT WORKS', 'MUSIC VIDEO', 'SPATIAL AUDIO', 'APP', 'RELEASES', 'ARCHIVE', 'EDUCATION'] as const;
 
 export type Genre = typeof GENRES[number];
 
