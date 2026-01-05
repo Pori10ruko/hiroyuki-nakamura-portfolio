@@ -44,14 +44,14 @@ const Academic: React.FC = () => {
                     <span className="text-xs opacity-50 font-mono">{t.invitedLecture}</span>
                 </div>
                 <h4 className="text-2xl md:text-3xl font-serif mb-4">
-                    Apichatpong Weerasethakul's Workshop<br />
-                    Graduate School of Tama Art University
+                    {t.apichatpong2024Title}<br />
+                    {t.apichatpong2024Subtitle}
                 </h4>
                 <p className="text-sm opacity-80 leading-relaxed mb-2">
-                    "あなたとの距離と音楽について" (About Distance and Music Between You)
+                    {t.apichatpong2024Desc1}
                 </p>
                 <p className="text-sm opacity-70 leading-relaxed">
-                    At the personal invitation of director Apichatpong Weerasethakul, delivered a special lecture during his workshop at Tama Art University's graduate school. The lecture covered the technology and artistic application of binaural audio, Nakamura's area of expertise, providing both explanation and practical demonstrations for students and artists.
+                    {t.apichatpong2024Desc2}
                 </p>
             </div>
 
@@ -62,14 +62,14 @@ const Academic: React.FC = () => {
                     <span className="text-xs opacity-50 font-mono">{t.ongoing}</span>
                 </div>
                 <h4 className="text-2xl md:text-3xl font-serif mb-4">
-                    National University of Tainan, Taiwan<br />
-                    Popular Music Course
+                    {t.tainan2025Title}<br />
+                    {t.tainan2025Subtitle}
                 </h4>
                 <p className="text-sm opacity-80 leading-relaxed mb-2">
-                    國立台南大学 ポピュラーミュージックコース
+                    {t.tainan2025Desc1}
                 </p>
                 <p className="text-sm opacity-70 leading-relaxed">
-                    Currently teaching popular music courses at the National University of Tainan in Taiwan, bringing expertise in music production, composition, and audio technology to students in an international academic setting.
+                    {t.tainan2025Desc2}
                 </p>
             </div>
 
@@ -80,13 +80,13 @@ const Academic: React.FC = () => {
                     <span className="text-xs opacity-50 font-mono">{t.invitedLecture}</span>
                 </div>
                 <h4 className="text-2xl md:text-3xl font-serif mb-4">
-                    National Tainan University & Soochow University, Taiwan
+                    {t.taiwan2015Title}
                 </h4>
                 <p className="text-sm opacity-80 leading-relaxed mb-2">
-                    台湾の大学での招聘講義（國立台南大学、東呉大学）
+                    {t.taiwan2015Desc1}
                 </p>
                 <p className="text-sm opacity-70 leading-relaxed">
-                    Conducted a series of invited special lectures and workshops on music production and performance at several universities in Taiwan. Over multiple years, he served as a special lecturer on "Popular Music Keyboard" at the National Tainan University. He also led a week-long intensive course on Piano and DAW (Digital Audio Workstation) techniques at Soochow University. These engagements involved sharing expert knowledge of Japanese popular music and advanced production techniques, contributing to international educational exchange with local students.
+                    {t.taiwan2015Desc2}
                 </p>
             </div>
 
@@ -97,13 +97,13 @@ const Academic: React.FC = () => {
                     <span className="text-xs opacity-50 font-mono">{t.researchPresentation}</span>
                 </div>
                 <h4 className="text-2xl md:text-3xl font-serif mb-4">
-                    Showa University of Music Research Presentation
+                    {t.showa2024Title}
                 </h4>
                 <p className="text-sm opacity-80 leading-relaxed mb-2">
-                    昭和音楽大学 研究発表会
+                    {t.showa2024Desc1}
                 </p>
                 <p className="text-sm opacity-70 leading-relaxed">
-                    Presented at the research conference of his alma mater, the Showa University of Music. In a joint research performance with Associate Professor Atsushi Mori (piano), Nakamura integrated his original media music and live visuals with Professor Mori's acoustic piano performance. This collaboration demonstrated new possibilities for expression that bridge the gap between artistic practice and academic research within a university setting.
+                    {t.showa2024Desc2}
                 </p>
             </div>
 

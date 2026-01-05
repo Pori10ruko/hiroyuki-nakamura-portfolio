@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import Magnetic from './Magnetic';
 import InfiniteText from './InfiniteText';
 import ScrambleText from './ScrambleText';
@@ -18,9 +19,9 @@ const Footer: React.FC = () => {
       <div className="text-center z-10">
         <p className="text-sm uppercase tracking-widest mb-8 interactive">Have an idea?</p>
         <Magnetic>
-            <a href="mailto:nakamurahiroyuki.com@gmail.com" className="interactive block text-[10vw] font-bold tracking-tighter leading-none hover:text-gray-500 transition-colors duration-300">
+            <Link to="/contact" className="interactive block text-[10vw] font-bold tracking-tighter leading-none hover:text-gray-500 transition-colors duration-300">
                 <ScrambleText text="LET'S TALK" />
-            </a>
+            </Link>
         </Magnetic>
       </div>
 

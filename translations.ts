@@ -14,7 +14,7 @@ export const translations = {
     
     // About
     aboutTitle: 'About',
-    aboutIntro: 'is a Pianist, Composer, Media Artist, and CG Artist.',
+    aboutIntro: 'is a pianist, composer, media artist, and CG artist',
     aboutP1: 'Known for works that blend tradition with innovation, Hiroyuki Nakamura freely traverses the boundaries between genres such as classical, jazz, pops and electric music. His versatile activities range from solo album production and orchestral direction to creating music for stage and screen, as well as educational work.',
     aboutP2: 'He consistently explores the intersection of music and visual arts, composing music for concert videos for the artist YUKI in collaboration with visual artist Kenji Hirano, and creating the main jacket CGI for her album "Parade ga Tsuzuku nara" (SONY MUSIC). As the director of his self-produced Beyond Boundary Chamber Orchestra, he has also established his reputation as a producer by successfully staging the media opera "VENUS no Shukusai" (Festival of VENUS).',
     aboutP3: 'His talent is highly regarded internationally, with album releases on US and UK labels. He provided music and spatial audio for an installation by the UK-based art group Random International at the Riyadh Light Festival, the world\'s largest light festival. Furthermore, he has earned the trust of world-class creators, including filmmaker Apichatpong Weerasethakul, for whom he gave a special lecture at a university workshop. He currently teaches at the National University of Tainan in Taiwan and at ESP Entertainment Tokyo in Japan.',
@@ -44,6 +44,37 @@ export const translations = {
     contactForLectures: 'Contact for Lectures & Workshops',
     contactForLecturesDesc: 'For inquiries regarding lectures, workshops, and other speaking engagements, please feel free to get in touch via the contact page.',
     contactPage: 'Contact Page →',
+    
+    // Academic Projects
+    apichatpong2024Title: 'Apichatpong Weerasethakul\'s Workshop',
+    apichatpong2024Subtitle: 'Graduate School of Tama Art University',
+    apichatpong2024Desc1: '"About Distance and Music Between You"',
+    apichatpong2024Desc2: 'At the personal invitation of director Apichatpong Weerasethakul, delivered a special lecture during his workshop at Tama Art University\'s graduate school. The lecture covered the technology and artistic application of binaural audio, Nakamura\'s area of expertise, providing both explanation and practical demonstrations for students and artists.',
+    
+    tainan2025Title: 'National University of Tainan, Taiwan',
+    tainan2025Subtitle: 'Popular Music Course',
+    tainan2025Desc1: 'Popular Music Course',
+    tainan2025Desc2: 'Currently teaching popular music courses at the National University of Tainan in Taiwan, bringing expertise in music production, composition, and audio technology to students in an international academic setting.',
+    
+    taiwan2015Title: 'National Tainan University & Soochow University, Taiwan',
+    taiwan2015Desc1: 'Invited lectures at universities in Taiwan',
+    taiwan2015Desc2: 'Conducted a series of invited special lectures and workshops on music production and performance at several universities in Taiwan. Over multiple years, he served as a special lecturer on "Popular Music Keyboard" at the National Tainan University. He also led a week-long intensive course on Piano and DAW (Digital Audio Workstation) techniques at Soochow University.',
+    
+    showa2024Title: 'Showa University of Music Research Presentation',
+    showa2024Desc1: '"Voices in the Void" - Electronic sound and video',
+    showa2024Desc2: 'Performed at the faculty and researcher presentation held at Showa University of Music\'s Yuri Hall. Responsible for electronic sound and video for "Voices in the Void," presenting practical research in an academic setting.',
+    
+    highschool2022Title: 'All-Japan High School Light Music Contest (Kanto Regional)',
+    highschool2022Desc1: 'All-Japan High School Light Music Contest - Kanto Regional Judge',
+    highschool2022Desc2: 'Serving as a judge for the contest hosted by the All-Japan High School Light Music Club Federation, contributing to the discovery and development of next-generation talent. (2022 Preliminaries, 2023 Finals)',
+    
+    contest2016Title: 'TSUKUBA ROCK FESTIVAL',
+    contest2016Desc1: 'High school band competition judge',
+    contest2016Desc2: 'Served as a judge for the high school band contest at the Tsukuba Rock Festival. Evaluated student performances from both a technical and musical perspective, providing feedback and advice.',
+    
+    bbmEducationTitle: 'BBM Workshop & Education',
+    bbmEducationDesc1: 'Spatial Audio Workshops & Seminars',
+    bbmEducationDesc2: 'Through BBM (Beyond Boundary Music), provides practical workshops and seminars for everyone working with "sound". In professional production environments and studios, exploring the fundamentals to applications of spatial audio, as well as the possibilities of expression in hands-on format.',
     
     // Work
     selectedWorks: 'Selected Works',
@@ -100,6 +131,37 @@ export const translations = {
     contactForLecturesDesc: '講演、特別講義、ワークショップ、レッスンなどのご依頼は、CONTACTページよりお気軽にお問い合わせください。',
     contactPage: 'コンタクトページ →',
     
+    // Academic Projects
+    apichatpong2024Title: 'Apichatpong Weerasethakul's Workshop',
+    apichatpong2024Subtitle: '多摩美術大学大学院',
+    apichatpong2024Desc1: '「あなたとの距離と音楽について」',
+    apichatpong2024Desc2: '映画監督アピチャッポン・ウィーラセタクン氏本人の招聘により、多摩美術大学大学院で実施された同監督のワークショップにて特別講義を担当。専門とするバイノーラル音響技術と芸術表現への応用について、学生やアーティストに向けて解説と実演を行いました。',
+    
+    tainan2025Title: '国立台南大学, 台湾',
+    tainan2025Subtitle: 'ポピュラーミュージックコース',
+    tainan2025Desc1: 'ポピュラーミュージックコース',
+    tainan2025Desc2: '台湾の国立台南大学にてポピュラーミュージックコースを担当。音楽制作、作曲、オーディオ技術の専門知識を国際的な学術環境で学生に提供しています。',
+    
+    taiwan2015Title: '国立台南大学 & 東呉大学, 台湾',
+    taiwan2015Desc1: '台湾の大学での招聘講義（國立台南大学、東呉大学）',
+    taiwan2015Desc2: '台湾の複数の大学にて、音楽制作とパフォーマンスに関する一連の招聘特別講義とワークショップを実施。数年にわたり、国立台南大学では「ポピュラーミュージック・キーボード」の特別講師を務めました。また、東呉大学では1週間の集中コースでピアノとDAW（デジタル・オーディオ・ワークステーション）技術を指導しました。',
+    
+    showa2024Title: '昭和音楽大学 研究発表',
+    showa2024Desc1: '「Voices in the Void」電子音響・映像担当',
+    showa2024Desc2: '昭和音楽大学ユリホールにて行われた教員・研究員研究発表に出演。「Voices in the Void」において電子音響と映像を担当し、学術的な場での実践研究を発表しました。',
+    
+    highschool2022Title: '全国高等学校軽音楽コンテスト（関東大会）',
+    highschool2022Desc1: '全国高等学校軽音楽コンテスト 関東大会 審査員',
+    highschool2022Desc2: '全国高等学校軽音楽部連盟主催のコンテストにて審査員を務め、次世代の才能の発掘と育成に貢献。技術面と音楽性の両面から学生の演奏を評価・助言。（2022年予選、2023年決勝）',
+    
+    contest2016Title: 'つくばロックフェスティバル',
+    contest2016Desc1: '高校生バンドコンテスト 審査員',
+    contest2016Desc2: 'つくばロックフェスティバルにおける高校生バンドコンテストの審査員を担当。技術面と音楽性の両面から学生の演奏を評価し、フィードバックとアドバイスを提供。',
+    
+    bbmEducationTitle: 'BBMワークショップ・教育',
+    bbmEducationDesc1: '空間音響ワークショップ・セミナー',
+    bbmEducationDesc2: 'BBM（Beyond Boundary Music）を通じて、「音」を扱うすべての人のための実践的ワークショップを提供。プロフェッショナルな制作環境やスタジオにて、立体音響の基礎から応用、そして表現の可能性をハンズオン形式で探求。',
+    
     // Work
     selectedWorks: 'SELECTED WORKS',
     archive: 'ARCHIVE',
@@ -154,6 +216,37 @@ export const translations = {
     contactForLectures: '講座與工作坊諮詢',
     contactForLecturesDesc: '關於演講、特別講座、工作坊與課程等邀請，歡迎透過 CONTACT 頁面與我們聯繫。',
     contactPage: '聯絡頁面 →',
+    
+    // Academic Projects
+    apichatpong2024Title: 'Apichatpong Weerasethakul 工作坊',
+    apichatpong2024Subtitle: '多摩美術大學研究所',
+    apichatpong2024Desc1: '「關於你我之間的距離與音樂」',
+    apichatpong2024Desc2: '受電影導演 Apichatpong Weerasethakul 本人邀請，在多摩美術大學研究所舉辦的工作坊中擔任特別講師。針對專精的雙聲道音響技術與藝術表現應用，向學生和藝術家進行解說與實演。',
+    
+    tainan2025Title: '國立臺南大學, 臺灣',
+    tainan2025Subtitle: '流行音樂課程',
+    tainan2025Desc1: '流行音樂課程',
+    tainan2025Desc2: '目前在臺灣國立臺南大學教授流行音樂課程，在國際學術環境中向學生傳授音樂製作、作曲與音訊技術的專業知識。',
+    
+    taiwan2015Title: '國立臺南大學 & 東吳大學, 臺灣',
+    taiwan2015Desc1: '臺灣大學特邀講座',
+    taiwan2015Desc2: '在臺灣多所大學進行音樂製作與表演相關的系列特邀講座與工作坊。數年間擔任國立臺南大學「流行音樂鍵盤」特別講師。也在東吳大學主持為期一週的鋼琴與 DAW（數位音訊工作站）技術密集課程。',
+    
+    showa2024Title: '昭和音樂大學 研究發表',
+    showa2024Desc1: '《Voices in the Void》電子音響・影像',
+    showa2024Desc2: '在昭和音樂大學百合廳舉辦的教職員與研究員研究發表中演出。負責《Voices in the Void》的電子音響與影像，在學術場合發表實踐研究。',
+    
+    highschool2022Title: '全日本高中輕音樂大賽（關東大會）',
+    highschool2022Desc1: '全日本高中輕音樂大賽 關東大會 評審',
+    highschool2022Desc2: '擔任全日本高中輕音樂社聯盟主辦大賽的評審，為發掘與培育新世代人才做出貢獻。從技術與音樂性兩方面評價學生表演。（2022年預賽、2023年決賽）',
+    
+    contest2016Title: '筑波搖滾音樂節',
+    contest2016Desc1: '高中生樂團大賽 評審',
+    contest2016Desc2: '擔任筑波搖滾音樂節高中生樂團大賽評審。從技術與音樂性兩方面評價學生表演，提供回饋與建議。',
+    
+    bbmEducationTitle: 'BBM工作坊・教育',
+    bbmEducationDesc1: '空間音響工作坊・研討會',
+    bbmEducationDesc2: '透過 BBM（Beyond Boundary Music）為所有從事「聲音」工作的人提供實踐性工作坊。在專業製作環境與錄音室中，以實作形式探索立體音響的基礎到應用，以及表現的可能性。',
     
     // Work
     selectedWorks: 'SELECTED WORKS',

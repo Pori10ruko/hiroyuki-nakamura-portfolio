@@ -85,7 +85,7 @@ const WorkGrid: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-32 w-full pb-48 perspective-[2000px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24 w-full pb-48 perspective-[2000px] max-w-7xl mx-auto">
         {filteredProjects.map((project, index) => (
           <WorkItem 
             key={`${project.id}-${selectedGenre}`}
