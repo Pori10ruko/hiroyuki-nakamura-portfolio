@@ -270,7 +270,7 @@ const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover 
             <span className="text-xs font-mono bg-[#e0e0e0] text-[#1a1a1a] px-1 rounded-sm">{project.year}</span>
         </div>
         <h2 className="text-3xl md:text-4xl font-serif font-medium tracking-tight group-hover:translate-x-1 transition-transform duration-300 text-[#1a1a1a]">
-            {project.title}
+            {typeof project.title === 'string' ? project.title : project.title[language]}
         </h2>
         <motion.div 
           className="overflow-hidden"
@@ -278,7 +278,7 @@ const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover 
           animate={{ opacity: isHovered ? 1 : 0.6, height: 'auto' }}
         >
             <p className="mt-4 text-sm max-w-md leading-relaxed opacity-70 text-[#333]">
-                {project.description}
+                {typeof project.description === 'string' ? project.description : project.description[language]}
             </p>
         </motion.div>
       </div>

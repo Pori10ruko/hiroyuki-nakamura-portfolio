@@ -3,8 +3,10 @@ import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
 import ScrambleText from './ScrambleText';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ProjectGallery: React.FC = () => {
+  const { language } = useLanguage();
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -38,14 +40,27 @@ const ProjectGallery: React.FC = () => {
   );
 };
 
-const GalleryItem: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
+interface GalleryItemProps {
+  project: Project;
+  index: number;
+}
+
+const GalleryItem: React.FC<GalleryItemProps> = ({ project, index }) => {
+  const { language } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleClick = () => {
+    if (project.link) {
+      window.open(project.link, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   return (
     <motion.div 
-      className="group relative w-[60vw] md:w-[30vw] aspect-square flex-shrink-0 interactive cursor-none flex flex-col justify-center items-center perspective-[1000px]"
+      className={`group relative w-[60vw] md:w-[30vw] aspect-square flex-shrink-0 interactive flex flex-col justify-center items-center perspective-[1000px] ${project.link ? 'cursor-pointer' : 'cursor-default'}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
     >
       {/* Number Display - Clean Grey */}
       <div className="absolute -top-16 left-0 overflow-hidden pointer-events-none font-mono">
@@ -141,7 +156,7 @@ const GalleryItem: React.FC<{ project: Project; index: number }> = ({ project, i
 
       <div className="absolute -bottom-24 left-0 w-full text-left pointer-events-none">
          <h3 className="text-3xl md:text-4xl font-light tracking-tight leading-none text-[#1a1a1a] group-hover:translate-x-2 transition-transform duration-500">
-            <ScrambleText text={project.title} />
+            <ScrambleText text={typeof project.title === 'string' ? project.title : project.title[language]} />
          </h3>
          <div className="flex items-center gap-2 mt-4">
              <div className="w-2 h-2 bg-[#ccc] animate-pulse rounded-full"></div>

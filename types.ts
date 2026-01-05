@@ -1,11 +1,11 @@
 export interface Project {
   id: string;
-  title: string;
+  title: string | { en: string; ja: string; zh: string };
   category: string;
   genre: string;
   year: string;
   image: string;
-  description: string;
+  description: string | { en: string; ja: string; zh: string };
   link?: string;
   tags?: string[];
 }

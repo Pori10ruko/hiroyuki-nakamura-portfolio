@@ -9,7 +9,7 @@ export const PROJECTS: Project[] = [
     genre: 'CLIENT WORKS',
     year: '2025',
     image: 'https://bbm-sound.com/images/yuki%20share%20.jpg',
-    description: '平野健司監督のMVにて、カトラリー／レストラン空間の立体音響制作として参加。劇場アニメ『この本を盗む者は』主題歌。',
+    description: 'Kenji Hirano監督のMVにて、カトラリー／レストラン空間の立体音響制作として参加。劇場アニメ『この本を盗む者は』主題歌。',
     link: 'https://youtu.be/QSQ4U3pcvzQ',
     tags: ['MV', 'Spatial Audio', 'Film']
   },
