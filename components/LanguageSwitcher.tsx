@@ -12,7 +12,7 @@ const LanguageSwitcher: React.FC = () => {
   ];
 
   return (
-    <div className="flex items-center gap-1 bg-white/10 backdrop-blur-md rounded-full px-2 py-1 border border-white/20">
+    <div className="flex items-center gap-1 bg-black/80 backdrop-blur-md rounded-full px-2 py-1 border border-white/20 shadow-lg">
       {languages.map((lang) => (
         <motion.button
           key={lang.code}
@@ -21,8 +21,8 @@ const LanguageSwitcher: React.FC = () => {
             relative px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full
             transition-all duration-300
             ${language === lang.code 
-              ? 'text-[#1a1a1a]' 
-              : 'text-white/60 hover:text-white/90'
+              ? 'text-black' 
+              : 'text-white/70 hover:text-white'
             }
           `}
           whileHover={{ scale: 1.05 }}
@@ -36,7 +36,7 @@ const LanguageSwitcher: React.FC = () => {
               transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
             />
           )}
-          {lang.label}
+          <span className="relative z-10">{lang.label}</span>
         </motion.button>
       ))}
     </div>

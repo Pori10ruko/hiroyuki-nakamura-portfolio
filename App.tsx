@@ -13,6 +13,7 @@ import Academic from './components/Academic';
 import Contact from './components/Contact';
 import DistantEcho from './components/DistantEcho';
 import Releases from './components/Releases';
+import SenNoTsudoi from './components/SenNoTsudoi';
 import AmbientBackground from './components/AmbientBackground';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { translations } from './translations';
@@ -69,6 +70,7 @@ const App: React.FC = () => {
             <Route path="/academic" element={<Academic />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/distant-echo" element={<DistantEcho />} />
+            <Route path="/sen-no-tsudoi" element={<SenNoTsudoi />} />
           </Routes>
           <Footer />
         </main>

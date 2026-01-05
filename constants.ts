@@ -370,17 +370,63 @@ export const PROJECTS: Project[] = [
   // RELEASES - SOLO
   {
     id: '20',
-    title: 'Look Up at the Stars',
+    title: {
+      en: 'Sen no Tsudoi (千の集い)',
+      ja: 'Sen no Tsudoi (千の集い)',
+      zh: 'Sen no Tsudoi (千の集い)'
+    },
+    category: 'SOLO',
+    genre: 'RELEASES',
+    year: '2024',
+    image: 'https://www.dragonseyerecordings.com/wp-content/uploads/2024/11/de6067.jpg',
+    description: {
+      en: 'A post-orchestral album that depicts the intersections of Europe and Asia, past and present, memory and history through sound and space. Released by Dragon\'s Eye Recordings.',
+      ja: 'ヨーロッパとアジア、過去と現在、記憶と歴史の交差点を音と空間によって描き出すポストオーケストラ・アルバム。Dragon\'s Eye Recordingsよりリリース。',
+      zh: '透過聲音與空間描繪歐洲與亞洲、過去與現在、記憶與歷史交匯點的後管弦樂專輯。由Dragon\'s Eye Recordings發行。'
+    },
+    link: '/#/sen-no-tsudoi',
+    tags: ['Solo', 'Post-Orchestral', 'Album']
+  },
+  {
+    id: '21',
+    title: {
+      en: 'Look Up at the Stars',
+      ja: 'Look Up at the Stars',
+      zh: 'Look Up at the Stars'
+    },
     category: 'SOLO',
     genre: 'RELEASES',
     year: '2023',
     image: 'https://f4.bcbits.com/img/a2254859746_10.jpg',
-    description: 'ピアノの繊細な響きとバイノーラル音響技術を融合させた、聴覚的な空間と知覚の新しい可能性を探求するソロアルバム。',
+    description: {
+      en: 'A solo album fusing the delicate resonance of the piano with binaural audio technology, exploring new possibilities in auditory space and perception.',
+      ja: 'ピアノの繊細な響きとバイノーラル音響技術を融合させた、聴覚的な空間と知覚の新しい可能性を探求するソロアルバム。',
+      zh: '融合鋼琴細膩共鳴與雙耳音響技術，探索聽覺空間與感知新可能性的獨奏專輯。'
+    },
     link: 'https://youngbloods.bandcamp.com/album/look-up-at-the-stars',
     tags: ['Solo', 'Binaural Audio', 'Album']
   },
   {
-    id: '21',
+    id: '22',
+    title: {
+      en: 'Singular Forms 2',
+      ja: 'Singular Forms 2',
+      zh: 'Singular Forms 2'
+    },
+    category: 'SOLO',
+    genre: 'RELEASES',
+    year: '2020',
+    image: 'https://www.dropbox.com/scl/fi/4ljjvnganh94lnvxilodg/singular-form.jpg?rlkey=u9a012r6faubu3k9egxvvv10o&raw=1',
+    description: {
+      en: 'The second volume of solo piano works exploring minimal sonic structures.',
+      ja: 'ミニマルな音響構造を探求するソロピアノ作品集の第2弾。',
+      zh: '探索極簡聲音結構的鋼琴獨奏作品集第2卷。'
+    },
+    link: 'https://youngbloods.bandcamp.com/album/singular-forms-2',
+    tags: ['Solo', 'Piano', 'Album']
+  },
+  {
+    id: '23',
     title: 'TRITONOMICS',
     category: 'SOLO',
     genre: 'RELEASES',
@@ -390,28 +436,6 @@ export const PROJECTS: Project[] = [
     link: 'https://overlap.bandcamp.com/album/nakamura-hiroyuki-tritonomics',
     tags: ['Solo', 'Electronic', 'Album']
   },
-  {
-    id: '22',
-    title: 'Sen no Tsudoi (千の集い)',
-    category: 'SOLO',
-    genre: 'RELEASES',
-    year: '2024',
-    image: 'https://f4.bcbits.com/img/a1594256511_10.jpg',
-    description: 'ヨーロッパとアジア、過去と現在、記憶と歴史の交差点を音と空間によって描き出すポストオーケストラ・アルバム。Dragon\'s Eye Recordingsよりリリース。',
-    link: 'https://www.dragonseyerecordings.com/release/de9001/',
-    tags: ['Solo', 'Post-Orchestral', 'Album']
-  },
-  {
-    id: '23',
-    title: 'Singular Forms 2',
-    category: 'SOLO',
-    genre: 'RELEASES',
-    year: '2021',
-    image: 'https://f4.bcbits.com/img/a1946955091_10.jpg',
-    description: '独創的な音楽表現を収録したコンピレーションアルバム。',
-    link: 'https://youngbloods.bandcamp.com/album/singular-forms-2',
-    tags: ['Solo', 'Compilation', 'Album']
-  },
 
   // RELEASES - BBCO
   {
@@ -420,10 +444,17 @@ export const PROJECTS: Project[] = [
     category: 'BBCO',
     genre: 'RELEASES',
     year: '2023',
-    image: 'https://i.ytimg.com/vi/Zl3sF_lN6lM/maxresdefault.jpg',
+    image: 'https://www.dropbox.com/scl/fi/iz1t5wlsmob1gpuj4nttk/BBCO-Sita.jpg?rlkey=u2j51ck7fupy8p9xvzr0b04ub&raw=1',
     description: 'Beyond Boundary Chamber Orchestraのファーストアルバム。ダンスカンパニーDRAMATIC WORKSの公演「SITA YOKOHAMA」のために制作された音楽をさらに発展させ、ジャズの名門レーベルDaiki Musicaよりリリース。',
     link: 'https://d-musica.co.jp/?p=389',
-    tags: ['BBCO', 'Orchestra', 'Album']
+    tags: ['BBCO', 'Orchestra', 'Album'],
+    videos: [
+      { id: '3TUAD9bo6Ko', title: 'SITA - Performance Highlight 1' },
+      { id: 'beNtxBeqfwE', title: 'SITA - Performance Highlight 2' },
+      { id: 'NJ2_X9Ybq-I', title: 'SITA - Performance Highlight 3' },
+      { id: 'JeRUBW1QWOQ', title: 'SITA - Performance Highlight 4' }
+    ],
+    externalLink: 'https://d-musica.co.jp/?p=389'
   },
   {
     id: '25',
@@ -433,114 +464,130 @@ export const PROJECTS: Project[] = [
     year: '2026',
     image: 'https://i.ytimg.com/vi/qZHZwPZqjSk/maxresdefault.jpg',
     description: '海外のダンスカンパニーとの共同制作。アジアとヨーロッパ、それぞれの文化や身体性に根差した表現を一度解体し、まだ見ぬ新しい物語として再構築。2026年リリース予定。',
-    link: 'https://www.youtube.com/watch?v=qZHZwPZqjSk',
-    tags: ['BBCO', 'In Development', '2026']
+    link: 'https://www.youtube.com/watch?v=qZHZwPZqjSk&list=PLb_2IgACrNd9Cjt0FacAnKKk5sQWfdaSr',
+    tags: ['BBCO', 'In Development', '2026'],
+    videos: [
+      { id: 'S8RzBlb0hQo', title: 'Ravel: Bolero - Arr. For an Imaginary Asia' },
+      { id: 's6yengQxH74', title: 'For BBCO demo' },
+      { id: 'qZHZwPZqjSk', title: 'Symphony for an Imagined Asia' }
+    ]
   },
 
   // RELEASES - UN.a
   {
     id: '26',
-    title: 'UN.a / Intersecting',
-    category: 'UN.a',
-    genre: 'RELEASES',
-    year: '2020',
-    image: 'https://i.ytimg.com/vi/QH2ls79_ImA/maxresdefault.jpg',
-    description: 'サックス奏者・宇津木紘一と結成したエレクトロ・ジャズユニット。NYCツアーを成功させ、英国のSHOWstudioで紹介されるなど国際的な評価を獲得。',
-    link: 'https://linkco.re/uAPbr8Mz?lang=ja',
-    tags: ['UN.a', 'Electro-Jazz', 'Album']
-  },
-  {
-    id: '27',
     title: 'UN.a / COLOR',
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://i.ytimg.com/vi/U9kxsHOumeo/maxresdefault.jpg',
+    image: 'https://f4.bcbits.com/img/a2570056871_10.jpg',
     description: '洗練されたエレクトロ・ジャズ楽曲とビジュアルコラボレーションが特徴のUN.aアルバム。',
     link: 'http://purre-goohn.com/un-acolor/',
     tags: ['UN.a', 'Electro-Jazz', 'Album']
   },
   {
-    id: '28',
+    id: '27',
     title: 'UN.a / Melt in Dimensions feat. ermhoi',
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2019',
-    image: 'https://i.ytimg.com/vi/U9kxsHOumeo/maxresdefault.jpg',
+    image: 'https://f4.bcbits.com/img/a3470990622_10.jpg',
     description: 'ermhoi とのコラボレーションリリース。次元的な音響空間を探求。',
     link: 'http://purre-goohn.com/un-amelt-in-dimensionsfeat-ermhoi/',
     tags: ['UN.a', 'Collaboration', 'EP']
   },
   {
-    id: '29',
+    id: '28',
     title: 'UN.a / Aggregate',
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2017',
-    image: 'https://i.ytimg.com/vi/Rvki8xfQNBw/maxresdefault.jpg',
+    image: 'https://f4.bcbits.com/img/a4086960951_10.jpg',
     description: '集積された音響テクスチャとリズム構造を探求するUN.aリリース。',
     link: 'http://purre-goohn.com/un-aaggregate/',
     tags: ['UN.a', 'Electro-Jazz', 'EP']
   },
+  {
+    id: '29',
+    title: 'UN.a / Stand Alone',
+    category: 'UN.a',
+    genre: 'RELEASES',
+    year: '2016',
+    image: 'https://f4.bcbits.com/img/a1869275831_10.jpg',
+    description: 'UN.aの初期リリース作品。独立した音響世界を構築。',
+    link: 'http://purre-goohn.com/un-astand-alone/',
+    tags: ['UN.a', 'Electro-Jazz', 'EP']
+  },
+  {
+    id: '30',
+    title: 'UN.a / Industria',
+    category: 'UN.a',
+    genre: 'RELEASES',
+    year: '2015',
+    image: 'https://f4.bcbits.com/img/a0355428695_10.jpg',
+    description: 'UN.aのデビューリリース。インダストリアルな音響要素を取り入れたエレクトロ・ジャズ。',
+    link: 'http://purre-goohn.com/un-aindustria/',
+    tags: ['UN.a', 'Electro-Jazz', 'EP']
+  },
+  {
+    id: '31',
+    title: 'UN.a / Intersecting',
+    category: 'UN.a',
+    genre: 'RELEASES',
+    year: '2020',
+    image: 'https://f4.bcbits.com/img/a2918445732_10.jpg',
+    description: 'サックス奏者・宇津木紘一と結成したエレクトロ・ジャズユニット。NYCツアーを成功させ、英国のSHOWstudioで紹介されるなど国際的な評価を獲得。',
+    link: 'https://linkco.re/uAPbr8Mz?lang=ja',
+    tags: ['UN.a', 'Electro-Jazz', 'Album']
+  },
 
   // RELEASES - PRODUCE
   {
-    id: '30',
+    id: '32',
     title: 'Erfu Shin - Supernal Tears',
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2020',
-    image: 'https://i.ytimg.com/vi/avpQVtT7vyk/maxresdefault.jpg',
+    image: 'https://linkco.re/images/release/587098',
     description: '二胡奏者Shinのミニアルバムをプロデュース。表題曲が国際的な映画音楽コンクールFMC2020でファイナリストに選出。',
     link: 'https://linkco.re/ZQCEM5tF',
     tags: ['Produce', 'Erhu', 'Album']
   },
   {
-    id: '31',
+    id: '33',
     title: 'Utae - toi toi toi',
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2016',
-    image: 'https://i.ytimg.com/vi/dWZaJw_2xOE/maxresdefault.jpg',
+    image: 'http://purre-goohn.com/wp-content/uploads/2016/01/utae_jkt.jpg',
     description: 'ドリームポップシンドロームUtaeのデビューEP。作編曲、プロデュースを担当。',
     link: 'https://linkco.re/vQpnbP3F',
     tags: ['Produce', 'Dream Pop', 'EP']
   },
   {
-    id: '31b',
-    title: 'Utae - Night Walk',
+    id: '34',
+    title: 'Utae - VICTORIA',
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2016',
-    image: 'https://i.ytimg.com/vi/O3l0oTxC5ro/maxresdefault.jpg',
-    description: 'Utaeのセカンドリリース。夜の雰囲気を纏ったポップサウンド。',
-    link: 'https://linkco.re/vQpnbP3F',
-    tags: ['Produce', 'Pop', 'EP']
+    image: 'https://i.ytimg.com/vi/NsjZdpWejYg/maxresdefault.jpg',
+    description: 'Utaeのミュージックビデオシングル。壮大なサウンドスケープ。',
+    link: 'https://www.youtube.com/watch?v=NsjZdpWejYg',
+    tags: ['Produce', 'Pop', 'MV']
   },
   {
-    id: '31c',
-    title: 'Utae - チェンダソング',
-    category: 'PRODUCE',
-    genre: 'RELEASES',
-    year: '2016',
-    image: 'https://i.ytimg.com/vi/m4J0QYEQ9Sk/maxresdefault.jpg',
-    description: 'Utaeのシングルリリース。キャッチーなメロディとエレクトロニックサウンド。',
-    link: 'https://linkco.re/vQpnbP3F',
-    tags: ['Produce', 'Pop', 'Single']
-  },
-  {
-    id: '31d',
+    id: '35',
     title: 'Utae - RVR',
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2017',
-    image: 'https://i.ytimg.com/vi/6DG-JOiOKRA/maxresdefault.jpg',
+    image: 'http://purre-goohn.com/wp-content/uploads/2017/07/PG019cover.jpg',
     description: 'VRをヒントに制作されたロックテイスト溢れるUtaeのニューシングル。',
     link: 'http://purre-goohn.com/utaervr/',
     tags: ['Produce', 'Pop', 'Single']
   },
   {
-    id: '32',
+    id: '36',
     title: '北谷和子 - 時の過ぎゆくままに',
     category: 'PRODUCE',
     genre: 'RELEASES',
@@ -553,7 +600,7 @@ export const PROJECTS: Project[] = [
 
   // RELEASES - OTHER
   {
-    id: '33',
+    id: '37',
     title: 'JOY-S - Red Thread',
     category: 'OTHER',
     genre: 'RELEASES',
@@ -563,10 +610,21 @@ export const PROJECTS: Project[] = [
     link: 'https://www.youtube.com/watch?v=alolSBasznk',
     tags: ['OTHER', 'Classical Pop', 'Album']
   },
+  {
+    id: '38',
+    title: 'NH-Trio',
+    category: 'OTHER',
+    genre: 'RELEASES',
+    year: '2014',
+    image: 'https://i.ytimg.com/vi/Rvki8xfQNBw/maxresdefault.jpg',
+    description: 'ノイズ、ジャズ、クラシック、エレクトロを横断するピアノ中心のトリオ編成。',
+    link: '#',
+    tags: ['OTHER', 'Piano', 'Experimental']
+  },
 
   // ARCHIVE
   {
-    id: '34',
+    id: '39',
     title: '土浦Soundアーカイブプロジェクト',
     category: 'Public Project',
     genre: 'ARCHIVE',
@@ -577,7 +635,7 @@ export const PROJECTS: Project[] = [
     tags: ['Archive', 'Field Recording', 'Public']
   },
   {
-    id: '35',
+    id: '40',
     title: 'BBM Net Radio',
     category: 'BBM',
     genre: 'ARCHIVE',
@@ -588,7 +646,7 @@ export const PROJECTS: Project[] = [
     tags: ['Radio', 'Podcast', 'Education']
   },
   {
-    id: '36',
+    id: '41',
     title: 'BBM Note',
     category: 'BBM',
     genre: 'ARCHIVE',
@@ -601,7 +659,7 @@ export const PROJECTS: Project[] = [
 
   // EDUCATION
   {
-    id: '37',
+    id: '42',
     title: 'Apichatpong Weerasethakul Workshop - 多摩美術大学',
     category: 'Tama Art University',
     genre: 'EDUCATION',
@@ -611,7 +669,7 @@ export const PROJECTS: Project[] = [
     tags: ['Lecture', 'Binaural Audio', 'University']
   },
   {
-    id: '38',
+    id: '43',
     title: '臺南國立大学 特別講義',
     category: 'National University of Tainan',
     genre: 'EDUCATION',
@@ -621,7 +679,7 @@ export const PROJECTS: Project[] = [
     tags: ['Taiwan', 'Workshop', 'Popular Music']
   },
   {
-    id: '39',
+    id: '44',
     title: '昭和音楽大学 研究発表',
     category: 'Showa Music University',
     genre: 'EDUCATION',
@@ -631,7 +689,7 @@ export const PROJECTS: Project[] = [
     tags: ['Research', 'Academic', 'Performance']
   },
   {
-    id: '40',
+    id: '45',
     title: 'BBM Workshop',
     category: 'BBM',
     genre: 'EDUCATION',
@@ -642,7 +700,7 @@ export const PROJECTS: Project[] = [
     tags: ['Workshop', 'Spatial Audio', 'Hands-on']
   },
   {
-    id: '41',
+    id: '46',
     title: '島村楽器 特別セミナー',
     category: 'Shimamura Music',
     genre: 'EDUCATION',
@@ -657,6 +715,57 @@ export const PROJECTS: Project[] = [
 export const GENRES = ['ALL', 'RELEASES', 'INSTALLATION', 'PERFORMANCE', 'CLIENT WORKS', 'SPATIAL AUDIO', 'EDUCATION', 'ARCHIVE'] as const;
 
 export type Genre = typeof GENRES[number];
+
+// BBCO hero image
+export const BBCO_HERO_IMAGE = 'https://static.wixstatic.com/media/dbd631_e7125251ebb6459e8b88d33a291b8710~mv2.webp/v1/fit/w_1245,h_720,q_90,enc_avif,quality_auto/dbd631_e7125251ebb6459e8b88d33a291b8710~mv2.webp';
+
+// BBCO gallery images
+export const BBCO_GALLERY_IMAGES = [
+  'https://static.wixstatic.com/media/dbd631_73006b52a0d049df9a1ab3a6bb35c35a~mv2.jpg/v1/fill/w_1245,h_830,q_90,enc_avif,quality_auto/dbd631_73006b52a0d049df9a1ab3a6bb35c35a~mv2.jpg',
+  'https://static.wixstatic.com/media/dbd631_e7125251ebb6459e8b88d33a291b8710~mv2.webp/v1/fit/w_1245,h_720,q_90,enc_avif,quality_auto/dbd631_e7125251ebb6459e8b88d33a291b8710~mv2.webp'
+];
+
+// SITA gallery images
+export const SITA_GALLERY_IMAGES = [
+  'https://static.wixstatic.com/media/dbd631_22fe51bcd99d4f96bb915fb866f0030a~mv2.png/v1/fill/w_800,h_455,q_90,enc_avif,quality_auto/dbd631_22fe51bcd99d4f96bb915fb866f0030a~mv2.png',
+  'https://static.wixstatic.com/media/dbd631_02983adea3b84745ba5deadd00fe40de~mv2.png/v1/fill/w_800,h_455,q_90,enc_avif,quality_auto/dbd631_02983adea3b84745ba5deadd00fe40de~mv2.png'
+];
+
+// SITA descriptions
+export const SITA_DESCRIPTIONS = {
+  en: 'In 2021, Nakamura served as Music Director and Producer for "SITA YOKOHAMA," a dance performance by the company DRAMATIC WORKS, presented as part of the Dance Dance Dance @ YOKOHAMA festival. The music created for this stage production was further developed with his own Beyond Boundary Chamber Orchestra. In 2023, it was released as the group\'s first album, "SITA," from the prestigious jazz label Daiki Musica.',
+  zh: '2021 年，中村擔任舞團 DRAMATIC WORKS 舞蹈作品 《SITA YOKOHAMA》 的音樂總監與製作人。\n該作品於 Dance Dance Dance @ YOKOHAMA 藝術節中上演，其舞台音樂之後更由他主導的 Beyond Boundary Chamber Orchestra 發展延伸。\n2023 年，這些音樂以樂團首張專輯 《SITA》 的形式，透過知名爵士廠牌 Daiki Musica 正式發行。',
+  ja: '2021年、「Dance Dance Dance @ YOKOHAMA」の一環として上演された、ダンスカンパニーDRAMATIC WORKSによる公演「SITA YOKOHAMA」にて、音楽監督を担当 。この舞台のために制作された音楽を、自身が主宰するBeyond Boundary Chamber Orchestraと共にさらに発展させ 、2023年にジャズの名門レーベルDaiki Musicaより、ファーストアルバム「SITA」としてリリースした。'
+};
+
+// Sub-category descriptions
+export const SUBCATEGORY_DESCRIPTIONS = {
+  SOLO: {
+    en: 'The solo work of NAKAMURA Hiroyuki as a pianist, composer, and media artist. Fusing the delicate resonance of the piano with advanced technologies such as binaural audio, these projects explore new possibilities in sonic space and perception.',
+    ja: 'ピアニスト、作曲家、電子音楽家としての中村浩之、個人の創作活動。自らプログラミングし生成した電子音楽デビュー作品[TRITONOMICS]他、ピアノの繊細な響きと、バイノーラル音響などの先端技術を融合させ、聴覚的な空間と知覚の新しい可能性を探求する。',
+    zh: '這是 中村浩之 身為鋼琴家、作曲家與媒體藝術家的個人創作。將鋼琴細膩的共鳴與 雙耳音響 等先進技術融合，探索聲音空間與感知中的全新可能性。'
+  },
+  BBCO: {
+    en: 'A genre-less chamber orchestra led and produced by Hiroyuki Nakamura. Gathering musicians from diverse backgrounds—including jazz, classical, pop, and electronic music—BBCO creates grand sonic experiences fused with the performing arts and media art.',
+    ja: '中村浩之が主宰・プロデュースする、ジャンルレスなチェンバー・オーケストラ。ジャズ、クラシック、ポップス、電子音楽など、多様なバックグラウンドを持つ音楽家たちが集い、舞台芸術やメディアアートと融合した、壮大な音響体験を創造する。',
+    zh: '由 中村浩之 主導並製作的無類別室內樂團。集結來自爵士、古典、流行與電子音樂等多元背景的音樂家，BBCO 透過融合表演藝術與媒體藝術創造出宏大的聲響體驗。'
+  },
+  'UN.a': {
+    en: 'A core musical unit from Hiroyuki Nakamura\'s early career, formed with saxophonist and mixing engineer Koichi Utsugi. Centered on electro-jazz, UN.a achieved early international recognition through sophisticated compositions and performances, including a successful NYC tour and a music video feature on the UK\'s SHOWstudio.',
+    ja: 'サックス奏者でありミキシングエンジニアでもある宇津木紘一と結成し、中村浩之のキャリア初期から活動している中心的な音楽ユニット。エレクトロ・ジャズ、クラシック、ポップス、電子音楽を行き来し、洗練された楽曲とパフォーマンスで、NYCツアーを成功させ、MVが英国のSHOWstudioで紹介されるなど、早くから国際的な評価を獲得した。',
+    zh: '這是 中村浩之 早期職業生涯的核心音樂單位，由他與薩克斯風手暨混音工程師 宇津木紘一 共同組成。以電子爵士為核心風格，UN.a 透過精緻的作曲與演出獲得了國際關注，曾成功舉辦 紐約巡演，並有音樂錄影帶登上英國 SHOWstudio。'
+  },
+  PRODUCE: {
+    en: 'As a producer, Hiroyuki Nakamura participates in the works of various artists through composition, arrangement, sound design, and technical direction. By deeply understanding an artist\'s vision and combining it with his advanced sonic technologies and musical ideas, he maximizes the value of their creative work.',
+    ja: 'プロデューサーとして、様々なアーティストの作品に、作編曲、サウンドデザイン、テクニカルディレクションなどで参加。アーティストのビジョンを深く理解し、自身の持つ先端的な音響技術と音楽的アイデアを掛け合わせることで、作品の価値を最大化する。',
+    zh: '身為製作人，中村浩之 透過作曲、編曲、聲音設計與技術指導，參與多位藝術家的作品。他深入理解藝術家的願景，並結合自身先進的聲響技術與音樂理念，最大化地提升其創作價值。'
+  },
+  OTHER: {
+    en: 'Collaborative projects and special works that transcend conventional categories. These projects include cross-genre collaborations and experimental works that explore new forms of musical expression.',
+    ja: '既存のカテゴリーを超えた、コラボレーションプロジェクトや特別な作品。ジャンルを横断した共同作業や、新しい音楽表現の形を探求する実験的作品を含む。',
+    zh: '超越傳統分類的合作項目與特殊作品。包括跨類別的合作計畫，以及探索新音樂表現形式的實驗性作品。'
+  }
+};
 
 export const NAV_LINKS = [
   { name: 'Performance', path: '/' },

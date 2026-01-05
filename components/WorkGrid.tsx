@@ -1,19 +1,27 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { PROJECTS, GENRES, Genre } from '../constants';
+import { PROJECTS, GENRES, Genre, SUBCATEGORY_DESCRIPTIONS, BBCO_HERO_IMAGE, BBCO_GALLERY_IMAGES, SITA_GALLERY_IMAGES, SITA_DESCRIPTIONS } from '../constants';
 import { Project } from '../types';
 import ScrambleText from './ScrambleText';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations';
+import VideoModal from './VideoModal.tsx';
 
 const WorkGrid: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language];
+  const navigate = useNavigate();
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [selectedGenre, setSelectedGenre] = useState<Genre>('ALL');
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [selectedVideos, setSelectedVideos] = useState<{ id: string; title: string }[]>([]);
+  const [modalExternalLink, setModalExternalLink] = useState<string | undefined>(undefined);
+  const [modalTitle, setModalTitle] = useState<string | undefined>(undefined);
+  const [modalGalleryImages, setModalGalleryImages] = useState<string[] | undefined>(undefined);
+  const [modalDescription, setModalDescription] = useState<string | undefined>(undefined);
 
   // Define sub-categories for each major category
   const CATEGORY_STRUCTURE: Record<string, string[]> = {
@@ -58,6 +66,37 @@ const WorkGrid: React.FC = () => {
     // For simple categories without sub-categories
     return PROJECTS.filter(project => project.genre === selectedGenre);
   }, [selectedGenre, selectedSubCategory]);
+
+  const handleProjectClick = (project: Project) => {
+    // If project has videos, open modal
+    if (project.videos && project.videos.length > 0) {
+      setSelectedVideos(project.videos);
+      setModalExternalLink(project.externalLink);
+      setModalTitle(typeof project.title === 'string' ? project.title : project.title[language]);
+      
+      // Set gallery images and description for SITA
+      if (project.id === '24') {
+        setModalGalleryImages(SITA_GALLERY_IMAGES);
+        setModalDescription(SITA_DESCRIPTIONS[language]);
+      } else {
+        setModalGalleryImages(undefined);
+        setModalDescription(undefined);
+      }
+      
+      setVideoModalOpen(true);
+      return;
+    }
+    
+    // Otherwise, handle link navigation
+    if (project.link) {
+      if (project.link.startsWith('/#/')) {
+        const path = project.link.replace('/#', '');
+        navigate(path);
+      } else {
+        window.open(project.link, '_blank', 'noopener,noreferrer');
+      }
+    }
+  };
 
   return (
     <div className="w-full min-h-screen px-4 md:px-12 py-32 text-[#1a1a1a]">
@@ -123,26 +162,61 @@ const WorkGrid: React.FC = () => {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="flex flex-wrap gap-3 mt-4 pl-4 border-l-2 border-[#1a1a1a]/20"
+                  className="flex flex-col gap-4 mt-4 pl-4 border-l-2 border-[#1a1a1a]/20"
                 >
-                  {CATEGORY_STRUCTURE.RELEASES.map((subCat) => (
-                    <motion.button
-                      key={subCat}
-                      onClick={() => setSelectedSubCategory(selectedSubCategory === subCat ? null : subCat)}
-                      className={`
-                        px-5 py-2 text-xs md:text-sm font-bold uppercase tracking-widest
-                        transition-all duration-300 border
-                        ${selectedSubCategory === subCat
-                          ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
-                          : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
-                        }
-                      `}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                  <div className="flex flex-wrap gap-3">
+                    {CATEGORY_STRUCTURE.RELEASES.map((subCat) => (
+                      <motion.button
+                        key={subCat}
+                        onClick={() => setSelectedSubCategory(selectedSubCategory === subCat ? null : subCat)}
+                        className={`
+                          px-5 py-2 text-xs md:text-sm font-bold uppercase tracking-widest
+                          transition-all duration-300 border
+                          ${selectedSubCategory === subCat
+                            ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
+                            : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
+                          }
+                        `}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {subCat}
+                      </motion.button>
+                    ))}
+                  </div>
+                  {/* Show sub-category descriptions */}
+                  {selectedSubCategory && SUBCATEGORY_DESCRIPTIONS[selectedSubCategory as keyof typeof SUBCATEGORY_DESCRIPTIONS] && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-sm text-[#1a1a1a]/70 leading-relaxed max-w-3xl mt-2"
                     >
-                      {subCat}
-                    </motion.button>
-                  ))}
+                      {SUBCATEGORY_DESCRIPTIONS[selectedSubCategory as keyof typeof SUBCATEGORY_DESCRIPTIONS][language]}
+                    </motion.div>
+                  )}
+                  
+                  {/* BBCO Gallery Images */}
+                  {selectedSubCategory === 'BBCO' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.1 }}
+                      className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6"
+                    >
+                      {BBCO_GALLERY_IMAGES.map((image, index) => (
+                        <motion.img 
+                          key={index}
+                          src={image} 
+                          alt={`BBCO ${index + 1}`} 
+                          className="w-full h-auto rounded-lg shadow-lg"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
+                        />
+                      ))}
+                    </motion.div>
+                  )}
                 </motion.div>
               )}
             </div>
@@ -334,9 +408,21 @@ const WorkGrid: React.FC = () => {
             index={index} 
             isHovered={hoveredProject === project.id}
             onHover={(id) => setHoveredProject(id)}
+            onProjectClick={handleProjectClick}
           />
         ))}
       </div>
+      
+      {/* Video Modal */}
+      <VideoModal 
+        isOpen={videoModalOpen}
+        onClose={() => setVideoModalOpen(false)}
+        videos={selectedVideos}
+        externalLink={modalExternalLink}
+        title={modalTitle}
+        galleryImages={modalGalleryImages}
+        description={modalDescription}
+      />
     </div>
   );
 };
@@ -345,6 +431,7 @@ interface WorkItemProps {
   project: Project;
   index: number;
   isHovered: boolean;
+  onProjectClick: (project: Project) => void;
   onHover: (id: string | null) => void;
 }
 
@@ -352,10 +439,10 @@ const WorkItem: React.FC<WorkItemProps> = ({
   project, 
   index, 
   isHovered, 
-  onHover
+  onHover,
+  onProjectClick
 }) => {
   const { language } = useLanguage();
-  const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
 
@@ -365,15 +452,7 @@ const WorkItem: React.FC<WorkItemProps> = ({
   }, [project.id]);
 
   const handleClick = () => {
-    if (project.link) {
-      // Check if it's an internal link (starts with /#/)
-      if (project.link.startsWith('/#/')) {
-        const path = project.link.replace('/#', '');
-        navigate(path);
-      } else {
-        window.open(project.link, '_blank', 'noopener,noreferrer');
-      }
-    }
+    onProjectClick(project);
   };
 
   const handleImageLoad = async (e: React.SyntheticEvent<HTMLImageElement>) => {

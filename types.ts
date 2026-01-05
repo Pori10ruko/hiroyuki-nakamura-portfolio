@@ -26,6 +26,8 @@ export interface Project {
   link?: string;
   tags?: string[];
   subCategories?: SubCategory[];
+  videos?: { id: string; title: string }[];
+  externalLink?: string;
 }
 
 export interface ChatMessage {
