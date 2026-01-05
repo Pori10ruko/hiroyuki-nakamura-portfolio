@@ -12,6 +12,8 @@ const WorkGrid: React.FC = () => {
   const t = translations[language];
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [selectedGenre, setSelectedGenre] = useState<Genre>('ALL');
+  const [expandedReleasesId, setExpandedReleasesId] = useState<string | null>(null);
+  const [selectedReleaseCategory, setSelectedReleaseCategory] = useState<string | null>(null);
 
   const filteredProjects = useMemo(() => {
     if (selectedGenre === 'ALL') return PROJECTS;
@@ -88,13 +90,41 @@ const WorkGrid: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24 w-full pb-48 perspective-[2000px] max-w-7xl mx-auto">
         {filteredProjects.map((project, index) => (
-          <WorkItem 
-            key={`${project.id}-${selectedGenre}`}
-            project={project} 
-            index={index} 
-            isHovered={hoveredProject === project.id}
-            onHover={(id) => setHoveredProject(id)}
-          />
+          <React.Fragment key={`${project.id}-${selectedGenre}`}>
+            <WorkItem 
+              project={project} 
+              index={index} 
+              isHovered={hoveredProject === project.id}
+              onHover={(id) => setHoveredProject(id)}
+              onToggleReleases={(id) => {
+                if (expandedReleasesId === id) {
+                  setExpandedReleasesId(null);
+                  setSelectedReleaseCategory(null);
+                } else {
+                  setExpandedReleasesId(id);
+                  setSelectedReleaseCategory(null);
+                }
+              }}
+              isReleasesExpanded={expandedReleasesId === project.id}
+            />
+            
+            {/* Releases Expansion - Full Width */}
+            {project.genre === 'RELEASES' && expandedReleasesId === project.id && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.5 }}
+                className="col-span-full"
+              >
+                <ReleasesExpanded 
+                  selectedCategory={selectedReleaseCategory}
+                  onSelectCategory={setSelectedReleaseCategory}
+                  language={language}
+                />
+              </motion.div>
+            )}
+          </React.Fragment>
         ))}
       </div>
     </div>
@@ -106,9 +136,18 @@ interface WorkItemProps {
   index: number;
   isHovered: boolean;
   onHover: (id: string | null) => void;
+  onToggleReleases?: (id: string) => void;
+  isReleasesExpanded?: boolean;
 }
 
-const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover }) => {
+const WorkItem: React.FC<WorkItemProps> = ({ 
+  project, 
+  index, 
+  isHovered, 
+  onHover,
+  onToggleReleases,
+  isReleasesExpanded = false
+}) => {
   const { language } = useLanguage();
   const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = React.useState(false);
@@ -120,6 +159,12 @@ const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover 
   }, [project.id]);
 
   const handleClick = () => {
+    // If it's a Releases project, toggle expansion instead of navigating
+    if (project.genre === 'RELEASES' && onToggleReleases) {
+      onToggleReleases(project.id);
+      return;
+    }
+    
     if (project.link) {
       // Check if it's an internal link (starts with /#/)
       if (project.link.startsWith('/#/')) {
@@ -146,7 +191,7 @@ const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover 
       animate={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.6, delay: Math.min(index * 0.03, 0.3), ease: [0.16, 1, 0.3, 1] }}
-      className={`relative group ${project.link ? 'cursor-pointer' : 'cursor-default'} flex flex-col ${index % 2 !== 0 ? 'md:mt-32' : ''}`}
+      className={`relative group cursor-pointer flex flex-col ${index % 2 !== 0 ? 'md:mt-32' : ''}`}
       onMouseEnter={() => onHover(project.id)}
       onMouseLeave={() => onHover(null)}
       onClick={handleClick}
@@ -298,6 +343,166 @@ const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover 
             </p>
         </motion.div>
       </div>
+    </motion.div>
+  );
+};
+
+// Releases Data
+const RELEASES_DATA: Record<string, any[]> = {
+  SOLO: [
+    {
+      title: 'Look Up at the Stars',
+      year: '2023',
+      image: 'https://bbm-sound.com/images/look-up.jpg',
+      links: { bandcamp: 'https://youngbloods.bandcamp.com/album/look-up-at-the-stars', youtube: 'https://www.youtube.com/watch?v=lI7Rq58b2Ys' }
+    },
+    {
+      title: 'TRITONOMICS',
+      year: '2022',
+      image: 'https://f4.bcbits.com/img/a0987654321_10.jpg',
+      links: { bandcamp: 'https://overlap.bandcamp.com/album/nakamura-hiroyuki-tritonomics' }
+    },
+    {
+      title: 'Sen no Tsudoi (千の集い)',
+      year: '2024',
+      image: 'https://i.ytimg.com/vi/6_keqXc2xZk/maxresdefault.jpg',
+      links: { other: 'https://www.dragonseyerecordings.com/release/de9001/', youtube: 'https://www.youtube.com/playlist?list=PLb_2IgACrNd9j9MLFkpMetV0CoXyiKcoE' }
+    }
+  ],
+  BBCO: [
+    {
+      title: 'SITA',
+      year: '2023',
+      image: 'https://static.wixstatic.com/media/dbd631_8c9d4e5f6a7b4c8d9e0f1a2b3c4d5e6f~mv2.jpg',
+      links: { other: 'https://d-musica.co.jp/?p=389', youtube: 'https://www.youtube.com/watch?v=Zl3sF_lN6lM' }
+    },
+    {
+      title: '2nd Album (In Development)',
+      year: '2026',
+      image: 'https://i.ytimg.com/vi/qZHZwPZqjSk/maxresdefault.jpg',
+      links: { youtube: 'https://www.youtube.com/watch?v=qZHZwPZqjSk' }
+    }
+  ],
+  'UN.a': [
+    {
+      title: 'Intersecting',
+      year: '2020',
+      image: 'https://i.ytimg.com/vi/QH2ls79_ImA/maxresdefault.jpg',
+      links: { spotify: 'https://linkco.re/uAPbr8Mz?lang=ja', youtube: 'https://www.youtube.com/watch?v=QH2ls79_ImA' }
+    },
+    {
+      title: 'COLOR',
+      year: '2018',
+      image: 'https://i.ytimg.com/vi/U9kxsHOumeo/maxresdefault.jpg',
+      links: { other: 'http://purre-goohn.com/un-acolor/', youtube: 'https://www.youtube.com/watch?v=U9kxsHOumeo' }
+    }
+  ],
+  PRODUCE: [
+    {
+      title: 'Erfu Shin - Supernal Tears',
+      year: '2020',
+      image: 'https://i.ytimg.com/vi/avpQVtT7vyk/maxresdefault.jpg',
+      links: { spotify: 'https://linkco.re/ZQCEM5tF', youtube: 'https://www.youtube.com/watch?v=avpQVtT7vyk' }
+    },
+    {
+      title: 'Utae - toi toi toi',
+      year: '2019',
+      image: 'https://i.ytimg.com/vi/m4J0QYEQ9Sk/maxresdefault.jpg',
+      links: { other: 'http://purre-goohn.com/utaervr/', youtube: 'https://www.youtube.com/watch?v=m4J0QYEQ9Sk' }
+    }
+  ],
+  OTHER: [
+    {
+      title: 'JOY-S - Red Thread',
+      year: '2016',
+      image: 'https://i.ytimg.com/vi/alolSBasznk/maxresdefault.jpg',
+      links: { youtube: 'https://www.youtube.com/watch?v=alolSBasznk' }
+    }
+  ]
+};
+
+interface ReleasesExpandedProps {
+  selectedCategory: string | null;
+  onSelectCategory: (category: string | null) => void;
+  language: 'en' | 'ja' | 'zh';
+}
+
+const ReleasesExpanded: React.FC<ReleasesExpandedProps> = ({ selectedCategory, onSelectCategory, language }) => {
+  const categories = ['SOLO', 'BBCO', 'UN.a', 'PRODUCE', 'OTHER'];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="py-12 px-6 bg-[#0a0a0a]/5 rounded-lg border border-[#1a1a1a]/10"
+    >
+      {/* Category Buttons */}
+      <div className="flex flex-wrap gap-3 mb-8 justify-center">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => onSelectCategory(selectedCategory === cat ? null : cat)}
+            className={`px-6 py-3 text-sm uppercase tracking-widest transition-all ${
+              selectedCategory === cat
+                ? 'bg-[#1a1a1a] text-[#dfdbd5]'
+                : 'bg-transparent border border-[#1a1a1a]/20 hover:border-[#1a1a1a]'
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* Releases Grid */}
+      {selectedCategory && RELEASES_DATA[selectedCategory] && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {RELEASES_DATA[selectedCategory].map((release, index) => (
+            <motion.div
+              key={`${release.title}-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="group"
+            >
+              <div className="relative aspect-square overflow-hidden mb-4 bg-[#1a1a1a]">
+                <img
+                  src={release.image}
+                  alt={release.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-baseline justify-between">
+                  <h3 className="text-lg font-medium">{release.title}</h3>
+                  <span className="text-sm opacity-50">{release.year}</span>
+                </div>
+                {Object.keys(release.links).length > 0 && (
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    {release.links.spotify && (
+                      <a href={release.links.spotify} target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-wider hover:opacity-50">Spotify</a>
+                    )}
+                    {release.links.youtube && (
+                      <a href={release.links.youtube} target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-wider hover:opacity-50">YouTube</a>
+                    )}
+                    {release.links.bandcamp && (
+                      <a href={release.links.bandcamp} target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-wider hover:opacity-50">Bandcamp</a>
+                    )}
+                    {release.links.other && (
+                      <a href={release.links.other} target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-wider hover:opacity-50">More Info</a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
     </motion.div>
   );
 };
