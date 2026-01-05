@@ -46,7 +46,7 @@ export const translations = {
     contactPage: 'Contact Page →',
     
     // Academic Projects
-    apichatpong2024Title: 'Apichatpong Weerasethakul\'s Workshop',
+    apichatpong2024Title: "Apichatpong Weerasethakul's Workshop",
     apichatpong2024Subtitle: 'Graduate School of Tama Art University',
     apichatpong2024Desc1: '"About Distance and Music Between You"',
     apichatpong2024Desc2: 'At the personal invitation of director Apichatpong Weerasethakul, delivered a special lecture during his workshop at Tama Art University\'s graduate school. The lecture covered the technology and artistic application of binaural audio, Nakamura\'s area of expertise, providing both explanation and practical demonstrations for students and artists.',
@@ -132,7 +132,7 @@ export const translations = {
     contactPage: 'コンタクトページ →',
     
     // Academic Projects
-    apichatpong2024Title: 'Apichatpong Weerasethakul\'s Workshop',
+    apichatpong2024Title: "Apichatpong Weerasethakul's Workshop",
     apichatpong2024Subtitle: '多摩美術大学大学院',
     apichatpong2024Desc1: '「あなたとの距離と音楽について」',
     apichatpong2024Desc2: '映画監督アピチャッポン・ウィーラセタクン氏本人の招聘により、多摩美術大学大学院で実施された同監督のワークショップにて特別講義を担当。専門とするバイノーラル音響技術と芸術表現への応用について、学生やアーティストに向けて解説と実演を行いました。',
@@ -218,7 +218,7 @@ export const translations = {
     contactPage: '聯絡頁面 →',
     
     // Academic Projects
-    apichatpong2024Title: 'Apichatpong Weerasethakul 工作坊',
+    apichatpong2024Title: "Apichatpong Weerasethakul 工作坊",
     apichatpong2024Subtitle: '多摩美術大學研究所',
     apichatpong2024Desc1: '「關於你我之間的距離與音樂」',
     apichatpong2024Desc2: '受電影導演 Apichatpong Weerasethakul 本人邀請，在多摩美術大學研究所舉辦的工作坊中擔任特別講師。針對專精的雙聲道音響技術與藝術表現應用，向學生和藝術家進行解說與實演。',
