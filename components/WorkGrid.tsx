@@ -41,7 +41,8 @@ const WorkGrid: React.FC = () => {
             if (selectedSubCategory === 'Public Space') return ['Public Project', 'Public Space'].includes(p.category);
           } else if (selectedGenre === 'CLIENT WORKS') {
             // Map client work projects to sub-categories
-            if (selectedSubCategory === 'Music Video') return ["Jim's Petty", 'Live Painting Concert', 'UN.a'].includes(p.category);
+            const jimPetty = "Jim's Petty";
+            if (selectedSubCategory === 'Music Video') return [jimPetty, 'Live Painting Concert', 'UN.a'].includes(p.category);
             if (selectedSubCategory === 'VTuber') return ['RE:ACT', 'RK MUSIC'].includes(p.category);
             if (selectedSubCategory === 'Commercial') return ['Music Festival'].includes(p.category);
             if (selectedSubCategory === 'Mix/Master') return ['Opera Mix'].includes(p.category);
