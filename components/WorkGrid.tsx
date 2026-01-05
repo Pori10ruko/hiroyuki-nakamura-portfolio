@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
 import { PROJECTS, GENRES, Genre } from '../constants';
 import { Project } from '../types';
 import ScrambleText from './ScrambleText';
@@ -109,6 +110,7 @@ interface WorkItemProps {
 
 const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover }) => {
   const { language } = useLanguage();
+  const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
 
@@ -119,7 +121,13 @@ const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover 
 
   const handleClick = () => {
     if (project.link) {
-      window.open(project.link, '_blank', 'noopener,noreferrer');
+      // Check if it's an internal link (starts with /#/)
+      if (project.link.startsWith('/#/')) {
+        const path = project.link.replace('/#', '');
+        navigate(path);
+      } else {
+        window.open(project.link, '_blank', 'noopener,noreferrer');
+      }
     }
   };
 
