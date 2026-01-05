@@ -108,6 +108,7 @@ interface WorkItemProps {
 }
 
 const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover }) => {
+  const { language } = useLanguage();
   const [imageLoaded, setImageLoaded] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
 
@@ -145,7 +146,7 @@ const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover 
     >
       {/* 3D Acoustic Block Container */}
       <motion.div 
-        className="relative w-full aspect-[4/5] mb-6 transform-style-3d overflow-hidden"
+        className="relative w-full aspect-square mb-6 transform-style-3d overflow-hidden"
         animate={{ 
             rotateY: [0, -1.5, 0],
             rotateX: [0, 0.8, 0],
@@ -226,6 +227,13 @@ const WorkItem: React.FC<WorkItemProps> = ({ project, index, isHovered, onHover 
                 className="absolute inset-0 bg-white"
                 animate={{ opacity: [0, 0.18, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
+            />
+
+            {/* Shimmer Line Overlay */}
+            <motion.div 
+                className="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/30 to-transparent"
+                animate={{ x: ['-100%', '100%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 + index }}
             />
 
             {/* Shimmer Effect */}
