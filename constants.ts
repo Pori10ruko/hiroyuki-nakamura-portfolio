@@ -4,34 +4,58 @@ export const PROJECTS: Project[] = [
   // 2025 - RECENT
   {
     id: '1',
-    title: 'YUKI『Share』MV 立体音響制作',
+    title: {
+      en: 'YUKI "Share" MV Spatial Audio Production',
+      ja: 'YUKI『Share』MV 立体音響制作',
+      zh: 'YUKI《Share》MV 立體音響製作'
+    },
     category: 'SONY MUSIC',
     genre: 'CLIENT WORKS',
     year: '2025',
     image: 'https://bbm-sound.com/images/yuki%20share%20.jpg',
-    description: 'Kenji Hirano監督のMVにて、カトラリー／レストラン空間の立体音響制作として参加。劇場アニメ『この本を盗む者は』主題歌。',
+    description: {
+      en: 'Participated in spatial audio production for cutlery/restaurant spaces in the MV directed by Kenji Hirano. Theme song for the theatrical anime "The One Who Steals This Book".',
+      ja: 'Kenji Hirano監督のMVにて、カトラリー／レストラン空間の立体音響制作として参加。劇場アニメ『この本を盗む者は』主題歌。',
+      zh: '參與由 Kenji Hirano 執導的 MV 中餐具/餐廳空間的立體音響製作。劇場動畫《偷書之人》主題曲。'
+    },
     link: 'https://youtu.be/QSQ4U3pcvzQ',
     tags: ['MV', 'Spatial Audio', 'Film']
   },
   {
     id: '2',
-    title: 'バーチャル霊園 清月記',
+    title: {
+      en: 'Virtual Cemetery Seigetsuki',
+      ja: 'バーチャル霊園 清月記',
+      zh: '虛擬靈園 清月記'
+    },
     category: '株式会社清月記',
     genre: 'APP',
     year: '2025',
     image: 'https://bbm-sound.com/images/reien_photo.webp',
-    description: '株式会社清月記の「バーチャル霊園」アプリ。立体音響の音楽デザインを担当。',
+    description: {
+      en: 'Spatial audio music design for the "Virtual Cemetery" app by Seigetsuki Co., Ltd.',
+      ja: '株式会社清月記の「バーチャル霊園」アプリ。立体音響の音楽デザインを担当。',
+      zh: '為清月記株式會社的「虛擬靈園」應用程式負責立體音響音樂設計。'
+    },
     link: 'https://apps.apple.com/jp/app/バーチャル霊園/id6744600215',
     tags: ['App', 'Spatial Audio']
   },
   {
     id: '3',
-    title: 'Distant Echo',
+    title: {
+      en: 'Distant Echo',
+      ja: 'Distant Echo',
+      zh: 'Distant Echo（遙遠回聲）'
+    },
     category: 'Piano & Live Painting',
     genre: 'INSTALLATION',
     year: '2024',
     image: 'https://bbm-sound.com/images/distant-echo.avif',
-    description: '「距離」と「残響」の美学。ピアノの旋律が空間に描く不可視の軌跡を、独自の音響処理によって聴覚的な建築として再構築します。静寂の中に浮かび上がる音の粒子が、鑑賞者の記憶と共振する没入型ライブインスタレーション。Live Painting: Maria Noto (能登真理亜)',
+    description: {
+      en: 'The aesthetics of "distance" and "reverberation". Piano melodies trace invisible trajectories in space, reconstructed as auditory architecture through unique sound processing. An immersive live installation where sound particles emerge from silence to resonate with the audience\'s memories. Live Painting: Maria Noto.',
+      ja: '「距離」と「残響」の美学。ピアノの旋律が空間に描く不可視の軌跡を、独自の音響処理によって聴覚的な建築として再構築します。静寂の中に浮かび上がる音の粒子が、鑑賞者の記憶と共振する没入型ライブインスタレーション。Live Painting: Maria Noto (能登真理亜)',
+      zh: '「距離」與「殘響」的美學。鋼琴旋律在空間中繪製的無形軌跡，透過獨特的音響處理重構為聽覺建築。寂靜中浮現的聲音粒子與觀眾記憶共鳴的沉浸式現場裝置。Live Painting: Maria Noto（能登真理亞）。'
+    },
     link: 'https://www.nakamurahiroyuki.info/distant-echo',
     tags: ['Spatial Audio', 'Live Performance', 'Interactive']
   },
@@ -39,12 +63,20 @@ export const PROJECTS: Project[] = [
   // 2024 - INSTALLATION
   {
     id: '4',
-    title: 'Alone Together',
+    title: {
+      en: 'Alone Together',
+      ja: 'Alone Together',
+      zh: 'Alone Together（孤獨共處）'
+    },
     category: 'Random International',
     genre: 'INSTALLATION',
     year: '2024',
     image: 'https://bbm-sound.com/images/Random-International-Alone-Together.jpg',
-    description: '物理的な身体とデジタルな存在。その境界線上で揺れ動く人間の振る舞いを探求する、Random Internationalの代表作。私たちはその不可視な「気配」や「関係性」を音響によって具現化し、視覚を超えた没入体験を実装しました。(Riyadh Art 2024 / Superblue Miami)',
+    description: {
+      en: 'Physical bodies and digital existence. This masterpiece by Random International explores human behavior oscillating on the boundary between the two. We embodied the invisible "presence" and "relationships" through sound, implementing an immersive experience beyond the visual. (Riyadh Art 2024 / Superblue Miami)',
+      ja: '物理的な身体とデジタルな存在。その境界線上で揺れ動く人間の振る舞いを探求する、Random Internationalの代表作。私たちはその不可視な「気配」や「関係性」を音響によって具現化し、視覚を超えた没入体験を実装しました。(Riyadh Art 2024 / Superblue Miami)',
+      zh: '物理身體與數位存在。Random International 的代表作探索人類行為在兩者邊界上的擺動。我們透過聲音具現化那些無形的「氣息」與「關係」，實現了超越視覺的沉浸式體驗。(Riyadh Art 2024 / Superblue Miami)'
+    },
     link: 'https://riyadhart.sa/en/artworks/alone-together-2024/',
     tags: ['Riyadh Art', 'Superblue Miami']
   },
@@ -52,12 +84,20 @@ export const PROJECTS: Project[] = [
   // 2024 - PERFORMANCE
   {
     id: '5',
-    title: '川崎市政100周年プレイベント "Encount"',
+    title: {
+      en: 'Kawasaki City 100th Anniversary Pre-event "Encount"',
+      ja: '川崎市政100周年プレイベント "Encount"',
+      zh: '川崎市政100週年前期活動「Encount」'
+    },
     category: 'Kawasaki City',
     genre: 'PERFORMANCE',
     year: '2024',
     image: 'https://bbm-sound.com/images/encount.JPG',
-    description: '都市の祝祭を彩る音のランドスケープ。川崎市政100周年の節目において、街の喧騒と音楽が調和する空間を演出。音楽監督として、都市空間そのものを一つの楽器として鳴らす試みを行いました。',
+    description: {
+      en: 'A sonic landscape coloring the urban festival. At the milestone of Kawasaki City\'s 100th anniversary, we created a space where city noise and music harmonize. As music director, I attempted to play the urban space itself as a single instrument.',
+      ja: '都市の祝祭を彩る音のランドスケープ。川崎市政100周年の節目において、街の喧騒と音楽が調和する空間を演出。音楽監督として、都市空間そのものを一つの楽器として鳴らす試みを行いました。',
+      zh: '為都市慶典增添色彩的聲音景觀。在川崎市政100週年的里程碑上，演出城市喧囂與音樂和諧共存的空間。作為音樂總監，嘗試將城市空間本身作為一件樂器演奏。'
+    },
     link: 'https://prtimes.jp/main/html/rd/p/000000002.000144544.html',
     tags: ['Public', 'Urban', 'Festival']
   },
@@ -65,57 +105,97 @@ export const PROJECTS: Project[] = [
   // 2024 - CLIENT WORKS
   {
     id: '6',
-    title: 'Sen no Tsudoi (千の集い)',
+    title: {
+      en: 'Sen no Tsudoi (千の集い)',
+      ja: 'Sen no Tsudoi (千の集い)',
+      zh: 'Sen no Tsudoi（千の集い）'
+    },
     category: 'Dragon\'s Eye Recordings',
     genre: 'MUSIC VIDEO',
     year: '2024',
     image: 'https://i.ytimg.com/vi/6_keqXc2xZk/maxresdefault.jpg',
-    description: 'ポストオーケストラ・アルバム。ヨーロッパとアジア、過去と現在、記憶と歴史の交差点を音と空間によって描き出す作品。全7曲のミュージックビデオを制作。',
+    description: {
+      en: 'A post-orchestral album. A work that depicts the intersection of Europe and Asia, past and present, memory and history through sound and space. Produced all 7 music videos.',
+      ja: 'ポストオーケストラ・アルバム。ヨーロッパとアジア、過去と現在、記憶と歴史の交差点を音と空間によって描き出す作品。全7曲のミュージックビデオを制作。',
+      zh: '後管弦樂團專輯。透過聲音與空間描繪歐洲與亞洲、過去與現在、記憶與歷史交會點的作品。製作了7首MV。'
+    },
     link: 'https://www.youtube.com/playlist?list=PLb_2IgACrNd9j9MLFkpMetV0CoXyiKcoE',
     tags: ['Album', 'Post-Orchestral', 'CG']
   },
   {
     id: '7',
-    title: 'YUKI concert tour "SUPER SLITS" 2024',
+    title: {
+      en: 'YUKI concert tour "SUPER SLITS" 2024',
+      ja: 'YUKI concert tour "SUPER SLITS" 2024',
+      zh: 'YUKI 巡迴演唱會「SUPER SLITS」2024'
+    },
     category: 'SONY MUSIC',
     genre: 'CLIENT WORKS',
     year: '2024',
     image: 'https://www.yukiweb.net/super-slits-2024/img/og.png',
-    description: '全国ホールツアー「YUKI concert tour "SUPER SLITS" 2024」における、幕間映像（会場スクリーン映像）の音楽を担当。',
+    description: {
+      en: 'Composed music for intermission videos (venue screen visuals) for the national hall tour "YUKI concert tour \'SUPER SLITS\' 2024".',
+      ja: '全国ホールツアー「YUKI concert tour "SUPER SLITS" 2024」における、幕間映像（会場スクリーン映像）の音楽を担当。',
+      zh: '為全國廣播巡迴「YUKI concert tour "SUPER SLITS" 2024」中的幕間影像（會場螢幕影像）負責音樂製作。'
+    },
     link: 'https://www.yukiweb.net/super-slits-2024/',
     tags: ['Concert', 'Video Music']
   },
   {
     id: '8',
-    title: 'パレードが続くなら / YUKI',
+    title: {
+      en: 'パレードが続くなら / YUKI',
+      ja: 'パレードが続くなら / YUKI',
+      zh: '《如果遊行繼續》/ YUKI'
+    },
     category: 'SONY MUSIC',
     genre: 'CLIENT WORKS',
     year: '2024',
     image: 'https://bbm-sound.com/images/parade.jpg',
-    description: 'アルバム『パレードが続くなら』における、ジャケットCGI制作を担当。',
+    description: {
+      en: 'CGI production for the jacket of the album "パレードが続くなら".',
+      ja: 'アルバム「パレードが続くなら」における、ジャケットCGI制作を担当。',
+      zh: '為專輯《如果遊行繼續》負責封面CGI製作。'
+    },
     link: 'https://www.yukiweb.net/disco/archive/?ESCL-5752',
     tags: ['Album Cover', 'CGI']
   },
   {
     id: '9',
-    title: '東京国際フォーラム ホール（企業イベント）',
+    title: {
+      en: 'Tokyo International Forum Hall (Corporate Event)',
+      ja: '東京国際フォーラム ホール（企業イベント）',
+      zh: '東京國際論壇 大廳（企業活動）'
+    },
     category: 'Corporate Event',
     genre: 'PERFORMANCE',
     year: '2024',
     image: 'https://bbm-sound.com/images/forum.webp',
-    description: '東京国際フォーラムのホールで行われた企業イベントにて、「音の拡がり」を意識した演出に関わる機会を得ました。',
+    description: {
+      en: 'Had the opportunity to participate in production focusing on "sound expansion" at a corporate event held at Tokyo International Forum Hall.',
+      ja: '東京国際フォーラムのホールで行われた企業イベントにて、「音の拡がり」を意識した演出に関わる機会を得ました。',
+      zh: '在東京國際論壇大廳舉辦的企業活動中，參與了著重「聲音擴展」的演出製作。'
+    },
     tags: ['Corporate', 'Spatial Audio']
   },
 
   // 2023 - INSTALLATION
   {
     id: '10',
-    title: 'Look Up at the Stars',
+    title: {
+      en: 'Look Up at the Stars',
+      ja: 'Look Up at the Stars',
+      zh: 'Look Up at the Stars（仰望星空）'
+    },
     category: 'Live Painting Concert',
     genre: 'INSTALLATION',
     year: '2023',
     image: 'https://bbm-sound.com/images/look-up.jpg',
-    description: '星を見上げる行為—その根源的な感覚を、音と色彩の対話によって表現します。能登真理亜の描く生命力溢れる色彩と、全方位から包み込む音響空間がリアルタイムに交錯し、鑑賞者を無限の広がりへと誘います。',
+    description: {
+      en: 'The act of looking up at the stars—expressing this fundamental sensation through dialogue between sound and color. Maria Noto\'s vibrant colors and omnidirectional acoustic space intertwine in real-time, inviting viewers into infinite expanses.',
+      ja: '星を見上げる行為—その根源的な感覚を、音と色彩の対話によって表現します。能登真理亜の描く生命力溢れる色彩と、全方位から包み込む音響空間がリアルタイムに交错し、鑑賞者を無限の広がりへと誘います。',
+      zh: '仰望星空的行為——透過聲音與色彩的對話表達這種根本感覺。Maria Noto繪製的充滿生命力的色彩與全方位聲音空間即時交織，引領觀眾進入無限廣闊。'
+    },
     link: 'https://www.youtube.com/watch?v=lI7Rq58b2Ys',
     tags: ['Live Painting', 'Spatial Audio']
   },
@@ -123,12 +203,20 @@ export const PROJECTS: Project[] = [
   // 2023 - PERFORMANCE
   {
     id: '11',
-    title: 'エレクトリックオペラ "VENUSの祝祭"',
+    title: {
+      en: 'Electric Opera "VENUS Festival"',
+      ja: 'エレクトリックオペラ "VENUSの祝祭"',
+      zh: '電子歌劇《VENUS之祭典》'
+    },
     category: 'Beyond Boundary Chamber Orchestra',
     genre: 'PERFORMANCE',
     year: '2023',
     image: 'https://bbm-sound.com/images/art.jpg',
-    description: 'コロナ禍を経て、「痛み」と「希望」を共有するための現代の神話。かぐや姫や人魚姫など古今の物語をオマージュし、エレクトロニクスとオーケストラが融合した「エレクトリックオペラ」として再構築された祝祭の記録。',
+    description: {
+      en: 'After the pandemic, a modern myth to share "pain" and "hope". Homages to timeless tales like Kaguya-hime and The Little Mermaid, reconstructed as "Electric Opera" fusing electronics and orchestra.',
+      ja: 'コロナ禍を経て、「痛み」と「希望」を共有するための現代の神話。かぐや姫や人魚姫など古今の物語をオマージュし、エレクトロニクスとオーケストラが融合した「エレクトリックオペラ」として再構築された祝祭の記録。',
+      zh: '經歷疫情後，分享「痛苦」與「希望」的現代神話。向輝夜姬、小美人魚等古今故事致敬，重構為融合電子與管弦樂的「電子歌劇」慶典記錄。'
+    },
     link: 'https://www.youtube.com/watch?v=TWYuiozIxps',
     tags: ['Opera', 'Orchestra', 'Electronic']
   },
@@ -136,67 +224,115 @@ export const PROJECTS: Project[] = [
   // 2023 - MUSIC VIDEO
   {
     id: '12',
-    title: 'Day Opener / XIDEN',
+    title: {
+      en: 'Day Opener / XIDEN',
+      ja: 'Day Opener / XIDEN',
+      zh: 'Day Opener / XIDEN'
+    },
     category: 'RK MUSIC',
     genre: 'CLIENT WORKS',
     year: '2023',
     image: 'https://i.ytimg.com/vi/kqqkPzZV8b4/maxresdefault.jpg',
-    description: 'VSinger「XIDEN」の楽曲。クールで情熱的な世界観を、先鋭的なサウンドデザインとメロディで表現。',
+    description: {
+      en: 'Music for VSinger "XIDEN". Expressing cool and passionate world through cutting-edge sound design and melody.',
+      ja: 'VSinger「XIDEN」の楽曲。クールで情熱的な世界観を、先鋭的なサウンドデザインとメロディで表現。',
+      zh: 'VSinger「XIDEN」的歌曲。以前衛的聲音設計和旋律表達冷酷而熱情的世界觀。'
+    },
     link: 'https://www.youtube.com/watch?v=kqqkPzZV8b4',
     tags: ['VSinger', 'Music Production']
   },
   {
     id: '13',
-    title: 'accompany / XIDEN',
+    title: {
+      en: 'accompany / XIDEN',
+      ja: 'accompany / XIDEN',
+      zh: 'accompany / XIDEN'
+    },
     category: 'RK MUSIC',
     genre: 'CLIENT WORKS',
     year: '2023',
     image: 'https://i.ytimg.com/vi/yrwF8EyLOcA/maxresdefault.jpg',
-    description: 'VSinger「XIDEN」のセカンドシングル。共に歩むことの意味を問いかける楽曲。',
+    description: {
+      en: 'Second single for VSinger "XIDEN". A song questioning the meaning of walking together.',
+      ja: 'VSinger「XIDEN」のセカンドシングル。共に歩むことの意味を問いかける楽曲。',
+      zh: 'VSinger「XIDEN」的第二張單曲。質問共同前行意義的歌曲。'
+    },
     link: 'https://www.youtube.com/watch?v=XOx4tYv0CQ8',
     tags: ['VSinger', 'Music Production']
   },
   {
     id: '14',
-    title: '宿命 / XIDEN',
+    title: {
+      en: '宿命 (Destiny) / XIDEN',
+      ja: '宿命 / XIDEN',
+      zh: '宿命 / XIDEN'
+    },
     category: 'RK MUSIC',
     genre: 'CLIENT WORKS',
     year: '2023',
     image: 'https://i.ytimg.com/vi/jWGWFkILgS4/maxresdefault.jpg',
-    description: 'VSinger「XIDEN」の3rdシングル。運命と宿命の狭間で揺れる感情を描く。',
+    description: {
+      en: 'Third single for VSinger "XIDEN". Depicts emotions swaying between fate and destiny.',
+      ja: 'VSinger「XIDEN」の3rdシングル。運命と宿命の狭間で揺れる感情を描く。',
+      zh: 'VSinger「XIDEN」的第三張單曲。描繪在命運與宿命之間搖擺的情感。'
+    },
     link: 'https://www.youtube.com/watch?v=BDh5JIHRixs',
     tags: ['VSinger', 'Music Production']
   },
   {
     id: '15',
-    title: 'closer / XIDEN',
+    title: {
+      en: 'closer / XIDEN',
+      ja: 'closer / XIDEN',
+      zh: 'closer / XIDEN'
+    },
     category: 'RK MUSIC',
     genre: 'CLIENT WORKS',
     year: '2023',
     image: 'https://i.ytimg.com/vi/lQ0atrk7IgA/maxresdefault.jpg',
-    description: 'VSinger「XIDEN」の楽曲。距離を縮めることと遠ざかることの葛藤を音に託す。',
+    description: {
+      en: 'Song for VSinger "XIDEN". Entrusting the conflict between drawing closer and drifting apart to sound.',
+      ja: 'VSinger「XIDEN」の楽曲。距離を縮めることと遠ざかることの葛藤を音に託す。',
+      zh: 'VSinger「XIDEN」的歌曲。將拉近距離與疏遠之間的矛盾託付於聲音。'
+    },
     link: 'https://www.youtube.com/watch?v=4WTWKPeZ1ME',
     tags: ['VSinger', 'Music Production']
   },
   {
     id: '16',
-    title: 'higher / REVERBERATION',
+    title: {
+      en: 'higher / REVERBERATION',
+      ja: 'higher / REVERBERATION',
+      zh: 'higher / REVERBERATION'
+    },
     category: 'RE:ACT',
     genre: 'CLIENT WORKS',
     year: '2023',
     image: 'https://booth.pximg.net/654d0689-7c3a-4776-a30b-9bd7b6be7efa/i/6874855/4e803a46-3c87-42c2-8916-77bc1dd4b516_base_resized.jpg',
-    description: 'アーティスト「REVERBERATION」のデビューシングルにおいて作編曲を担当。未来への飛躍を感じさせる、疾走感のあるエレクトロニック・ポップサウンドを構築。',
+    description: {
+      en: 'Composed and arranged debut single for artist "REVERBERATION". Built fast-paced electronic pop sound suggesting leap toward the future.',
+      ja: 'アーティスト「REVERBERATION」のデビューシングルにおいて作編曲を担当。未来への飛躍を感じさせる、疾走感のあるエレクトロニック・ポップサウンドを構築。',
+      zh: '為藝人「REVERBERATION」的出道單曲負責作曲編曲。構築充滿疾馳感、令人感受未來躍進的電子流行聲音。'
+    },
     link: 'https://react.booth.pm/items/6874855',
     tags: ['Music Production', 'Electronic Pop']
   },
   {
     id: '17',
-    title: 'Jelly-selfish / 夢川かなう',
+    title: {
+      en: 'Jelly-selfish / Yumekawa Kanau',
+      ja: 'Jelly-selfish / 夢川かなう',
+      zh: 'Jelly-selfish / 夢川可奈'
+    },
     category: 'RE:ACT',
     genre: 'CLIENT WORKS',
     year: '2023',
     image: 'https://booth.pximg.net/654d0689-7c3a-4776-a30b-9bd7b6be7efa/i/5647485/7c877fd5-8320-4235-9f6d-c6bb65246ac3_base_resized.jpg',
-    description: 'アーティスト「夢川かなう」の3rdシングルにおいて作編曲を担当。独特の浮遊感と内に秘めた強い意志を、テクニカルかつキャッチーな楽曲で表現。',
+    description: {
+      en: 'Composed and arranged 3rd single for artist "Yumekawa Kanau". Technical yet catchy song expressing unique floating sensation and inner strong will.',
+      ja: 'アーティスト「夢川かなう」の3rdシングルにおいて作編曲を担当。独特の浮遊感と内に秘めた強い意志を、テクニカルかつキャッチーな楽曲で表現。',
+      zh: '為藝人「夢川可奈」的第三張單曲負責作曲編曲。以技術性且朗朗上口的歌曲表達獨特的漂浮感與內心的堅強意志。'
+    },
     link: 'https://react.booth.pm/items/5647485',
     tags: ['Music Production', 'Vtuber']
   },
