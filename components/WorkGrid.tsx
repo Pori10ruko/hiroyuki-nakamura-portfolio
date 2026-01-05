@@ -12,13 +12,51 @@ const WorkGrid: React.FC = () => {
   const t = translations[language];
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [selectedGenre, setSelectedGenre] = useState<Genre>('ALL');
-  const [expandedReleasesId, setExpandedReleasesId] = useState<string | null>(null);
-  const [selectedReleaseCategory, setSelectedReleaseCategory] = useState<string | null>(null);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
+
+  // Define sub-categories for each major category
+  const CATEGORY_STRUCTURE: Record<string, string[]> = {
+    'RELEASES': ['SOLO', 'BBCO', 'UN.a', 'PRODUCE', 'OTHER'],
+    'INSTALLATION': ['Interactive', 'Immersive', 'Public Space'],
+    'CLIENT WORKS': ['Music Video', 'VTuber', 'Commercial', 'Mix/Master'],
+  };
 
   const filteredProjects = useMemo(() => {
-    if (selectedGenre === 'ALL') return PROJECTS;
+    if (selectedGenre === 'ALL') return PROJECTS.filter(p => p.genre !== 'RELEASES');
+    
+    // For major categories with sub-categories
+    if (CATEGORY_STRUCTURE[selectedGenre]) {
+      const projectsInGenre = PROJECTS.filter(p => p.genre === selectedGenre);
+      
+      // If a sub-category is selected, filter by it
+      if (selectedSubCategory) {
+        return projectsInGenre.filter(p => {
+          if (selectedGenre === 'RELEASES') {
+            return p.category === selectedSubCategory;
+          } else if (selectedGenre === 'INSTALLATION') {
+            // Map installation projects to sub-categories
+            if (selectedSubCategory === 'Interactive') return ['Interactive Installation', 'AR App', 'App'].includes(p.category);
+            if (selectedSubCategory === 'Immersive') return ['Live Painting Concert', 'Immersive'].includes(p.category);
+            if (selectedSubCategory === 'Public Space') return ['Public Project', 'Public Space'].includes(p.category);
+          } else if (selectedGenre === 'CLIENT WORKS') {
+            // Map client work projects to sub-categories
+            if (selectedSubCategory === 'Music Video') return ["Jim's Petty", 'Live Painting Concert', 'UN.a'].includes(p.category);
+            if (selectedSubCategory === 'VTuber') return ['RE:ACT', 'RK MUSIC'].includes(p.category);
+            if (selectedSubCategory === 'Commercial') return ['Music Festival'].includes(p.category);
+            if (selectedSubCategory === 'Mix/Master') return ['Opera Mix'].includes(p.category);
+          }
+          return false;
+        });
+      }
+      
+      // If no sub-category selected, show all projects in the genre
+      return projectsInGenre;
+    }
+    
+    // For simple categories without sub-categories
     return PROJECTS.filter(project => project.genre === selectedGenre);
-  }, [selectedGenre]);
+  }, [selectedGenre, selectedSubCategory]);
 
   return (
     <div className="w-full min-h-screen px-4 md:px-12 py-32 text-[#1a1a1a]">
@@ -45,35 +83,234 @@ const WorkGrid: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="flex flex-wrap gap-3 md:gap-4"
+          className="flex flex-col gap-4"
         >
-          {GENRES.map((genre) => (
-            <motion.button
-              key={genre}
-              onClick={() => setSelectedGenre(genre)}
-              className={`
-                relative px-6 py-3 text-xs md:text-sm font-bold uppercase tracking-widest
-                transition-all duration-300 border
-                ${selectedGenre === genre 
-                  ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
-                  : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
-                }
-              `}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              {genre}
-              {selectedGenre === genre && (
+          {/* Major Categories with Sub-categories */}
+          <div className="flex flex-col gap-6">
+            {/* RELEASES - Special Category */}
+            <div>
+              <motion.button
+                onClick={() => {
+                  if (selectedGenre === 'RELEASES') {
+                    setSelectedGenre('ALL');
+                    setExpandedCategory(null);
+                    setSelectedSubCategory(null);
+                  } else {
+                    setSelectedGenre('RELEASES');
+                    setExpandedCategory('RELEASES');
+                    setSelectedSubCategory(null);
+                  }
+                }}
+                className={`
+                  relative px-8 py-4 text-base md:text-lg font-bold uppercase tracking-widest
+                  transition-all duration-300 border w-fit
+                  ${selectedGenre === 'RELEASES'
+                    ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
+                    : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
+                  }
+                `}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                RELEASES
+              </motion.button>
+
+              {/* RELEASES Sub-categories */}
+              {expandedCategory === 'RELEASES' && (
                 <motion.div
-                  layoutId="genreIndicator"
-                  className="absolute inset-0 bg-[#1a1a1a]"
-                  style={{ zIndex: -1 }}
-                  transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
-                />
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="flex flex-wrap gap-3 mt-4 pl-4 border-l-2 border-[#1a1a1a]/20"
+                >
+                  {CATEGORY_STRUCTURE.RELEASES.map((subCat) => (
+                    <motion.button
+                      key={subCat}
+                      onClick={() => setSelectedSubCategory(selectedSubCategory === subCat ? null : subCat)}
+                      className={`
+                        px-5 py-2 text-xs md:text-sm font-bold uppercase tracking-widest
+                        transition-all duration-300 border
+                        ${selectedSubCategory === subCat
+                          ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
+                          : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
+                        }
+                      `}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {subCat}
+                    </motion.button>
+                  ))}
+                </motion.div>
               )}
-            </motion.button>
-          ))}
+            </div>
+
+            {/* INSTALLATION - Major Category */}
+            <div>
+              <motion.button
+                onClick={() => {
+                  if (selectedGenre === 'INSTALLATION') {
+                    setSelectedGenre('ALL');
+                    setExpandedCategory(null);
+                    setSelectedSubCategory(null);
+                  } else {
+                    setSelectedGenre('INSTALLATION');
+                    setExpandedCategory('INSTALLATION');
+                    setSelectedSubCategory(null);
+                  }
+                }}
+                className={`
+                  relative px-7 py-3.5 text-sm md:text-base font-bold uppercase tracking-widest
+                  transition-all duration-300 border w-fit
+                  ${selectedGenre === 'INSTALLATION'
+                    ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
+                    : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
+                  }
+                `}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                INSTALLATION
+              </motion.button>
+
+              {/* INSTALLATION Sub-categories */}
+              {expandedCategory === 'INSTALLATION' && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="flex flex-wrap gap-3 mt-4 pl-4 border-l-2 border-[#1a1a1a]/20"
+                >
+                  {CATEGORY_STRUCTURE.INSTALLATION.map((subCat) => (
+                    <motion.button
+                      key={subCat}
+                      onClick={() => setSelectedSubCategory(selectedSubCategory === subCat ? null : subCat)}
+                      className={`
+                        px-5 py-2 text-xs md:text-sm font-bold uppercase tracking-widest
+                        transition-all duration-300 border
+                        ${selectedSubCategory === subCat
+                          ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
+                          : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
+                        }
+                      `}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {subCat}
+                    </motion.button>
+                  ))}
+                </motion.div>
+              )}
+            </div>
+
+            {/* CLIENT WORKS - Major Category */}
+            <div>
+              <motion.button
+                onClick={() => {
+                  if (selectedGenre === 'CLIENT WORKS') {
+                    setSelectedGenre('ALL');
+                    setExpandedCategory(null);
+                    setSelectedSubCategory(null);
+                  } else {
+                    setSelectedGenre('CLIENT WORKS');
+                    setExpandedCategory('CLIENT WORKS');
+                    setSelectedSubCategory(null);
+                  }
+                }}
+                className={`
+                  relative px-7 py-3.5 text-sm md:text-base font-bold uppercase tracking-widest
+                  transition-all duration-300 border w-fit
+                  ${selectedGenre === 'CLIENT WORKS'
+                    ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
+                    : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
+                  }
+                `}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                CLIENT WORKS
+              </motion.button>
+
+              {/* CLIENT WORKS Sub-categories */}
+              {expandedCategory === 'CLIENT WORKS' && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="flex flex-wrap gap-3 mt-4 pl-4 border-l-2 border-[#1a1a1a]/20"
+                >
+                  {CATEGORY_STRUCTURE['CLIENT WORKS'].map((subCat) => (
+                    <motion.button
+                      key={subCat}
+                      onClick={() => setSelectedSubCategory(selectedSubCategory === subCat ? null : subCat)}
+                      className={`
+                        px-5 py-2 text-xs md:text-sm font-bold uppercase tracking-widest
+                        transition-all duration-300 border
+                        ${selectedSubCategory === subCat
+                          ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
+                          : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
+                        }
+                      `}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {subCat}
+                    </motion.button>
+                  ))}
+                </motion.div>
+              )}
+            </div>
+          </div>
+
+          {/* Other Simple Categories */}
+          <div className="flex flex-wrap gap-3 md:gap-4 pt-4 border-t border-[#1a1a1a]/10">
+            {GENRES.filter(g => !['ALL', 'RELEASES', 'INSTALLATION', 'CLIENT WORKS'].includes(g)).map((genre) => (
+              <motion.button
+                key={genre}
+                onClick={() => {
+                  setSelectedGenre(genre);
+                  setExpandedCategory(null);
+                  setSelectedSubCategory(null);
+                }}
+                className={`
+                  relative px-6 py-3 text-xs md:text-sm font-bold uppercase tracking-widest
+                  transition-all duration-300 border
+                  ${selectedGenre === genre 
+                    ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
+                    : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
+                  }
+                `}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {genre}
+              </motion.button>
+            ))}
+          </div>
+
+          {/* ALL button */}
+          <motion.button
+            onClick={() => {
+              setSelectedGenre('ALL');
+              setExpandedCategory(null);
+              setSelectedSubCategory(null);
+            }}
+            className={`
+              relative px-6 py-3 text-xs md:text-sm font-bold uppercase tracking-widest
+              transition-all duration-300 border w-fit
+              ${selectedGenre === 'ALL'
+                ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
+                : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
+              }
+            `}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            ALL
+          </motion.button>
         </motion.div>
 
         {/* Project Count */}
@@ -90,41 +327,13 @@ const WorkGrid: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24 w-full pb-48 perspective-[2000px] max-w-7xl mx-auto">
         {filteredProjects.map((project, index) => (
-          <React.Fragment key={`${project.id}-${selectedGenre}`}>
-            <WorkItem 
-              project={project} 
-              index={index} 
-              isHovered={hoveredProject === project.id}
-              onHover={(id) => setHoveredProject(id)}
-              onToggleReleases={(id) => {
-                if (expandedReleasesId === id) {
-                  setExpandedReleasesId(null);
-                  setSelectedReleaseCategory(null);
-                } else {
-                  setExpandedReleasesId(id);
-                  setSelectedReleaseCategory(null);
-                }
-              }}
-              isReleasesExpanded={expandedReleasesId === project.id}
-            />
-            
-            {/* Releases Expansion - Full Width */}
-            {project.genre === 'RELEASES' && expandedReleasesId === project.id && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.5 }}
-                className="col-span-full"
-              >
-                <ReleasesExpanded 
-                  selectedCategory={selectedReleaseCategory}
-                  onSelectCategory={setSelectedReleaseCategory}
-                  language={language}
-                />
-              </motion.div>
-            )}
-          </React.Fragment>
+          <WorkItem 
+            key={`${project.id}-${selectedGenre}`}
+            project={project} 
+            index={index} 
+            isHovered={hoveredProject === project.id}
+            onHover={(id) => setHoveredProject(id)}
+          />
         ))}
       </div>
     </div>
@@ -136,17 +345,13 @@ interface WorkItemProps {
   index: number;
   isHovered: boolean;
   onHover: (id: string | null) => void;
-  onToggleReleases?: (id: string) => void;
-  isReleasesExpanded?: boolean;
 }
 
 const WorkItem: React.FC<WorkItemProps> = ({ 
   project, 
   index, 
   isHovered, 
-  onHover,
-  onToggleReleases,
-  isReleasesExpanded = false
+  onHover
 }) => {
   const { language } = useLanguage();
   const navigate = useNavigate();
@@ -159,12 +364,6 @@ const WorkItem: React.FC<WorkItemProps> = ({
   }, [project.id]);
 
   const handleClick = () => {
-    // If it's a Releases project, toggle expansion instead of navigating
-    if (project.genre === 'RELEASES' && onToggleReleases) {
-      onToggleReleases(project.id);
-      return;
-    }
-    
     if (project.link) {
       // Check if it's an internal link (starts with /#/)
       if (project.link.startsWith('/#/')) {
@@ -343,166 +542,6 @@ const WorkItem: React.FC<WorkItemProps> = ({
             </p>
         </motion.div>
       </div>
-    </motion.div>
-  );
-};
-
-// Releases Data
-const RELEASES_DATA: Record<string, any[]> = {
-  SOLO: [
-    {
-      title: 'Look Up at the Stars',
-      year: '2023',
-      image: 'https://bbm-sound.com/images/look-up.jpg',
-      links: { bandcamp: 'https://youngbloods.bandcamp.com/album/look-up-at-the-stars', youtube: 'https://www.youtube.com/watch?v=lI7Rq58b2Ys' }
-    },
-    {
-      title: 'TRITONOMICS',
-      year: '2022',
-      image: 'https://f4.bcbits.com/img/a0987654321_10.jpg',
-      links: { bandcamp: 'https://overlap.bandcamp.com/album/nakamura-hiroyuki-tritonomics' }
-    },
-    {
-      title: 'Sen no Tsudoi (千の集い)',
-      year: '2024',
-      image: 'https://i.ytimg.com/vi/6_keqXc2xZk/maxresdefault.jpg',
-      links: { other: 'https://www.dragonseyerecordings.com/release/de9001/', youtube: 'https://www.youtube.com/playlist?list=PLb_2IgACrNd9j9MLFkpMetV0CoXyiKcoE' }
-    }
-  ],
-  BBCO: [
-    {
-      title: 'SITA',
-      year: '2023',
-      image: 'https://static.wixstatic.com/media/dbd631_8c9d4e5f6a7b4c8d9e0f1a2b3c4d5e6f~mv2.jpg',
-      links: { other: 'https://d-musica.co.jp/?p=389', youtube: 'https://www.youtube.com/watch?v=Zl3sF_lN6lM' }
-    },
-    {
-      title: '2nd Album (In Development)',
-      year: '2026',
-      image: 'https://i.ytimg.com/vi/qZHZwPZqjSk/maxresdefault.jpg',
-      links: { youtube: 'https://www.youtube.com/watch?v=qZHZwPZqjSk' }
-    }
-  ],
-  'UN.a': [
-    {
-      title: 'Intersecting',
-      year: '2020',
-      image: 'https://i.ytimg.com/vi/QH2ls79_ImA/maxresdefault.jpg',
-      links: { spotify: 'https://linkco.re/uAPbr8Mz?lang=ja', youtube: 'https://www.youtube.com/watch?v=QH2ls79_ImA' }
-    },
-    {
-      title: 'COLOR',
-      year: '2018',
-      image: 'https://i.ytimg.com/vi/U9kxsHOumeo/maxresdefault.jpg',
-      links: { other: 'http://purre-goohn.com/un-acolor/', youtube: 'https://www.youtube.com/watch?v=U9kxsHOumeo' }
-    }
-  ],
-  PRODUCE: [
-    {
-      title: 'Erfu Shin - Supernal Tears',
-      year: '2020',
-      image: 'https://i.ytimg.com/vi/avpQVtT7vyk/maxresdefault.jpg',
-      links: { spotify: 'https://linkco.re/ZQCEM5tF', youtube: 'https://www.youtube.com/watch?v=avpQVtT7vyk' }
-    },
-    {
-      title: 'Utae - toi toi toi',
-      year: '2019',
-      image: 'https://i.ytimg.com/vi/m4J0QYEQ9Sk/maxresdefault.jpg',
-      links: { other: 'http://purre-goohn.com/utaervr/', youtube: 'https://www.youtube.com/watch?v=m4J0QYEQ9Sk' }
-    }
-  ],
-  OTHER: [
-    {
-      title: 'JOY-S - Red Thread',
-      year: '2016',
-      image: 'https://i.ytimg.com/vi/alolSBasznk/maxresdefault.jpg',
-      links: { youtube: 'https://www.youtube.com/watch?v=alolSBasznk' }
-    }
-  ]
-};
-
-interface ReleasesExpandedProps {
-  selectedCategory: string | null;
-  onSelectCategory: (category: string | null) => void;
-  language: 'en' | 'ja' | 'zh';
-}
-
-const ReleasesExpanded: React.FC<ReleasesExpandedProps> = ({ selectedCategory, onSelectCategory, language }) => {
-  const categories = ['SOLO', 'BBCO', 'UN.a', 'PRODUCE', 'OTHER'];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="py-12 px-6 bg-[#0a0a0a]/5 rounded-lg border border-[#1a1a1a]/10"
-    >
-      {/* Category Buttons */}
-      <div className="flex flex-wrap gap-3 mb-8 justify-center">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => onSelectCategory(selectedCategory === cat ? null : cat)}
-            className={`px-6 py-3 text-sm uppercase tracking-widest transition-all ${
-              selectedCategory === cat
-                ? 'bg-[#1a1a1a] text-[#dfdbd5]'
-                : 'bg-transparent border border-[#1a1a1a]/20 hover:border-[#1a1a1a]'
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Releases Grid */}
-      {selectedCategory && RELEASES_DATA[selectedCategory] && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {RELEASES_DATA[selectedCategory].map((release, index) => (
-            <motion.div
-              key={`${release.title}-${index}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="relative aspect-square overflow-hidden mb-4 bg-[#1a1a1a]">
-                <img
-                  src={release.image}
-                  alt={release.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-baseline justify-between">
-                  <h3 className="text-lg font-medium">{release.title}</h3>
-                  <span className="text-sm opacity-50">{release.year}</span>
-                </div>
-                {Object.keys(release.links).length > 0 && (
-                  <div className="flex flex-wrap gap-3 pt-2">
-                    {release.links.spotify && (
-                      <a href={release.links.spotify} target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-wider hover:opacity-50">Spotify</a>
-                    )}
-                    {release.links.youtube && (
-                      <a href={release.links.youtube} target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-wider hover:opacity-50">YouTube</a>
-                    )}
-                    {release.links.bandcamp && (
-                      <a href={release.links.bandcamp} target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-wider hover:opacity-50">Bandcamp</a>
-                    )}
-                    {release.links.other && (
-                      <a href={release.links.other} target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-wider hover:opacity-50">More Info</a>
-                    )}
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      )}
     </motion.div>
   );
 };

@@ -48,7 +48,7 @@ export const PROJECTS: Project[] = [
       zh: 'Gymnopédie / Jim\'s Petty'
     },
     category: 'Jim\'s Petty',
-    genre: 'MUSIC VIDEO',
+    genre: 'CLIENT WORKS',
     year: '2024',
     image: 'https://i.ytimg.com/vi/E5rObFc5Ed4/maxresdefault.jpg',
     description: {
@@ -207,7 +207,7 @@ export const PROJECTS: Project[] = [
       zh: 'Look Up at the Stars（仰望星空）'
     },
     category: 'Live Painting Concert',
-    genre: 'MUSIC VIDEO',
+    genre: 'CLIENT WORKS',
     year: '2023',
     image: 'https://bbm-sound.com/images/look-up.jpg',
     description: {
@@ -359,7 +359,7 @@ export const PROJECTS: Project[] = [
     id: '19',
     title: 'Electric Opera VENUS - 860 Tracks Mix',
     category: 'UN.a',
-    genre: 'MUSIC VIDEO',
+    genre: 'CLIENT WORKS',
     year: '2023',
     image: 'https://i.ytimg.com/vi/lmy-eChYDro/hqdefault.jpg',
     description: 'エレクトリックオペラ「VENUS」の映像作品。860トラックの緻密なミックスによる圧倒的な音響体験。',
@@ -367,30 +367,206 @@ export const PROJECTS: Project[] = [
     tags: ['Opera', 'Mix']
   },
 
-  // RELEASES
+  // RELEASES - SOLO
   {
     id: '20',
-    title: {
-      en: 'Releases',
-      ja: 'リリース作品',
-      zh: '發行作品'
-    },
-    category: 'Music Releases',
+    title: 'Look Up at the Stars',
+    category: 'SOLO',
     genre: 'RELEASES',
-    year: '2023-2025',
-    image: 'https://bbm-sound.com/images/look-up.jpg',
-    description: {
-      en: 'Solo works and collaborative releases including bbco, UN.a, and other units. Available on streaming platforms and physical media.',
-      ja: 'ソロ作品およびbbco、UN.a等のユニットでのリリース作品。サブスクリプションサービスおよびCDで配信中。',
-      zh: '個人作品及bbco、UN.a等組合的發行作品。可於串流平台及實體媒體取得。'
-    },
-    link: '/#/releases',
-    tags: ['Solo', 'BBCO', 'UN.a', 'Produce', 'Other']
+    year: '2023',
+    image: 'https://f4.bcbits.com/img/a2254859746_10.jpg',
+    description: 'ピアノの繊細な響きとバイノーラル音響技術を融合させた、聴覚的な空間と知覚の新しい可能性を探求するソロアルバム。',
+    link: 'https://youngbloods.bandcamp.com/album/look-up-at-the-stars',
+    tags: ['Solo', 'Binaural Audio', 'Album']
+  },
+  {
+    id: '21',
+    title: 'TRITONOMICS',
+    category: 'SOLO',
+    genre: 'RELEASES',
+    year: '2022',
+    image: 'https://f4.bcbits.com/img/a2759719229_10.jpg',
+    description: '自らプログラミングし生成した電子音楽のデビュー作品。',
+    link: 'https://overlap.bandcamp.com/album/nakamura-hiroyuki-tritonomics',
+    tags: ['Solo', 'Electronic', 'Album']
+  },
+  {
+    id: '22',
+    title: 'Sen no Tsudoi (千の集い)',
+    category: 'SOLO',
+    genre: 'RELEASES',
+    year: '2024',
+    image: 'https://f4.bcbits.com/img/a1594256511_10.jpg',
+    description: 'ヨーロッパとアジア、過去と現在、記憶と歴史の交差点を音と空間によって描き出すポストオーケストラ・アルバム。Dragon\'s Eye Recordingsよりリリース。',
+    link: 'https://www.dragonseyerecordings.com/release/de9001/',
+    tags: ['Solo', 'Post-Orchestral', 'Album']
+  },
+  {
+    id: '23',
+    title: 'Singular Forms 2',
+    category: 'SOLO',
+    genre: 'RELEASES',
+    year: '2021',
+    image: 'https://f4.bcbits.com/img/a1946955091_10.jpg',
+    description: '独創的な音楽表現を収録したコンピレーションアルバム。',
+    link: 'https://youngbloods.bandcamp.com/album/singular-forms-2',
+    tags: ['Solo', 'Compilation', 'Album']
+  },
+
+  // RELEASES - BBCO
+  {
+    id: '24',
+    title: 'SITA',
+    category: 'BBCO',
+    genre: 'RELEASES',
+    year: '2023',
+    image: 'https://i.ytimg.com/vi/Zl3sF_lN6lM/maxresdefault.jpg',
+    description: 'Beyond Boundary Chamber Orchestraのファーストアルバム。ダンスカンパニーDRAMATIC WORKSの公演「SITA YOKOHAMA」のために制作された音楽をさらに発展させ、ジャズの名門レーベルDaiki Musicaよりリリース。',
+    link: 'https://d-musica.co.jp/?p=389',
+    tags: ['BBCO', 'Orchestra', 'Album']
+  },
+  {
+    id: '25',
+    title: '2nd Album (In Development)',
+    category: 'BBCO',
+    genre: 'RELEASES',
+    year: '2026',
+    image: 'https://i.ytimg.com/vi/qZHZwPZqjSk/maxresdefault.jpg',
+    description: '海外のダンスカンパニーとの共同制作。アジアとヨーロッパ、それぞれの文化や身体性に根差した表現を一度解体し、まだ見ぬ新しい物語として再構築。2026年リリース予定。',
+    link: 'https://www.youtube.com/watch?v=qZHZwPZqjSk',
+    tags: ['BBCO', 'In Development', '2026']
+  },
+
+  // RELEASES - UN.a
+  {
+    id: '26',
+    title: 'UN.a / Intersecting',
+    category: 'UN.a',
+    genre: 'RELEASES',
+    year: '2020',
+    image: 'https://i.ytimg.com/vi/QH2ls79_ImA/maxresdefault.jpg',
+    description: 'サックス奏者・宇津木紘一と結成したエレクトロ・ジャズユニット。NYCツアーを成功させ、英国のSHOWstudioで紹介されるなど国際的な評価を獲得。',
+    link: 'https://linkco.re/uAPbr8Mz?lang=ja',
+    tags: ['UN.a', 'Electro-Jazz', 'Album']
+  },
+  {
+    id: '27',
+    title: 'UN.a / COLOR',
+    category: 'UN.a',
+    genre: 'RELEASES',
+    year: '2018',
+    image: 'https://i.ytimg.com/vi/U9kxsHOumeo/maxresdefault.jpg',
+    description: '洗練されたエレクトロ・ジャズ楽曲とビジュアルコラボレーションが特徴のUN.aアルバム。',
+    link: 'http://purre-goohn.com/un-acolor/',
+    tags: ['UN.a', 'Electro-Jazz', 'Album']
+  },
+  {
+    id: '28',
+    title: 'UN.a / Melt in Dimensions feat. ermhoi',
+    category: 'UN.a',
+    genre: 'RELEASES',
+    year: '2019',
+    image: 'https://i.ytimg.com/vi/U9kxsHOumeo/maxresdefault.jpg',
+    description: 'ermhoi とのコラボレーションリリース。次元的な音響空間を探求。',
+    link: 'http://purre-goohn.com/un-amelt-in-dimensionsfeat-ermhoi/',
+    tags: ['UN.a', 'Collaboration', 'EP']
+  },
+  {
+    id: '29',
+    title: 'UN.a / Aggregate',
+    category: 'UN.a',
+    genre: 'RELEASES',
+    year: '2017',
+    image: 'https://i.ytimg.com/vi/Rvki8xfQNBw/maxresdefault.jpg',
+    description: '集積された音響テクスチャとリズム構造を探求するUN.aリリース。',
+    link: 'http://purre-goohn.com/un-aaggregate/',
+    tags: ['UN.a', 'Electro-Jazz', 'EP']
+  },
+
+  // RELEASES - PRODUCE
+  {
+    id: '30',
+    title: 'Erfu Shin - Supernal Tears',
+    category: 'PRODUCE',
+    genre: 'RELEASES',
+    year: '2020',
+    image: 'https://i.ytimg.com/vi/avpQVtT7vyk/maxresdefault.jpg',
+    description: '二胡奏者Shinのミニアルバムをプロデュース。表題曲が国際的な映画音楽コンクールFMC2020でファイナリストに選出。',
+    link: 'https://linkco.re/ZQCEM5tF',
+    tags: ['Produce', 'Erhu', 'Album']
+  },
+  {
+    id: '31',
+    title: 'Utae - toi toi toi',
+    category: 'PRODUCE',
+    genre: 'RELEASES',
+    year: '2016',
+    image: 'https://i.ytimg.com/vi/dWZaJw_2xOE/maxresdefault.jpg',
+    description: 'ドリームポップシンドロームUtaeのデビューEP。作編曲、プロデュースを担当。',
+    link: 'https://linkco.re/vQpnbP3F',
+    tags: ['Produce', 'Dream Pop', 'EP']
+  },
+  {
+    id: '31b',
+    title: 'Utae - Night Walk',
+    category: 'PRODUCE',
+    genre: 'RELEASES',
+    year: '2016',
+    image: 'https://i.ytimg.com/vi/O3l0oTxC5ro/maxresdefault.jpg',
+    description: 'Utaeのセカンドリリース。夜の雰囲気を纏ったポップサウンド。',
+    link: 'https://linkco.re/vQpnbP3F',
+    tags: ['Produce', 'Pop', 'EP']
+  },
+  {
+    id: '31c',
+    title: 'Utae - チェンダソング',
+    category: 'PRODUCE',
+    genre: 'RELEASES',
+    year: '2016',
+    image: 'https://i.ytimg.com/vi/m4J0QYEQ9Sk/maxresdefault.jpg',
+    description: 'Utaeのシングルリリース。キャッチーなメロディとエレクトロニックサウンド。',
+    link: 'https://linkco.re/vQpnbP3F',
+    tags: ['Produce', 'Pop', 'Single']
+  },
+  {
+    id: '31d',
+    title: 'Utae - RVR',
+    category: 'PRODUCE',
+    genre: 'RELEASES',
+    year: '2017',
+    image: 'https://i.ytimg.com/vi/6DG-JOiOKRA/maxresdefault.jpg',
+    description: 'VRをヒントに制作されたロックテイスト溢れるUtaeのニューシングル。',
+    link: 'http://purre-goohn.com/utaervr/',
+    tags: ['Produce', 'Pop', 'Single']
+  },
+  {
+    id: '32',
+    title: '北谷和子 - 時の過ぎゆくままに',
+    category: 'PRODUCE',
+    genre: 'RELEASES',
+    year: '2018',
+    image: 'https://i.ytimg.com/vi/ytm5zN3xz_A/maxresdefault.jpg',
+    description: '北谷和子のセカンドアルバム。プロデュース、作編曲を担当。',
+    link: 'http://kazukokitatani.com/memories.html',
+    tags: ['Produce', 'Vocal', 'Album']
+  },
+
+  // RELEASES - OTHER
+  {
+    id: '33',
+    title: 'JOY-S - Red Thread',
+    category: 'OTHER',
+    genre: 'RELEASES',
+    year: '2016',
+    image: 'https://i.ytimg.com/vi/alolSBasznk/maxresdefault.jpg',
+    description: 'クラシック楽器とモダンなポップ感性を組み合わせたクラシカル・ポップユニット。',
+    link: 'https://www.youtube.com/watch?v=alolSBasznk',
+    tags: ['OTHER', 'Classical Pop', 'Album']
   },
 
   // ARCHIVE
   {
-    id: '21',
+    id: '34',
     title: '土浦Soundアーカイブプロジェクト',
     category: 'Public Project',
     genre: 'ARCHIVE',
@@ -401,7 +577,7 @@ export const PROJECTS: Project[] = [
     tags: ['Archive', 'Field Recording', 'Public']
   },
   {
-    id: '22',
+    id: '35',
     title: 'BBM Net Radio',
     category: 'BBM',
     genre: 'ARCHIVE',
@@ -412,7 +588,7 @@ export const PROJECTS: Project[] = [
     tags: ['Radio', 'Podcast', 'Education']
   },
   {
-    id: '23',
+    id: '36',
     title: 'BBM Note',
     category: 'BBM',
     genre: 'ARCHIVE',
@@ -425,7 +601,7 @@ export const PROJECTS: Project[] = [
 
   // EDUCATION
   {
-    id: '24',
+    id: '37',
     title: 'Apichatpong Weerasethakul Workshop - 多摩美術大学',
     category: 'Tama Art University',
     genre: 'EDUCATION',
@@ -435,7 +611,7 @@ export const PROJECTS: Project[] = [
     tags: ['Lecture', 'Binaural Audio', 'University']
   },
   {
-    id: '25',
+    id: '38',
     title: '臺南國立大学 特別講義',
     category: 'National University of Tainan',
     genre: 'EDUCATION',
@@ -445,7 +621,7 @@ export const PROJECTS: Project[] = [
     tags: ['Taiwan', 'Workshop', 'Popular Music']
   },
   {
-    id: '26',
+    id: '39',
     title: '昭和音楽大学 研究発表',
     category: 'Showa Music University',
     genre: 'EDUCATION',
@@ -455,7 +631,7 @@ export const PROJECTS: Project[] = [
     tags: ['Research', 'Academic', 'Performance']
   },
   {
-    id: '27',
+    id: '40',
     title: 'BBM Workshop',
     category: 'BBM',
     genre: 'EDUCATION',
@@ -466,7 +642,7 @@ export const PROJECTS: Project[] = [
     tags: ['Workshop', 'Spatial Audio', 'Hands-on']
   },
   {
-    id: '28',
+    id: '41',
     title: '島村楽器 特別セミナー',
     category: 'Shimamura Music',
     genre: 'EDUCATION',
@@ -478,7 +654,7 @@ export const PROJECTS: Project[] = [
   }
 ];
 
-export const GENRES = ['ALL', 'INSTALLATION', 'PERFORMANCE', 'CLIENT WORKS', 'MUSIC VIDEO', 'SPATIAL AUDIO', 'APP', 'RELEASES', 'ARCHIVE', 'EDUCATION'] as const;
+export const GENRES = ['ALL', 'RELEASES', 'INSTALLATION', 'PERFORMANCE', 'CLIENT WORKS', 'SPATIAL AUDIO', 'EDUCATION', 'ARCHIVE'] as const;
 
 export type Genre = typeof GENRES[number];
 
