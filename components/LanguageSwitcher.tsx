@@ -12,13 +12,13 @@ const LanguageSwitcher: React.FC = () => {
   ];
 
   return (
-    <div className="flex items-center gap-1 bg-black/80 backdrop-blur-md rounded-full px-2 py-1 border border-white/20 shadow-lg">
+    <div className="flex items-center gap-0.5 md:gap-1 bg-black/80 backdrop-blur-md rounded-full px-1.5 md:px-2 py-1 border border-white/20 shadow-lg">
       {languages.map((lang) => (
         <motion.button
           key={lang.code}
           onClick={() => setLanguage(lang.code)}
           className={`
-            relative px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full
+            relative px-2 md:px-3 py-1 md:py-1.5 text-[10px] md:text-xs font-bold uppercase tracking-wider rounded-full
             transition-all duration-300
             ${language === lang.code 
               ? 'text-black' 

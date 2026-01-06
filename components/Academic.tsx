@@ -8,19 +8,19 @@ const Academic: React.FC = () => {
   const t = translations[language];
 
   return (
-    <div className="w-full min-h-screen pt-48 px-6 md:px-12 flex flex-col md:flex-row gap-12 text-[#1a1a1a]">
+    <div className="w-full min-h-screen pt-32 md:pt-48 px-4 md:px-8 lg:px-12 flex flex-col md:flex-row gap-8 md:gap-12 text-[#1a1a1a]">
       <div className="md:w-1/3">
         <motion.h1 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="sticky top-48 text-6xl md:text-8xl font-serif italic leading-[0.8]"
+          className="md:sticky md:top-48 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-serif italic leading-[0.8]"
         >
           {t.academicTitle}
         </motion.h1>
       </div>
 
-      <div className="md:w-2/3 flex flex-col justify-end pb-24">
+      <div className="md:w-2/3 flex flex-col justify-end pb-16 md:pb-24">
         <motion.div
            initial={{ opacity: 0 }}
            animate={{ opacity: 1 }}
@@ -28,22 +28,22 @@ const Academic: React.FC = () => {
            className="space-y-16 max-w-2xl"
         >
             <div className="space-y-6">
-                <p className="text-xl md:text-2xl font-light leading-relaxed">
+                <p className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed">
                     {t.academicIntro}
                 </p>
                 
-                <p className="text-md md:text-lg opacity-80 leading-relaxed">
+                <p className="text-sm md:text-base lg:text-lg opacity-80 leading-relaxed">
                     {t.academicP1}
                 </p>
             </div>
 
             {/* 2024 - Apichatpong Weerasethakul Workshop */}
-            <div className="pt-12 border-t border-[#1a1a1a]/20">
+            <div className="pt-8 md:pt-12 border-t border-[#1a1a1a]/20">
                 <div className="flex justify-between items-baseline mb-4">
-                    <h3 className="font-bold uppercase tracking-widest text-sm">2024</h3>
-                    <span className="text-xs opacity-50 font-mono">{t.invitedLecture}</span>
+                    <h3 className="font-bold uppercase tracking-widest text-xs md:text-sm">2024</h3>
+                    <span className="text-[10px] md:text-xs opacity-50 font-mono">{t.invitedLecture}</span>
                 </div>
-                <h4 className="text-2xl md:text-3xl font-serif mb-4">
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-serif mb-4">
                     {t.apichatpong2024Title}<br />
                     {t.apichatpong2024Subtitle}
                 </h4>

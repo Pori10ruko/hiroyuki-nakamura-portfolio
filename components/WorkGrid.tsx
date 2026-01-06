@@ -278,7 +278,7 @@ const WorkGrid: React.FC = () => {
                   setSelectedSubCategory(null);
                 }}
                 className={`
-                  relative px-6 py-3 text-xs md:text-sm font-bold uppercase tracking-widest
+                  relative px-4 sm:px-5 md:px-6 py-2 md:py-3 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest
                   transition-all duration-300 border
                   ${selectedGenre === genre 
                     ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
@@ -300,7 +300,7 @@ const WorkGrid: React.FC = () => {
               setSelectedSubCategory(null);
             }}
             className={`
-              relative px-6 py-3 text-xs md:text-sm font-bold uppercase tracking-widest
+              relative px-4 sm:px-5 md:px-6 py-2 md:py-3 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest
               transition-all duration-300 border w-fit
               ${selectedGenre === 'ALL'
                 ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
@@ -329,7 +329,7 @@ const WorkGrid: React.FC = () => {
 
       {/* Regular Project Grid - Hidden for PRODUCE, BBCO, and OTHER subcategories */}
       {!(selectedGenre === 'RELEASES' && (selectedSubCategory === 'PRODUCE' || selectedSubCategory === 'BBCO' || selectedSubCategory === 'OTHER')) && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24 w-full pb-48 perspective-[2000px] max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-6 lg:gap-x-8 gap-y-16 md:gap-y-20 lg:gap-y-24 w-full pb-24 md:pb-32 lg:pb-48 perspective-[2000px] max-w-7xl mx-auto">
           {filteredProjects.map((project, index) => (
             <WorkItem 
               key={`${project.id}-${selectedGenre}`}
@@ -1168,12 +1168,12 @@ const WorkItem: React.FC<WorkItemProps> = ({
 
       </motion.div>
 
-      <div className="flex flex-col pt-4 border-t border-[#1a1a1a]/10 border-dashed">
-        <div className="flex justify-between items-baseline mb-2 opacity-100">
-            <span className="text-xs font-bold tracking-widest uppercase font-mono text-[#666]"><ScrambleText text={project.category} useHover={false} /></span>
-            <span className="text-xs font-mono bg-[#e0e0e0] text-[#1a1a1a] px-1 rounded-sm">{project.year}</span>
+      <div className="flex flex-col pt-3 md:pt-4 border-t border-[#1a1a1a]/10 border-dashed">
+        <div className="flex justify-between items-baseline mb-1 md:mb-2 opacity-100">
+            <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase font-mono text-[#666]"><ScrambleText text={project.category} useHover={false} /></span>
+            <span className="text-[10px] md:text-xs font-mono bg-[#e0e0e0] text-[#1a1a1a] px-1 rounded-sm">{project.year}</span>
         </div>
-        <h2 className="text-3xl md:text-4xl font-serif font-medium tracking-tight group-hover:translate-x-1 transition-transform duration-300 text-[#1a1a1a]">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium tracking-tight group-hover:translate-x-1 transition-transform duration-300 text-[#1a1a1a]">
             {typeof project.title === 'string' ? project.title : project.title[language]}
         </h2>
         <motion.div 
@@ -1181,7 +1181,7 @@ const WorkItem: React.FC<WorkItemProps> = ({
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: isHovered ? 1 : 0.6, height: 'auto' }}
         >
-            <p className="mt-4 text-sm max-w-md leading-relaxed opacity-70 text-[#333]">
+            <p className="mt-3 md:mt-4 text-xs md:text-sm max-w-md leading-relaxed opacity-70 text-[#333]">
                 {typeof project.description === 'string' ? project.description : project.description[language]}
             </p>
         </motion.div>

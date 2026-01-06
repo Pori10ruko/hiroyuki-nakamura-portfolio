@@ -97,7 +97,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="w-full min-h-screen pt-48 px-6 md:px-12 flex flex-col md:flex-row gap-12 text-[#1a1a1a]">
+    <div className="w-full min-h-screen pt-32 md:pt-48 px-4 md:px-8 lg:px-12 flex flex-col md:flex-row gap-8 md:gap-12 text-[#1a1a1a]">
       <div className="md:w-1/3">
         <motion.h1 
           initial={{ opacity: 0, y: 50 }}

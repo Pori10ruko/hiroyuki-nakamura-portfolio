@@ -9,19 +9,19 @@ const About: React.FC = () => {
   const t = translations[language];
 
   return (
-    <div className="w-full min-h-screen pt-48 px-6 md:px-12 flex flex-col md:flex-row gap-12 text-[#1a1a1a]">
+    <div className="w-full min-h-screen pt-32 md:pt-48 px-4 md:px-8 lg:px-12 flex flex-col md:flex-row gap-8 md:gap-12 text-[#1a1a1a]">
       <div className="md:w-1/3">
         <motion.h1 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="sticky top-48 text-6xl md:text-8xl font-serif italic leading-[0.8]"
+          className="md:sticky md:top-48 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-serif italic leading-[0.8]"
         >
           {t.aboutTitle}
         </motion.h1>
       </div>
 
-      <div className="md:w-2/3 flex flex-col justify-end pb-24">
+      <div className="md:w-2/3 flex flex-col justify-end pb-16 md:pb-24">
         {/* Profile Photo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -46,25 +46,25 @@ const About: React.FC = () => {
            transition={{ delay: 0.2, duration: 0.8 }}
            className="space-y-12 max-w-2xl"
         >
-            <p className="text-xl md:text-2xl font-light leading-relaxed">
-                <span className="font-serif italic text-3xl mr-2">NAKAMURA Hiroyuki / 中村 浩之</span> 
+            <p className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed">
+                <span className="font-serif italic text-2xl md:text-3xl mr-2">NAKAMURA Hiroyuki / 中村 浩之</span> 
                 <br /><br />
                 {t.aboutIntro}
             </p>
             
-            <p className="text-md md:text-lg opacity-80 leading-relaxed">
+            <p className="text-sm md:text-base lg:text-lg opacity-80 leading-relaxed">
                 {t.aboutP1}
             </p>
 
-            <p className="text-md md:text-lg opacity-80 leading-relaxed">
+            <p className="text-sm md:text-base lg:text-lg opacity-80 leading-relaxed">
                 {t.aboutP2}
             </p>
 
-            <p className="text-md md:text-lg opacity-80 leading-relaxed">
+            <p className="text-sm md:text-base lg:text-lg opacity-80 leading-relaxed">
                 {t.aboutP3}
             </p>
 
-            <p className="text-md md:text-lg opacity-80 leading-relaxed">
+            <p className="text-sm md:text-base lg:text-lg opacity-80 leading-relaxed">
                 {t.aboutP4}
             </p>
 
@@ -98,9 +98,9 @@ const About: React.FC = () => {
                 </ul>
             </div>
 
-             <div className="pt-24">
+             <div className="pt-16 md:pt-24">
                 <p className="text-xs uppercase tracking-widest mb-4 opacity-50">{t.inquiries}</p>
-                <a href="mailto:nakamurahiroyuki.com@gmail.com" className="inline-block text-4xl md:text-5xl font-serif italic hover:opacity-50 transition-opacity">
+                <a href="mailto:nakamurahiroyuki.com@gmail.com" className="inline-block text-xl sm:text-2xl md:text-4xl lg:text-5xl font-serif italic hover:opacity-50 transition-opacity break-all">
                     <ScrambleText text="nakamurahiroyuki.com@gmail.com" />
                 </a>
             </div>

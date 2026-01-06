@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
                    }}
                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                    // UPDATED: Extremely thin weight (font-[200]) for airy aesthetic
-                   className="text-[12vw] leading-[0.8] tracking-widest font-[200] uppercase text-[#1a1a1a]"
+                   className="text-[18vw] sm:text-[14vw] md:text-[12vw] leading-[0.8] tracking-widest font-[200] uppercase text-[#1a1a1a]"
                 >
                    NAKAMURA
                 </motion.div>
@@ -102,7 +102,7 @@ const Hero: React.FC = () => {
                    }}
                    transition={{ duration: 0.4, ease: "easeOut" }}
                    // UPDATED: Thin weight to match
-                   className="text-[4vw] font-[200] uppercase mt-2 text-[#333]"
+                   className="text-[6vw] sm:text-[5vw] md:text-[4vw] font-[200] uppercase mt-2 text-[#333]"
                 >
                    Hiroyuki
                 </motion.div>
@@ -197,7 +197,7 @@ const Hero: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      <div className="absolute bottom-12 left-6 md:left-12 flex flex-col gap-2 text-xs font-bold uppercase tracking-widest text-[#1a1a1a] z-20">
+      <div className="absolute bottom-8 md:bottom-12 left-4 md:left-12 flex flex-col gap-1 md:gap-2 text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#1a1a1a] z-20">
         <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
             className="flex items-center gap-4"
