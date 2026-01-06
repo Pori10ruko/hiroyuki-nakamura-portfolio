@@ -187,7 +187,7 @@ Using almost no MIDI, Nakamura treats reverb as resonance, breathing as rhythm, 
           className="mb-16"
         >
           <img
-            src="https://bbm-sound.com/images/sen-no-tsudoi.jpg"
+            src="https://www.dragonseyerecordings.com/wp-content/uploads/2024/11/de6067.jpg"
             alt="Sen no Tsudoi Album Cover"
             className="w-full max-w-2xl mx-auto rounded-lg shadow-2xl"
           />
