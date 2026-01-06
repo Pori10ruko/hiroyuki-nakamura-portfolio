@@ -469,7 +469,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2020',
-    image: 'https://purre-goohn.com/wp-content/uploads/2015/07/Unaic.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AH2aF0094EfWBOATJ-WbZ6A/intersecting.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'UN.a\'s 1st album. "Remarkably elegant, supremely POP" - A new standard in jazz & electronic music.',
       ja: '『驚くほどエレガント、極上にPOP』ジャズ&電子音楽のニュースタンダード。UN.aの1stアルバム。',
@@ -488,7 +488,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://i.ytimg.com/vi/U9kxsHOumeo/maxresdefault.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AFwMD7to1PTn_oKeQ2nRYzY/color.png?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'UN.a\'s album featuring sophisticated electro-jazz compositions and visual collaborations.',
       ja: '洗練されたエレクトロ・ジャズ楽曲とビジュアルコラボレーションが特徴のUN.aアルバム。',
@@ -507,7 +507,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://purre-goohn.com/wp-content/uploads/2018/10/una.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AFftjfoRFvV7TF9agAdYCFU/color%20ep.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'Extended play release featuring additional tracks from the COLOR sessions.',
       ja: 'COLORセッションからの追加トラックを収録したEP。',
@@ -526,7 +526,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2019',
-    image: 'https://purre-goohn.com/wp-content/uploads/2018/07/meltinic.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AEU36NOmv28tHYbsEJsOhps/melt%20in%20dimension.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'Collaboration release with ermhoi, exploring dimensional sonic spaces.',
       ja: 'ermhoi とのコラボレーションリリース。次元的な音響空間を探求。',
@@ -545,7 +545,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2017',
-    image: 'http://purre-goohn.com/wp-content/uploads/2018/07/pg031ic.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AJzV-oo2mq1AMsYok-NKxyc/aggregate.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'UN.a release exploring aggregated sonic textures and rhythmic structures.',
       ja: '集積された音響テクスチャとリズム構造を探求するUN.aリリース。',
@@ -564,7 +564,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2016',
-    image: 'http://purre-goohn.com/wp-content/uploads/2018/08/standaloneic.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AOB8VfGKcKzRQHr5Vj5eigo/standalone.png?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'Early UN.a release work. Constructing an independent sonic world.',
       ja: 'UN.aの初期リリース作品。独立した音響世界を構築。',
@@ -583,7 +583,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2015',
-    image: 'http://purre-goohn.com/wp-content/uploads/2018/09/industriaic.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AOTJp7oJDTvhTZ74Gq4Gers/industria.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'UN.a\'s debut release. Electro-jazz incorporating industrial sonic elements.',
       ja: 'UN.aのデビューリリース。インダストリアルな音響要素を取り入れたエレクトロ・ジャズ。',
@@ -633,7 +633,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://purre-goohn.com/wp-content/uploads/2018/05/spsic.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AOURsgarM-SX0GvFj5BaIrY/Supersonic.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'Utae\'s energetic single featuring powerful synth layers and driving beats.',
       ja: 'パワフルなシンセレイヤーとドライビングビートをフィーチャーしたUtaeのエネルギッシュなシングル。',
@@ -650,7 +650,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2017',
-    image: 'https://purre-goohn.com/wp-content/uploads/2017/10/internet.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AA6QmonE-zZ5syD0XN7UcBQ/internet%20magic.jpeg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'A digital-age anthem exploring the mystique of virtual connections.',
       ja: 'デジタル時代の賛歌、バーチャルなつながりの神秘を探求。',
@@ -683,7 +683,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2017',
-    image: 'https://purre-goohn.com/wp-content/uploads/2017/07/RVRic.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AJfrtsBRh2PSjjUbjSf_m-8/RVR.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'New single inspired by VR, filled with rock taste.',
       ja: 'VRをヒントに制作されたロックテイスト溢れるニューシングル。',
@@ -699,7 +699,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2018',
-    image: 'http://kazukokitatani.com/img/biography/cd_img2.jpg',
+    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/ANIUx-opUXkLeV5ToziqzMA/kazuko%20kitatani.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
     description: {
       en: 'Kazuko Kitatani\'s second album. Produced, composed and arranged.',
       ja: '北谷和子のセカンドアルバム。プロデュース、作編曲を担当。',
