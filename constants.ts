@@ -469,7 +469,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2020',
-    image: 'http://purre-goohn.com/wp-content/uploads/2015/07/Unaic.jpg',
+    image: 'https://purre-goohn.com/wp-content/uploads/2015/07/Unaic.jpg',
     description: {
       en: 'UN.a\'s 1st album. "Remarkably elegant, supremely POP" - A new standard in jazz & electronic music.',
       ja: '『驚くほどエレガント、極上にPOP』ジャズ&電子音楽のニュースタンダード。UN.aの1stアルバム。',
@@ -507,7 +507,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2018',
-    image: 'http://purre-goohn.com/wp-content/uploads/2018/10/una.jpg',
+    image: 'https://purre-goohn.com/wp-content/uploads/2018/10/una.jpg',
     description: {
       en: 'Extended play release featuring additional tracks from the COLOR sessions.',
       ja: 'COLORセッションからの追加トラックを収録したEP。',
@@ -526,7 +526,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2019',
-    image: 'http://purre-goohn.com/wp-content/uploads/2018/07/meltinic.jpg',
+    image: 'https://purre-goohn.com/wp-content/uploads/2018/07/meltinic.jpg',
     description: {
       en: 'Collaboration release with ermhoi, exploring dimensional sonic spaces.',
       ja: 'ermhoi とのコラボレーションリリース。次元的な音響空間を探求。',
@@ -633,7 +633,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2018',
-    image: 'http://purre-goohn.com/wp-content/uploads/2018/05/spsic.jpg',
+    image: 'https://purre-goohn.com/wp-content/uploads/2018/05/spsic.jpg',
     description: {
       en: 'Utae\'s energetic single featuring powerful synth layers and driving beats.',
       ja: 'パワフルなシンセレイヤーとドライビングビートをフィーチャーしたUtaeのエネルギッシュなシングル。',
@@ -650,7 +650,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2017',
-    image: 'http://purre-goohn.com/wp-content/uploads/2017/10/internet.jpg',
+    image: 'https://purre-goohn.com/wp-content/uploads/2017/10/internet.jpg',
     description: {
       en: 'A digital-age anthem exploring the mystique of virtual connections.',
       ja: 'デジタル時代の賛歌、バーチャルなつながりの神秘を探求。',
@@ -683,7 +683,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2017',
-    image: 'http://purre-goohn.com/wp-content/uploads/2017/07/RVRic.jpg',
+    image: 'https://purre-goohn.com/wp-content/uploads/2017/07/RVRic.jpg',
     description: {
       en: 'New single inspired by VR, filled with rock taste.',
       ja: 'VRをヒントに制作されたロックテイスト溢れるニューシングル。',
