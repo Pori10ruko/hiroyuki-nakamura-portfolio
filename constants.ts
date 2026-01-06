@@ -469,7 +469,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2020',
-    image: 'https://i.ytimg.com/vi/QH2ls79_ImA/maxresdefault.jpg',
+    image: 'http://purre-goohn.com/wp-content/uploads/2015/07/Unaic.jpg',
     description: {
       en: 'UN.a\'s 1st album. "Remarkably elegant, supremely POP" - A new standard in jazz & electronic music.',
       ja: '『驚くほどエレガント、極上にPOP』ジャズ&電子音楽のニュースタンダード。UN.aの1stアルバム。',
@@ -507,7 +507,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://static.wixstatic.com/media/dbd631_72f27ab6e3bd4e2084c79a2e98ee9ad6~mv2.jpg',
+    image: 'http://purre-goohn.com/wp-content/uploads/2018/10/una.jpg',
     description: {
       en: 'Extended play release featuring additional tracks from the COLOR sessions.',
       ja: 'COLORセッションからの追加トラックを収録したEP。',
@@ -617,7 +617,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2016',
-    image: 'https://www.dropbox.com/scl/fi/7q8kd3m2v9xnb4p5r6wc8/utae-toi.jpg?rlkey=abcd1234efgh5678ijkl9012&raw=1',
+    image: 'http://purre-goohn.com/wp-content/uploads/2016/03/utae_jkt-e1525368427361.jpg',
     description: {
       en: 'Debut EP of dream pop syndrome Utae. Composed, arranged, and produced.',
       ja: 'ドリームポップシンドロームUtaeのデビューEP。作編曲、プロデュースを担当。',
@@ -633,7 +633,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://i.ytimg.com/vi/m4J0QYEQ9Sk/maxresdefault.jpg',
+    image: 'http://purre-goohn.com/wp-content/uploads/2018/05/spsic.jpg',
     description: {
       en: 'Utae\'s energetic single featuring powerful synth layers and driving beats.',
       ja: 'パワフルなシンセレイヤーとドライビングビートをフィーチャーしたUtaeのエネルギッシュなシングル。',
@@ -650,7 +650,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2017',
-    image: 'https://www.dropbox.com/scl/fi/m1n2o3p4q5r6s7t8u9v0w/utae-internet.jpg?rlkey=wxyz9876abcd5432efgh1098&raw=1',
+    image: 'http://purre-goohn.com/wp-content/uploads/2017/10/internet.jpg',
     description: {
       en: 'A digital-age anthem exploring the mystique of virtual connections.',
       ja: 'デジタル時代の賛歌、バーチャルなつながりの神秘を探求。',
@@ -683,7 +683,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2017',
-    image: 'https://www.dropbox.com/scl/fi/x9y8z7w6v5u4t3s2r1q0p/utae-rvr.jpg?rlkey=lkjihgfedcba9876543210&raw=1',
+    image: 'http://purre-goohn.com/wp-content/uploads/2017/07/RVRic.jpg',
     description: {
       en: 'New single inspired by VR, filled with rock taste.',
       ja: 'VRをヒントに制作されたロックテイスト溢れるニューシングル。',
@@ -699,7 +699,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://i.ytimg.com/vi/ytm5zN3xz_A/maxresdefault.jpg',
+    image: 'http://kazukokitatani.com/img/biography/cd_img2.jpg',
     description: {
       en: 'Kazuko Kitatani\'s second album. Produced, composed and arranged.',
       ja: '北谷和子のセカンドアルバム。プロデュース、作編曲を担当。',
