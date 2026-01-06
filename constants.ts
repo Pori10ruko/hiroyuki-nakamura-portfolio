@@ -388,6 +388,25 @@ export const PROJECTS: Project[] = [
     tags: ['Solo', 'Post-Orchestral', 'Album']
   },
   {
+    id: '20-2',
+    title: {
+      en: 'Coming Up Like A Flower',
+      ja: 'Coming Up Like A Flower',
+      zh: 'Coming Up Like A Flower'
+    },
+    category: 'SOLO',
+    genre: 'RELEASES',
+    year: '2024',
+    image: 'https://www.dragonseyerecordings.com/wp-content/uploads/2024/12/de9001.jpg',
+    description: {
+      en: 'A Dragon\'s Eye Recordings Mixtape. A collection exploring new sonic possibilities through experimental compositions and field recordings.',
+      ja: 'Dragon\'s Eye Recordings Mixtape。実験的な作曲とフィールドレコーディングを通じて、新しい音響的可能性を探求するコレクション。',
+      zh: 'Dragon\'s Eye Recordings Mixtape。透過實驗性作曲與田野錄音，探索聲音新可能性的作品集。'
+    },
+    link: 'https://www.dragonseyerecordings.com/release/de9001/',
+    tags: ['Solo', 'Experimental', 'Mixtape']
+  },
+  {
     id: '21',
     title: {
       en: 'Look Up at the Stars',
@@ -435,6 +454,26 @@ export const PROJECTS: Project[] = [
     description: '自らプログラミングし生成した電子音楽のデビュー作品。',
     link: 'https://overlap.bandcamp.com/album/nakamura-hiroyuki-tritonomics',
     tags: ['Solo', 'Electronic', 'Album']
+  },
+  {
+    id: '23-2',
+    title: {
+      en: 'Solo Piano Works',
+      ja: 'Solo Piano Works',
+      zh: 'Solo Piano Works'
+    },
+    category: 'SOLO',
+    genre: 'RELEASES',
+    year: '2020-2024',
+    image: 'https://i1.sndcdn.com/artworks-000154486616-52iknv-t500x500.jpg',
+    description: {
+      en: 'A collection of solo piano pieces spanning multiple years, exploring minimal sonic structures and acoustic resonance.',
+      ja: '数年にわたるソロピアノ作品集。ミニマルな音響構造と音響共鳴を探求。',
+      zh: '跨越多年的鋼琴獨奏作品集，探索極簡聲音結構與音響共鳴。'
+    },
+    link: 'https://soundcloud.com/nakamura-hiroyuki/sets/solo-piano',
+    tags: ['Solo', 'Piano', 'Collection'],
+    embedCode: '<iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A133465326&color=%230c6689&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>'
   },
 
   // RELEASES - BBCO

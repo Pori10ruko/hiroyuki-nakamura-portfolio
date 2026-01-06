@@ -621,6 +621,18 @@ const WorkItem: React.FC<WorkItemProps> = ({
                 {typeof project.description === 'string' ? project.description : project.description[language]}
             </p>
         </motion.div>
+
+        {/* SoundCloud Embed */}
+        {project.embedCode && (
+          <motion.div 
+            className="mt-6"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            <div dangerouslySetInnerHTML={{ __html: project.embedCode }} />
+          </motion.div>
+        )}
       </div>
     </motion.div>
   );

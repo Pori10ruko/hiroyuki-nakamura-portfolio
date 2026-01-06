@@ -28,6 +28,7 @@ export interface Project {
   subCategories?: SubCategory[];
   videos?: { id: string; title: string }[];
   externalLink?: string;
+  embedCode?: string;
 }
 
 export interface ChatMessage {
