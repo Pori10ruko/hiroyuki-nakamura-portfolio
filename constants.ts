@@ -617,13 +617,13 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2016',
-    image: 'http://purre-goohn.com/wp-content/uploads/2016/03/utae_jkt-e1525368427361.jpg',
+    image: 'https://www.dropbox.com/scl/fi/4srzubg1nb9agqwh6qvlr/toi-toi-toi.jpg?rlkey=gx3gc4hp6g6q34b7vbtnk6u85&raw=1',
     description: {
       en: 'Debut EP of dream pop syndrome Utae. Composed, arranged, and produced.',
       ja: 'ドリームポップシンドロームUtaeのデビューEP。作編曲、プロデュースを担当。',
       zh: '梦幻流行综合症Utae的首张EP。负责作曲、编曲和制作。'
     },
-    link: 'https://linkco.re/vQpnbP3F',
+    link: 'http://purre-goohn.com/utaetoi-toi-toi/',
     tags: ['Produce', 'Dream Pop', 'EP'],
     artistName: 'Utae'
   },
