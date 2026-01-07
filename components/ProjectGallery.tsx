@@ -26,7 +26,7 @@ const ProjectGallery: React.FC = () => {
                 <ScrambleText text="Selected Works" />
              </h2>
              <div className="w-8 md:w-12 h-[2px] bg-[#1a1a1a] mt-2 md:mt-4 mb-1 md:mb-2"></div>
-             <p className="text-[9px] md:text-xs font-mono opacity-60 uppercase tracking-widest text-[#1a1a1a]">Audio / Visual Archive 2023 — 2024</p>
+             <p className="text-[9px] md:text-xs font-mono opacity-60 uppercase tracking-widest text-[#1a1a1a]">Audio / Visual Archive 2023 — 2025</p>
         </div>
 
         <motion.div style={{ x }} className="flex gap-6 md:gap-12 lg:gap-32 pl-[10vw] md:pl-[20vw] items-center transform-style-3d">

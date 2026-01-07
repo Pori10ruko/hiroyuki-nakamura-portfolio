@@ -2,8 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hiroyuki Nakamura | Art Director</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>NAKAMURA Hiroyuki | Sound Artist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
@@ -18,6 +20,19 @@
         overflow-x: hidden;
         margin: 0;
         padding: 0;
+        /* Prevent overscroll bounce on iOS */
+        overscroll-behavior-y: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      html {
+        /* Prevent overscroll on the root element */
+        overscroll-behavior: none;
+      }
+      
+      #root {
+        /* Prevent touch action issues on mobile */
+        touch-action: pan-y;
       }
       .font-serif {
         font-family: 'Playfair Display', serif;

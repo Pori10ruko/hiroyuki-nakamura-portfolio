@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { PROJECTS, GENRES, Genre, SUBCATEGORY_DESCRIPTIONS, BBCO_HERO_IMAGE, BBCO_GALLERY_IMAGES, SITA_GALLERY_IMAGES, SITA_DESCRIPTIONS, UNA_HERO_IMAGE, JOYS_HERO_IMAGE } from '../constants';
+import { PROJECTS, GENRES, Genre, SUBCATEGORY_DESCRIPTIONS, GENRE_DESCRIPTIONS, BBCO_HERO_IMAGE, BBCO_GALLERY_IMAGES, SITA_GALLERY_IMAGES, SITA_DESCRIPTIONS, UNA_HERO_IMAGE, JOYS_HERO_IMAGE } from '../constants';
 import { Project } from '../types';
 import ScrambleText from './ScrambleText';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -325,6 +325,18 @@ const WorkGrid: React.FC = () => {
         >
           {t.showingProjects} {filteredProjects.length} {filteredProjects.length === 1 ? t.project : t.projects}
         </motion.div>
+
+        {/* Genre Descriptions for non-subcategory genres */}
+        {selectedGenre !== 'ALL' && selectedGenre !== 'RELEASES' && GENRE_DESCRIPTIONS[selectedGenre as keyof typeof GENRE_DESCRIPTIONS] && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="text-sm md:text-base text-[#1a1a1a]/70 leading-relaxed max-w-3xl mt-6"
+          >
+            {GENRE_DESCRIPTIONS[selectedGenre as keyof typeof GENRE_DESCRIPTIONS][language]}
+          </motion.div>
+        )}
       </motion.div>
 
       {/* Regular Project Grid - Hidden for PRODUCE, BBCO, and OTHER subcategories */}

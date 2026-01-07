@@ -21,7 +21,12 @@ import { translations } from './translations';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   React.useEffect(() => {
-    window.scrollTo(0, 0);
+    // Smooth scroll to top on route change
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant' // Use instant to avoid conflicts with user scrolling
+    });
   }, [pathname]);
   return null;
 };
@@ -50,6 +55,44 @@ const Home: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  // Prevent iOS Safari bounce scroll from triggering navigation
+  React.useEffect(() => {
+    const preventBounce = (e: TouchEvent) => {
+      // Only prevent default if at scroll boundaries
+      const target = e.target as HTMLElement;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+      
+      // Check if we're in an interactive element (input, textarea, etc.)
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.closest('.interactive')) {
+        return;
+      }
+      
+      // At top and scrolling up
+      if (scrollTop <= 0 && e.touches[0].clientY > (e.touches[0] as any).lastY) {
+        e.preventDefault();
+      }
+      
+      // At bottom and scrolling down
+      if (scrollTop + clientHeight >= scrollHeight && e.touches[0].clientY < (e.touches[0] as any).lastY) {
+        e.preventDefault();
+      }
+    };
+
+    const trackTouch = (e: TouchEvent) => {
+      (e.touches[0] as any).lastY = e.touches[0].clientY;
+    };
+
+    document.addEventListener('touchstart', trackTouch, { passive: true });
+    document.addEventListener('touchmove', preventBounce, { passive: false });
+
+    return () => {
+      document.removeEventListener('touchstart', trackTouch);
+      document.removeEventListener('touchmove', preventBounce);
+    };
+  }, []);
+
   return (
     <LanguageProvider>
       <Router>

@@ -16,7 +16,7 @@ const InfiniteText: React.FC<InfiniteTextProps> = ({ children, baseVelocity = 5,
     stiffness: 400
   });
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-    clamp: false
+    clamp: true // Clamp to prevent extreme values on fast scrolls
   });
 
   const x = useTransform(baseX, (v) => `${(v % 100) - 100}%`);
@@ -24,16 +24,19 @@ const InfiniteText: React.FC<InfiniteTextProps> = ({ children, baseVelocity = 5,
   const directionFactor = useRef<number>(1);
 
   useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+    // Limit delta to prevent jumps on slow frames or tab switches
+    const safeDelta = Math.min(delta, 100);
+    let moveBy = directionFactor.current * baseVelocity * (safeDelta / 1000);
 
     // Apply scroll velocity to make it dynamic
-    if (velocityFactor.get() < 0) {
+    const currentVelocity = velocityFactor.get();
+    if (currentVelocity < 0) {
       directionFactor.current = -1;
-    } else if (velocityFactor.get() > 0) {
+    } else if (currentVelocity > 0) {
       directionFactor.current = 1;
     }
 
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
+    moveBy += directionFactor.current * moveBy * Math.abs(currentVelocity);
 
     baseX.set(baseX.get() + moveBy);
   });

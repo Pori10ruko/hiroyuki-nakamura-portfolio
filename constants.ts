@@ -70,7 +70,7 @@ export const PROJECTS: Project[] = [
       zh: 'Distant Echo（遙遠回聲）'
     },
     category: 'Piano & Live Painting',
-    genre: 'SPATIAL AUDIO',
+    genre: 'INSTALLATION',
     year: '2024',
     image: 'https://bbm-sound.com/images/distant-echo.avif',
     description: {
@@ -940,6 +940,35 @@ export const SUBCATEGORY_DESCRIPTIONS = {
     en: 'Collaborative projects and special works that transcend conventional categories. These projects include cross-genre collaborations and experimental works that explore new forms of musical expression.',
     ja: '既存のカテゴリーを超えた、コラボレーションプロジェクトや特別な作品。ジャンルを横断した共同作業や、新しい音楽表現の形を探求する実験的作品を含む。',
     zh: '超越傳統分類的合作項目與特殊作品。包括跨類別的合作計畫，以及探索新音樂表現形式的實驗性作品。'
+  }
+};
+
+// Genre-level descriptions for categories without subcategories
+export const GENRE_DESCRIPTIONS = {
+  INSTALLATION: {
+    en: 'Immersive sound and light installations that transform architectural spaces into multisensory experiences. Combining spatial audio technology, visual projection, and interactive elements, these works invite audiences to physically explore the boundaries between sound, light, and space.',
+    ja: '建築空間を多感覚的な体験へと変容させる、没入型のサウンド＆ライトインスタレーション。空間音響技術、映像投影、インタラクティブ要素を組み合わせ、音・光・空間の境界を身体的に探求する作品群。',
+    zh: '將建築空間轉化為多感官體驗的沉浸式聲光裝置。結合空間音響技術、視覺投影與互動元素，這些作品邀請觀眾身體性地探索聲音、光線與空間之間的界限。'
+  },
+  'SPATIAL AUDIO': {
+    en: 'Pioneering works in three-dimensional sound design and binaural recording technology. From concert hall acoustics to immersive headphone experiences, these projects push the boundaries of spatial perception and create new dimensions in auditory expression.',
+    ja: '立体音響デザインとバイノーラル録音技術における先駆的作品。コンサートホールの音響設計から、ヘッドフォンでの没入体験まで、空間知覚の可能性を拡張し、聴覚表現の新次元を切り拓く。',
+    zh: '三維聲音設計與雙耳錄音技術的開創性作品。從音樂廳聲學設計到沉浸式耳機體驗，這些項目突破空間感知的界限，創造聽覺表達的全新維度。'
+  },
+  'CLIENT WORKS': {
+    en: 'Commercial projects and collaborations spanning music videos, VTuber content, advertising campaigns, and audio post-production. Each project demonstrates technical excellence while respecting the unique identity and creative vision of clients and collaborators.',
+    ja: 'ミュージックビデオ、VTuberコンテンツ、広告キャンペーン、オーディオポストプロダクションにわたる商業プロジェクトとコラボレーション。各プロジェクトで技術的卓越性を発揮しながら、クライアントや協力者の独自性と創造的ビジョンを尊重する。',
+    zh: '涵蓋音樂錄影帶、VTuber 內容、廣告活動與後期音訊製作的商業項目與合作。每個項目在展現技術卓越性的同時，尊重客戶與合作者的獨特身分與創意願景。'
+  },
+  EDUCATION: {
+    en: 'Educational initiatives and academic contributions in music technology, composition, and media arts. Through lectures, workshops, and research publications, these activities aim to foster the next generation of artists and expand the discourse on contemporary sonic practices.',
+    ja: '音楽技術、作曲、メディアアートにおける教育的取り組みと学術的貢献。講義、ワークショップ、研究発表を通じて、次世代のアーティストを育成し、現代の音響実践に関する議論を拡張することを目指す。',
+    zh: '音樂技術、作曲與媒體藝術領域的教育倡議與學術貢獻。透過講座、工作坊與研究發表，這些活動旨在培育下一代藝術家，並擴展當代聲響實踐的論述。'
+  },
+  ARCHIVE: {
+    en: 'A curated collection of past performances, installations, and experimental projects that document the evolution of Hiroyuki Nakamura\'s artistic journey. These works represent important milestones in exploring the intersection of technology, music, and visual arts.',
+    ja: '中村浩之の芸術的歩みの進化を記録する、過去のパフォーマンス、インスタレーション、実験的プロジェクトの厳選されたコレクション。これらの作品は、テクノロジー・音楽・視覚芸術の交差点を探求する重要なマイルストーンを表している。',
+    zh: '精選收錄過去演出、裝置作品與實驗性項目，記錄 中村浩之 藝術旅程的演進。這些作品代表了探索技術、音樂與視覺藝術交會點的重要里程碑。'
   }
 };
 
