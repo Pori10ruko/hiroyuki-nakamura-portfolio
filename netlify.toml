@@ -4,8 +4,8 @@
 
 [[redirects]]
   from = "/epk"
-  to = "https://piano-distance-epk-2026.netlify.app/"
-  status = 200
+  to = "/epk/"
+  status = 301
   force = true
 
 [[redirects]]
