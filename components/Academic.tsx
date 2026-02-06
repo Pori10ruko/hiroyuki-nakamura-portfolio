@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations';
@@ -6,6 +6,10 @@ import { translations } from '../translations';
 const Academic: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language];
+
+  useEffect(() => {
+    document.title = 'Academic & Lectures | NAKAMURA Hiroyuki';
+  }, []);
 
   return (
     <div className="w-full min-h-screen pt-32 md:pt-48 px-4 md:px-8 lg:px-12 flex flex-col md:flex-row gap-8 md:gap-12 text-[#1a1a1a]">
@@ -48,7 +52,7 @@ const Academic: React.FC = () => {
                     {t.apichatpong2024Subtitle}
                 </h4>
                 <img 
-                    src="https://static.wixstatic.com/media/dbd631_914a7904f42445bd9fbcd6f441042366~mv2.png" 
+                    src="/images/apichatpong-workshop.jpg" 
                     alt="Apichatpong Weerasethakul Workshop" 
                     className="w-full max-w-xs mx-auto h-auto rounded-lg shadow-md mb-4"
                 />
@@ -89,12 +93,12 @@ const Academic: React.FC = () => {
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 max-w-2xl mx-auto">
                     <img 
-                        src="https://www.dropbox.com/scl/fi/pbd4i3vigmcxgjd7kojez/LINE_20260106_150400.jpg?rlkey=1wk2gnlcv8oa46ds0ak42sl0y&raw=1" 
+                        src="/images/taiwan-lecture-1.jpg" 
                         alt="Taiwan University Lecture 1" 
                         className="w-full h-auto rounded-lg shadow-md"
                     />
                     <img 
-                        src="https://www.dropbox.com/scl/fi/rame5r8w7p68rvutj2tmo/510124538_10086190324801921_4341018970870501989_n.jpg?rlkey=iw6u5tfzqapiakwb7cmqes21h&raw=1" 
+                        src="/images/taiwan-lecture-2.jpg" 
                         alt="Taiwan University Lecture 2" 
                         className="w-full h-auto rounded-lg shadow-md"
                     />
@@ -117,7 +121,7 @@ const Academic: React.FC = () => {
                     {t.showa2024Title}
                 </h4>
                 <img 
-                    src="https://www.dropbox.com/scl/fi/kzlim75s3pxyh45x550j0/2025-07-19-11.17.22.png?rlkey=402bv0w80qndzog8b03ovhq9e&raw=1" 
+                    src="/images/showa-university.jpg" 
                     alt="Showa University of Music" 
                     className="w-full max-w-sm mx-auto h-auto rounded-lg shadow-md mb-4"
                 />
@@ -139,7 +143,7 @@ const Academic: React.FC = () => {
                     {language === 'ja' ? '全国高等学校軽音楽コンテスト 関東大会 審査員' : language === 'zh' ? '全國高中輕音樂大賽 關東地區 評審' : 'All-Japan High School Light Music Contest (Kanto Regional)'}
                 </h4>
                 <img 
-                    src="https://www.dropbox.com/scl/fi/k70byyq3ihotsciyj4j7u/20180821-1.jpg?rlkey=4vwhlba0fphs2i3ob9clm0pp4&raw=1" 
+                    src="/images/highschool-contest.jpg" 
                     alt="High School Light Music Contest" 
                     className="w-full max-w-sm mx-auto h-auto rounded-lg shadow-md mb-4"
                 />
@@ -162,7 +166,7 @@ const Academic: React.FC = () => {
                     {language === 'ja' ? '四国西予ジオパーク ミュージックコンテスト 審査員' : language === 'zh' ? '四國西予地質公園 音樂大賽 評審' : 'Shikoku Seiyo Geopark Music Contest'}
                 </h4>
                 <img 
-                    src="https://www.dropbox.com/scl/fi/frkslegkypne80hnzdlg6/5.jpg?rlkey=xtu3m9mcizoxvu9yzm8g3hhkl&raw=1" 
+                    src="/images/geopark-contest.jpg" 
                     alt="Shikoku Seiyo Geopark Music Contest" 
                     className="w-full max-w-xs mx-auto h-auto rounded-lg shadow-md mb-4"
                 />
@@ -185,7 +189,7 @@ const Academic: React.FC = () => {
                     {language === 'ja' ? '主宰プラットフォーム「Beyond Boundary Music」における教育活動' : language === 'zh' ? '主辦平台「Beyond Boundary Music」的教育活動' : 'Educational Activities through "Beyond Boundary Music"'}
                 </h4>
                 <img 
-                    src="https://www.dropbox.com/scl/fi/6oz5c9nt8xf4gaiy8bjyi/bbm-logo-mark.jpg?rlkey=kerz7efqt8kiqajoa85assitj&raw=1" 
+                    src="/images/bbm-logo.jpg" 
                     alt="Beyond Boundary Music" 
                     className="w-full max-w-xs mx-auto h-auto rounded-lg shadow-md mb-4"
                 />

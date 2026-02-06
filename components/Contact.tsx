@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ScrambleText from './ScrambleText';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
+
+  useEffect(() => {
+    document.title = 'Contact | NAKAMURA Hiroyuki';
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',

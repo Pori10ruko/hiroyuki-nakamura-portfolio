@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import ProjectGallery from './components/ProjectGallery';
 import Footer from './components/Footer';
-import AIChat from './components/AIChat';
 import CustomCursor from './components/CustomCursor';
 import NoiseOverlay from './components/NoiseOverlay';
 import About from './components/About';
@@ -34,7 +33,11 @@ const ScrollToTop = () => {
 const Home: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language];
-  
+
+  React.useEffect(() => {
+    document.title = 'NAKAMURA Hiroyuki | Sound Artist, Pianist, Composer';
+  }, []);
+
   return (
     <>
       <Hero />
@@ -117,8 +120,6 @@ const App: React.FC = () => {
           </Routes>
           <Footer />
         </main>
-        
-        <AIChat />
       </div>
       </Router>
     </LanguageProvider>

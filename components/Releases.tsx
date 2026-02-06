@@ -80,7 +80,7 @@ const RELEASES: Record<ReleaseCategory, Release[]> = {
     {
       title: 'SITA',
       year: '2023',
-      image: 'https://static.wixstatic.com/media/dbd631_8c9d4e5f6a7b4c8d9e0f1a2b3c4d5e6f~mv2.jpg',
+      image: '/images/bbco-sita.jpg',
       description: {
         en: 'First album by Beyond Boundary Chamber Orchestra, developed from music created for DRAMATIC WORKS dance performance "SITA YOKOHAMA". Released on prestigious jazz label Daiki Musica.',
         ja: 'Beyond Boundary Chamber Orchestraのファーストアルバム。ダンスカンパニーDRAMATIC WORKSの公演「SITA YOKOHAMA」のために制作された音楽をさらに発展させ、ジャズの名門レーベルDaiki Musicaよりリリース。',
@@ -138,7 +138,7 @@ const RELEASES: Record<ReleaseCategory, Release[]> = {
     {
       title: 'Melt in Dimensions feat. ermhoi',
       year: '2019',
-      image: 'https://static.wixstatic.com/media/dbd631_melt_in_dimensions.jpg',
+      image: '/images/una-melt-in-dimensions.jpg',
       description: {
         en: 'Collaborative release featuring ermhoi, exploring dimensional sound spaces.',
         ja: 'ermhoi とのコラボレーションリリース。次元的な音響空間を探求。',
@@ -151,7 +151,7 @@ const RELEASES: Record<ReleaseCategory, Release[]> = {
     {
       title: 'Aggregate',
       year: '2017',
-      image: 'https://static.wixstatic.com/media/dbd631_aggregate.jpg',
+      image: '/images/una-aggregate.jpg',
       description: {
         en: 'UN.a release exploring aggregated sonic textures and rhythmic structures.',
         ja: '集積された音響テクスチャとリズム構造を探求するUN.aリリース。',
@@ -164,7 +164,7 @@ const RELEASES: Record<ReleaseCategory, Release[]> = {
     {
       title: 'Stand Alone',
       year: '2016',
-      image: 'https://static.wixstatic.com/media/dbd631_standalone.jpg',
+      image: '/images/una-standalone.jpg',
       description: {
         en: 'UN.a album featuring standalone compositions and experimental approaches.',
         ja: '独立した楽曲と実験的なアプローチを特徴とするUN.aアルバム。',
@@ -177,7 +177,7 @@ const RELEASES: Record<ReleaseCategory, Release[]> = {
     {
       title: 'Industria',
       year: '2015',
-      image: 'https://static.wixstatic.com/media/dbd631_industria.jpg',
+      image: '/images/una-industria.jpg',
       description: {
         en: 'Early UN.a work exploring industrial soundscapes and electronic textures.',
         ja: '工業的サウンドスケープと電子的テクスチャを探求するUN.a初期作品。',
@@ -249,7 +249,7 @@ const RELEASES: Record<ReleaseCategory, Release[]> = {
     {
       title: 'NH-Trio',
       year: '2015-2017',
-      image: 'https://static.wixstatic.com/media/dbd631_nhtrio.jpg',
+      image: '/images/bbm-logo.jpg',
       description: {
         en: 'Piano-centric trio exploring noise, jazz, classical, and electronic music.',
         ja: 'ピアノを中心に、ノイズ、ジャズ、クラシック、エレクトロニックミュージックを行き来するトリオ。',

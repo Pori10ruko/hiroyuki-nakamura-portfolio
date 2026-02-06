@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const DistantEcho: React.FC = () => {
   const { language } = useLanguage();
+
+  useEffect(() => {
+    document.title = 'Distant Echo | NAKAMURA Hiroyuki';
+  }, []);
 
   const content = {
     en: {
@@ -110,10 +114,10 @@ Venue: EARTH+GALLERY, Tokyo`
   };
 
   const images = [
-    'https://static.wixstatic.com/media/dbd631_829879e0bbcf438b8dbbc53bcca0e824~mv2.png/v1/fill/w_656,h_436,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-12-01%20%E5%8D%88%E5%89%8D11_12_42.png',
-    'https://static.wixstatic.com/media/dbd631_477400d577e34857a601e32cabbd9502~mv2.jpg/v1/fill/w_656,h_436,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3.jpg',
-    'https://static.wixstatic.com/media/dbd631_579e0f8ac5eb467a9a13ad510ae64771~mv2.jpg/v1/fill/w_656,h_436,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/DSC00867.jpg',
-    'https://static.wixstatic.com/media/dbd631_51cadde8e18f4f2bb2f494a72c293ed7~mv2.jpg/v1/fill/w_656,h_436,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/DSC01024.jpg'
+    '/images/distant-echo-1.jpg',
+    '/images/distant-echo-2.jpg',
+    '/images/distant-echo-3.jpg',
+    '/images/distant-echo-4.jpg'
   ];
 
   const t = content[language];

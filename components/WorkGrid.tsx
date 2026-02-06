@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { PROJECTS, GENRES, Genre, SUBCATEGORY_DESCRIPTIONS, GENRE_DESCRIPTIONS, BBCO_HERO_IMAGE, BBCO_GALLERY_IMAGES, SITA_GALLERY_IMAGES, SITA_DESCRIPTIONS, UNA_HERO_IMAGE, JOYS_HERO_IMAGE } from '../constants';
@@ -12,6 +12,10 @@ const WorkGrid: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language];
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = 'Works | NAKAMURA Hiroyuki';
+  }, []);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [selectedGenre, setSelectedGenre] = useState<Genre>('ALL');
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);

@@ -31,11 +31,6 @@ export interface Project {
   embedCode?: string;
 }
 
-export interface ChatMessage {
-  role: 'user' | 'model';
-  text: string;
-}
-
 export enum ViewState {
   LOADING = 'LOADING',
   IDLE = 'IDLE',

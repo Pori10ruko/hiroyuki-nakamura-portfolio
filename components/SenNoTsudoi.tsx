@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const SenNoTsudoi: React.FC = () => {
   const { language } = useLanguage();
+
+  useEffect(() => {
+    document.title = 'Sen no Tsudoi | NAKAMURA Hiroyuki';
+  }, []);
 
   const tracks = [
     {

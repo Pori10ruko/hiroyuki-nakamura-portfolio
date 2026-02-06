@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ScrambleText from './ScrambleText';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -7,6 +7,10 @@ import { translations } from '../translations';
 const About: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language];
+
+  useEffect(() => {
+    document.title = 'About | NAKAMURA Hiroyuki';
+  }, []);
 
   return (
     <div className="w-full min-h-screen pt-32 md:pt-48 px-4 md:px-8 lg:px-12 flex flex-col md:flex-row gap-8 md:gap-12 text-[#1a1a1a]">
@@ -31,7 +35,7 @@ const About: React.FC = () => {
         >
           <div className="relative aspect-[2/3] overflow-hidden rounded-lg shadow-2xl">
             <img
-              src="https://static.wixstatic.com/media/dbd631_e38528d2eaad46b889375e2a39a0b777~mv2.png/v1/fill/w_458,h_674,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Nakamura_photo.png"
+              src="/images/nakamura-photo.jpg"
               alt="NAKAMURA Hiroyuki / 中村 浩之"
               className="w-full h-full object-cover"
             />

@@ -382,7 +382,7 @@ export const PROJECTS: Project[] = [
     category: 'SOLO',
     genre: 'RELEASES',
     year: '2020',
-    image: 'https://www.dropbox.com/scl/fi/4ljjvnganh94lnvxilodg/singular-form.jpg?rlkey=u9a012r6faubu3k9egxvvv10o&raw=1',
+    image: '/images/singular-form.jpg',
     description: {
       en: 'The second volume of solo piano works exploring minimal sonic structures.',
       ja: 'ミニマルな音響構造を探求するソロピアノ作品集の第2弾。',
@@ -410,7 +410,7 @@ export const PROJECTS: Project[] = [
     category: 'BBCO',
     genre: 'RELEASES',
     year: '2023',
-    image: 'https://www.dropbox.com/scl/fi/iz1t5wlsmob1gpuj4nttk/BBCO-Sita.jpg?rlkey=u2j51ck7fupy8p9xvzr0b04ub&raw=1',
+    image: '/images/bbco-sita.jpg',
     description: 'Beyond Boundary Chamber Orchestraのファーストアルバム。ダンスカンパニーDRAMATIC WORKSの公演「SITA YOKOHAMA」のために制作された音楽をさらに発展させ、ジャズの名門レーベルDaiki Musicaよりリリース。',
     link: 'https://d-musica.co.jp/?p=389',
     tags: ['BBCO', 'Orchestra', 'Album'],
@@ -450,7 +450,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2024',
-    image: 'https://www.dropbox.com/scl/fi/nniw1dsste20k1wa6w85g/embrace.webp?rlkey=1kg4dlkn1fa3n8v4ddyh08ixj&raw=1',
+    image: '/images/una-embrace.webp',
     description: {
       en: 'Latest release from UN.a, exploring new dimensions of electro-jazz.',
       ja: 'UN.aの最新リリース。エレクトロ・ジャズの新たな次元を探求。',
@@ -469,7 +469,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2020',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AH2aF0094EfWBOATJ-WbZ6A/intersecting.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/una-intersecting.jpg',
     description: {
       en: 'UN.a\'s 1st album. "Remarkably elegant, supremely POP" - A new standard in jazz & electronic music.',
       ja: '『驚くほどエレガント、極上にPOP』ジャズ&電子音楽のニュースタンダード。UN.aの1stアルバム。',
@@ -488,7 +488,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AFwMD7to1PTn_oKeQ2nRYzY/color.png?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/una-color.jpg',
     description: {
       en: 'UN.a\'s album featuring sophisticated electro-jazz compositions and visual collaborations.',
       ja: '洗練されたエレクトロ・ジャズ楽曲とビジュアルコラボレーションが特徴のUN.aアルバム。',
@@ -507,7 +507,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AFftjfoRFvV7TF9agAdYCFU/color%20ep.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/una-color-ep.jpg',
     description: {
       en: 'Extended play release featuring additional tracks from the COLOR sessions.',
       ja: 'COLORセッションからの追加トラックを収録したEP。',
@@ -526,7 +526,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2019',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AEU36NOmv28tHYbsEJsOhps/melt%20in%20dimension.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/una-melt-in-dimensions.jpg',
     description: {
       en: 'Collaboration release with ermhoi, exploring dimensional sonic spaces.',
       ja: 'ermhoi とのコラボレーションリリース。次元的な音響空間を探求。',
@@ -545,7 +545,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2017',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AJzV-oo2mq1AMsYok-NKxyc/aggregate.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/una-aggregate.jpg',
     description: {
       en: 'UN.a release exploring aggregated sonic textures and rhythmic structures.',
       ja: '集積された音響テクスチャとリズム構造を探求するUN.aリリース。',
@@ -564,7 +564,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2016',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AOB8VfGKcKzRQHr5Vj5eigo/standalone.png?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/una-standalone.jpg',
     description: {
       en: 'Early UN.a release work. Constructing an independent sonic world.',
       ja: 'UN.aの初期リリース作品。独立した音響世界を構築。',
@@ -583,7 +583,7 @@ export const PROJECTS: Project[] = [
     category: 'UN.a',
     genre: 'RELEASES',
     year: '2015',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AOTJp7oJDTvhTZ74Gq4Gers/industria.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/una-industria.jpg',
     description: {
       en: 'UN.a\'s debut release. Electro-jazz incorporating industrial sonic elements.',
       ja: 'UN.aのデビューリリース。インダストリアルな音響要素を取り入れたエレクトロ・ジャズ。',
@@ -600,7 +600,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2020',
-    image: 'https://www.dropbox.com/scl/fi/ks4bu0m9esiag1z94a7q2/supernal-tears.webp?rlkey=6b4w2c2wfimlnfngza80a65s7&raw=1',
+    image: '/images/supernal-tears.webp',
     description: {
       en: 'Produced mini-album for erhu player Shin. The title track was selected as a finalist in the international film music competition FMC2020.',
       ja: '二胡奏者Shinのミニアルバムをプロデュース。表題曲が国際的な映画音楽コンクールFMC2020でファイナリストに選出。',
@@ -617,7 +617,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2016',
-    image: 'https://www.dropbox.com/scl/fi/4srzubg1nb9agqwh6qvlr/toi-toi-toi.jpg?rlkey=gx3gc4hp6g6q34b7vbtnk6u85&raw=1',
+    image: '/images/toi-toi-toi.jpg',
     description: {
       en: 'Debut EP of dream pop syndrome Utae. Composed, arranged, and produced.',
       ja: 'ドリームポップシンドロームUtaeのデビューEP。作編曲、プロデュースを担当。',
@@ -633,7 +633,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AOURsgarM-SX0GvFj5BaIrY/Supersonic.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/utae-supersonic.jpg',
     description: {
       en: 'Utae\'s energetic single featuring powerful synth layers and driving beats.',
       ja: 'パワフルなシンセレイヤーとドライビングビートをフィーチャーしたUtaeのエネルギッシュなシングル。',
@@ -650,7 +650,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2017',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AA6QmonE-zZ5syD0XN7UcBQ/internet%20magic.jpeg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/utae-internet-magic.jpg',
     description: {
       en: 'A digital-age anthem exploring the mystique of virtual connections.',
       ja: 'デジタル時代の賛歌、バーチャルなつながりの神秘を探求。',
@@ -683,7 +683,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2017',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/AJfrtsBRh2PSjjUbjSf_m-8/RVR.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/utae-rvr.jpg',
     description: {
       en: 'New single inspired by VR, filled with rock taste.',
       ja: 'VRをヒントに制作されたロックテイスト溢れるニューシングル。',
@@ -699,7 +699,7 @@ export const PROJECTS: Project[] = [
     category: 'PRODUCE',
     genre: 'RELEASES',
     year: '2018',
-    image: 'https://www.dropbox.com/scl/fo/k8rnlkt8vm2k03bfpnsla/ANIUx-opUXkLeV5ToziqzMA/kazuko%20kitatani.jpg?rlkey=yk78ojgp9c71vy5zl6bx4p0q6&raw=1',
+    image: '/images/kazuko-kitatani.jpg',
     description: {
       en: 'Kazuko Kitatani\'s second album. Produced, composed and arranged.',
       ja: '北谷和子のセカンドアルバム。プロデュース、作編曲を担当。',
@@ -718,7 +718,7 @@ export const PROJECTS: Project[] = [
     category: 'OTHER',
     genre: 'RELEASES',
     year: '2015',
-    image: 'https://www.dropbox.com/scl/fi/cb3j83ub8sicrhxaxtxrs/JOY-S_BLEU.jpg?rlkey=a79sb59k93uzh55q6t3v4i6s9&raw=1',
+    image: '/images/joys-bleu.jpg',
     description: {
       en: 'First album of JOY-S, a Classical Pop Unit combining classical instruments with modern pop sensibilities.',
       ja: 'クラシック楽器とモダンなポップ感性を組み合わせたクラシカル・ポップユニットJOY-Sのファーストアルバム。',
@@ -734,7 +734,7 @@ export const PROJECTS: Project[] = [
     category: 'OTHER',
     genre: 'RELEASES',
     year: '2016',
-    image: 'https://www.dropbox.com/scl/fi/xh9k82cnm2xd1ecwprtrp/JOY-S_RED_THREAD.png?rlkey=iyk7xhmmkuf69ijp1yo35fxnz&raw=1',
+    image: '/images/joys-red-thread.jpg',
     description: {
       en: 'Second album of JOY-S, further exploring the fusion of classical and contemporary pop.',
       ja: 'クラシックと現代ポップの融合をさらに探求したJOY-Sのセカンドアルバム。',
@@ -887,24 +887,24 @@ export const GENRES = ['ALL', 'RELEASES', 'INSTALLATION', 'SPATIAL AUDIO', 'CLIE
 export type Genre = typeof GENRES[number];
 
 // BBCO hero image
-export const BBCO_HERO_IMAGE = 'https://static.wixstatic.com/media/dbd631_e7125251ebb6459e8b88d33a291b8710~mv2.webp/v1/fit/w_1245,h_720,q_90,enc_avif,quality_auto/dbd631_e7125251ebb6459e8b88d33a291b8710~mv2.webp';
+export const BBCO_HERO_IMAGE = '/images/bbco-hero.webp';
 
 // UN.a hero image
-export const UNA_HERO_IMAGE = 'https://www.dropbox.com/scl/fi/2gv1xbhv8ieijw7co2cir/UN_a_photo.avif?rlkey=0a34e9j1c7ozmq38od4v4eeys&raw=1';
+export const UNA_HERO_IMAGE = '/images/una-photo.avif';
 
 // JOY-S hero image
-export const JOYS_HERO_IMAGE = 'https://www.dropbox.com/scl/fi/jrmi8nowztatacqbhjm3c/C1-VDWjUsAAFA0p.jpeg?rlkey=b7gjsakq342jgecxhi6r433um&raw=1';
+export const JOYS_HERO_IMAGE = '/images/joys-photo.jpg';
 
 // BBCO gallery images
 export const BBCO_GALLERY_IMAGES = [
-  'https://static.wixstatic.com/media/dbd631_73006b52a0d049df9a1ab3a6bb35c35a~mv2.jpg/v1/fill/w_1245,h_830,q_90,enc_avif,quality_auto/dbd631_73006b52a0d049df9a1ab3a6bb35c35a~mv2.jpg',
-  'https://static.wixstatic.com/media/dbd631_e7125251ebb6459e8b88d33a291b8710~mv2.webp/v1/fit/w_1245,h_720,q_90,enc_avif,quality_auto/dbd631_e7125251ebb6459e8b88d33a291b8710~mv2.webp'
+  '/images/bbco-gallery-1.jpg',
+  '/images/bbco-hero.webp'
 ];
 
 // SITA gallery images
 export const SITA_GALLERY_IMAGES = [
-  'https://static.wixstatic.com/media/dbd631_22fe51bcd99d4f96bb915fb866f0030a~mv2.png/v1/fill/w_800,h_455,q_90,enc_avif,quality_auto/dbd631_22fe51bcd99d4f96bb915fb866f0030a~mv2.png',
-  'https://static.wixstatic.com/media/dbd631_02983adea3b84745ba5deadd00fe40de~mv2.png/v1/fill/w_800,h_455,q_90,enc_avif,quality_auto/dbd631_02983adea3b84745ba5deadd00fe40de~mv2.png'
+  '/images/sita-gallery-1.jpg',
+  '/images/sita-gallery-2.jpg'
 ];
 
 // SITA descriptions
