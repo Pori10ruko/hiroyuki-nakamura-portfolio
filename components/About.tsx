@@ -104,8 +104,8 @@ const About: React.FC = () => {
 
              <div className="pt-16 md:pt-24">
                 <p className="text-xs uppercase tracking-widest mb-4 opacity-50">{t.inquiries}</p>
-                <a href="mailto:nakamurahiroyuki.com@gmail.com" className="inline-block text-xl sm:text-2xl md:text-4xl lg:text-5xl font-serif italic hover:opacity-50 transition-opacity break-all">
-                    <ScrambleText text="nakamurahiroyuki.com@gmail.com" />
+                <a href="mailto:contact@bbmusic.tokyo" className="inline-block text-xl sm:text-2xl md:text-4xl lg:text-5xl font-serif italic hover:opacity-50 transition-opacity break-all">
+                    <ScrambleText text="contact@bbmusic.tokyo" />
                 </a>
             </div>
         </motion.div>

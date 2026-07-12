@@ -8,29 +8,29 @@ export const translations = {
     
     // Hero
     composer: 'Composer',
-    pianist: 'Pianist',
-    visual: 'Visual',
-    heroQuote: 'Traversing the boundaries between classical, jazz, and electronic music—blending tradition with innovation through piano performance, composition, and visual art.',
-    
+    pianist: 'Stage',
+    visual: 'Space',
+    heroQuote: 'A composer who scores stages and spaces by integrating orchestra, electronic music, and interactive moving images.',
+
     // About
     aboutTitle: 'About',
-    aboutIntro: 'is a pianist, composer, media artist, and CG artist',
-    aboutP1: 'Known for works that blend tradition with innovation, Hiroyuki Nakamura freely traverses the boundaries between genres such as classical, jazz, pops and electric music. His versatile activities range from solo album production and orchestral direction to creating music for stage and screen, as well as educational work.',
-    aboutP2: 'He consistently explores the intersection of music and visual arts, composing music for concert videos for the artist YUKI in collaboration with visual artist Kenji Hirano, and creating the main jacket CGI for her album "Parade ga Tsuzuku nara" (SONY MUSIC). As the director of his self-produced Beyond Boundary Chamber Orchestra, he has also established his reputation as a producer by successfully staging the media opera "VENUS no Shukusai" (Festival of VENUS).',
-    aboutP3: 'His talent is highly regarded internationally, with album releases on US and UK labels. He provided music and spatial audio for an installation by the UK-based art group Random International at the Riyadh Light Festival, the world\'s largest light festival. Furthermore, he has earned the trust of world-class creators, including filmmaker Apichatpong Weerasethakul, for whom he gave a special lecture at a university workshop. He currently teaches at the National University of Tainan in Taiwan and at ESP Entertainment Tokyo in Japan.',
-    aboutP4: 'Currently, he is developing multiple international projects, including collaborations with UK choreographer Rosie Kay, constantly seeking new forms of expression. Starting in September 2025, he will be teaching a Popular Music course at the National University of Tainan in Taiwan.',
+    aboutIntro: 'scores stages and spaces by integrating orchestra, electronic music, and interactive moving images',
+    aboutP1: 'NAKAMURA Hiroyuki is a Tokyo/Kawasaki-based composer and pianist whose work treats sound as space \u2014 how a sound holds the room it crosses, the distance between a note and its listener. Trained as a pianist, he builds his own spatial-audio systems and composes across recordings, site-specific installation and performance.',
+    aboutP2: 'His spatial sound has been used by the London art collective Random International (Alone Together, Superblue Miami / Riyadh Art) and underpins the UK theatre work DEEP FAKE \u2014 Ghost in the Machine (supported by Arts Council England; with choreographer Rosie Kay; Birmingham Repertory Theatre, 2026). As the director of Beyond Boundary Chamber Orchestra, he staged the electric opera Festival of VENUS.',
+    aboutP3: 'Releases include Piano Distance (Fluid Audio, UK / Beyond Boundary Music, 2026), Sen no Tsudoi (Dragon\'s Eye, 2024), and Look Up at the Stars (Youngbloods, 2023). He lectures at the National University of Tainan (Taiwan) and at ESP Entertainment Tokyo, and joined Apichatpong Weerasethakul\'s workshop at Tama Art University as an instructor.',
+    aboutP4: 'Currently developing multiple international stage and installation projects \u2014 always extending the practice of treating sound as space.',
     services: 'Services',
     links: 'Links',
     inquiries: 'Inquiries',
     
     // Services
-    service1: 'Music Composition & Production',
-    service2: 'Piano Performance & Direction',
-    service3: '3D Spatial Audio Design',
-    service4: 'Live A/V Performance',
-    service5: 'Media Opera Production',
+    service1: 'Stage & Performance Composition',
+    service2: 'Orchestral + Electronic Music',
+    service3: 'Interactive & Generative Visuals',
+    service4: 'Sound Installation & Site-Specific Works',
+    service5: 'Spatial Audio Design',
     service6: 'CG & Visual Art Creation',
-    service7: 'Sound Installation',
+    service7: 'Music Production (Commercial)',
     service8: 'Educational Workshops & Lectures',
     
     // Academic
@@ -39,6 +39,7 @@ export const translations = {
     academicP1: 'Traversing the specialized fields of music, media art, and technology, I provide project-based learning environments that enable students to connect their own sensibilities and societal contexts to their creative expression.',
     invitedLecture: 'Invited Lecture',
     researchPresentation: 'Research Presentation',
+    specialLecture: 'Special Lecture',
     judge: 'Judge',
     ongoing: 'Ongoing',
     contactForLectures: 'Contact for Lectures & Workshops',
@@ -60,6 +61,11 @@ export const translations = {
     taiwan2015Desc1: 'Invited lectures at universities in Taiwan',
     taiwan2015Desc2: 'Conducted a series of invited special lectures and workshops on music production and performance at several universities in Taiwan. Over multiple years, he served as a special lecturer on "Popular Music Keyboard" at the National Tainan University. He also led a week-long intensive course on Piano and DAW (Digital Audio Workstation) techniques at Soochow University.',
     
+    deepfake2026Title: 'DEEP FAKE Special Lecture — Showa University of Music (Yuri Hall)',
+    deepfake2026Subtitle: 'On Music, AI and Moving Image',
+    deepfake2026Desc1: 'A special lecture connected to the DEEP FAKE project — a Japan × UK co-production with choreographer Rosie Kay.',
+    deepfake2026Desc2: 'Held at Showa University of Music\'s Yuri Hall, the talk traced how real-time technology — Claude Code & API, MCP, Ableton / Somax2 / RAVE with live piano, and TouchDesigner — drives a dancer-controlled system, sharing the practice behind the work with students and artists.',
+
     showa2024Title: 'Showa University of Music Research Presentation',
     showa2024Desc1: '"Voices in the Void" - Electronic sound and video',
     showa2024Desc2: 'Performed at the faculty and researcher presentation held at Showa University of Music\'s Yuri Hall. Responsible for electronic sound and video for "Voices in the Void," presenting practical research in an academic setting.',
@@ -83,8 +89,14 @@ export const translations = {
     showingProjects: 'Showing',
     projects: 'projects',
     project: 'project',
+
+    // New release announcement (Piano Distance)
+    newReleaseLabel: 'Pre-order open',
+    newReleaseTitle: 'Piano Distance',
+    newReleaseLine: 'hear the opening track now on Bandcamp — full album June 26 (BBM-001) · CD: Fluid Audio (UK)',
+    newReleaseCta: 'Pre-order & listen →',
   },
-  
+
   ja: {
     // Header
     work: 'WORKS',
@@ -94,29 +106,29 @@ export const translations = {
     
     // Hero
     composer: '作曲家',
-    pianist: 'ピアニスト',
-    visual: 'ビジュアル',
-    heroQuote: 'クラシック、ジャズ、エレクトロニックミュージックの境界を横断し、ピアノ演奏、作曲、ビジュアルアートを通じて伝統と革新を融合させる。',
-    
+    pianist: '舞台',
+    visual: '空間',
+    heroQuote: '音を「空間」として扱う作曲家・ピアニスト。',
+
     // About
     aboutTitle: 'ABOUT',
-    aboutIntro: 'ピアニスト、作曲家、メディアアーティスト、CGアーティスト。',
-    aboutP1: '伝統と革新を融合させた作品で知られ、クラシック、ジャズ、ポップス、エレクトロニックミュージックといったジャンルの境界を自由に横断する。ソロアルバム制作やオーケストラ指揮から、舞台・映像音楽制作、教育活動まで、多岐にわたる活動を展開。',
-    aboutP2: '音楽とビジュアルアートの交差点を一貫して探求。ビジュアルアーティストKenji HiranoとのコラボレーションによるアーティストYUKIのコンサート映像音楽の作曲、アルバム「パレードが続くなら」(SONY MUSIC)のメインジャケットCGI制作を担当。自主制作のBeyond Boundary Chamber Orchestraのディレクターとして、メディアオペラ「VENUSの祝祭」を成功させ、プロデューサーとしての評価も確立。',
-    aboutP3: '国際的にも高く評価され、米国・英国レーベルからのアルバムリリースを実現。世界最大級の光の祭典リヤドライトフェスティバルでは、英国のアートグループRandom Internationalのインスタレーションに音楽と空間音響を提供。映画監督アピチャッポン・ウィーラセタクン氏の大学ワークショップで特別講義を行うなど、世界クラスのクリエイターからの信頼を得る。現在台湾の国立台南大学、日本ではESPエンターテインメント東京で教鞭をとる。',
-    aboutP4: '現在、英国の振付家ロージー・ケイとのコラボレーションをはじめ、複数の国際プロジェクトを展開し、新たな表現形態を常に追求。',
+    aboutIntro: '音を「空間」として扱う作曲家・ピアニスト。',
+    aboutP1: '中村浩之は、東京・川崎を拠点に活動する作曲家・ピアニスト。音を「空間」として扱い——音が渡っていく場所をどう抱えるか、ひとつの音と聴き手の距離——を主題に、録音作品・サイトスペシフィックなインスタレーション・パフォーマンスを横断する。',
+    aboutP2: 'ピアニストとして出発し、作曲のための空間音響システムを自ら構築。その空間音響はロンドンのアート・コレクティブ Random International『Alone Together』（Superblue Miami / Riyadh Art）で用いられ、英国の劇場制作『DEEP FAKE — Ghost in the Machine』（Arts Council England 採択／振付 Rosie Kay／2026年 Birmingham Repertory Theatre）の核を成す。Beyond Boundary Chamber Orchestra のディレクターとして、エレクトリック・オペラ『VENUSの祝祭』を上演。',
+    aboutP3: '作品に『Piano Distance』（Fluid Audio, UK / Beyond Boundary Music, 2026）、『千の集い』（Dragon\'s Eye, 2024）、『Look Up at the Stars』（Youngbloods, 2023）ほか。国立台南大学（台湾）および ESP エンタテインメント東京で講師を務め、アピチャッポン・ウィーラセタクン氏の多摩美術大学ワークショップに講師として参加。',
+    aboutP4: '現在、複数の国際的な舞台・インスタレーション作品を展開中——音を「空間」として扱う実践を、いまも拡張し続けている。',
     services: 'サービス',
     links: 'リンク',
     inquiries: 'お問い合わせ',
     
     // Services
-    service1: '音楽制作・プロダクション',
-    service2: 'ピアノ演奏・指揮',
-    service3: '3D空間音響デザイン',
-    service4: 'ライブA/Vパフォーマンス',
-    service5: 'メディアオペラ制作',
+    service1: '舞台・パフォーマンス作曲',
+    service2: 'オーケストラ＋電子音楽',
+    service3: 'インタラクティブ／ジェネラティブ映像',
+    service4: 'サウンドインスタレーション・サイトスペシフィック作品',
+    service5: '空間音響デザイン',
     service6: 'CG・ビジュアルアート制作',
-    service7: 'サウンドインスタレーション',
+    service7: '音楽制作（商業）',
     service8: '教育ワークショップ・講義',
     
     // Academic
@@ -125,6 +137,7 @@ export const translations = {
     academicP1: '音楽、アート、テクノロジーといった専門分野を横断し、自らの感性や社会と表現を結びつけるための、プロジェクトベースの学びの場を提供。',
     invitedLecture: '招聘講義',
     researchPresentation: '研究発表',
+    specialLecture: '特別講義',
     judge: '審査員',
     ongoing: '継続中',
     contactForLectures: '講演・ワークショップのお問い合わせ',
@@ -146,6 +159,11 @@ export const translations = {
     taiwan2015Desc1: '台湾の大学での招聘講義（國立台南大学、東呉大学）',
     taiwan2015Desc2: '台湾の複数の大学にて、音楽制作とパフォーマンスに関する一連の招聘特別講義とワークショップを実施。数年にわたり、国立台南大学では「ポピュラーミュージック・キーボード」の特別講師を務めました。また、東呉大学では1週間の集中コースでピアノとDAW（デジタル・オーディオ・ワークステーション）技術を指導しました。',
     
+    deepfake2026Title: 'DEEP FAKE 特別レクチャー — 昭和音楽大学 ユリホール',
+    deepfake2026Subtitle: '音楽・AI・映像について',
+    deepfake2026Desc1: 'DEEP FAKE プロジェクト（振付家 Rosie Kay との日英共同制作）に関連した特別レクチャー。',
+    deepfake2026Desc2: '昭和音楽大学ユリホールにて、Claude Code＋API、MCP、Ableton／Somax2／RAVE とライブピアノ、TouchDesigner といったリアルタイム技術が、ダンサー駆動のシステムをいかに動かすのかを実演を交えて解説。制作の現場を学生やアーティストと共有しました。',
+
     showa2024Title: '昭和音楽大学 研究発表',
     showa2024Desc1: '「Voices in the Void」電子音響・映像担当',
     showa2024Desc2: '昭和音楽大学ユリホールにて行われた教員・研究員研究発表に出演。「Voices in the Void」において電子音響と映像を担当し、学術的な場での実践研究を発表しました。',
@@ -169,8 +187,14 @@ export const translations = {
     showingProjects: '表示中',
     projects: '件のプロジェクト',
     project: '件のプロジェクト',
+
+    // New release announcement (Piano Distance)
+    newReleaseLabel: '予約受付中',
+    newReleaseTitle: 'Piano Distance',
+    newReleaseLine: '1 曲目を今すぐ試聴（Bandcamp）— 全曲解禁 6/26（BBM-001）／CD: Fluid Audio（英国）',
+    newReleaseCta: '予約 & 試聴 →',
   },
-  
+
   zh: {
     // Header
     work: 'WORKS',
@@ -180,29 +204,29 @@ export const translations = {
     
     // Hero
     composer: '作曲家',
-    pianist: '鋼琴家',
-    visual: '視覺',
-    heroQuote: '跨越古典、爵士與電子音樂的界線，透過鋼琴演奏、作曲與視覺藝術融合傳統與創新。',
-    
+    pianist: '舞台',
+    visual: '空間',
+    heroQuote: '將聲音作為「空間」處理的作曲家・鋼琴家。',
+
     // About
     aboutTitle: 'ABOUT',
-    aboutIntro: '鋼琴家、作曲家、媒體藝術家與 CG 藝術家。',
-    aboutP1: '以融合傳統與創新的作品聞名，中村浩之自由跨越古典、爵士、流行與電子音樂等類型界線。他的多元活動範圍涵蓋獨奏專輯製作、管弦樂指揮，到為舞台與影像創作音樂，以及教育工作。',
-    aboutP2: '他持續探索音樂與視覺藝術的交匯點，與視覺藝術家 Kenji Hirano 合作，為藝人 YUKI 的演唱會影像創作音樂，並為其專輯《如果遊行繼續》（SONY MUSIC）製作主要封面 CGI。作為自製 Beyond Boundary Chamber Orchestra 的總監，他成功演出了媒體歌劇《VENUS 之祭典》，也確立了製作人的聲譽。',
-    aboutP3: '他的才華在國際上備受肯定，作品由美國與英國廠牌發行。他為英國藝術團體 Random International 在利雅德燈光節（全球最大燈光節）的裝置提供音樂與空間音響。此外，他贏得世界級創作者的信任，包括電影導演阿比查邦・韋拉斯塔古，曾受邀於大學工作坊進行特別講座。目前在臺灣國立臺南大學與日本 ESP Entertainment Tokyo 擔任教職。',
-    aboutP4: '目前，他正在開發多項國際專案，包括與英國編舞家 Rosie Kay 的合作，持續探索新的表現形式。自 2025 年 9 月起，他將於臺灣國立臺南大學教授流行音樂課程。',
+    aboutIntro: '將聲音作為「空間」處理的作曲家・鋼琴家。',
+    aboutP1: '中村浩之是以東京・川崎為據點的作曲家・鋼琴家。將聲音作為「空間」處理——聲音如何被它穿越的房間所承載，一個音符與聽者之間的距離——是其主題，橫跨錄音作品、場域特定裝置與表演。',
+    aboutP2: '由鋼琴家出發，自行打造用於作曲的空間音響系統。其空間音響被倫敦的藝術集體 Random International 採用（《Alone Together》，Superblue Miami / Riyadh Art），並支撐英國劇場製作《DEEP FAKE — Ghost in the Machine》（Arts Council England 獲選／編舞 Rosie Kay／2026 年於 Birmingham Repertory Theatre 首演）的核心。作為 Beyond Boundary Chamber Orchestra 的總監，演出電子歌劇《VENUS 之祭典》。',
+    aboutP3: '發行作品包括《Piano Distance》（Fluid Audio, UK / Beyond Boundary Music, 2026）、《千の集い》（Dragon\'s Eye, 2024）、《Look Up at the Stars》（Youngbloods, 2023）等。於國立臺南大學（臺灣）與 ESP Entertainment Tokyo 擔任講師，並以講師身分參與 Apichatpong Weerasethakul 在多摩美術大學的工作坊。',
+    aboutP4: '目前正在開發多項國際舞台與裝置專案——不斷拓展將聲音作為「空間」處理的實踐。',
     services: '服務項目',
     links: '連結',
     inquiries: '聯絡諮詢',
     
     // Services
-    service1: '音樂創作與製作',
-    service2: '鋼琴演奏與指揮',
-    service3: '3D 空間音響設計',
-    service4: '現場 A/V 演出',
-    service5: '媒體歌劇製作',
+    service1: '舞台・演出作曲',
+    service2: '管弦樂＋電子音樂',
+    service3: '互動／生成式影像',
+    service4: '聲音裝置・場域特定作品',
+    service5: '空間音響設計',
     service6: 'CG 與視覺藝術創作',
-    service7: '聲音裝置',
+    service7: '音樂製作（商業）',
     service8: '教育工作坊與講座',
     
     // Academic
@@ -211,6 +235,7 @@ export const translations = {
     academicP1: '跨音樂、媒體藝術與科技等專業領域，我提供以專案為基礎的學習環境，使學生能夠將自身的感受性與社會脈絡連結，轉化為創意表達。',
     invitedLecture: '特邀講座',
     researchPresentation: '研究發表',
+    specialLecture: '特別講座',
     judge: '評審',
     ongoing: '持續進行',
     contactForLectures: '講座與工作坊諮詢',
@@ -232,6 +257,11 @@ export const translations = {
     taiwan2015Desc1: '臺灣大學特邀講座',
     taiwan2015Desc2: '在臺灣多所大學進行音樂製作與表演相關的系列特邀講座與工作坊。數年間擔任國立臺南大學「流行音樂鍵盤」特別講師。也在東吳大學主持為期一週的鋼琴與 DAW（數位音訊工作站）技術密集課程。',
     
+    deepfake2026Title: 'DEEP FAKE 特別講座 — 昭和音樂大學 百合廳',
+    deepfake2026Subtitle: '關於音樂、AI 與影像',
+    deepfake2026Desc1: '與 DEEP FAKE 計畫（與編舞家 Rosie Kay 的日英共製）相關的特別講座。',
+    deepfake2026Desc2: '於昭和音樂大學百合廳舉行，講座透過實演說明 Claude Code＋API、MCP、Ableton／Somax2／RAVE 與現場鋼琴、TouchDesigner 等即時技術，如何驅動由舞者操控的系統，與學生及藝術家分享創作現場。',
+
     showa2024Title: '昭和音樂大學 研究發表',
     showa2024Desc1: '《Voices in the Void》電子音響・影像',
     showa2024Desc2: '在昭和音樂大學百合廳舉辦的教職員與研究員研究發表中演出。負責《Voices in the Void》的電子音響與影像，在學術場合發表實踐研究。',
@@ -255,5 +285,11 @@ export const translations = {
     showingProjects: '顯示',
     projects: '個專案',
     project: '個專案',
+
+    // New release announcement (Piano Distance)
+    newReleaseLabel: '預購開放中',
+    newReleaseTitle: 'Piano Distance',
+    newReleaseLine: '1 首曲目立即試聽（Bandcamp）— 全專輯 6/26 上線（BBM-001）／CD: Fluid Audio（英國）',
+    newReleaseCta: '預購 & 試聽 →',
   }
 };

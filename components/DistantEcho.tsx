@@ -117,7 +117,9 @@ Venue: EARTH+GALLERY, Tokyo`
     '/images/distant-echo-1.jpg',
     '/images/distant-echo-2.jpg',
     '/images/distant-echo-3.jpg',
-    '/images/distant-echo-4.jpg'
+    '/images/distant-echo-4.jpg',
+    '/images/distant-echo-5.jpg',
+    '/images/distant-echo-6.jpg'
   ];
 
   const t = content[language];
@@ -303,11 +305,39 @@ Venue: EARTH+GALLERY, Tokyo`
           />
         </motion.div>
 
+        {/* Image 5 — Audience silhouettes */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 1.15 }}
+          className="mb-16"
+        >
+          <img
+            src={images[4]}
+            alt="Audience silhouettes watching CG projection"
+            className="w-full max-w-3xl mx-auto rounded-lg shadow-lg"
+          />
+        </motion.div>
+
+        {/* Image 6 — Live painting */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="mb-16"
+        >
+          <img
+            src={images[5]}
+            alt="Live painting performance by NOTO Maria"
+            className="w-full max-w-3xl mx-auto rounded-lg shadow-lg"
+          />
+        </motion.div>
+
         {/* Info & Credits Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 0.8, delay: 1.3 }}
           className="mb-20"
         >
           <h2 className="text-3xl font-serif mb-8 text-center">{t.infoTitle}</h2>

@@ -41,8 +41,37 @@ const Academic: React.FC = () => {
                 </p>
             </div>
 
-            {/* 2024 - Apichatpong Weerasethakul Workshop */}
+            {/* 2026 - DEEP FAKE Special Lecture, Showa University of Music */}
             <div className="pt-8 md:pt-12 border-t border-[#1a1a1a]/20">
+                <div className="flex justify-between items-baseline mb-4">
+                    <h3 className="font-bold uppercase tracking-widest text-xs md:text-sm">2026</h3>
+                    <span className="text-[10px] md:text-xs opacity-50 font-mono">{t.specialLecture}</span>
+                </div>
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-serif mb-4">
+                    {t.deepfake2026Title}<br />
+                    {t.deepfake2026Subtitle}
+                </h4>
+                <img
+                    src="/images/deep-fake.jpg"
+                    alt="DEEP FAKE Special Lecture — Showa University of Music"
+                    className="w-full max-w-sm mx-auto h-auto rounded-lg shadow-md mb-4"
+                />
+                <p className="text-sm opacity-80 leading-relaxed mb-2">
+                    {t.deepfake2026Desc1}
+                </p>
+                <p className="text-sm opacity-70 leading-relaxed mb-4">
+                    {t.deepfake2026Desc2}
+                </p>
+                <a
+                    href="/deep-fake/"
+                    className="inline-block text-sm font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity"
+                >
+                    DEEP FAKE →
+                </a>
+            </div>
+
+            {/* 2024 - Apichatpong Weerasethakul Workshop */}
+            <div className="pt-12 border-t border-[#1a1a1a]/20">
                 <div className="flex justify-between items-baseline mb-4">
                     <h3 className="font-bold uppercase tracking-widest text-xs md:text-sm">2024</h3>
                     <span className="text-[10px] md:text-xs opacity-50 font-mono">{t.invitedLecture}</span>

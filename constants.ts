@@ -1,7 +1,49 @@
 import { Project } from './types';
 
 export const PROJECTS: Project[] = [
-  // 2024 - INSTALLATION (Featured First)
+  // 2026 - INSTALLATION (DEEP FAKE — Ghost in the Machine, upcoming Birmingham Rep October 2026)
+  {
+    id: 'deep-fake-2026',
+    title: {
+      en: 'DEEP FAKE: Ghost in the Machine',
+      ja: 'DEEP FAKE: Ghost in the Machine',
+      zh: 'DEEP FAKE: Ghost in the Machine'
+    },
+    category: 'K2CO / Rosie Kay (UK)',
+    genre: 'INSTALLATION',
+    year: '2026',
+    image: 'https://bbm-sound.com/images/deep-fake.jpg',
+    description: {
+      en: 'A Japan × UK international co-creation with UK choreographer Rosie Kay (K2CO Ltd) — contemporary dance × real-time technology. A dancer performs on stage; a depth camera reads her skeletal data in real time and generates a digital double. Phase by phase, the double moves slightly more precisely, slightly more beautifully — the live piano is "corrected" along the same arc, until perfection costs it its life. The terrifying part isn\'t the system; it\'s realizing you prefer the copy. Supported by Arts Council England and the Great Britain Sasakawa Foundation. Phase 1 Tokyo R&D May 2026; full production premieres at Birmingham Repertory Theatre, October 2026; international tour from 2027.',
+      ja: 'ロンドンを拠点とする振付家 Rosie Kay（K2CO Ltd）との日英国際共同制作——コンテンポラリーダンス × リアルタイム技術。ダンサーが舞台に立ち、デプスカメラが骨格データをリアルタイムに読み取り、デジタルの分身を生成する。フェーズごとに分身はわずかに正確に、わずかに美しく動き出す——同じ曲線でライブピアノも「補正」され、完璧になった瞬間、生命を失う。恐ろしいのはシステムではない。「コピーの方がいい」と感じてしまう、あなた自身だ。Arts Council England、Great Britain Sasakawa Foundation 助成採択。Phase 1 東京 R&D 2026 年 5 月、本制作初演は Birmingham Repertory Theatre、2026 年 10 月。2027 年以降に日英独・ミュージアム展示・教育アウトリーチ国際展開予定。',
+      zh: '與英國編舞家 Rosie Kay（K2CO Ltd）的日英國際共製作——當代舞蹈 × 即時技術。舞者站上舞台，深度攝影機即時讀取骨架資料並生成數位分身。階段性地，分身的動作變得更精確、更優美——現場鋼琴沿著同樣的曲線被「修正」，當達到完美的那一刻，生命已被抹去。恐怖的不是系統，是發現自己更喜歡複製品的「你」。Arts Council England、Great Britain Sasakawa Foundation 助成獲選。Phase 1 東京 R&D 2026 年 5 月，正式製作於 Birmingham Repertory Theatre、2026 年 10 月首演。2027 年起國際巡演（日英德、博物館展覽、教育推廣）。'
+    },
+    link: '/deep-fake/',
+    tags: ['Upcoming', 'UK Co-production', 'Contemporary Dance', 'Real-time', 'Spatial Audio', 'Birmingham Rep 2026']
+  },
+
+  // 2026 - SPATIAL AUDIO (Piano Distance — Fluid Audio / BBM-001)
+  {
+    id: 'pd-2026',
+    title: {
+      en: 'Piano Distance',
+      ja: 'Piano Distance',
+      zh: 'Piano Distance（鋼琴距離）'
+    },
+    category: 'Fluid Audio',
+    genre: 'SPATIAL AUDIO',
+    year: '2026',
+    image: 'https://bbm-sound.com/images/piano-distance.jpg',
+    description: {
+      en: '*Piano Distance* — solo piano, composed as space. Nakamura works with a spatial-audio system he built himself — for composition, not mixing — so each sound carries a position and a distance, arriving from behind or overhead, on headphones and on just two speakers alone. After Toru Takemitsu\'s piano piece "Distance" (1961); every sound is drawn from the piano. Handmade, signed and numbered limited CD on Fluid Audio (UK), mastered by Ian Hawgood. Out now: streaming on Spotify, Apple Music and more, with music videos on YouTube; digital edition on Beyond Boundary Music (BBM-001).',
+      ja: '『Piano Distance』——ピアノだけで"空間"を作曲したアルバム。中村は、ミックスではなく"作曲のために"自ら設計した空間音響システムを用い、音に位置と距離を与える。ヘッドフォンでも、わずか2台のスピーカーだけでも、音は背後から、頭上から立ち現れる。武満徹のピアノ曲〈Distance〉(1961)に着想し、すべての音はピアノから。英Fluid Audioより手製・署名番号入りの限定盤、マスタリングはIan Hawgood。現在配信中——Spotify・Apple Music ほか各サービスで公開、ミュージック・ビデオも YouTube で公開中。デジタル版は自身のレーベル Beyond Boundary Music より（BBM-001）。',
+      zh: '《Piano Distance》——一張將鋼琴本身作為「空間」來作曲的專輯。中村使用自行打造的空間音響系統——為作曲而非混音而生——賦予每個聲音位置與距離；無論透過耳機，或僅憑兩支喇叭，聲音都會從背後、從頭頂浮現。靈感源自武滿徹的鋼琴曲〈Distance〉(1961)，所有聲響皆取自鋼琴。英國Fluid Audio手工、簽名編號限量發行，由Ian Hawgood母帶處理。現正發行——已於 Spotify、Apple Music 等各串流平台上架，音樂錄影帶亦已於 YouTube 公開；數位版經由其廠牌 Beyond Boundary Music（BBM-001）。'
+    },
+    link: '/piano-distance/',
+    tags: ['Album', 'Spatial Audio', 'Solo', 'Streaming', 'Music Video', 'BBM-001']
+  },
+
+  // 2026 - INSTALLATION (Featured First)
   {
     id: '4-3',
     title: {
@@ -11,7 +53,7 @@ export const PROJECTS: Project[] = [
     },
     category: 'Tokoji Temple',
     genre: 'INSTALLATION',
-    year: '2024',
+    year: '2026',
     image: 'https://bbm-sound.com/images/tokoji1.png',
     description: {
       en: 'A one-day festival where past and future intersect in the historic main hall of Tokoji Temple. The "cocoons of light" woven together with citizens and the "sounds" collected from Tsuchiura\'s landscape merge to create an auditory cathedral.',
@@ -21,6 +63,26 @@ export const PROJECTS: Project[] = [
     link: 'https://tsuchiura-sound-achib.netlify.app/#events'
   },
 
+  // 2026 - RECENT
+  {
+    id: 'lackout-2026',
+    title: {
+      en: 'Shoya Chiba "Lackout" — Composition & Arrangement',
+      ja: '千葉翔也「ラックアウト」作編曲',
+      zh: '千葉翔也〈ラックアウト〉作曲・編曲'
+    },
+    category: 'King Records / 千葉翔也',
+    genre: 'CLIENT WORKS',
+    year: '2026',
+    image: 'https://bbm-sound.com/images/lackout.jpg',
+    description: {
+      en: 'Composed and arranged the track "Lackout" on voice actor Shoya Chiba\'s new EP "Invention" (24 June 2026 / KICS-4258) — the image song for the TV anime "The Strongest Man, Born from Misfortune" (on air 2027). Official credits: Lyrics, Shoya Chiba; Music, NAKAMURA Hiroyuki; Arrangement, Nué Rokuon.',
+      ja: '声優・千葉翔也さんのニューEP『Invention』（2026年6月24日／KICS-4258）収録の「ラックアウト」で、作編曲を担当しました。同曲はTVアニメ『不運からの最強男』（2027年放送）のイメージソングです。公式クレジット：作詞 千葉翔也／作曲 中村浩之／編曲 鵺録音。',
+      zh: '擔任聲優千葉翔也新EP《Invention》（2026年6月24日／KICS-4258）收錄曲「ラックアウト」的作曲與編曲。為電視動畫《不運からの最強男》（2027年播出）形象曲。官方製作群：作詞 千葉翔也／作曲 中村浩之／編曲 鵺録音。'
+    },
+    link: 'https://fuunsaikyo.asmik-ace.co.jp/',
+    tags: ['Anime Tie-in', 'Composition', 'Arrangement']
+  },
   // 2025 - RECENT
   {
     id: '1',
@@ -61,7 +123,7 @@ export const PROJECTS: Project[] = [
     tags: ['App', 'Spatial Audio']
   },
 
-  // 2024 - SPATIAL AUDIO & INSTALLATION
+  // 2025 - SPATIAL AUDIO INSTALLATION (Distant Echo at Kiba Earth+ Gallery)
   {
     id: '4-2',
     title: {
@@ -69,14 +131,14 @@ export const PROJECTS: Project[] = [
       ja: 'Distant Echo',
       zh: 'Distant Echo（遙遠回聲）'
     },
-    category: 'Piano & Live Painting',
+    category: 'Piano & Live Painting (Kiba Earth+ Gallery)',
     genre: 'INSTALLATION',
-    year: '2024',
+    year: '2025',
     image: 'https://bbm-sound.com/images/distant-echo.avif',
     description: {
-      en: 'The aesthetics of "distance" and "reverberation". Piano melodies trace invisible trajectories in space, reconstructed as auditory architecture through unique sound processing. An immersive live installation where sound particles emerge from silence to resonate with the audience\'s memories. Live Painting: Maria Noto.',
-      ja: '「距離」と「残響」の美学。ピアノの旋律が空間に描く不可視の軌跡を、独自の音響処理によって聴覚的な建築として再構築します。静寂の中に浮かび上がる音の粒子が、鑑賞者の記憶と共振する没入型ライブインスタレーション。Live Painting: Maria Noto (能登真理亜)',
-      zh: '「距離」與「殘響」的美學。鋼琴旋律在空間中繪製的無形軌跡，透過獨特的聲音處理重構為聽覺建築。寂靜中浮現的聲音粒子與觀眾記憶共鳴的沉浸式現場裝置。Live Painting: Maria Noto（能登真理亞）。'
+      en: 'The aesthetics of "distance" and "reverberation". Piano melodies trace invisible trajectories in space, reconstructed as auditory architecture through Nakamura\'s self-built spatial-audio system — two speakers, near-field, fully three-dimensional, without headphones. An immersive live installation where sound particles emerge from silence to resonate with the audience\'s memories. Kiba Earth+ Gallery (Tokyo), November 15, 2025. Live Painting: Maria Noto.',
+      ja: '「距離」と「残響」の美学。ピアノの旋律が空間に描く不可視の軌跡を、自作の空間音響システムによって聴覚的な建築として再構築——ヘッドフォン無し、ニアフィールドの 2 スピーカーだけで完全な 3 次元音響が成立する。静寂の中に浮かび上がる音の粒子が、鑑賞者の記憶と共振する没入型ライブインスタレーション。木場 Earth+ Gallery（東京）、2025 年 11 月 15 日。Live Painting: Maria Noto (能登真理亜)',
+      zh: '「距離」與「殘響」的美學。鋼琴旋律在空間中繪製的無形軌跡，透過中村自行打造的空間音響系統重構為聽覺建築——無耳機、近場兩支喇叭即可成立完整三維音響。寂靜中浮現的聲音粒子與觀眾記憶共鳴的沉浸式現場裝置。木場 Earth+ Gallery（東京），2025 年 11 月 15 日。Live Painting: Maria Noto（能登真理亞）。'
     },
     link: '/#/distant-echo'
   },

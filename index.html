@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <title>NAKAMURA Hiroyuki | Sound Artist, Pianist, Composer</title>
-    <meta name="description" content="NAKAMURA Hiroyuki — Sound Artist, Pianist, Composer, and Media Artist. Spatial audio, immersive installations, and sonic architecture. Works with Random International, YUKI / Sony Music, Dragon's Eye Recordings." />
+    <title>NAKAMURA Hiroyuki | Composer — Stage, Installation, Moving Image</title>
+    <meta name="description" content="NAKAMURA Hiroyuki — A composer who scores stages and spaces by integrating orchestra, electronic music, and interactive moving images. Works with Rosie Kay, Random International, YUKI / Sony Music." />
     <link rel="canonical" href="https://nakamurahiroyuki.info/" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="NAKAMURA Hiroyuki | Sound Artist, Pianist, Composer" />
-    <meta property="og:description" content="Sound Artist, Pianist, Composer, and Media Artist. Spatial audio, immersive installations, and sonic architecture." />
+    <meta property="og:title" content="NAKAMURA Hiroyuki | Composer — Stage, Installation, Moving Image" />
+    <meta property="og:description" content="A composer who scores stages and spaces by integrating orchestra, electronic music, and interactive moving images." />
     <meta property="og:image" content="https://nakamurahiroyuki.info/og-image.jpg" />
     <meta property="og:url" content="https://nakamurahiroyuki.info/" />
     <meta property="og:type" content="website" />
@@ -19,8 +19,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="NAKAMURA Hiroyuki | Sound Artist, Pianist, Composer" />
-    <meta name="twitter:description" content="Sound Artist, Pianist, Composer, and Media Artist. Spatial audio, immersive installations, and sonic architecture." />
+    <meta name="twitter:title" content="NAKAMURA Hiroyuki | Composer — Stage, Installation, Moving Image" />
+    <meta name="twitter:description" content="A composer who scores stages and spaces by integrating orchestra, electronic music, and interactive moving images." />
     <meta name="twitter:image" content="https://nakamurahiroyuki.info/og-image.jpg" />
 
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -69,5 +69,23 @@
   <body>
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
+  <script>
+  (function(){
+    var sent={};
+    function track(){
+      var page=location.hash.replace(/^#/,"")||"/";
+      if(sent[page])return;
+      sent[page]=1;
+      var data=JSON.stringify({page:page,referrer:document.referrer});
+      if(navigator.sendBeacon){
+        navigator.sendBeacon("/.netlify/functions/track",data);
+      }else{
+        fetch("/.netlify/functions/track",{method:"POST",body:data,keepalive:true});
+      }
+    }
+    track();
+    window.addEventListener("hashchange",track);
+  })();
+  </script>
 </body>
 </html>

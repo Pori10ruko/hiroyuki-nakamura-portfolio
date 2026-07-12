@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Link } from 'react-router-dom';
+import { translations } from '../translations';
 
 type ReleaseCategory = 'SOLO' | 'BBCO' | 'UN.a' | 'PRODUCE' | 'OTHER';
 
@@ -21,6 +22,20 @@ interface Release {
 
 const RELEASES: Record<ReleaseCategory, Release[]> = {
   SOLO: [
+    {
+      title: 'Piano Distance',
+      year: '2026',
+      image: 'https://bbm-sound.com/images/piano-distance.jpg',
+      description: {
+        en: 'Solo piano, composed as space. Nakamura works with a spatial-audio system he built himself — for composition, not mixing — so each sound carries a position and a distance, arriving from behind or overhead, on headphones and on just two speakers alone. After Toru Takemitsu\'s "Distance" (1961). Handmade limited CD on Fluid Audio (UK), mastered by Ian Hawgood; digital edition out June 26, 2026 on Beyond Boundary Music (BBM-001, name-your-price).',
+        ja: 'ピアノだけで"空間"を作曲したアルバム。ミックスではなく"作曲のために"自ら設計した空間音響システムを用い、音に位置と距離を与える。ヘッドフォンでも、わずか2台のスピーカーだけでも、音は背後から、頭上から立ち現れる。武満徹〈Distance〉(1961)に着想。英Fluid Audioよりハンドメイド限定CD（マスタリング: Ian Hawgood）、デジタル版は2026年6月26日Beyond Boundary Music（BBM-001、name-your-price）。',
+        zh: '一張將鋼琴本身作為「空間」來作曲的專輯。使用自行打造的空間音響系統——為作曲而非混音而生——賦予每個聲音位置與距離；無論透過耳機，或僅憑兩支喇叭，聲音都會從背後、從頭頂浮現。靈感源自武滿徹〈Distance〉(1961)。英國Fluid Audio手工限量CD（母帶: Ian Hawgood），數位版於2026年6月26日經由Beyond Boundary Music發行（BBM-001、name-your-price）。'
+      },
+      links: {
+        bandcamp: 'https://beyondboundarymusic.bandcamp.com/album/piano-distance',
+        other: 'https://www.fluidaudio.co.uk/product/nakamura-hiroyuki-piano-distance'
+      }
+    },
     {
       title: 'Look Up at the Stars',
       year: '2023',
@@ -262,6 +277,7 @@ const RELEASES: Record<ReleaseCategory, Release[]> = {
 
 const Releases: React.FC = () => {
   const { language } = useLanguage();
+  const t = translations[language];
   const [selectedCategory, setSelectedCategory] = useState<ReleaseCategory>('SOLO');
 
   const categories: ReleaseCategory[] = ['SOLO', 'BBCO', 'UN.a', 'PRODUCE', 'OTHER'];
@@ -309,6 +325,40 @@ const Releases: React.FC = () => {
         <Link to="/work" className="inline-flex items-center gap-2 text-sm uppercase tracking-widest mb-8 hover:opacity-50 transition-opacity">
           <span>←</span> Back to Works
         </Link>
+
+        {/* Pre-order announcement — Piano Distance (2 CTAs) */}
+        <div className="mb-8 border border-[#dfdbd5]/30 p-4 md:p-5">
+          <div className="flex flex-wrap items-center gap-3 mb-3 text-xs md:text-sm tracking-wider">
+            <span className="px-2 py-0.5 bg-[#dfdbd5] text-[#0a0a0a] uppercase tracking-widest text-[10px]">
+              {t.newReleaseLabel}
+            </span>
+            <span className="font-serif italic">{t.newReleaseTitle}</span>
+            <span className="opacity-60">— {t.newReleaseLine}</span>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="https://beyondboundarymusic.bandcamp.com/album/piano-distance"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 bg-[#dfdbd5] text-[#0a0a0a] text-[11px] md:text-xs uppercase tracking-widest hover:bg-white transition-colors"
+            >
+              {language === 'en' && 'Listen / Pre-order — Bandcamp'}
+              {language === 'ja' && '試聴 / 予約 — Bandcamp'}
+              {language === 'zh' && '試聽 / 預購 — Bandcamp'}
+            </a>
+            <a
+              href="https://www.fluidaudio.co.uk/product/nakamura-hiroyuki-piano-distance"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 border border-[#dfdbd5] text-[11px] md:text-xs uppercase tracking-widest hover:bg-[#dfdbd5] hover:text-[#0a0a0a] transition-colors"
+            >
+              {language === 'en' && 'Buy the CD — Fluid Audio (UK)'}
+              {language === 'ja' && '限定 CD を購入 — Fluid Audio（英国）'}
+              {language === 'zh' && '購買限量 CD — Fluid Audio（英國）'}
+            </a>
+          </div>
+        </div>
+
         <h1 className="text-6xl md:text-8xl font-serif italic mb-6">Releases</h1>
         <p className="text-lg opacity-70 max-w-3xl">
           {language === 'en' && 'Solo works and collaborative releases including BBCO, UN.a, and other units. Available on streaming platforms and physical media.'}

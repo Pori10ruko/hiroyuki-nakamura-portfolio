@@ -78,7 +78,7 @@ const Contact: React.FC = () => {
     setStatus('sending');
 
     // Create mailto link with form data
-    const mailtoLink = `mailto:nakamurahiroyuki.com@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+    const mailtoLink = `mailto:contact@bbmusic.tokyo?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
     )}`;
 
@@ -217,10 +217,10 @@ const Contact: React.FC = () => {
           <div className="pt-12 border-t border-[#1a1a1a]/20">
             <p className="text-xs uppercase tracking-widest mb-4 opacity-50">{t.directEmail}</p>
             <a 
-              href="mailto:nakamurahiroyuki.com@gmail.com" 
+              href="mailto:contact@bbmusic.tokyo" 
               className="inline-block text-2xl md:text-3xl font-serif italic hover:opacity-50 transition-opacity"
             >
-              <ScrambleText text="nakamurahiroyuki.com@gmail.com" />
+              <ScrambleText text="contact@bbmusic.tokyo" />
             </a>
           </div>
         </motion.div>

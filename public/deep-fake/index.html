@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>DEEP FAKE: Ghost in the Machine</title>
-    <meta name="description" content="日英国際共同制作 — コンテンポラリーダンス × リアルタイムテクノロジー">
+    <title>DEEP FAKE: Ghost in the Machine — a glitch opera</title>
+    <meta name="description" content="Japan-UK International Co-Production — Contemporary Dance × Real-Time Technology">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -44,9 +44,9 @@
 
         ::selection { background: rgba(74, 158, 255, 0.3); color: #fff; }
 
-        /* ===== LANGUAGE TOGGLE ===== */
-        body:not(.lang-en) .en { display: none !important; }
-        body.lang-en .ja { display: none !important; }
+        /* ===== LANGUAGE ===== */
+        body:not(.lang-ja) .ja { display: none !important; }
+        body.lang-ja .en { display: none !important; }
 
         .lang-toggle {
             position: fixed;
@@ -74,156 +74,13 @@
             transition: all 0.3s ease;
         }
 
-        .lang-btn.active {
-            color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
+        .lang-btn.active { color: var(--text-primary); background: rgba(255, 255, 255, 0.06); }
         .lang-btn:hover { color: var(--text-secondary); }
-
-        /* ===== HERO IMAGE ===== */
-        .hero {
-            background: url('img/concept-dancer-web.jpg') center center / cover no-repeat;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(10, 10, 10, 0.55) 0%,
-                rgba(10, 10, 10, 0.7) 50%,
-                rgba(10, 10, 10, 0.95) 100%
-            );
-            pointer-events: none;
-        }
-
-        /* ===== CONCEPT VISUAL ===== */
-        .concept-hero-img {
-            width: 100%;
-            margin: 3rem 0;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-subtle);
-        }
-
-        .concept-hero-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ===== COLLAB PORTRAITS ===== */
-        .collab-portrait {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border-subtle);
-        }
-
-        /* ===== PATHWAY IMAGES ===== */
-        .pathway-img {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border: 1px solid var(--border-subtle);
-        }
-
-        /* ===== VISUAL STRIP ===== */
-        .visual-strip {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            margin: 3rem 0;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-subtle);
-        }
-
-        .visual-strip img {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            display: block;
-            filter: brightness(0.85);
-            transition: filter 0.3s ease;
-        }
-
-        .visual-strip img:hover { filter: brightness(1); }
-
-        @media (max-width: 600px) {
-            .visual-strip { grid-template-columns: 1fr; }
-        }
-
-        /* ===== SHORTS REEL ===== */
-        .shorts-reel {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-
-        @media (max-width: 1024px) {
-            .shorts-reel { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            .shorts-reel { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 480px) {
-            .shorts-reel {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
-            }
-        }
-
-        .short-item {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: border-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .short-item:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-        }
-
-        .short-video-wrapper {
-            position: relative;
-            padding-bottom: 177.78%; /* 9:16 aspect ratio */
-            height: 0;
-            overflow: hidden;
-        }
-
-        .short-video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-        }
-
-        .short-caption {
-            padding: 0.8rem 1rem;
-        }
-
-        .short-caption p {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            letter-spacing: 0.02em;
-        }
 
         /* ===== LAYOUT ===== */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        .section { padding: 8rem 0; position: relative; }
+        .section { padding: 4.5rem 0; position: relative; }
+        .section-sm { padding: 3rem 0; }
         .divider { width: 100%; height: 1px; background: var(--border-subtle); }
 
         .section-label {
@@ -232,22 +89,22 @@
             letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .section-title {
             font-family: var(--font-display);
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
             font-weight: 600;
             letter-spacing: -0.02em;
             line-height: 1.2;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
@@ -259,6 +116,20 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            background: url('img/concept-dancer-web.jpg') center center / cover no-repeat;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(10, 10, 10, 0.5) 0%,
+                rgba(10, 10, 10, 0.65) 50%,
+                rgba(10, 10, 10, 0.95) 100%
+            );
+            pointer-events: none;
         }
 
         .hero::before {
@@ -266,9 +137,10 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse at 20% 50%, rgba(74, 158, 255, 0.04) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 50%, rgba(255, 74, 106, 0.04) 0%, transparent 60%);
+                radial-gradient(ellipse at 20% 50%, rgba(74, 158, 255, 0.03) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(255, 74, 106, 0.03) 0%, transparent 60%);
             pointer-events: none;
+            z-index: 1;
         }
 
         .hero-content { position: relative; z-index: 2; }
@@ -310,12 +182,14 @@
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 640px;
+            font-size: 1.4rem;
+            line-height: 1.5;
+            max-width: 700px;
+            font-weight: 400;
             margin-top: 2.5rem;
-            line-height: 2;
         }
+
+        .hero-subtitle .muted { font-size: 0.85em; color: var(--text-muted); }
 
         .hero-meta {
             display: flex;
@@ -335,9 +209,10 @@
 
         .hero-scroll {
             position: absolute;
-            bottom: 3rem;
+            bottom: 2.5rem;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -349,11 +224,7 @@
             animation: pulse 2s ease-in-out infinite;
         }
 
-        .hero-scroll .arrow {
-            width: 1px;
-            height: 30px;
-            background: linear-gradient(to bottom, var(--text-muted), transparent);
-        }
+        .hero-scroll .arrow { width: 1px; height: 30px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
 
         @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
@@ -368,438 +239,161 @@
         .glitch-line::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             animation: glitch-sweep 4s ease-in-out infinite;
         }
 
         @keyframes glitch-sweep { 0% { left: -100%; } 50%, 100% { left: 100%; } }
 
+        /* ===== CORE STATEMENT ===== */
+        .core-statement {
+            padding: 4rem 0 3rem;
+            text-align: center;
+        }
+
+        .core-statement p {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2.2vw, 1.25rem);
+            font-weight: 300;
+            line-height: 2;
+            color: var(--text-secondary);
+            max-width: 740px;
+            margin: 0 auto;
+            letter-spacing: 0.01em;
+        }
+
+        .core-statement em {
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
         /* ===== CONCEPT ===== */
         .concept-text {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            line-height: 2.2;
-            color: var(--text-primary);
-            max-width: 800px;
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            line-height: 2;
+            color: var(--text-secondary);
+            max-width: 760px;
         }
 
         .concept-text em { font-style: normal; color: var(--accent-cold); }
 
-        .concept-quote {
-            font-family: var(--font-display);
-            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-            font-weight: 300;
-            font-style: italic;
-            color: var(--text-secondary);
-            border-left: 2px solid var(--accent-warm);
-            padding-left: 1.5rem;
-            margin: 3rem 0;
+        .concept-etymology {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1.2rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border-subtle);
             line-height: 1.8;
         }
 
-        /* ===== 3 ELEMENTS TABLE ===== */
-        .elements-table {
-            margin: 3rem 0;
+        /* ===== GRADIENT / THREE ACTS ===== */
+        .gradient-section { padding: 4rem 0; }
+
+        .gradient-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1px;
-            background: var(--border-subtle);
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+            margin-top: 2rem;
             border: 1px solid var(--border-subtle);
             border-radius: 12px;
             overflow: hidden;
-        }
-
-        .element-row {
-            display: grid;
-            grid-template-columns: 200px 1fr 1fr;
-            background: var(--bg-secondary);
-        }
-
-        .element-row.header {
-            background: var(--bg-tertiary);
-        }
-
-        .element-cell {
-            padding: 1.2rem 1.5rem;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            border-right: 1px solid var(--border-subtle);
-        }
-
-        .element-cell:last-child { border-right: none; }
-
-        .element-row.header .element-cell {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .element-cell strong {
-            color: var(--text-primary);
-            font-weight: 500;
         }
 
         @media (max-width: 768px) {
-            .element-row { grid-template-columns: 1fr; }
-            .element-cell { border-right: none; border-bottom: 1px solid var(--border-subtle); }
-            .element-cell:last-child { border-bottom: none; }
-            .element-row.header { display: none; }
-            .element-cell::before {
-                content: attr(data-label);
-                display: block;
-                font-family: var(--font-mono);
-                font-size: 0.65rem;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: var(--text-muted);
-                margin-bottom: 0.3rem;
-            }
+            .gradient-grid { grid-template-columns: 1fr; }
         }
 
-        /* ===== THEMES ===== */
-        .themes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .theme-card {
+        .gradient-card {
+            padding: 2.5rem 2rem;
             background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: border-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .theme-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-
-        .theme-card h4 {
-            font-family: var(--font-display);
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .theme-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
-
-        /* ===== COLLABORATORS ===== */
-        .collab-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        @media (max-width: 768px) { .collab-grid { grid-template-columns: 1fr; } }
-
-        .collab-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 2.5rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .collab-card:hover { border-color: var(--border-hover); }
-
-        .collab-side {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--accent-warm);
-            margin-bottom: 1rem;
-        }
-
-        .collab-card:nth-child(2) .collab-side { color: var(--accent-cold); }
-
-        .collab-name {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .collab-name-sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
-
-        .collab-role { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.8; }
-
-        .collab-org { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem; }
-
-        .collab-link {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 2px;
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .collab-link:hover { color: var(--text-primary); border-color: var(--text-primary); }
-
-        .collab-credits {
-            list-style: none;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-subtle);
-        }
-
-        .collab-credits li {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.9;
-            padding-left: 1rem;
+            border-right: 1px solid var(--border-subtle);
             position: relative;
+            transition: background 0.3s ease;
         }
 
-        .collab-credits li::before { content: '\2014'; position: absolute; left: 0; color: var(--text-muted); }
+        .gradient-card:last-child { border-right: none; }
 
-        /* Org cards */
-        .org-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 3rem;
+        @media (max-width: 768px) {
+            .gradient-card { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+            .gradient-card:last-child { border-bottom: none; }
         }
 
-        @media (max-width: 768px) { .org-grid { grid-template-columns: 1fr; } }
+        .gradient-card:hover { background: var(--bg-tertiary); }
 
-        .org-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .org-card:hover { border-color: var(--border-hover); }
-
-        .org-role-label {
-            font-family: var(--font-mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--accent-purple);
-            margin-bottom: 0.8rem;
-        }
-
-        .org-name {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .org-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .future-collabs {
-            margin-top: 3rem;
-            padding: 2rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-        }
-
-        .future-collabs h3 {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .future-collabs p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
-
-        /* ===== TECHNOLOGY ===== */
-        .defection-visual {
-            margin: 3rem 0;
-            padding: 3rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .defection-visual::before {
+        .gradient-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
-            height: 2px;
-            background: var(--accent-gradient);
+            height: 3px;
         }
 
-        .defection-header { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .defection-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+        .gradient-card.act-sync::before { background: var(--accent-cold); }
+        .gradient-card.act-glitch::before { background: var(--accent-purple); }
+        .gradient-card.act-deepfake::before { background: var(--accent-warm); }
 
-        .defection-stages { display: flex; flex-direction: column; gap: 2rem; }
-
-        .defection-stage {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 1.5rem;
-            align-items: start;
+        .act-pct {
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.3rem;
         }
 
-        @media (max-width: 600px) {
-            .defection-stage { grid-template-columns: 70px 1fr; gap: 1rem; }
+        .act-sync .act-pct { color: var(--accent-cold); }
+        .act-glitch .act-pct { color: var(--accent-purple); }
+        .act-deepfake .act-pct { color: var(--accent-warm); }
+
+        .act-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
         }
 
-        .stage-pct { font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700; line-height: 1; }
-        .stage-pct-sub { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem; }
+        .act-layer {
+            margin-bottom: 0.6rem;
+        }
 
-        .stage-1 .stage-pct { color: var(--accent-cold); }
-        .stage-2 .stage-pct { color: #6abfff; }
-        .stage-3 .stage-pct { color: var(--accent-purple); }
-        .stage-4 .stage-pct { color: var(--accent-warm); }
+        .act-layer-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
 
-        .stage-desc h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.3rem; }
-        .stage-desc p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
+        .act-layer-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
 
-        .defection-bar {
-            margin-top: 2.5rem;
+        .gradient-bar {
+            margin-top: 0;
             height: 4px;
-            border-radius: 2px;
-            background: linear-gradient(to right, var(--accent-cold), #6abfff, var(--accent-purple), var(--accent-warm));
+            border-radius: 0 0 12px 12px;
+            background: linear-gradient(to right, var(--accent-cold), var(--accent-purple), var(--accent-warm));
         }
 
-        .defection-bar-labels {
+        .gradient-bar-labels {
             display: flex;
             justify-content: space-between;
             margin-top: 0.5rem;
             font-family: var(--font-mono);
             font-size: 0.6rem;
             color: var(--text-muted);
-        }
-
-        .tech-stack {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-
-        .tech-item {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-
-        .tech-item h4 {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
             letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
         }
 
-        .tech-item p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
-
-        /* ===== PATHWAYS ===== */
-        .pathways-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        @media (max-width: 768px) { .pathways-grid { grid-template-columns: 1fr; } }
-
-        .pathway-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: border-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .pathway-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-
-        .pathway-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 0.8rem; }
-
-        .pathway-card h4 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
-
-        .pathway-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
-
-        /* ===== TIMELINE ===== */
-        .timeline { position: relative; margin-top: 3rem; }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 24px;
-            width: 1px; height: 100%;
-            background: var(--border-subtle);
-        }
-
-        @media (max-width: 600px) { .timeline::before { left: 16px; } }
-
-        .timeline-item { position: relative; padding-left: 60px; padding-bottom: 3rem; }
-        @media (max-width: 600px) { .timeline-item { padding-left: 44px; } }
-        .timeline-item:last-child { padding-bottom: 0; }
-
-        .timeline-dot {
-            position: absolute;
-            left: 17px; top: 6px;
-            width: 15px; height: 15px;
-            border-radius: 50%;
-            border: 2px solid var(--accent-cold);
-            background: var(--bg-primary);
-        }
-
-        @media (max-width: 600px) { .timeline-dot { left: 9px; } }
-
-        .timeline-item:nth-child(2) .timeline-dot { border-color: var(--accent-purple); }
-        .timeline-item:nth-child(3) .timeline-dot { border-color: var(--accent-warm); }
-
-        .timeline-phase {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; margin-bottom: 0.3rem; }
-
-        .timeline-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cold); margin-bottom: 0.8rem; }
-        .timeline-item:nth-child(2) .timeline-date { color: var(--accent-purple); }
-        .timeline-item:nth-child(3) .timeline-date { color: var(--accent-warm); }
-
-        .timeline-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8; }
-        .timeline-desc ul { list-style: none; margin-top: 0.5rem; }
-        .timeline-desc ul li { padding-left: 1rem; position: relative; line-height: 1.9; }
-        .timeline-desc ul li::before {
-            content: '>';
-            position: absolute; left: 0;
-            font-family: var(--font-mono);
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        /* ===== MEDIA ===== */
+        /* ===== VIDEO ===== */
         .media-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-            margin-top: 3rem;
+            margin-top: 1.5rem;
         }
 
         @media (max-width: 768px) { .media-grid { grid-template-columns: 1fr; } }
@@ -825,56 +419,173 @@
         }
 
         .media-caption { padding: 1rem 1.5rem; }
-        .media-caption h4 { font-family: var(--font-display); font-size: 0.9rem; font-weight: 500; margin-bottom: 0.3rem; }
+        .media-caption h4 { font-family: var(--font-display); font-size: 0.9rem; font-weight: 500; margin-bottom: 0.2rem; }
         .media-caption p { font-size: 0.8rem; color: var(--text-muted); }
 
-        /* ===== ALBUM FEATURE ===== */
-        .album-feature {
-            margin-top: 3rem;
+        /* ===== COLLABORATORS ===== */
+        .collab-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) { .collab-grid { grid-template-columns: 1fr; } }
+
+        .collab-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border-subtle);
             border-radius: 12px;
-            overflow: hidden;
+            padding: 2.5rem;
+            transition: border-color 0.3s ease;
         }
 
-        @media (max-width: 768px) { .album-feature { grid-template-columns: 1fr; } }
+        .collab-card:hover { border-color: var(--border-hover); }
 
-        .album-embed { padding: 2rem; }
-        .album-embed iframe { border-radius: 8px; }
-
-        .album-info { padding: 2rem; }
-
-        .album-info h3 {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+        .collab-portrait {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-subtle);
         }
 
-        .album-label {
+        .collab-side {
             font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            color: var(--accent-cold);
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .collab-side-uk { color: var(--accent-cold); }
+        .collab-side-jp { color: var(--accent-warm); }
+
+        .collab-name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .collab-name-sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+
+        .collab-role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
             margin-bottom: 1rem;
         }
 
-        .album-info p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+        .collab-org { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+
+        .collab-link {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 2px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .collab-link:hover { color: var(--text-primary); border-color: var(--text-primary); }
+
+        .collab-credits {
+            list-style: none;
+            margin-top: 1.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .collab-credits li {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.9;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .collab-credits li::before { content: '\2014'; position: absolute; left: 0; color: var(--text-muted); }
+
+        .future-collabs {
+            margin-top: 2rem;
+            padding: 1.5rem 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+        }
+
+        .future-collabs h3 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .future-collabs p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
+
+        /* ===== TIMELINE ===== */
+        .timeline { position: relative; margin-top: 1.5rem; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 20px;
+            width: 1px; height: 100%;
+            background: var(--border-subtle);
+        }
+
+        @media (max-width: 600px) { .timeline::before { left: 14px; } }
+
+        .timeline-item { position: relative; padding-left: 50px; padding-bottom: 2rem; }
+        @media (max-width: 600px) { .timeline-item { padding-left: 40px; } }
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-dot {
+            position: absolute;
+            left: 13px; top: 5px;
+            width: 15px; height: 15px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-cold);
+            background: var(--bg-primary);
+        }
+
+        @media (max-width: 600px) { .timeline-dot { left: 7px; } }
+
+        .timeline-item:nth-child(2) .timeline-dot { border-color: var(--accent-purple); }
+        .timeline-item:nth-child(3) .timeline-dot { border-color: var(--accent-warm); }
+
+        .timeline-phase {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; margin-bottom: 0.2rem; }
+
+        .timeline-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cold); margin-bottom: 0.5rem; }
+        .timeline-item:nth-child(2) .timeline-date { color: var(--accent-purple); }
+        .timeline-item:nth-child(3) .timeline-date { color: var(--accent-warm); }
+
+        .timeline-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
 
         /* ===== SUPPORT ===== */
-        .support-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
+        .support-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
 
         .support-item {
             background: var(--bg-secondary);
             border: 1px solid var(--border-subtle);
             border-radius: 8px;
-            padding: 1.5rem 2rem;
+            padding: 1.2rem 1.5rem;
             flex: 1;
-            min-width: 200px;
+            min-width: 180px;
             transition: border-color 0.3s ease;
         }
 
@@ -882,39 +593,19 @@
 
         .support-status {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .support-status.secured { color: #4ade80; }
         .support-status.pending { color: #fbbf24; }
 
-        .support-name { font-family: var(--font-display); font-size: 0.95rem; font-weight: 500; }
+        .support-name { font-family: var(--font-display); font-size: 0.85rem; font-weight: 500; }
 
-        /* ===== CONTACT ===== */
-        .contact-section { text-align: center; padding: 6rem 0; }
-        .contact-section .section-title { margin-bottom: 1rem; }
-        .contact-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2rem; }
-
-        .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-
-        .contact-link {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 0.8rem 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-link:hover { color: var(--text-primary); border-color: var(--text-secondary); background: var(--bg-secondary); }
-
-        /* ===== FOOTER ===== */
-        .footer { padding: 3rem 0; border-top: 1px solid var(--border-subtle); }
+        /* ===== CONTACT / FOOTER ===== */
+        .footer { padding: 2.5rem 0; border-top: 1px solid var(--border-subtle); }
 
         .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
 
@@ -923,28 +614,20 @@
         .footer-link { color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
         .footer-link:hover { color: var(--text-secondary); }
 
-        .footer-orgs {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+        .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
 
-        .footer-org {
+        .footer-contact-link {
             font-family: var(--font-mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.1em;
+            font-size: 0.7rem;
             color: var(--text-muted);
+            text-decoration: none;
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
         }
 
-        .footer-org-role {
-            display: block;
-            font-size: 0.55rem;
-            color: rgba(255,255,255,0.2);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.15rem;
-        }
+        .footer-contact-link:hover { color: var(--text-primary); border-color: var(--text-secondary); background: var(--bg-secondary); }
 
         /* ===== NOISE ===== */
         .noise {
@@ -960,7 +643,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 600px) {
-            .section { padding: 5rem 0; }
+            .section { padding: 3rem 0; }
             .container { padding: 0 1.5rem; }
             .hero-meta { flex-direction: column; gap: 0.8rem; }
         }
@@ -972,26 +655,23 @@
 
 <!-- ===== LANGUAGE TOGGLE ===== -->
 <div class="lang-toggle">
-    <button class="lang-btn active" data-lang="ja" onclick="setLang('ja')">JA</button>
-    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLang('ja')">JA</button>
 </div>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
     <div class="container hero-content">
-        <p class="hero-tag">
-            <span class="ja">Japan &times; UK 国際共同制作</span>
-            <span class="en">Japan &times; UK International Co-Production</span>
-        </p>
+        <p class="hero-tag">Japan &times; UK International Co-Production</p>
         <h1 class="hero-title">
             <span class="line-1">DEEP FAKE</span>
             <span class="line-2">Ghost in the Machine</span>
         </h1>
-        <p class="hero-subtitle ja" style="font-size: 1.4rem; line-height: 1.5; max-width: 700px; font-weight: 400;">
-            コピーの方が、良かった。<br><span style="font-size: 0.85em; color: var(--text-muted);">——あなたはそう思ってしまう。</span>
+        <p class="hero-subtitle ja">
+            コピーの方が、良かった。<br><span class="muted">——あなたはそう思ってしまう。</span>
         </p>
-        <p class="hero-subtitle en" style="font-size: 1.4rem; line-height: 1.5; max-width: 700px; font-weight: 400;">
-            The copy was better.<br><span style="font-size: 0.85em; color: var(--text-muted);">&mdash; And you'll agree.</span>
+        <p class="hero-subtitle en">
+            The copy was better.<br><span class="muted">&mdash; And you'll agree.</span>
         </p>
         <div class="hero-meta">
             <div class="hero-meta-item">
@@ -1002,17 +682,15 @@
                 <span style="color: #4ade80;">&#x2713;</span>
                 <span>Sasakawa Foundation</span>
             </div>
-            <div class="hero-meta-item">Phase 1
-                <span class="ja">2026年5月 東京</span>
-                <span class="en">May 2026, Tokyo</span>
+            <div class="hero-meta-item">
+                Phase 1 <span class="en">May 2026, Tokyo</span><span class="ja">2026年5月 東京</span>
             </div>
-            <div class="hero-meta-item">Phase 2
-                <span class="ja">2026年10月 バーミンガム</span>
-                <span class="en">Oct 2026, Birmingham</span>
+            <div class="hero-meta-item">
+                Phase 2 <span class="en">Oct 2026, Birmingham</span><span class="ja">2026年10月 バーミンガム</span>
             </div>
         </div>
     </div>
-    <div class="hero-scroll" style="z-index:2;">
+    <div class="hero-scroll">
         SCROLL
         <div class="arrow"></div>
     </div>
@@ -1020,135 +698,13 @@
 
 <div class="glitch-line"></div>
 
-<!-- ===== COLLABORATORS (MOVED UP — credibility first) ===== -->
-<section class="section" id="collaborators">
+<!-- ===== CORE STATEMENT ===== -->
+<div class="core-statement fade-in">
     <div class="container">
-        <div class="fade-in">
-            <p class="section-label">// Collaborators</p>
-            <h2 class="section-title ja">誰がつくるのか</h2>
-            <h2 class="section-title en">Who's Making This</h2>
-        </div>
-
-        <!-- Rosie Showreel — FIRST THING PEOPLE SEE -->
-        <div class="media-item full-width fade-in" style="margin-bottom: 3rem;">
-            <div class="video-wrapper">
-                <iframe src="https://player.vimeo.com/video/966461994" title="Rosie Kay Showreel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="media-caption">
-                <h4 class="ja">Rosie Kay — 代表作品集</h4>
-                <h4 class="en">Rosie Kay — Selected Works</h4>
-                <p class="ja">《5 Soldiers》《MK ULTRA》《Fantasia》— Sadler's Wells、Birmingham REP等で公演</p>
-                <p class="en"><em>5 Soldiers</em>, <em>MK ULTRA</em>, <em>Fantasia</em> — Sadler's Wells, Birmingham REP, national &amp; international venues</p>
-            </div>
-        </div>
-
-        <div class="collab-grid fade-in">
-            <div class="collab-card">
-                <img src="img/rosie-kay-portrait.jpg" alt="Rosie Kay" class="collab-portrait" loading="lazy">
-                <p class="collab-side">United Kingdom</p>
-                <h3 class="collab-name">Rosie Kay</h3>
-                <p class="collab-name-sub ja">振付家・アーティスティック・ディレクター</p>
-                <p class="collab-name-sub en">Choreographer & Artistic Director</p>
-                <p class="collab-role ja" style="margin-top: 0.5rem;">
-                    英国で最も評価の高いコンテンポラリー・ダンス振付家の一人。《MK ULTRA》ではマインドコントロールと監視社会を、《5 Soldiers》では戦場の身体を題材に、テクノロジーと権力による身体の支配を一貫して問い続けている。DEEP FAKEはその延長線上にある——デジタルの支配。
-                </p>
-                <p class="collab-role en" style="margin-top: 0.5rem;">
-                    One of the UK's most acclaimed choreographers. <em>MK ULTRA</em> explored mind control and surveillance; <em>5 Soldiers</em> examined bodies in combat. A consistent interrogation of how power and technology control the body. DEEP FAKE extends this &mdash; into digital domination.
-                </p>
-                <p class="collab-org">K2CO Ltd</p>
-                <a href="https://k-2co.com" target="_blank" class="collab-link">k-2co.com</a>
-                <ul class="collab-credits">
-                    <li class="ja">パトロン：Lady Deborah MacMillan</li>
-                    <li class="en">Patron: Lady Deborah MacMillan</li>
-                    <li class="ja">The Times、The Telegraph、The Guardian等で高評価</li>
-                    <li class="en">Acclaimed by The Times, The Telegraph, The Guardian</li>
-                    <li class="ja">Sadler's Wells、Birmingham REP等で公演</li>
-                    <li class="en">Performed at Sadler's Wells, Birmingham REP</li>
-                </ul>
-            </div>
-
-            <div class="collab-card">
-                <img src="img/nakamura-headshot.jpg" alt="Hiroyuki Nakamura" class="collab-portrait" loading="lazy">
-                <p class="collab-side">Japan</p>
-                <h3 class="collab-name ja">中村浩之</h3>
-                <h3 class="collab-name en">Hiroyuki Nakamura</h3>
-                <p class="collab-name-sub ja">作曲家・メディアアーティスト</p>
-                <p class="collab-name-sub en">Composer & Media Artist</p>
-                <p class="collab-role ja" style="margin-top: 0.5rem;">
-                    Random International《Alone Together》（Superblue Miami、Riyadh Light Festival）の音楽を担当。Dragon's Eye Recordings (LA)、Glacial Movements (Italy)、Fluid Audio (UK)等からリリース。独自のバイノーラル空間音響技術とリアルタイムCG生成による「離反アルゴリズム」システムを開発。
-                </p>
-                <p class="collab-role en" style="margin-top: 0.5rem;">
-                    Composed music for Random International's <em>Alone Together</em> (Superblue Miami, Riyadh Light Festival). Released on Dragon's Eye Recordings (LA), Glacial Movements (Italy), Fluid Audio (UK). Developing the "Defection Algorithm" system using original binaural spatial audio and real-time CG.
-                </p>
-                <p class="collab-org">Beyond Boundary Music (BBM)</p>
-                <a href="https://www.nakamurahiroyuki.info" target="_blank" class="collab-link">nakamurahiroyuki.info</a>
-                <ul class="collab-credits">
-                    <li class="ja">新アルバム「Piano Distance」2026年5月 Fluid Audio (UK) よりリリース</li>
-                    <li class="en">New album "Piano Distance" — May 2026 via Fluid Audio (UK)</li>
-                    <li class="ja">Dance Dance Dance @ YOKOHAMA「SITA」音楽担当</li>
-                    <li class="en">Music for "SITA" at Dance Dance Dance @ YOKOHAMA</li>
-                    <li class="ja">川崎市制100周年プレイベント「Encount」音楽監督</li>
-                    <li class="en">Music Director, Kawasaki City 100th Anniversary "Encount"</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Why Japan × UK -->
-        <div class="fade-in" style="margin-top: 3rem; padding: 2rem; background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: 12px;">
-            <p class="section-label ja" style="margin-bottom: 0.5rem;">なぜ日英なのか</p>
-            <p class="section-label en" style="margin-bottom: 0.5rem;">Why Japan × UK</p>
-            <p class="concept-text ja" style="font-size: 0.95rem; line-height: 2;">
-                英国の振付言語は肉体的で、直接的で、政治的だ。日本の美学は間（ま）——不在と余白に意味を見出す。DEEP FAKEにはその両方が必要だ。Rosieの「身体が支配される恐怖」と、日本的な「調和が静かに壊れる恐怖」が交差する場所にこの作品がある。
-            </p>
-            <p class="concept-text en" style="font-size: 0.95rem; line-height: 2;">
-                British choreographic language is physical, direct, political. Japanese aesthetics value <em>ma</em> (間) &mdash; finding meaning in absence and negative space. DEEP FAKE needs both. The work exists where Rosie's "fear of bodily control" meets the Japanese "fear of harmony quietly breaking."
-            </p>
-        </div>
-
-        <!-- Org cards -->
-        <div class="org-grid fade-in">
-            <div class="org-card">
-                <p class="org-role-label ja">制作</p>
-                <p class="org-role-label en">Production</p>
-                <h3 class="org-name">Beyond Boundary Music (BBM)</h3>
-                <p class="org-desc ja">音楽制作、テクノロジー開発、プロジェクト・マネジメントを統括。</p>
-                <p class="org-desc en">Music production, technology development, project management.</p>
-            </div>
-            <div class="org-card">
-                <p class="org-role-label ja">協力</p>
-                <p class="org-role-label en">Cooperation</p>
-                <h3 class="org-name">Optimass Inc.</h3>
-                <p class="org-desc ja">制作協力およびネットワーキング支援。</p>
-                <p class="org-desc en">Production cooperation and networking support.</p>
-            </div>
-        </div>
+        <p class="en"><em>A pianist and a dancer begin in perfect sync. A system &mdash; built by the pianist himself &mdash; gradually slips between them. By the end, both are following the machine.</em></p>
+        <p class="ja"><em>ピアニストとダンサーが完全に呼応している。ピアニスト自身が構築したシステムが、二人の間に滑り込む。最後には、二人ともシステムに従っている。</em></p>
     </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ===== WHY NOW ===== -->
-<section class="section" id="why-now" style="padding: 5rem 0;">
-    <div class="container">
-        <div class="fade-in" style="max-width: 800px;">
-            <p class="section-label">// Why Now</p>
-            <h2 class="section-title ja">なぜ今、この作品なのか</h2>
-            <h2 class="section-title en">Why This Work, Why Now</h2>
-            <p class="concept-text ja" style="font-size: 1rem; line-height: 2.2;">
-                あなたのAIアバターは、あなたより正確にプレゼンし、あなたより美しく踊り、あなたより疲れない。SNS上の「あなた」は、本物のあなたより多くの人に愛されている。<em>本物の人間が「劣化版」になる時代は、もう始まっている。</em>
-            </p>
-            <p class="concept-text en" style="font-size: 1rem; line-height: 2.2;">
-                Your AI avatar presents more precisely, dances more beautifully, and never gets tired. Your digital self on social media is loved by more people than the real you. <em>The era where real humans become the inferior version has already begun.</em>
-            </p>
-            <p class="concept-text ja" style="font-size: 0.95rem; margin-top: 1.5rem; color: var(--text-secondary);">
-                DEEP FAKEはこれを舞台上で起こす。デジタルの分身はダンサーより正確で、より美しく、疲れを知らない。そして最も恐ろしいのは——観客が徐々に<em>コピーの方を好きになっていく自分に気づく</em>こと。あなたは被害者でも加害者でもない。<em>共犯者になる。</em>
-            </p>
-            <p class="concept-text en" style="font-size: 0.95rem; margin-top: 1.5rem; color: var(--text-secondary);">
-                DEEP FAKE stages this on a live stage. The digital double is more precise, more beautiful, more tireless than the dancer. And the most terrifying part &mdash; the audience gradually <em>realizes they prefer the copy</em>. You are neither victim nor perpetrator. <em>You become complicit.</em>
-            </p>
-        </div>
-    </div>
-</section>
+</div>
 
 <div class="divider"></div>
 
@@ -1157,107 +713,161 @@
     <div class="container">
         <div class="fade-in">
             <p class="section-label">// Concept</p>
-            <h2 class="section-title ja">舞台上で何が起こるのか</h2>
-            <h2 class="section-title en">What Happens On Stage</h2>
-        </div>
-
-        <div class="fade-in">
-            <p class="concept-text ja">
-                舞台上に一人のダンサー。深度カメラがリアルタイムで骨格データを読み取り、デジタルの分身を生成する。最初、分身は完璧なコピーだ——どちらが本物か区別がつかない。やがて分身は、ダンサーより少しだけ正確に、少しだけ美しく、少しだけ滑らかに動き始める。ダンサーは汗をかき、息を切らす。分身は疲れない。<em>観客はいつの間にか、コピーの方を目で追っている。</em>
-            </p>
-            <p class="concept-text ja" style="margin-top: 1.5rem; font-size: 1rem; color: var(--text-secondary);">
-                音楽も同じ弧を描く。生のピアノが少しずつ「補正」され、完璧なタイミング、完璧なダイナミクスになっていく——そして完璧になった瞬間、生命を失う。
-            </p>
             <p class="concept-text en">
-                A dancer on stage. A depth camera reads skeletal data in real time, generating a digital double. At first, the double is a perfect copy &mdash; indistinguishable from the original. Gradually, the double begins to move slightly more precisely, slightly more beautifully, slightly more smoothly. The dancer sweats, breathes hard. The double never tires. <em>Without noticing, the audience finds themselves watching the copy.</em>
+                <strong>DEEP FAKE</strong> is the story &mdash; a dancer is replaced by her digital double, and the audience prefers the copy. <strong>GLITCH</strong> is the method &mdash; not a violent takeover, but an accumulation of imperceptible slips. By the time you notice, the replacement has already happened.
             </p>
-            <p class="concept-text en" style="margin-top: 1.5rem; font-size: 1rem; color: var(--text-secondary);">
-                The music traces the same arc. Live piano is gradually "corrected" &mdash; perfect timing, perfect dynamics &mdash; and the moment it becomes perfect, it loses its life.
+            <p class="concept-text ja">
+                <strong>DEEP FAKE</strong>は物語——ダンサーがデジタルの分身に置き換えられ、観客がコピーの方を好む。<strong>GLITCH</strong>は方法——暴力的な乗っ取りではなく、知覚できない小さな「ずれ」の積み重ね。気づいた時には、置換はすでに終わっている。
+            </p>
+            <p class="concept-etymology en">
+                glitch — from Yiddish <em>glitshn</em>, "to slip." Originally a bodily sensation: losing your footing. A loss of control you feel before you understand.
+            </p>
+            <p class="concept-etymology ja">
+                glitch — イディッシュ語 <em>glitshn</em>（滑る）が語源。元は身体的な感覚：足元が滑る。理解する前に感じる、制御の喪失。
             </p>
         </div>
+    </div>
+</section>
 
+<!-- ===== 0% → 50% → 100% ===== -->
+<section class="gradient-section" id="gradient">
+    <div class="container">
         <div class="fade-in">
-            <blockquote class="concept-quote ja">
-                恐ろしいのはシステムではない。<br>「コピーの方がいい」と感じてしまう、<em>あなた自身だ。</em>
-            </blockquote>
-            <blockquote class="concept-quote en">
-                The terrifying part isn't the system.<br>It's <em>you</em>, realizing you prefer the copy.
-            </blockquote>
+            <p class="section-label">// Three Acts</p>
+            <h2 class="section-title en">The Defection Gradient</h2>
+            <h2 class="section-title ja">離反のグラデーション</h2>
         </div>
 
-        <!-- Visual Strip -->
-        <div class="visual-strip fade-in">
-            <img src="img/mk-ultra-performance-1.jpg" alt="Stage 1" loading="lazy">
-            <img src="img/concept-dancer-web.jpg" alt="Stage 2" loading="lazy">
-            <img src="img/mk-ultra-performance-2.jpg" alt="Stage 3" loading="lazy">
-        </div>
-
-        <!-- 4 Phases — B案: audience complicity -->
-        <div class="defection-visual fade-in">
-            <h3 class="defection-header ja">デジタル・ダブル — 4つのフェーズ</h3>
-            <h3 class="defection-header en">Digital Double — 4 Phases</h3>
-            <p class="defection-sub ja">深度カメラ＋TouchDesignerによるリアルタイム生成。単一のMIDIパラメータで映像と音の変化が連動する。</p>
-            <p class="defection-sub en">Real-time generation via depth camera + TouchDesigner. A single MIDI parameter drives both visual and sonic transformation.</p>
-
-            <div class="defection-stages">
-                <div class="defection-stage stage-1">
-                    <div>
-                        <div class="stage-pct">0%</div>
-                        <div class="stage-pct-sub ja">一致</div>
-                        <div class="stage-pct-sub en">Sync</div>
-                    </div>
-                    <div class="stage-desc">
-                        <h4 class="ja">完璧なコピー</h4>
-                        <h4 class="en">Perfect Copy</h4>
-                        <p class="ja">ダンサーと分身が完全に一致。どちらが本物か分からない。</p>
-                        <p class="en">Dancer and double move in perfect sync. You can't tell which is real.</p>
-                    </div>
+        <div class="gradient-grid fade-in">
+            <!-- ACT 1 -->
+            <div class="gradient-card act-sync">
+                <div class="act-pct">0%</div>
+                <div class="act-name">
+                    <span class="en">SYNC</span>
+                    <span class="ja">同期</span>
                 </div>
-                <div class="defection-stage stage-2">
-                    <div>
-                        <div class="stage-pct">~30%</div>
-                        <div class="stage-pct-sub ja">優位</div>
-                        <div class="stage-pct-sub en">Advantage</div>
-                    </div>
-                    <div class="stage-desc">
-                        <h4 class="ja">コピーが「良く」なる</h4>
-                        <h4 class="en">The Copy Gets "Better"</h4>
-                        <p class="ja">分身がわずかに正確で、滑らかになる。気づかないほどの差——しかし目がコピーに引かれていく。</p>
-                        <p class="en">The double becomes slightly more precise, more fluid. An imperceptible difference &mdash; but your eyes drift toward the copy.</p>
-                    </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Sound</p>
+                    <p class="act-layer-desc en">Live piano. Sound emanates from the instrument.</p>
+                    <p class="act-layer-desc ja">生のピアノ。音はピアノから聴こえる。</p>
                 </div>
-                <div class="defection-stage stage-3">
-                    <div>
-                        <div class="stage-pct">~60%</div>
-                        <div class="stage-pct-sub ja">選好</div>
-                        <div class="stage-pct-sub en">Preference</div>
-                    </div>
-                    <div class="stage-desc">
-                        <h4 class="ja">あなたはコピーを好んでいる</h4>
-                        <h4 class="en">You Prefer the Copy</h4>
-                        <p class="ja">分身の方が明らかに美しい。正確で、滑らかで、疲れない。あなたはコピーの方を見ている——そしてそれに気づいていない。</p>
-                        <p class="en">The double is clearly more beautiful. Precise, smooth, tireless. You're watching the copy &mdash; and you haven't noticed.</p>
-                    </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Visual</p>
+                    <p class="act-layer-desc en">Skeletal light matches the dancer exactly.</p>
+                    <p class="act-layer-desc ja">光の骨格がダンサーと完全一致。</p>
                 </div>
-                <div class="defection-stage stage-4">
-                    <div>
-                        <div class="stage-pct">100%</div>
-                        <div class="stage-pct-sub ja">不在</div>
-                        <div class="stage-pct-sub en">Absence</div>
-                    </div>
-                    <div class="stage-desc">
-                        <h4 class="ja">ダンサーがいなくなる</h4>
-                        <h4 class="en">The Dancer Disappears</h4>
-                        <p class="ja">ダンサーが止まる。分身だけが動き続ける。そしてあなたは気づく——それで構わないと思っている自分に。</p>
-                        <p class="en">The dancer stops. Only the double keeps moving. And you realize &mdash; you don't mind.</p>
-                    </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Space</p>
+                    <p class="act-layer-desc en">Sound stays where it belongs.</p>
+                    <p class="act-layer-desc ja">音は本来の位置にある。</p>
+                </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Relation</p>
+                    <p class="act-layer-desc en">Pianist and dancer in dialogue.</p>
+                    <p class="act-layer-desc ja">ピアニストとダンサーが呼応。</p>
                 </div>
             </div>
 
-            <div class="defection-bar"></div>
-            <div class="defection-bar-labels">
-                <span class="ja">一致</span><span class="ja">優位</span><span class="ja">選好</span><span class="ja">不在</span>
-                <span class="en">Sync</span><span class="en">Advantage</span><span class="en">Preference</span><span class="en">Absence</span>
+            <!-- ACT 2 -->
+            <div class="gradient-card act-glitch">
+                <div class="act-pct">50%</div>
+                <div class="act-name">
+                    <span class="en">GLITCH</span>
+                    <span class="ja">滑り</span>
+                </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Sound</p>
+                    <p class="act-layer-desc en">Stutter, delay, pitch drift.</p>
+                    <p class="act-layer-desc ja">スタッター、ディレイ、ピッチのずれ。</p>
+                </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Visual</p>
+                    <p class="act-layer-desc en">The light skeleton begins to lag, then lead.</p>
+                    <p class="act-layer-desc ja">光の骨格が遅延し、やがて先行する。</p>
+                </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Space</p>
+                    <p class="act-layer-desc en">Sound slips away from the piano, drifting through space.</p>
+                    <p class="act-layer-desc ja">音がピアノから「滑り落ち」空間を移動。</p>
+                </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Relation</p>
+                    <p class="act-layer-desc en">Who is leading whom?</p>
+                    <p class="act-layer-desc ja">どちらが導いているのか分からない。</p>
+                </div>
+            </div>
+
+            <!-- ACT 3 -->
+            <div class="gradient-card act-deepfake">
+                <div class="act-pct">100%</div>
+                <div class="act-name">
+                    <span class="en">DEEP FAKE</span>
+                    <span class="ja">置換</span>
+                </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Sound</p>
+                    <p class="act-layer-desc en">System-generated only. The pianist's hands have left the keys.</p>
+                    <p class="act-layer-desc ja">システムが生成した音のみ。ピアニストの手は鍵盤にない。</p>
+                </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Visual</p>
+                    <p class="act-layer-desc en">The light skeleton is autonomous. It ignores the dancer.</p>
+                    <p class="act-layer-desc ja">光の骨格が完全自律。ダンサーを無視する。</p>
+                </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Space</p>
+                    <p class="act-layer-desc en">Sound roams the room. Untethered.</p>
+                    <p class="act-layer-desc ja">音は空間を漂う。居場所がない。</p>
+                </div>
+                <div class="act-layer">
+                    <p class="act-layer-label">Relation</p>
+                    <p class="act-layer-desc en">Both follow the machine.</p>
+                    <p class="act-layer-desc ja">二人ともシステムに従っている。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gradient-bar"></div>
+        <div class="gradient-bar-labels">
+            <span class="en">SYNC</span><span class="en">GLITCH</span><span class="en">DEEP FAKE</span>
+            <span class="ja">同期</span><span class="ja">滑り</span><span class="ja">置換</span>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== VIDEO ===== -->
+<section class="section" id="media">
+    <div class="container">
+        <div class="fade-in">
+            <p class="section-label">// Media</p>
+            <h2 class="section-title en">See the System</h2>
+            <h2 class="section-title ja">システムを見る</h2>
+        </div>
+
+        <div class="media-grid fade-in">
+            <div class="media-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/huNgPGNT29c" title="Full-Body Motion Reactive Audio &amp; Visuals — Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="media-caption">
+                    <h4 class="en">Full-Body Motion Reactive Audio &amp; Visuals — Demo</h4>
+                    <h4 class="ja">全身モーション・リアクティブ音響＆映像 — デモ</h4>
+                    <p class="en">Real-time skeletal tracking &rarr; visual + audio generation</p>
+                    <p class="ja">リアルタイム骨格トラッキング → 映像＋音響生成</p>
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/Am1jq5AXBS4" title="Distant Echo Concert" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="media-caption">
+                    <h4 class="en">Distant Echo — Nearfield Spatial Audio Concert</h4>
+                    <h4 class="ja">Distant Echo — ニアフィールド立体音響コンサート</h4>
+                    <p class="en">Immersive installation concert with original binaural system</p>
+                    <p class="ja">独自バイノーラルシステムによるインスタレーションコンサート</p>
+                </div>
             </div>
         </div>
     </div>
@@ -1265,47 +875,93 @@
 
 <div class="divider"></div>
 
-<!-- ===== R&D VISUAL CONCEPTS (trimmed to 3) ===== -->
-<section class="section" id="visual-concepts" style="padding: 5rem 0;">
+<!-- ===== COLLABORATORS ===== -->
+<section class="section" id="collaborators">
     <div class="container">
         <div class="fade-in">
-            <p class="section-label">// R&D Concepts</p>
-            <h2 class="section-title ja">テクノロジー R&D</h2>
-            <h2 class="section-title en">Technology R&D</h2>
-            <p style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono); margin-bottom: 0.5rem;">
-                <span class="ja">※ 以下はシステム開発中のコンセプト映像です。完成形ではありません。</span>
-                <span class="en">* The following are concept videos from system development. Not final output.</span>
-            </p>
+            <p class="section-label">// Collaborators</p>
+            <h2 class="section-title en">Who's Making This</h2>
+            <h2 class="section-title ja">誰がつくるのか</h2>
         </div>
 
-        <div class="shorts-reel fade-in" style="grid-template-columns: repeat(3, 1fr);">
-            <div class="short-item">
-                <div class="short-video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/g_q9RQ4lsYk" title="Motion-Reactive" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="short-caption">
-                    <p class="ja">モーション・リアクティブ</p>
-                    <p class="en">Motion-Reactive</p>
-                </div>
+        <!-- Rosie Showreel -->
+        <div class="media-item full-width fade-in" style="margin-bottom: 2rem;">
+            <div class="video-wrapper">
+                <iframe src="https://player.vimeo.com/video/966461994" title="Rosie Kay Showreel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
-            <div class="short-item">
-                <div class="short-video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/oUMW_wDsOyM" title="Digital Body" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="short-caption">
-                    <p class="ja">デジタルボディ</p>
-                    <p class="en">Digital Body</p>
-                </div>
+            <div class="media-caption">
+                <h4 class="en">Rosie Kay &mdash; Selected Works</h4>
+                <h4 class="ja">Rosie Kay — 代表作品集</h4>
+                <p class="en"><em>5 Soldiers</em>, <em>MK ULTRA</em>, <em>Fantasia</em> &mdash; Sadler's Wells, Birmingham REP &amp; international venues</p>
+                <p class="ja">《5 Soldiers》《MK ULTRA》《Fantasia》— Sadler's Wells、Birmingham REP等</p>
             </div>
-            <div class="short-item">
-                <div class="short-video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/VuRKPljVxeY" title="Sound Reactive" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="short-caption">
-                    <p class="ja">サウンド・リアクティブ</p>
-                    <p class="en">Sound-Reactive</p>
-                </div>
+        </div>
+
+        <div class="collab-grid fade-in">
+            <!-- Rosie Kay -->
+            <div class="collab-card">
+                <img src="img/rosie-kay-portrait.jpg" alt="Rosie Kay" class="collab-portrait" loading="lazy">
+                <p class="collab-side collab-side-uk">United Kingdom</p>
+                <h3 class="collab-name">Rosie Kay</h3>
+                <p class="collab-name-sub en">Choreographer &amp; Artistic Director</p>
+                <p class="collab-name-sub ja">振付家・芸術監督</p>
+                <p class="collab-role en">
+                    One of the UK's most acclaimed contemporary choreographers. <em>MK ULTRA</em> explored mind control and surveillance; <em>5 Soldiers</em> examined bodies in combat. A consistent interrogation of how power controls the body. DEEP FAKE extends this into the digital.
+                </p>
+                <p class="collab-role ja">
+                    英国を代表するコンテンポラリーダンスの振付家。《MK ULTRA》ではマインドコントロールと監視社会を、《5 Soldiers》では戦場の身体を問い続けてきた。DEEP FAKEはその延長——デジタルの支配。
+                </p>
+                <p class="collab-org">K2CO Ltd</p>
+                <a href="https://k-2co.com" target="_blank" class="collab-link">k-2co.com</a>
+                <ul class="collab-credits">
+                    <li class="en">Patron: Lady Deborah MacMillan</li>
+                    <li class="ja">パトロン：Lady Deborah MacMillan</li>
+                    <li class="en">Acclaimed by The Times, The Telegraph, The Guardian</li>
+                    <li class="ja">The Times、The Telegraph、The Guardian等で高評価</li>
+                </ul>
             </div>
+
+            <!-- Hiroyuki Nakamura -->
+            <div class="collab-card">
+                <img src="img/nakamura-headshot.jpg" alt="Hiroyuki Nakamura" class="collab-portrait" loading="lazy">
+                <p class="collab-side collab-side-jp">Japan</p>
+                <h3 class="collab-name en">Hiroyuki Nakamura</h3>
+                <h3 class="collab-name ja">中村浩之</h3>
+                <p class="collab-name-sub en">Pianist, Composer &amp; Media Artist</p>
+                <p class="collab-name-sub ja">ピアニスト、作曲家、メディアアーティスト</p>
+                <p class="collab-role en">
+                    Graduated top of class, Piano Course, Showa University of Music. Composed music for Random International's <em>Alone Together</em> (Superblue Miami, Riyadh Light Festival). His debut work TRITONOMICS was built from intentional Max/MSP errors &mdash; glitch is not a borrowed concept, but a bloodline. In DEEP FAKE, he stands on stage at the grand piano, confronting the system he built.
+                </p>
+                <p class="collab-role ja">
+                    昭和音楽大学ピアノ科首席卒業。Random International《Alone Together》（Superblue Miami、Riyadh Light Festival）の音楽を担当。デビュー作TRITONOMICSはMax/MSPの意図的なエラーから生まれた——グリッチは借り物ではなく、血統。DEEP FAKEでは、自ら構築したシステムと対峙するパフォーマーとしてグランドピアノと共にステージに立つ。
+                </p>
+                <p class="collab-org">Beyond Boundary Music (BBM)</p>
+                <a href="https://www.nakamurahiroyuki.info" target="_blank" class="collab-link">nakamurahiroyuki.info</a>
+                <ul class="collab-credits">
+                    <li class="en"><em>Piano Distance</em> &mdash; May 2026 via Fluid Audio (UK)</li>
+                    <li class="ja">『Piano Distance』— 2026年5月 Fluid Audio (UK) リリース</li>
+                    <li class="en">Original binaural spatial audio system &mdash; 360&deg; sound with 2 channels</li>
+                    <li class="ja">独自バイノーラル空間音響システム — 2ch で360&deg;音場</li>
+                    <li class="en">Music Director, Kawasaki City 100th Anniversary "Encount"</li>
+                    <li class="ja">川崎市制100周年「Encount」音楽監督</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Future Collaborators -->
+        <div class="future-collabs fade-in">
+            <h3 class="en">Phase 2+ Collaborators</h3>
+            <h3 class="ja">Phase 2以降の協力者</h3>
+            <p class="en">
+                <strong>Xenorama + Prof. Dennis Paul</strong> (University of the Arts Bremen) &mdash; Visual systems &amp; "emotional technology"<br>
+                <strong>Birmingham Repertory Theatre</strong> &mdash; Phase 2 production venue<br>
+                <strong>Kato (Moonbow Music Studio)</strong> &mdash; Immersive speaker system design
+            </p>
+            <p class="ja">
+                <strong>Xenorama + Prof. Dennis Paul</strong>（ブレーメン芸術大学）— ビジュアルシステム＆「エモーショナル・テクノロジー」<br>
+                <strong>Birmingham Repertory Theatre</strong> — Phase 2 本制作会場<br>
+                <strong>加藤氏（Moonbow Music Studio）</strong> — 立体音響スピーカーシステム構築
+            </p>
         </div>
     </div>
 </section>
@@ -1317,66 +973,42 @@
     <div class="container">
         <div class="fade-in">
             <p class="section-label">// Timeline</p>
-            <h2 class="section-title ja">制作スケジュール</h2>
             <h2 class="section-title en">Production Schedule</h2>
+            <h2 class="section-title ja">制作スケジュール</h2>
         </div>
 
         <div class="timeline fade-in">
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <p class="timeline-phase">Phase 1</p>
-                <h3 class="timeline-title ja">東京 R&D</h3>
                 <h3 class="timeline-title en">Tokyo R&D</h3>
-                <p class="timeline-date ja">2026年5月13日〜16日（4日間）</p>
-                <p class="timeline-date en">May 13&ndash;16, 2026 (4 days)</p>
-                <div class="timeline-desc ja">
-                    <p>Rosie Kayと日本のプロフェッショナル・コンテンポラリーダンサーによるリサーチラボ。</p>
-                    <ul>
-                        <li>午前：テクニカルクラス（Rosie主導）＋ライブピアノ＆エレクトロニクス</li>
-                        <li>午後：テーマ別リサーチラボ — コピー、グリッチ、ダブリング、ディストーション</li>
-                        <li>午後：モーション・リアクティブ / バイノーラル実験 / デジタル・ダブルのテスト</li>
-                        <li>最終日：招待者向けシェアリング/ショーイング</li>
-                    </ul>
-                </div>
-                <div class="timeline-desc en">
-                    <p>Research lab with Rosie Kay and professional Japanese contemporary dancers.</p>
-                    <ul>
-                        <li>AM: Technical class (led by Rosie) + live piano & electronics</li>
-                        <li>PM: Theme-based research lab — copy, glitch, doubling, distortion</li>
-                        <li>PM: Motion-reactive / binaural experiments / digital double testing</li>
-                        <li>Final day: Sharing for invited guests</li>
-                    </ul>
-                </div>
+                <h3 class="timeline-title ja">東京 R&D</h3>
+                <p class="timeline-date en">May 13&ndash;16, 2026</p>
+                <p class="timeline-date ja">2026年5月13日〜16日</p>
+                <p class="timeline-desc en">Rosie Kay in Tokyo. 4-day intensive lab. Prototyping Act II &mdash; GLITCH. Piano + 1 dancer + real-time system.</p>
+                <p class="timeline-desc ja">Rosie Kay来日。4日間の集中ラボ。第二幕「GLITCH」のプロトタイプ検証。ピアノ＋ダンサー1名＋リアルタイムシステム。</p>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <p class="timeline-phase">Phase 2</p>
-                <h3 class="timeline-title ja">バーミンガム プロダクション</h3>
                 <h3 class="timeline-title en">Birmingham Production</h3>
-                <p class="timeline-date ja">2026年10月（2週間）</p>
-                <p class="timeline-date en">October 2026 (2 weeks)</p>
-                <div class="timeline-desc ja">
-                    <p>Birmingham Repertory Theatreでの本格制作。K2COダンサー5〜7名によるフルプロダクション。R&D Phase 1の全成果を統合し、作品の骨格を構築。</p>
-                </div>
-                <div class="timeline-desc en">
-                    <p>Full production at Birmingham Repertory Theatre with 5&ndash;7 K2CO dancers. Integrating all R&D findings from Phase 1 to build the work's structure.</p>
-                </div>
+                <h3 class="timeline-title ja">バーミンガム本制作</h3>
+                <p class="timeline-date en">October 2026</p>
+                <p class="timeline-date ja">2026年10月</p>
+                <p class="timeline-desc en">Birmingham Repertory Theatre. Full three-act structure. K2CO dancers + Xenorama visual integration.</p>
+                <p class="timeline-desc ja">Birmingham Repertory Theatre。三幕構成のフルスケール化。K2COダンサー＋Xenoramaビジュアル統合。</p>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <p class="timeline-phase">Phase 3</p>
-                <h3 class="timeline-title ja">本公演 & 国際ツアー</h3>
-                <h3 class="timeline-title en">Full Production & International Tour</h3>
-                <p class="timeline-date ja">2027年〜</p>
+                <h3 class="timeline-title en">International Tour</h3>
+                <h3 class="timeline-title ja">国際ツアー</h3>
                 <p class="timeline-date en">2027 onwards</p>
-                <div class="timeline-desc ja">
-                    <p>日本、英国、ドイツを巡る国際ツアー。美術館でのプレゼンテーション、教育アウトリーチプログラム。</p>
-                </div>
-                <div class="timeline-desc en">
-                    <p>International touring across Japan, UK, and Germany. Museum presentations and educational outreach programmes.</p>
-                </div>
+                <p class="timeline-date ja">2027年〜</p>
+                <p class="timeline-desc en">Japan, UK, Germany. Theatre and museum presentations.</p>
+                <p class="timeline-desc ja">日本、英国、ドイツ。劇場・美術館プレゼンテーション。</p>
             </div>
         </div>
     </div>
@@ -1384,121 +1016,43 @@
 
 <div class="divider"></div>
 
-<!-- ===== MEDIA ===== -->
-<section class="section" id="media">
+<!-- ===== SUPPORT ===== -->
+<section class="section-sm" id="support" style="padding: 3rem 0;">
     <div class="container">
         <div class="fade-in">
-            <p class="section-label">// Media</p>
-            <h2 class="section-title ja">映像・デモ</h2>
-            <h2 class="section-title en">Video & Demos</h2>
+            <p class="section-label">// Support</p>
+            <h2 class="section-title en" style="font-size: 1.3rem;">Funded By</h2>
+            <h2 class="section-title ja" style="font-size: 1.3rem;">助成・支援</h2>
         </div>
 
-        <div class="media-grid fade-in">
-            <div class="media-item">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/beNtxBeqfwE?start=195" title="SITA YOKOHAMA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="media-caption">
-                    <h4>SITA YOKOHAMA</h4>
-                    <p class="ja">Dance Dance Dance @ YOKOHAMA — 中村浩之 音楽担当</p>
-                    <p class="en">Dance Dance Dance @ YOKOHAMA — Music by Hiroyuki Nakamura</p>
-                </div>
+        <div class="support-grid fade-in">
+            <div class="support-item">
+                <p class="support-status secured">Secured</p>
+                <p class="support-name">Arts Council England</p>
             </div>
-
-            <div class="media-item">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/5F3u1GRSeu4" title="Piano Distance MV" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="media-caption">
-                    <h4>Piano Distance MV</h4>
-                    <p class="ja">バイノーラル空間オーディオ — ヘッドホン推奨</p>
-                    <p class="en">Binaural spatial audio — headphones recommended</p>
-                </div>
+            <div class="support-item">
+                <p class="support-status secured">Secured</p>
+                <p class="support-name">Great Britain Sasakawa Foundation</p>
             </div>
-        </div>
-
-        <!-- Piano Distance Album -->
-        <div class="album-feature fade-in">
-            <div class="album-embed">
-                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/nakamurahiroyuki&color=%234a9eff&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false" loading="lazy"></iframe>
+            <div class="support-item">
+                <p class="support-status secured">Secured</p>
+                <p class="support-name">MATCH Sponsorship</p>
             </div>
-            <div class="album-info">
-                <p class="album-label ja">2026年5月リリース — Fluid Audio (UK)</p>
-                <p class="album-label en">May 2026 Release — Fluid Audio (UK)</p>
-                <h3>Piano Distance</h3>
-                <p class="ja">独自バイノーラル空間音響技術を全面活用した新アルバム。ピアノの音が空間の中を移動し、距離感そのものが音楽表現になる。DEEP FAKEの空間音響設計の基盤技術。</p>
-                <p class="en">A new album fully utilizing original binaural spatial audio technology. Piano sounds move through space, making the perception of distance itself a musical expression. The foundational technology behind DEEP FAKE's spatial audio design.</p>
-                <a href="https://piano-distance-epk-2026.netlify.app/?lang=en" target="_blank" class="collab-link">Piano Distance EPK</a>
+            <div class="support-item">
+                <p class="support-status pending">Applied</p>
+                <p class="support-name">Arts Council Tokyo</p>
+            </div>
+            <div class="support-item">
+                <p class="support-status pending">Applied</p>
+                <p class="support-name">Daiwa Foundation</p>
             </div>
         </div>
-    </div>
-</section>
 
-<div class="divider"></div>
-
-<!-- ===== WHAT WE'RE LOOKING FOR ===== -->
-<section class="section" id="looking-for">
-    <div class="container">
-        <div class="fade-in">
-            <p class="section-label">// What We're Looking For</p>
-            <h2 class="section-title ja">現在探しているもの</h2>
-            <h2 class="section-title en">What We're Looking For</h2>
-        </div>
-
-        <div class="fade-in" style="max-width: 800px;">
-            <p class="concept-text ja" style="font-size: 1rem; line-height: 2; margin-bottom: 2rem;">
-                Phase 1（2026年5月、東京）のR&Dに向けて、以下のパートナーシップ・支援を求めています。
+        <div class="fade-in" style="margin-top: 1.5rem;">
+            <p style="font-size: 0.8rem; color: var(--text-muted);">
+                <span class="en">Venue Partner: <strong style="color: var(--text-secondary);">Birmingham Repertory Theatre</strong></span>
+                <span class="ja">会場パートナー: <strong style="color: var(--text-secondary);">Birmingham Repertory Theatre</strong></span>
             </p>
-            <p class="concept-text en" style="font-size: 1rem; line-height: 2; margin-bottom: 2rem;">
-                For Phase 1 R&D (May 2026, Tokyo), we are seeking the following partnerships and support.
-            </p>
-        </div>
-
-        <div class="pathways-grid fade-in">
-            <div class="tech-item" style="padding: 2rem;">
-                <h4 class="ja" style="margin-bottom: 1rem;">R&Dスタジオ / レジデンス</h4>
-                <h4 class="en" style="margin-bottom: 1rem;">R&D Studio / Residency</h4>
-                <p class="ja" style="line-height: 1.8;">4日間連続で使用可能なスタジオ。暗転・プロジェクション可能、ダンスフロア、スピーカー持込可。最終日にシェアリング（招待者20〜30名）を実施。</p>
-                <p class="en" style="line-height: 1.8;">A studio available for 4 consecutive days. Blackout and projection capable, dance floor, speaker bring-in. Final day: sharing for 20&ndash;30 invited guests.</p>
-            </div>
-            <div class="tech-item" style="padding: 2rem;">
-                <h4 class="ja" style="margin-bottom: 1rem;">ダンサー（東京在住）</h4>
-                <h4 class="en" style="margin-bottom: 1rem;">Dancers (Tokyo-based)</h4>
-                <p class="ja" style="line-height: 1.8;">コンテンポラリーダンスのプロフェッショナルダンサー。Rosie Kayによるテクニカルクラスへの参加と、テクノロジー統合のためのリサーチに協力いただける方。</p>
-                <p class="en" style="line-height: 1.8;">Professional contemporary dancers to participate in technical classes led by Rosie Kay and collaborate in technology integration research.</p>
-            </div>
-            <div class="tech-item" style="padding: 2rem;">
-                <h4 class="ja" style="margin-bottom: 1rem;">共同制作パートナー</h4>
-                <h4 class="en" style="margin-bottom: 1rem;">Co-Production Partners</h4>
-                <p class="ja" style="line-height: 1.8;">Phase 2以降の日本側共催・会場パートナー。劇場、アートセンター、大学等の機関との連携を歓迎します。</p>
-                <p class="en" style="line-height: 1.8;">Japanese co-presenting and venue partners for Phase 2 onwards. We welcome collaborations with theatres, art centres, and academic institutions.</p>
-            </div>
-            <div class="tech-item" style="padding: 2rem;">
-                <h4 class="ja" style="margin-bottom: 1rem;">助成・スポンサーシップ</h4>
-                <h4 class="en" style="margin-bottom: 1rem;">Funding & Sponsorship</h4>
-                <p class="ja" style="line-height: 1.8;">ACE、笹川財団の助成は確定済み。日本側の追加助成、企業スポンサーシップ、技術協賛を引き続き募集しています。</p>
-                <p class="en" style="line-height: 1.8;">ACE and Sasakawa Foundation funding secured. Seeking additional Japanese grants, corporate sponsorship, and technology partnerships.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ===== CONTACT ===== -->
-<section class="section contact-section" id="contact">
-    <div class="container">
-        <div class="fade-in">
-            <p class="section-label">// Contact</p>
-            <h2 class="section-title ja">お問い合わせ</h2>
-            <h2 class="section-title en">Contact</h2>
-            <p class="contact-desc ja">本プロジェクトに関するお問い合わせは、以下よりご連絡ください。</p>
-            <p class="contact-desc en">For inquiries about this project, please reach out through the links below.</p>
-            <div class="contact-links">
-                <a href="https://www.nakamurahiroyuki.info" target="_blank" class="contact-link">nakamurahiroyuki.info</a>
-                <a href="https://k-2co.com" target="_blank" class="contact-link">k-2co.com</a>
-                <a href="https://piano-distance-epk-2026.netlify.app/?lang=en" target="_blank" class="contact-link">Piano Distance EPK</a>
-            </div>
         </div>
     </div>
 </section>
@@ -1506,34 +1060,26 @@
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
     <div class="container footer-inner">
-        <div class="footer-orgs">
-            <div class="footer-org">
-                <span class="footer-org-role ja">制作</span>
-                <span class="footer-org-role en">Production</span>
-                Beyond Boundary Music
-            </div>
-            <div class="footer-org">
-                <span class="footer-org-role ja">協力</span>
-                <span class="footer-org-role en">Cooperation</span>
-                Optimass Inc.
-            </div>
+        <div>
+            <p class="footer-text" style="margin-bottom: 0.3rem;">Beyond Boundary Music (BBM) / K2CO Ltd</p>
+            <p class="footer-text">&copy; 2026</p>
         </div>
-        <p class="footer-text">&copy; 2026 Beyond Boundary Music / K2CO Ltd</p>
-        <p class="footer-text">
-            <a href="https://www.nakamurahiroyuki.info" target="_blank" class="footer-link">nakamurahiroyuki.info</a>
-        </p>
+        <div class="footer-links">
+            <a href="https://www.nakamurahiroyuki.info" target="_blank" class="footer-contact-link">nakamurahiroyuki.info</a>
+            <a href="https://k-2co.com" target="_blank" class="footer-contact-link">k-2co.com</a>
+            <a href="https://piano-distance-epk-2026.netlify.app/?lang=en" target="_blank" class="footer-contact-link">Piano Distance EPK</a>
+        </div>
     </div>
 </footer>
 
 <script>
-    // Language switcher
     function setLang(lang) {
-        if (lang === 'en') {
-            document.body.classList.add('lang-en');
-            document.documentElement.lang = 'en';
-        } else {
-            document.body.classList.remove('lang-en');
+        if (lang === 'ja') {
+            document.body.classList.add('lang-ja');
             document.documentElement.lang = 'ja';
+        } else {
+            document.body.classList.remove('lang-ja');
+            document.documentElement.lang = 'en';
         }
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -1541,11 +1087,9 @@
         localStorage.setItem('df-lang', lang);
     }
 
-    // Restore saved language
     const saved = localStorage.getItem('df-lang');
     if (saved) setLang(saved);
 
-    // Intersection Observer for fade-in
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
@@ -1555,11 +1099,10 @@
                 }
             });
         },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Hero parallax
     let ticking = false;
     window.addEventListener('scroll', () => {
         if (!ticking) {
