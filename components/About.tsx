@@ -69,6 +69,10 @@ const About: React.FC = () => {
             </p>
 
             <p className="text-sm md:text-base lg:text-lg opacity-80 leading-relaxed">
+                {t.aboutP3b}
+            </p>
+
+            <p className="text-sm md:text-base lg:text-lg opacity-80 leading-relaxed">
                 {t.aboutP4}
             </p>
 
