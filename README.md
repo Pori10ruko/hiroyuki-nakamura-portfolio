@@ -18,3 +18,8 @@ View your app in AI Studio: https://ai.studio/apps/drive/16YGBt70NBASoNp-dEfwklG
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+<!-- 2026-08-28: Netlify の自動ビルドを停止しました（stop_builds=true）。
+     このリポジトリへの push では CI が走らず、nakamurahiroyuki.info の
+     /piano-distance/ /map/ の overlay は消えません。
+     サイト更新は ~/Desktop/nakamurahiroyuki/deploy.sh のみ。 -->
