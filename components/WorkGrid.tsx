@@ -38,13 +38,18 @@ const WorkGrid: React.FC = () => {
     
     // For major categories with sub-categories
     if (CATEGORY_STRUCTURE[selectedGenre]) {
-      const projectsInGenre = PROJECTS.filter(p => p.genre === selectedGenre);
-      
+      // RELEASES also includes non-RELEASES-genre projects tagged 'Album' (e.g. Piano Distance,
+      // which is genre:'SPATIAL AUDIO' as a work but is also a 2026 album release)
+      const projectsInGenre = selectedGenre === 'RELEASES'
+        ? PROJECTS.filter(p => p.genre === selectedGenre || (p.tags ?? []).includes('Album'))
+        : PROJECTS.filter(p => p.genre === selectedGenre);
+
       // If a sub-category is selected, filter by it
       if (selectedSubCategory) {
         return projectsInGenre.filter(p => {
           if (selectedGenre === 'RELEASES') {
-            return p.category === selectedSubCategory;
+            return p.category === selectedSubCategory
+              || (p.tags ?? []).some(tag => tag.toUpperCase() === selectedSubCategory);
           } else if (selectedGenre === 'CLIENT WORKS') {
             // Map client work projects to sub-categories
             const jimPetty = "Jim's Petty";

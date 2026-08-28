@@ -103,11 +103,18 @@ const Academic: React.FC = () => {
                     {t.tainan2025Title}<br />
                     {t.tainan2025Subtitle}
                 </h4>
-                <img
-                    src="/images/tainan-yugaku-2026.jpg"
-                    alt="National University of Tainan — Study Program 2026"
-                    className="w-full max-w-xs mx-auto h-auto rounded-lg shadow-md mb-4"
-                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 max-w-2xl mx-auto">
+                    <img
+                        src="/images/tainan-yugaku-2026.jpg"
+                        alt="National University of Tainan — Study Program 2026, teaching session"
+                        className="w-full h-auto rounded-lg shadow-md"
+                    />
+                    <img
+                        src="/images/tainan-yugaku-2026-group.jpg"
+                        alt="National University of Tainan — Study Program 2026, studio group"
+                        className="w-full h-auto rounded-lg shadow-md"
+                    />
+                </div>
                 <p className="text-sm opacity-80 leading-relaxed mb-2">
                     {t.tainan2025Desc1}
                 </p>
