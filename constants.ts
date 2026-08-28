@@ -83,6 +83,44 @@ export const PROJECTS: Project[] = [
     link: 'https://fuunsaikyo.asmik-ace.co.jp/',
     tags: ['Anime Tie-in', 'Composition', 'Arrangement']
   },
+  {
+    id: 'tsap-2026',
+    title: {
+      en: 'Tsuchiura Sound Archive Exhibition 2026',
+      ja: 'つちうらサウンド・アーカイブ展 2026',
+      zh: '土浦聲音檔案展 2026'
+    },
+    category: 'Public Project',
+    genre: 'SPATIAL AUDIO',
+    year: '2026',
+    image: 'https://bbm-sound.com/images/TSAP.png',
+    description: {
+      en: 'An exhibition at Rinrin Port Tsuchiura (22–23 Aug 2026) where the city\'s archived sounds became a space to walk through. In two pieces — "Aquarium" and "Coral" — visitors moved through the room holding an iPad, and up to 30 sounds held their own positions in the air around them, rendered by Nakamura\'s self-built ambisonic engine (TouchDesigner, up to 3rd order, binaural decode). After the exhibition, the Unity game "Sailing Boat of Sounds (Oto no Hobikibune)" was released on the web, so the experience remains open to anyone, anywhere.',
+      ja: 'りんりんポート土浦での展示(2026年8月22–23日)。アーカイブされた土浦の音が、歩いて巡る"空間"になった。「アクアリウム」「サンゴ」の2作品では、来場者がiPadを手に部屋を移動すると、最大30の音がそれぞれの位置に定位したまま空中にとどまる——自作のアンビソニクス・エンジン(TouchDesigner・最大3次・バイノーラルデコード)による。展示後、Unity製ゲーム「おとの帆曳船」をWeb公開。体験はいまも、どこからでも開かれている。',
+      zh: '於土浦 Rinrin Port 舉行的展覽(2026年8月22–23日)。被封存的土浦之聲，成為可以步行穿越的「空間」。在「水族館」與「珊瑚」兩件作品中，觀眾手持 iPad 在展場中移動，最多 30 個聲音各自停留在空中的位置——由中村自製的 Ambisonics 引擎(TouchDesigner・最高三階・雙耳解碼)驅動。展後，Unity 遊戲《聲音帆曳船》於網路上永久公開，體驗向任何地方的任何人敞開。'
+    },
+    link: 'https://tsuchiura-sound-exhibition-2026.netlify.app/',
+    tags: ['Spatial Audio', 'VR/Game', 'Unity', 'Ambisonics', 'Public', 'Web']
+  },
+  {
+    id: 'tainan-2026',
+    title: {
+      en: 'National University of Tainan — Study Program & Career Talk 2026',
+      ja: '国立台南大学 遊学プログラム & キャリア講座 2026',
+      zh: '國立臺南大學 遊學計畫與職涯講座 2026'
+    },
+    category: 'National University of Tainan',
+    genre: 'EDUCATION',
+    year: '2026',
+    image: 'https://bbm-sound.com/images/tainan%20lecture.jpg',
+    description: {
+      en: 'A study program with National University of Tainan (Taiwan, 13–23 July 2026, with ESP Gakuen). On 19 July, BBM hosted a career talk for the visiting students at art space bar buena, Shin-Okubo, Tokyo — delivered primarily in Traditional Chinese — on building a life across music, technology and borders. All 20 slides are published online.',
+      ja: '国立台南大学(台湾)との遊学プログラム(2026年7月13–23日、ESP学園)。7月19日には新大久保 art space bar buena にて、来日した学生に向けたBBMキャリア講座を開催——繁体中文を主言語に、音楽・技術・国境を越えて生きることを語った。全20枚のスライドをWeb公開中。',
+      zh: '與國立臺南大學(台灣)合作的遊學計畫(2026年7月13–23日，ESP學園)。7月19日於東京新大久保 art space bar buena，BBM 為來日學生舉辦職涯講座——以繁體中文為主要語言，談論跨越音樂、技術與國界的生存之道。全部 20 張投影片已於網路公開。'
+    },
+    link: 'https://bbm-buena-2026-talk.netlify.app',
+    tags: ['Taiwan', 'Education', 'Career Talk', 'BBM']
+  },
   // 2025 - RECENT
   {
     id: '1',
