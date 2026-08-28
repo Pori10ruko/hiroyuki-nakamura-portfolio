@@ -91,10 +91,10 @@ export const translations = {
     project: 'project',
 
     // New release announcement (Piano Distance)
-    newReleaseLabel: 'Pre-order open',
+    newReleaseLabel: 'Out now',
     newReleaseTitle: 'Piano Distance',
-    newReleaseLine: 'hear the opening track now on Bandcamp — full album June 26 (BBM-001) · CD: Fluid Audio (UK)',
-    newReleaseCta: 'Pre-order & listen →',
+    newReleaseLine: 'streaming everywhere — Spotify, Apple Music & more (BBM-001) · limited CD: sold out',
+    newReleaseCta: 'Listen →',
   },
 
   ja: {
@@ -189,10 +189,10 @@ export const translations = {
     project: '件のプロジェクト',
 
     // New release announcement (Piano Distance)
-    newReleaseLabel: '予約受付中',
+    newReleaseLabel: '配信中',
     newReleaseTitle: 'Piano Distance',
-    newReleaseLine: '1 曲目を今すぐ試聴（Bandcamp）— 全曲解禁 6/26（BBM-001）／CD: Fluid Audio（英国）',
-    newReleaseCta: '予約 & 試聴 →',
+    newReleaseLine: '各サービスで配信中 — Spotify・Apple Musicほか（BBM-001）／限定CDは完売',
+    newReleaseCta: '試聴 →',
   },
 
   zh: {
@@ -287,9 +287,9 @@ export const translations = {
     project: '個專案',
 
     // New release announcement (Piano Distance)
-    newReleaseLabel: '預購開放中',
+    newReleaseLabel: '現正發行',
     newReleaseTitle: 'Piano Distance',
-    newReleaseLine: '1 首曲目立即試聽（Bandcamp）— 全專輯 6/26 上線（BBM-001）／CD: Fluid Audio（英國）',
-    newReleaseCta: '預購 & 試聽 →',
+    newReleaseLine: '各串流平台上架中 — Spotify、Apple Music等（BBM-001）／限量 CD 已完售',
+    newReleaseCta: '試聽 →',
   }
 };

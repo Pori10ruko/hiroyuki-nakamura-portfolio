@@ -1156,7 +1156,7 @@ const WorkItem: React.FC<WorkItemProps> = ({
             </div>
 
             {/* Special Page Badge for Sen no Tsudoi and Distant Echo */}
-            {(project.id === '20' || project.id === '4-2') && (
+            {(project.id === '7' || project.id === '4-2') && (
               <motion.div
                 className="absolute top-16 left-4 text-[9px] font-bold uppercase tracking-widest font-mono text-white bg-gradient-to-r from-purple-600 to-blue-600 px-3 py-2 backdrop-blur-md border border-white/30 shadow-lg"
                 animate={{ 

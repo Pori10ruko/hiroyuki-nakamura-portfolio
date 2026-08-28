@@ -417,25 +417,6 @@ export const PROJECTS: Project[] = [
 
   // RELEASES - SOLO
   {
-    id: '20',
-    title: {
-      en: 'Sen no Tsudoi (千の集い)',
-      ja: 'Sen no Tsudoi (千の集い)',
-      zh: 'Sen no Tsudoi (千の集い)'
-    },
-    category: 'SOLO',
-    genre: 'RELEASES',
-    year: '2024',
-    image: 'https://www.dragonseyerecordings.com/wp-content/uploads/2024/11/de6067.jpg',
-    description: {
-      en: 'A post-orchestral album that depicts the intersections of Europe and Asia, past and present, memory and history through sound and space. Released by Dragon\'s Eye Recordings.',
-      ja: 'ヨーロッパとアジア、過去と現在、記憶と歴史の交差点を音と空間によって描き出すポストオーケストラ・アルバム。Dragon\'s Eye Recordingsよりリリース。',
-      zh: '透過聲音與空間描繪歐洲與亞洲、過去與現在、記憶與歷史交匯點的後管弦樂專輯。由Dragon\'s Eye Recordings發行。'
-    },
-    link: '/#/sen-no-tsudoi',
-    tags: ['Solo', 'Post-Orchestral', 'Album']
-  },
-  {
     id: '20-2',
     title: {
       en: 'Coming Up Like A Flower',
