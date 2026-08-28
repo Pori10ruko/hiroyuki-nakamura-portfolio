@@ -103,6 +103,11 @@ const Academic: React.FC = () => {
                     {t.tainan2025Title}<br />
                     {t.tainan2025Subtitle}
                 </h4>
+                <img
+                    src="/images/tainan-yugaku-2026.jpg"
+                    alt="National University of Tainan — Study Program 2026"
+                    className="w-full max-w-xs mx-auto h-auto rounded-lg shadow-md mb-4"
+                />
                 <p className="text-sm opacity-80 leading-relaxed mb-2">
                     {t.tainan2025Desc1}
                 </p>

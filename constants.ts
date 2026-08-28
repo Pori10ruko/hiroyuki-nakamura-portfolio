@@ -112,13 +112,14 @@ export const PROJECTS: Project[] = [
     category: 'National University of Tainan',
     genre: 'EDUCATION',
     year: '2026',
-    image: 'https://bbm-sound.com/images/tainan%20lecture.jpg',
+    image: '/images/tainan-yugaku-2026.jpg',
     description: {
       en: 'A study program with National University of Tainan (Taiwan, 13–23 July 2026, with ESP Gakuen). On 19 July, BBM hosted a career talk for the visiting students at art space bar buena, Shin-Okubo, Tokyo — delivered primarily in Traditional Chinese — on building a life across music, technology and borders. All 20 slides are published online.',
       ja: '国立台南大学(台湾)との遊学プログラム(2026年7月13–23日、ESP学園)。7月19日には新大久保 art space bar buena にて、来日した学生に向けたBBMキャリア講座を開催——繁体中文を主言語に、音楽・技術・国境を越えて生きることを語った。全20枚のスライドをWeb公開中。',
       zh: '與國立臺南大學(台灣)合作的遊學計畫(2026年7月13–23日，ESP學園)。7月19日於東京新大久保 art space bar buena，BBM 為來日學生舉辦職涯講座——以繁體中文為主要語言，談論跨越音樂、技術與國界的生存之道。全部 20 張投影片已於網路公開。'
     },
-    link: 'https://bbm-buena-2026-talk.netlify.app',
+    link: 'https://note.com/bbmusic/n/n6f6384709a24',
+    externalLink: 'https://bbm-buena-2026-talk.netlify.app',
     tags: ['Taiwan', 'Education', 'Career Talk', 'BBM']
   },
   // 2025 - RECENT

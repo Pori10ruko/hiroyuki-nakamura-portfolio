@@ -55,7 +55,7 @@ export const translations = {
     tainan2025Title: 'National University of Tainan, Taiwan',
     tainan2025Subtitle: 'Popular Music Course',
     tainan2025Desc1: 'Popular Music Course',
-    tainan2025Desc2: 'Currently teaching popular music courses at the National University of Tainan in Taiwan, bringing expertise in music production, composition, and audio technology to students in an international academic setting.',
+    tainan2025Desc2: 'Currently teaching popular music courses at the National University of Tainan in Taiwan, bringing expertise in music production, composition, and audio technology to students in an international academic setting. In July 2026, hosted a group of visiting Tainan students in Tokyo for a study program, including a career talk at art space bar buena on building a life across music, technology and borders.',
     
     taiwan2015Title: 'National Tainan University & Soochow University, Taiwan',
     taiwan2015Desc1: 'Invited lectures at universities in Taiwan',
@@ -153,7 +153,7 @@ export const translations = {
     tainan2025Title: '国立台南大学, 台湾',
     tainan2025Subtitle: 'ポピュラーミュージックコース',
     tainan2025Desc1: 'ポピュラーミュージックコース',
-    tainan2025Desc2: '台湾の国立台南大学にてポピュラーミュージックコースを担当。音楽制作、作曲、オーディオ技術の専門知識を国際的な学術環境で学生に提供しています。',
+    tainan2025Desc2: '台湾の国立台南大学にてポピュラーミュージックコースを担当。音楽制作、作曲、オーディオ技術の専門知識を国際的な学術環境で学生に提供しています。2026年7月には来日した台南大学の学生たちを迎え、東京での遊学プログラムを実施。新大久保 art space bar buena でのキャリア講座では、音楽・技術・国境を越えて生きることを語りました。',
     
     taiwan2015Title: '国立台南大学 & 東呉大学, 台湾',
     taiwan2015Desc1: '台湾の大学での招聘講義（國立台南大学、東呉大学）',
@@ -251,7 +251,7 @@ export const translations = {
     tainan2025Title: '國立臺南大學, 臺灣',
     tainan2025Subtitle: '流行音樂課程',
     tainan2025Desc1: '流行音樂課程',
-    tainan2025Desc2: '目前在臺灣國立臺南大學教授流行音樂課程，在國際學術環境中向學生傳授音樂製作、作曲與音訊技術的專業知識。',
+    tainan2025Desc2: '目前在臺灣國立臺南大學教授流行音樂課程，在國際學術環境中向學生傳授音樂製作、作曲與音訊技術的專業知識。2026年7月，接待來訪的臺南大學學生於東京進行遊學計畫，並於新大久保 art space bar buena 舉辦職涯講座，談論跨越音樂、技術與國界的生存之道。',
     
     taiwan2015Title: '國立臺南大學 & 東吳大學, 臺灣',
     taiwan2015Desc1: '臺灣大學特邀講座',
