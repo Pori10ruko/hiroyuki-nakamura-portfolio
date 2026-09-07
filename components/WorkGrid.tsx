@@ -389,14 +389,14 @@ const WorkGrid: React.FC = () => {
                 <h4 className="text-[11px] uppercase tracking-[0.16em] text-mute mb-4">
                   {group.literalLabel ?? t[group.labelKey!]}
                 </h4>
-                <div className="flex flex-wrap gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                   {group.videos.map((video) => (
                     <button
                       key={video.id}
                       type="button"
                       onClick={() => openVideos(video.title, [video])}
                       aria-label={`Play video: ${video.title}`}
-                      className="relative w-40 md:w-48 text-left group/video focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+                      className="relative w-full text-left group/video focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
                     >
                       <div className="relative aspect-video overflow-hidden border border-line bg-line">
                         <img
@@ -530,7 +530,7 @@ const ProjectDetail: React.FC<{
   const title = localizedTitle(project.title, language);
 
   return (
-    <div className="flex flex-col gap-4 max-w-2xl">
+    <div className={`flex flex-col gap-4 ${videos.length > 0 ? 'max-w-4xl' : 'max-w-2xl'}`}>
       <p className="text-sm leading-relaxed">{description}</p>
       {project.tags && project.tags.length > 0 && <p className="font-mono text-xs text-mute">{project.tags.join(', ')}</p>}
       <div className="flex flex-wrap gap-x-6 gap-y-2">
@@ -546,14 +546,14 @@ const ProjectDetail: React.FC<{
           <p className="font-mono text-[10px] uppercase tracking-wide text-mute mb-2">
             {t.videoTitle} ({videos.length})
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {videos.map((video) => (
               <button
                 key={video.id}
                 type="button"
                 onClick={() => onOpenVideos(video.title, [video], project.externalLink)}
                 aria-label={`${t.videoTitle}: ${video.title}`}
-                className="w-40 md:w-44 text-left group/v focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+                className="w-full text-left group/v focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
               >
                 <span className="relative block aspect-video overflow-hidden border border-line bg-line">
                   <img
@@ -564,10 +564,10 @@ const ProjectDetail: React.FC<{
                     className="w-full h-full object-cover transition-opacity group-hover/v:opacity-80"
                   />
                   <span className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
-                    <span className="block w-0 h-0 border-y-[7px] border-y-transparent border-l-[12px] border-l-white drop-shadow" />
+                    <span className="block w-0 h-0 border-y-[10px] border-y-transparent border-l-[17px] border-l-white drop-shadow" />
                   </span>
                 </span>
-                <span className="mt-1.5 block text-[11px] leading-snug text-mute group-hover/v:text-ink transition-colors">
+                <span className="mt-2 block text-xs leading-snug text-mute group-hover/v:text-ink transition-colors">
                   {video.title}
                 </span>
               </button>
