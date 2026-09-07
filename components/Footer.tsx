@@ -1,51 +1,55 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import Magnetic from './Magnetic';
-import InfiniteText from './InfiniteText';
-import ScrambleText from './ScrambleText';
+import { useLanguage } from '../contexts/LanguageContext';
+import { translations } from '../translations';
 
 const Footer: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
-    <footer className="w-full min-h-screen flex flex-col justify-center items-center px-4 relative overflow-hidden">
-      
-      {/* Background Marquee */}
-      <div className="absolute bottom-[20%] w-full opacity-5 pointer-events-none z-0">
-         <InfiniteText baseVelocity={3} className="text-[15vw] font-black leading-none text-[#1a1a1a]">
-            GET IN TOUCH — START A PROJECT — 
-         </InfiniteText>
-      </div>
-
-      <div className="text-center z-10">
-        <p className="text-sm uppercase tracking-widest mb-8 interactive">Have an idea?</p>
-        <Magnetic>
-            <Link to="/contact" className="interactive block text-[10vw] font-bold tracking-tighter leading-none hover:text-gray-500 transition-colors duration-300">
-                <ScrambleText text="LET'S TALK" />
-            </Link>
-        </Magnetic>
-      </div>
-
-      <div className="absolute bottom-12 w-full px-12 flex justify-between text-sm font-bold uppercase tracking-widest z-10">
-        <div className="flex gap-8">
-            <Magnetic><a href="https://www.instagram.com/nakahiro0724/" target="_blank" rel="noopener noreferrer" className="interactive hover:underline block p-2"><ScrambleText text="Instagram" /></a></Magnetic>
-            <Magnetic><a href="https://bbm-sound.com/" target="_blank" rel="noopener noreferrer" className="interactive hover:underline block p-2"><ScrambleText text="BBM" /></a></Magnetic>
+    <footer className="w-full border-t border-line px-4 md:px-8 py-10 md:py-12 text-mute">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
+        <div>
+          <p className="uppercase text-ink mb-3" style={{ fontSize: '11px', letterSpacing: '0.16em' }}>
+            {t.contact}
+          </p>
+          <a
+            href="mailto:contact@bbmusic.tokyo"
+            className="inline-block text-mute hover:text-ink transition-colors duration-200"
+            style={{ fontSize: '12px' }}
+          >
+            contact@bbmusic.tokyo
+          </a>
         </div>
         <div>
-            &copy; 2026 Hiroyuki Nakamura
+          <p className="uppercase text-ink mb-3" style={{ fontSize: '11px', letterSpacing: '0.16em' }}>
+            SNS
+          </p>
+          <div className="flex flex-col gap-2">
+            <a
+              href="https://www.instagram.com/nakahiro0724/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block w-fit text-mute hover:text-ink transition-colors duration-200"
+              style={{ fontSize: '12px' }}
+            >
+              Instagram
+            </a>
+            <a
+              href="https://bbm-sound.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block w-fit text-mute hover:text-ink transition-colors duration-200"
+              style={{ fontSize: '12px' }}
+            >
+              BBM
+            </a>
+          </div>
+        </div>
+        <div className="md:text-right">
+          <p style={{ fontSize: '11px', letterSpacing: '0.04em' }}>© 2026 Hiroyuki Nakamura</p>
         </div>
       </div>
-      
-      {/* Background Graphic */}
-      <motion.div 
-        animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-        transition={{ 
-            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-            scale: { duration: 8, repeat: Infinity, ease: "easeInOut" }
-        }}
-        className="absolute w-[40vw] h-[40vw] border-[1px] border-black rounded-full opacity-10 pointer-events-none flex items-center justify-center z-0"
-      >
-        <div className="w-[80%] h-[80%] border-[1px] border-black rounded-full"></div>
-      </motion.div>
     </footer>
   );
 };

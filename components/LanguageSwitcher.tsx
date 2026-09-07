@@ -1,44 +1,46 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useLanguage, Language } from '../contexts/LanguageContext';
 
-const LanguageSwitcher: React.FC = () => {
+interface LanguageSwitcherProps {
+  /** 'dark' = text over the paper background (Header). 'light' = text over a
+   * dark/photo background. Matches production's Mv({variant}). */
+  variant?: 'dark' | 'light';
+}
+
+const LANGUAGES: { code: Language; label: string }[] = [
+  { code: 'en', label: 'EN' },
+  { code: 'ja', label: '日本語' },
+  { code: 'zh', label: '中文' },
+];
+
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ variant = 'dark' }) => {
   const { language, setLanguage } = useLanguage();
 
-  const languages: { code: Language; label: string }[] = [
-    { code: 'en', label: 'EN' },
-    { code: 'ja', label: '日本語' },
-    { code: 'zh', label: '中文' },
-  ];
-
   return (
-    <div className="flex items-center gap-0.5 md:gap-1 bg-black/80 backdrop-blur-md rounded-full px-1.5 md:px-2 py-1 border border-white/20 shadow-lg">
-      {languages.map((lang) => (
-        <motion.button
-          key={lang.code}
-          onClick={() => setLanguage(lang.code)}
-          className={`
-            relative px-2 md:px-3 py-1 md:py-1.5 text-[10px] md:text-xs font-bold uppercase tracking-wider rounded-full
-            transition-all duration-300
-            ${language === lang.code 
-              ? 'text-black' 
-              : 'text-white/70 hover:text-white'
-            }
-          `}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          {language === lang.code && (
-            <motion.div
-              layoutId="activeLanguage"
-              className="absolute inset-0 bg-white rounded-full"
-              style={{ zIndex: -1 }}
-              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-            />
-          )}
-          <span className="relative z-10">{lang.label}</span>
-        </motion.button>
-      ))}
+    <div className="flex items-center gap-3 md:gap-4">
+      {LANGUAGES.map((lang) => {
+        const active = language === lang.code;
+        const colorClass =
+          variant === 'light'
+            ? active
+              ? 'text-paper'
+              : 'text-paper/60 hover:text-paper'
+            : active
+            ? 'text-ink'
+            : 'text-mute hover:text-ink';
+        return (
+          <button
+            key={lang.code}
+            type="button"
+            onClick={() => setLanguage(lang.code)}
+            aria-pressed={active}
+            className={`uppercase transition-colors duration-200 ${colorClass}`}
+            style={{ fontSize: '11px', letterSpacing: '0.16em' }}
+          >
+            {lang.label}
+          </button>
+        );
+      })}
     </div>
   );
 };
