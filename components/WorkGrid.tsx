@@ -1,143 +1,200 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
-import { PROJECTS, GENRES, Genre, SUBCATEGORY_DESCRIPTIONS, GENRE_DESCRIPTIONS, BBCO_HERO_IMAGE, BBCO_GALLERY_IMAGES, SITA_GALLERY_IMAGES, SITA_DESCRIPTIONS, UNA_HERO_IMAGE, JOYS_HERO_IMAGE } from '../constants';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  PROJECTS,
+  BBCO_HERO_IMAGE,
+  BBCO_GALLERY_IMAGES,
+  UNA_HERO_IMAGE,
+  JOYS_HERO_IMAGE,
+  SITA_GALLERY_IMAGES,
+  SITA_DESCRIPTIONS,
+  SUBCATEGORY_DESCRIPTIONS,
+  GENRE_DESCRIPTIONS,
+} from '../constants';
 import { Project } from '../types';
-import ScrambleText from './ScrambleText';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations';
-import VideoModal from './VideoModal.tsx';
-import { getProjectVideos, getLeftoverVideoGroups, ResolvedVideo } from '../lib/videos';
+import VideoModal from './VideoModal';
+import { getProjectVideos, getLeftoverVideoGroups, EXTRA_EMBEDS, ResolvedVideo } from '../lib/videos';
+
+type Translation = typeof translations['en'];
+
+// ---------------------------------------------------------------------------
+// Work Index — rebuilt from _spec/live_app.js + _spec/live.js (the `c0`
+// component: taxonomy bar with counts, Index/Grid toggle, sortable columns,
+// expandable rows, and a release section grouped by SOLO/BBCO/UN.a/PRODUCE/
+// OTHER). See the task report for what's a simplification vs. production
+// (the cursor-proximity "glow" on hover and the view-transition photo morph
+// are decorative and were left out; everything else is reproduced).
+// ---------------------------------------------------------------------------
+
+type TaxonomyKey = 'spatial' | 'release' | 'commissioned' | 'education' | 'archive';
+
+interface TaxonomyGroup {
+  key: TaxonomyKey;
+  genres: string[];
+  label: (t: Translation) => string;
+}
+
+const TAXONOMY: TaxonomyGroup[] = [
+  { key: 'spatial', genres: ['INSTALLATION', 'SPATIAL AUDIO'], label: (t) => t.taxSpatial },
+  { key: 'release', genres: ['RELEASES'], label: (t) => t.taxRelease },
+  { key: 'commissioned', genres: ['CLIENT WORKS'], label: (t) => t.taxCommissioned },
+  { key: 'education', genres: ['EDUCATION'], label: (t) => t.taxEducation },
+  { key: 'archive', genres: ['ARCHIVE'], label: (t) => t.taxArchive },
+];
+
+const RELEASE_GROUPS = ['SOLO', 'BBCO', 'UN.a', 'PRODUCE', 'OTHER'] as const;
+type ReleaseGroup = typeof RELEASE_GROUPS[number];
+
+const isRelease = (p: Project) => p.genre === 'RELEASES' || (p.tags ?? []).includes('Album');
+const releaseGroupOf = (p: Project): ReleaseGroup =>
+  (RELEASE_GROUPS as readonly string[]).includes(p.category) ? (p.category as ReleaseGroup) : (p.tags ?? []).includes('Solo') ? 'SOLO' : 'OTHER';
+
+const parseYear = (year: string): number => {
+  const n = parseInt(year, 10);
+  return Number.isFinite(n) ? n : -Infinity;
+};
+
+const localizedTitle = (title: Project['title'], lang: 'en' | 'ja' | 'zh') =>
+  typeof title === 'string' ? title : title[lang];
+const localizedText = (text: string | { en: string; ja: string; zh: string }, lang: 'en' | 'ja' | 'zh') =>
+  typeof text === 'string' ? text : text[lang];
+
+const genreLabel = (genre: string, t: Translation) => {
+  const group = TAXONOMY.find((g) => g.genres.includes(genre));
+  return group ? group.label(t) : genre;
+};
+
+const linkLabel = (link: string) => (link.startsWith('/#/') ? 'View page' : 'Visit site');
+const LinkTo: React.FC<{ href: string; className: string }> = ({ href, className }) => {
+  if (href.startsWith('/#/')) {
+    return (
+      <Link to={href.replace('/#', '')} className={className}>
+        {linkLabel(href)}
+      </Link>
+    );
+  }
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {linkLabel(href)}
+    </a>
+  );
+};
+
+// Every project gets a stable chronological index number (001 = oldest),
+// independent of the current sort/display order.
+const INDEXED_PROJECTS: (Project & { indexNo: number })[] = [...PROJECTS]
+  .sort((a, b) => parseYear(a.year) - parseYear(b.year))
+  .map((p, i) => ({ ...p, indexNo: i + 1 }));
+
+// Extra images/notes shown in a project's expanded detail — mirrors
+// production's per-id map (`l0`), rebuilt from constants already restored
+// (SITA_*, SUBCATEGORY_DESCRIPTIONS, hero images) rather than new copy.
+interface DetailExtra {
+  images?: string[];
+  notes?: { label: string; text: { en: string; ja: string; zh: string } }[];
+}
+const DETAIL_EXTRAS: Record<string, DetailExtra> = {
+  '24': {
+    images: [...SITA_GALLERY_IMAGES, BBCO_HERO_IMAGE],
+    notes: [
+      { label: 'About SITA', text: SITA_DESCRIPTIONS },
+      { label: 'About BBCO', text: SUBCATEGORY_DESCRIPTIONS.BBCO },
+    ],
+  },
+  '25-2': { images: [UNA_HERO_IMAGE], notes: [{ label: 'About UN.a', text: SUBCATEGORY_DESCRIPTIONS['UN.a'] }] },
+  '39': { images: [JOYS_HERO_IMAGE], notes: [{ label: 'About OTHER', text: SUBCATEGORY_DESCRIPTIONS.OTHER }] },
+  '21': { notes: [{ label: 'About SOLO', text: SUBCATEGORY_DESCRIPTIONS.SOLO }] },
+  '32': { notes: [{ label: 'About PRODUCE', text: SUBCATEGORY_DESCRIPTIONS.PRODUCE }] },
+};
+
+const RELEASE_GROUP_HERO: Partial<Record<ReleaseGroup, string>> = {
+  BBCO: BBCO_HERO_IMAGE,
+  'UN.a': UNA_HERO_IMAGE,
+  OTHER: JOYS_HERO_IMAGE,
+};
+const RELEASE_GROUP_GALLERY: Partial<Record<ReleaseGroup, string[]>> = {
+  BBCO: BBCO_GALLERY_IMAGES,
+};
+
+type SortKey = 'no' | 'title' | 'cat' | 'year';
+interface SortState {
+  key: SortKey;
+  dir: 'asc' | 'desc';
+}
 
 const WorkGrid: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language];
-  const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = 'Works | NAKAMURA Hiroyuki';
+    document.title = 'Work Index | NAKAMURA Hiroyuki';
   }, []);
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
-  const [selectedGenre, setSelectedGenre] = useState<Genre>('ALL');
-  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
-  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
-  const [selectedVideos, setSelectedVideos] = useState<{ id: string; title: string }[]>([]);
-  const [modalExternalLink, setModalExternalLink] = useState<string | undefined>(undefined);
-  const [modalTitle, setModalTitle] = useState<string | undefined>(undefined);
-  const [modalGalleryImages, setModalGalleryImages] = useState<string[] | undefined>(undefined);
-  const [modalDescription, setModalDescription] = useState<string | undefined>(undefined);
 
-  // Define sub-categories for each major category
-  const CATEGORY_STRUCTURE: Record<string, string[]> = {
-    'RELEASES': ['SOLO', 'BBCO', 'UN.a', 'PRODUCE', 'OTHER'],
-    'CLIENT WORKS': ['Music Video', 'VTuber', 'Commercial', 'Mix/Master'],
+  const [taxonomy, setTaxonomy] = useState<TaxonomyKey | null>(null);
+  const [sort, setSort] = useState<SortState>({ key: 'year', dir: 'desc' });
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [expandedScope, setExpandedScope] = useState<string | null>(null);
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<'index' | 'grid'>('grid');
+
+  const [videoModal, setVideoModal] = useState<{ open: boolean; videos: { id: string; title: string }[]; title?: string; externalLink?: string }>({
+    open: false,
+    videos: [],
+  });
+
+  const activeGroup = TAXONOMY.find((g) => g.key === taxonomy) ?? null;
+
+  const toggleExpand = (id: string, scope: string) => {
+    const isOpen = expandedId === id && expandedScope === scope;
+    setExpandedId(isOpen ? null : id);
+    setExpandedScope(isOpen ? null : scope);
   };
 
-  const filteredProjects = useMemo(() => {
-    if (selectedGenre === 'ALL') return PROJECTS.filter(p => p.genre !== 'RELEASES');
-    
-    // For major categories with sub-categories
-    if (CATEGORY_STRUCTURE[selectedGenre]) {
-      // RELEASES also includes non-RELEASES-genre projects tagged 'Album' (e.g. Piano Distance,
-      // which is genre:'SPATIAL AUDIO' as a work but is also a 2026 album release)
-      const projectsInGenre = selectedGenre === 'RELEASES'
-        ? PROJECTS.filter(p => p.genre === selectedGenre || (p.tags ?? []).includes('Album'))
-        : PROJECTS.filter(p => p.genre === selectedGenre);
+  const toggleSort = (key: SortKey) => {
+    setSort((prev) => (prev.key === key ? { key, dir: prev.dir === 'asc' ? 'desc' : 'asc' } : { key, dir: 'asc' }));
+  };
 
-      // If a sub-category is selected, filter by it
-      if (selectedSubCategory) {
-        return projectsInGenre.filter(p => {
-          if (selectedGenre === 'RELEASES') {
-            return p.category === selectedSubCategory
-              || (p.tags ?? []).some(tag => tag.toUpperCase() === selectedSubCategory);
-          } else if (selectedGenre === 'CLIENT WORKS') {
-            // Map client work projects to sub-categories
-            const jimPetty = "Jim's Petty";
-            if (selectedSubCategory === 'Music Video') return [jimPetty, 'Live Painting Concert', 'UN.a'].includes(p.category);
-            if (selectedSubCategory === 'VTuber') return ['RE:ACT', 'RK MUSIC'].includes(p.category);
-            if (selectedSubCategory === 'Commercial') return ['Music Festival'].includes(p.category);
-            if (selectedSubCategory === 'Mix/Master') return ['Opera Mix'].includes(p.category);
-          }
-          return false;
-        });
+  const openVideos = (title: string, videos: ResolvedVideo[], externalLink?: string) => {
+    setVideoModal({ open: true, videos: videos.map(({ id, title }) => ({ id, title })), title, externalLink });
+  };
+
+  const filteredSorted = useMemo(() => {
+    const base = activeGroup
+      ? INDEXED_PROJECTS.filter((p) => activeGroup.genres.includes(p.genre))
+      : INDEXED_PROJECTS.filter((p) => !isRelease(p));
+    return [...base].sort((a, b) => {
+      let diff = 0;
+      switch (sort.key) {
+        case 'no':
+          diff = a.indexNo - b.indexNo;
+          break;
+        case 'year':
+          diff = parseYear(a.year) - parseYear(b.year);
+          break;
+        case 'title':
+          diff = localizedTitle(a.title, language).localeCompare(localizedTitle(b.title, language));
+          break;
+        case 'cat':
+          diff = a.genre.localeCompare(b.genre);
+          break;
       }
-      
-      // If no sub-category selected, show all projects in the genre
-      return projectsInGenre;
-    }
-    
-    // For simple categories without sub-categories
-    return PROJECTS.filter(project => project.genre === selectedGenre);
-  }, [selectedGenre, selectedSubCategory]);
+      return sort.dir === 'asc' ? diff : -diff;
+    });
+  }, [activeGroup, sort, language]);
 
-  const handleProjectClick = (project: Project) => {
-    // For PRODUCE, BBCO, and OTHER projects, always go to external link (videos are shown separately)
-    if ((project.category === 'PRODUCE' || project.category === 'BBCO' || project.category === 'OTHER') && project.link) {
-      window.open(project.link, '_blank', 'noopener,noreferrer');
-      return;
-    }
-    
-    // If project has videos, open modal
-    if (project.videos && project.videos.length > 0) {
-      setSelectedVideos(project.videos);
-      setModalExternalLink(project.externalLink);
-      setModalTitle(typeof project.title === 'string' ? project.title : project.title[language]);
-      
-      // Set gallery images and description for SITA
-      if (project.id === '24') {
-        setModalGalleryImages(SITA_GALLERY_IMAGES);
-        setModalDescription(SITA_DESCRIPTIONS[language]);
-      } else {
-        setModalGalleryImages(undefined);
-        setModalDescription(undefined);
-      }
-      
-      setVideoModalOpen(true);
-      return;
-    }
-    
-    // Otherwise, handle link navigation
-    if (project.link) {
-      if (project.link.startsWith('/#/')) {
-        const path = project.link.replace('/#', '');
-        navigate(path);
-      } else {
-        window.open(project.link, '_blank', 'noopener,noreferrer');
-      }
-    }
-  };
+  const genreDescriptions = useMemo(() => {
+    if (!activeGroup) return [];
+    return activeGroup.genres
+      .map((g) => GENRE_DESCRIPTIONS[g as keyof typeof GENRE_DESCRIPTIONS]?.[language])
+      .filter((d): d is string => !!d);
+  }, [activeGroup, language]);
 
-  // Opens the video modal for an arbitrary title + video list. Kept separate
-  // from handleProjectClick so the card's existing whole-card click behavior
-  // (external link / legacy inline modal) is unchanged.
-  const openVideoModal = (title: string, videos: ResolvedVideo[], externalLink?: string) => {
-    setSelectedVideos(videos.map(({ id, title }) => ({ id, title })));
-    setModalExternalLink(externalLink);
-    setModalTitle(title);
-    setModalGalleryImages(undefined);
-    setModalDescription(undefined);
-    setVideoModalOpen(true);
-  };
+  const releaseProjects = useMemo(() => INDEXED_PROJECTS.filter(isRelease), []);
+  const showReleaseSection = !activeGroup || activeGroup.key === 'release';
+  const showRegularListing = activeGroup?.key !== 'release';
 
-  // Used by the representative-video thumbnail on each Work card.
-  const handleCardVideoOpen = (project: Project, videos: ResolvedVideo[]) => {
-    const title = typeof project.title === 'string' ? project.title : project.title[language];
-    if (project.id === '24') {
-      setSelectedVideos(videos.map(({ id, title }) => ({ id, title })));
-      setModalExternalLink(project.externalLink);
-      setModalTitle(title);
-      setModalGalleryImages(SITA_GALLERY_IMAGES);
-      setModalDescription(SITA_DESCRIPTIONS[language]);
-      setVideoModalOpen(true);
-      return;
-    }
-    openVideoModal(title, videos, project.externalLink);
-  };
-
-  // Videos from the 58-entry catalogue that don't belong to any project
-  // (no workId, no title-based inference) — grouped so nothing is lost when
-  // the standalone /video page is folded into Work. See lib/videos.ts.
   const leftoverVideoGroups = useMemo(() => getLeftoverVideoGroups(), []);
   const leftoverVideoCount = useMemo(
     () => leftoverVideoGroups.reduce((sum, g) => sum + g.videos.length, 0),
@@ -145,903 +202,185 @@ const WorkGrid: React.FC = () => {
   );
 
   return (
-    <div className="w-full min-h-screen px-4 md:px-12 py-32 text-[#1a1a1a]">
-       <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-16 md:mb-24 flex flex-col gap-8"
+    <div className="w-full min-h-screen px-4 md:px-12 pt-32 pb-24">
+      <div className="mb-10">
+        <h1 className="font-serif text-3xl md:text-4xl text-ink">{t.work}</h1>
+      </div>
+
+      {/* Hover preview panel (desktop only) */}
+      <div
+        className="hidden md:block fixed pointer-events-none z-40 transition-opacity duration-200"
+        style={{ right: '40px', top: '96px', width: '320px', height: '240px', opacity: hoveredImage ? 1 : 0 }}
       >
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-[#1a1a1a]/10 pb-8">
-          <h1 
-              className="text-[10vw] md:text-[8vw] leading-[0.85] font-serif italic tracking-tight text-[#1a1a1a]"
-          >
-            {t.selectedWorks.split(' ')[0]}<br />{t.selectedWorks.split(' ')[1]}
-          </h1>
-          <div className="mb-2 text-right">
-              <p className="text-xs font-bold uppercase tracking-widest font-mono text-[#666]">{t.archive}</p>
-              <p className="text-xs opacity-60 font-mono text-[#666]">2023 — 2025</p>
-          </div>
-        </div>
+        {hoveredImage && <img src={hoveredImage} alt="" className="w-full h-full object-cover border border-line" />}
+      </div>
 
-        {/* Genre Filter */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="flex flex-col gap-4"
+      {/* Taxonomy bar */}
+      <div className="mb-8">
+        <div
+          className="flex items-center gap-8 overflow-x-auto whitespace-nowrap border-y border-line py-3 [&::-webkit-scrollbar]:hidden"
+          style={{ scrollbarWidth: 'none' }}
         >
-          {/* Major Categories with Sub-categories */}
-          <div className="flex flex-col gap-6">
-            {/* RELEASES - Special Category */}
-            <div>
-              <motion.button
-                onClick={() => {
-                  if (selectedGenre === 'RELEASES') {
-                    setSelectedGenre('ALL');
-                    setExpandedCategory(null);
-                    setSelectedSubCategory(null);
-                  } else {
-                    setSelectedGenre('RELEASES');
-                    setExpandedCategory('RELEASES');
-                    setSelectedSubCategory(null);
-                  }
-                }}
-                className={`
-                  relative px-8 py-4 text-base md:text-lg font-bold uppercase tracking-widest
-                  transition-all duration-300 border w-fit
-                  ${selectedGenre === 'RELEASES'
-                    ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
-                    : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
-                  }
-                `}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+          <span className="text-[11px] uppercase tracking-[0.16em] text-mute shrink-0">
+            All works <span className="font-mono text-[10px] ml-1">{PROJECTS.length}</span>
+          </span>
+          {TAXONOMY.map((group) => {
+            const count = group.key === 'release' ? releaseProjects.length : PROJECTS.filter((p) => group.genres.includes(p.genre)).length;
+            const active = taxonomy === group.key;
+            return (
+              <button
+                key={group.key}
+                type="button"
+                onClick={() => setTaxonomy((prev) => (prev === group.key ? null : group.key))}
+                className={`text-[11px] uppercase tracking-[0.16em] shrink-0 transition-colors hover:text-ink ${active ? 'text-ink' : 'text-mute'}`}
               >
-                RELEASES
-              </motion.button>
+                {group.label(t)} <span className="font-mono text-[10px] ml-1">{count}</span>
+              </button>
+            );
+          })}
+        </div>
+        {genreDescriptions.length > 0 && (
+          <div className="pt-3 max-w-3xl space-y-2">
+            {genreDescriptions.map((desc, i) => (
+              <p key={i} className="text-xs text-mute leading-relaxed">
+                {desc}
+              </p>
+            ))}
+          </div>
+        )}
+      </div>
 
-              {/* RELEASES Sub-categories */}
-              {expandedCategory === 'RELEASES' && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="flex flex-col gap-4 mt-4 pl-4 border-l-2 border-[#1a1a1a]/20"
-                >
-                  <div className="flex flex-wrap gap-3">
-                    {CATEGORY_STRUCTURE.RELEASES.map((subCat) => (
-                      <motion.button
-                        key={subCat}
-                        onClick={() => setSelectedSubCategory(selectedSubCategory === subCat ? null : subCat)}
-                        className={`
-                          px-5 py-2 text-xs md:text-sm font-bold uppercase tracking-widest
-                          transition-all duration-300 border
-                          ${selectedSubCategory === subCat
-                            ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
-                            : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
-                          }
-                        `}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        {subCat}
-                      </motion.button>
-                    ))}
-                  </div>
-                  {/* Show sub-category descriptions */}
-                  {selectedSubCategory && SUBCATEGORY_DESCRIPTIONS[selectedSubCategory as keyof typeof SUBCATEGORY_DESCRIPTIONS] && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-sm text-[#1a1a1a]/70 leading-relaxed max-w-3xl mt-2"
-                    >
-                      {SUBCATEGORY_DESCRIPTIONS[selectedSubCategory as keyof typeof SUBCATEGORY_DESCRIPTIONS][language]}
-                    </motion.div>
-                  )}
-                  
-                  {/* BBCO Gallery Images */}
-                  {selectedSubCategory === 'BBCO' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.1 }}
-                      className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6"
-                    >
-                      {BBCO_GALLERY_IMAGES.map((image, index) => (
-                        <motion.img 
-                          key={index}
-                          src={image} 
-                          alt={`BBCO ${index + 1}`} 
-                          className="w-full h-auto rounded-lg shadow-lg"
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                        />
-                      ))}
-                    </motion.div>
-                  )}
-                  
-                  {/* UN.a Hero Image */}
-                  {selectedSubCategory === 'UN.a' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.1 }}
-                      className="mt-6 max-w-2xl"
-                    >
-                      <motion.img 
-                        src={UNA_HERO_IMAGE} 
-                        alt="UN.a" 
-                        className="w-full h-auto rounded-lg shadow-lg"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.4, delay: 0.2 }}
-                      />
-                    </motion.div>
-                  )}
-                </motion.div>
-              )}
-            </div>
+      {showRegularListing && (
+        <>
+          <div className="flex justify-end gap-6 mb-3">
+            <button
+              type="button"
+              onClick={() => setViewMode('index')}
+              className={`text-[11px] uppercase tracking-wide hover:text-ink transition-colors ${viewMode === 'index' ? 'text-ink' : 'text-mute'}`}
+            >
+              Index
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('grid')}
+              className={`text-[11px] uppercase tracking-wide hover:text-ink transition-colors ${viewMode === 'grid' ? 'text-ink' : 'text-mute'}`}
+            >
+              Grid
+            </button>
+          </div>
 
-            {/* Other Major Categories - INSTALLATION, SPATIAL AUDIO */}
-            <div className="flex gap-3 md:gap-4">
-              {['INSTALLATION', 'SPATIAL AUDIO'].map((genre) => (
-                <motion.button
-                  key={genre}
-                  onClick={() => {
-                    setSelectedGenre(genre);
-                    setExpandedCategory(null);
-                    setSelectedSubCategory(null);
-                  }}
-                  className={`
-                    relative px-8 py-4 text-base md:text-lg font-bold uppercase tracking-widest
-                    transition-all duration-300 border w-fit
-                    ${selectedGenre === genre
-                      ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
-                      : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
-                    }
-                  `}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {genre}
-                </motion.button>
+          {viewMode === 'index' ? (
+            <div>
+              <div
+                className="hidden md:grid items-center border-b border-line pb-2 mb-1"
+                style={{ gridTemplateColumns: '64px 24px 1fr 260px 140px 64px' }}
+              >
+                <SortHeader label="No." sortKey="no" sort={sort} onSort={toggleSort} />
+                <span />
+                <SortHeader label="Title" sortKey="title" sort={sort} onSort={toggleSort} />
+                <span className="font-mono text-xs text-mute">For</span>
+                <SortHeader label="Cat." sortKey="cat" sort={sort} onSort={toggleSort} />
+                <SortHeader label="Year" sortKey="year" sort={sort} onSort={toggleSort} />
+              </div>
+              {filteredSorted.map((project) => (
+                <IndexRow
+                  key={project.id}
+                  project={project}
+                  language={language}
+                  isOpen={expandedId === project.id && expandedScope === 'all'}
+                  onToggle={() => toggleExpand(project.id, 'all')}
+                  onHoverImage={setHoveredImage}
+                  onOpenVideos={openVideos}
+                />
               ))}
             </div>
-          </div>
-
-          {/* Small Categories - CLIENT WORKS, EDUCATION, ARCHIVE */}
-          <div className="flex flex-wrap gap-3 md:gap-4">
-            {GENRES.filter(g => !['ALL', 'RELEASES', 'INSTALLATION', 'SPATIAL AUDIO'].includes(g)).map((genre) => (
-              <motion.button
-                key={genre}
-                onClick={() => {
-                  setSelectedGenre(genre);
-                  setExpandedCategory(null);
-                  setSelectedSubCategory(null);
-                }}
-                className={`
-                  relative px-4 sm:px-5 md:px-6 py-2 md:py-3 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest
-                  transition-all duration-300 border
-                  ${selectedGenre === genre 
-                    ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
-                    : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
-                  }
-                `}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {genre}
-              </motion.button>
-            ))}
-            
-            {/* ALL button */}
-            <motion.button
-            onClick={() => {
-              setSelectedGenre('ALL');
-              setExpandedCategory(null);
-              setSelectedSubCategory(null);
-            }}
-            className={`
-              relative px-4 sm:px-5 md:px-6 py-2 md:py-3 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest
-              transition-all duration-300 border w-fit
-              ${selectedGenre === 'ALL'
-                ? 'bg-[#1a1a1a] text-[#dfdbd5] border-[#1a1a1a]' 
-                : 'bg-transparent text-[#1a1a1a] border-[#1a1a1a]/20 hover:border-[#1a1a1a]/60'
-              }
-            `}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            ALL
-          </motion.button>
-          </div>
-        </motion.div>
-
-        {/* Project Count */}
-        <motion.div
-          key={selectedGenre}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          className="text-xs font-mono text-[#666] opacity-60"
-        >
-          {t.showingProjects} {filteredProjects.length} {filteredProjects.length === 1 ? t.project : t.projects}
-        </motion.div>
-
-        {/* Genre Descriptions for non-subcategory genres */}
-        {selectedGenre !== 'ALL' && selectedGenre !== 'RELEASES' && GENRE_DESCRIPTIONS[selectedGenre as keyof typeof GENRE_DESCRIPTIONS] && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-sm md:text-base text-[#1a1a1a]/70 leading-relaxed max-w-3xl mt-6"
-          >
-            {GENRE_DESCRIPTIONS[selectedGenre as keyof typeof GENRE_DESCRIPTIONS][language]}
-          </motion.div>
-        )}
-      </motion.div>
-
-      {/* Regular Project Grid - Hidden for PRODUCE, BBCO, and OTHER subcategories */}
-      {!(selectedGenre === 'RELEASES' && (selectedSubCategory === 'PRODUCE' || selectedSubCategory === 'BBCO' || selectedSubCategory === 'OTHER')) && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-6 lg:gap-x-8 gap-y-16 md:gap-y-20 lg:gap-y-24 w-full pb-24 md:pb-32 lg:pb-48 perspective-[2000px] max-w-7xl mx-auto">
-          {filteredProjects.map((project, index) => (
-            <WorkItem 
-              key={`${project.id}-${selectedGenre}`}
-              project={project} 
-              index={index} 
-              isHovered={hoveredProject === project.id}
-              onHover={(id) => setHoveredProject(id)}
-              onProjectClick={handleProjectClick}
-              onVideoOpen={handleCardVideoOpen}
+          ) : (
+            <ProjectGridSection
+              projects={filteredSorted}
+              language={language}
+              columnsClass="grid-cols-2 md:grid-cols-3 xl:grid-cols-4"
+              scope="all"
+              expandedId={expandedScope === 'all' ? expandedId : null}
+              onToggle={(id) => toggleExpand(id, 'all')}
+              onOpenVideos={openVideos}
             />
-          ))}
+          )}
+        </>
+      )}
+
+      {showReleaseSection && (
+        <div className={activeGroup?.key === 'release' ? 'mt-2' : 'mt-16 pt-8 border-t border-line'}>
+          <div className="flex items-baseline justify-between mb-8">
+            <h2 className="text-[11px] uppercase tracking-[0.16em] text-ink">{t.taxRelease}</h2>
+            <span className="font-mono text-xs text-mute">{releaseProjects.length}</span>
+          </div>
+          <div className="flex flex-col divide-y divide-line">
+            {RELEASE_GROUPS.map((group) => {
+              const groupProjects = releaseProjects
+                .filter((p) => releaseGroupOf(p) === group)
+                .sort((a, b) => parseYear(b.year) - parseYear(a.year));
+              if (groupProjects.length === 0) return null;
+              const desc = SUBCATEGORY_DESCRIPTIONS[group]?.[language];
+              const heroImage = RELEASE_GROUP_HERO[group];
+              const gallery = RELEASE_GROUP_GALLERY[group];
+              const scope = `rel:${group}`;
+              return (
+                <div key={group} className="py-8 first:pt-0 last:pb-0">
+                  <div className="flex items-baseline justify-between mb-1">
+                    <h3 className="text-[11px] uppercase tracking-[0.16em] text-ink">{group}</h3>
+                    <span className="font-mono text-xs text-mute">{groupProjects.length}</span>
+                  </div>
+                  {(desc || heroImage) && (
+                    <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:gap-8">
+                      {desc && <p className="text-xs text-mute leading-relaxed max-w-2xl md:flex-1">{desc}</p>}
+                      {heroImage && (
+                        <img src={heroImage} alt={group} className="w-full md:w-[260px] shrink-0 aspect-[4/3] object-cover" />
+                      )}
+                    </div>
+                  )}
+                  {gallery && (
+                    <div className="mb-4 grid grid-cols-1 sm:grid-cols-3">
+                      {gallery.map((img) => (
+                        <img
+                          key={img}
+                          src={img}
+                          alt={group}
+                          className="w-full aspect-[16/10] object-cover border-r border-b border-line last:border-r-0"
+                        />
+                      ))}
+                    </div>
+                  )}
+                  <ProjectGridSection
+                    projects={groupProjects}
+                    language={language}
+                    columnsClass="grid-cols-2 md:grid-cols-4"
+                    scope={scope}
+                    expandedId={expandedScope === scope ? expandedId : null}
+                    onToggle={(id) => toggleExpand(id, scope)}
+                    onOpenVideos={openVideos}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
-      
-      {/* Gymnopedie YouTube Embed for SPATIAL AUDIO */}
-      {selectedGenre === 'SPATIAL AUDIO' && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 mb-16 max-w-5xl mx-auto"
-        >
-          <h3 className="text-2xl md:text-3xl font-serif font-medium mb-6 text-[#1a1a1a]">
-            Eric Satie "Gymnopedie" Full
-          </h3>
-          <div className="aspect-video mb-6">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/azl0h7vc4eE"
-              title="Eric Satie Gymnopedie Full"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-sm text-[#666] leading-relaxed">
-            {language === 'ja' 
-              ? 'ピアノ演奏を「ベース音」「和音」「メロディ」の3つに分けて録音し、360度立体空間内に配置。バイノーラル音声技術により、自動化された動き、距離に基づく音量・EQ調整、トランジェント整形、Ambisonicリバーブを駆使し、あらゆるヘッドフォンで没入型体験を実現。'
-              : 'Piano performance recorded in three separate parts (bass, chords, melody) and positioned in 360° spatial space. Using binaural audio technology with automated movement, distance-based volume/EQ adjustments, transient shaping, and Ambisonic reverb to create an immersive listening experience through any headphones.'}
-          </p>
-        </motion.div>
-      )}
-      
-      {/* Look Up at the Stars YouTube Videos */}
-      {selectedGenre === 'RELEASES' && selectedSubCategory === 'SOLO' && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 mb-16 max-w-5xl mx-auto"
-        >
-          <h3 className="text-2xl md:text-3xl font-serif font-medium mb-6 text-[#1a1a1a]">
-            Look Up at the Stars
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="aspect-video">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/zXDl7wiq-dQ"
-                title="Look Up at the Stars - Video 1"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            <div className="aspect-video">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/kHcXBKJCcP8"
-                title="Look Up at the Stars - Video 2"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            <div className="aspect-video">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/lXkOnMQLFsg"
-                title="Look Up at the Stars - Video 3"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </motion.div>
-      )}
 
-      {/* Solo Piano Works YouTube Videos */}
-      {selectedGenre === 'RELEASES' && selectedSubCategory === 'SOLO' && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 mb-12 max-w-5xl mx-auto"
-        >
-          <h3 className="text-2xl md:text-3xl font-serif font-medium mb-6 text-[#1a1a1a]">
-            Solo Piano Works
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="aspect-video">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/bBCqNJIW4GQ"
-                title="Solo Piano Works - Video 1"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            <div className="aspect-video">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/QvMYUWoV2jU"
-                title="Solo Piano Works - Video 2"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            <div className="aspect-video">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/E-CZp4zW1oI"
-                title="Solo Piano Works - Video 3"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            <div className="aspect-video">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/rIQDM58aX-Y"
-                title="Solo Piano Works - Video 4"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Solo Piano Works SoundCloud Embed */}
-      {selectedGenre === 'RELEASES' && selectedSubCategory === 'SOLO' && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-0 mb-24 max-w-5xl mx-auto"
-        >
-          <div className="w-full">
-            <iframe 
-              width="100%" 
-              height="450" 
-              scrolling="no" 
-              frameBorder="no" 
-              allow="autoplay" 
-              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A133465326&color=%230c6689&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-            />
-          </div>
-        </motion.div>
-      )}
-      
-      {/* UN.a YouTube Videos */}
-      {selectedGenre === 'RELEASES' && selectedSubCategory === 'UN.a' && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 mb-24 max-w-5xl mx-auto"
-        >
-          <h3 className="text-2xl md:text-3xl font-serif font-medium mb-6 text-[#1a1a1a]">
-            Videos
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="text-sm font-medium mb-2 text-[#666]">UN.a / Embrace</h4>
-              <div className="aspect-video">
-                <iframe 
-                  width="100%" 
-                  height="100%" 
-                  src="https://www.youtube.com/embed/P7QPGLEQoOM" 
-                  title="UN.a Embrace"
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen
-                />
-              </div>
-            </div>
-            <div>
-              <h4 className="text-sm font-medium mb-2 text-[#666]">UN.a/COLOR Release Party</h4>
-              <div className="aspect-video">
-                <iframe 
-                  width="100%" 
-                  height="100%" 
-                  src="https://www.youtube.com/embed/Rvki8xfQNBw" 
-                  title="UN.a COLOR Release Party"
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen
-                />
-              </div>
-            </div>
-            <div>
-              <h4 className="text-sm font-medium mb-2 text-[#666]">Kenji Hirano / UN.a COLOR</h4>
-              <div className="aspect-video">
-                <iframe 
-                  width="100%" 
-                  height="100%" 
-                  src="https://www.youtube.com/embed/U9kxsHOumeo" 
-                  title="Kenji Hirano UN.a COLOR"
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen
-                />
-              </div>
-            </div>
-            <div>
-              <h4 className="text-sm font-medium mb-2 text-[#666]">UN.a/Intersecting</h4>
-              <div className="aspect-video">
-                <iframe 
-                  width="100%" 
-                  height="100%" 
-                  src="https://www.youtube.com/embed/QH2ls79_ImA" 
-                  title="UN.a Intersecting"
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen
-                />
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
-      
-      {/* PRODUCE Section with Artist Names and Videos */}
-      {selectedGenre === 'RELEASES' && selectedSubCategory === 'PRODUCE' && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 mb-24"
-        >
-          {/* Erfu Shin */}
-          <div className="mb-20">
-            <h3 className="text-3xl md:text-4xl font-serif font-medium mb-8 text-[#1a1a1a]">
-              Erfu Shin
-            </h3>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {filteredProjects
-                .filter(project => project.artistName === 'Erfu Shin')
-                .map((project, index) => (
-                  <WorkItem
-                    key={project.id}
-                    project={project}
-                    index={index}
-                    isHovered={hoveredProject === project.id}
-                    onProjectClick={handleProjectClick}
-                    onVideoOpen={handleCardVideoOpen}
-                  />
-                ))}
-            </div>
-            {/* Erfu Shin Videos */}
-            <div className="mt-8">
-              <h4 className="text-lg font-medium mb-4 text-[#666]">Related Videos</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/avpQVtT7vyk" 
-                    title="Erfu Shin - Supernal Tears 1"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/qXC4brVqLXs" 
-                    title="Erfu Shin - Supernal Tears 2"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Utae */}
-          <div className="mb-20">
-            <h3 className="text-3xl md:text-4xl font-serif font-medium mb-8 text-[#1a1a1a]">
-              Utae
-            </h3>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {filteredProjects
-                .filter(project => project.artistName === 'Utae')
-                .map((project, index) => (
-                  <WorkItem
-                    key={project.id}
-                    project={project}
-                    index={index}
-                    isHovered={hoveredProject === project.id}
-                    onProjectClick={handleProjectClick}
-                    onVideoOpen={handleCardVideoOpen}
-                  />
-                ))}
-            </div>
-            {/* Utae Videos */}
-            <div className="mt-8">
-              <h4 className="text-lg font-medium mb-4 text-[#666]">Related Videos</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/m4J0QYEQ9Sk" 
-                    title="Utae - Supersonic"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/NsjZdpWejYg" 
-                    title="Utae - Victoria"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Kazuko Kitatani */}
-          <div className="mb-20">
-            <h3 className="text-3xl md:text-4xl font-serif font-medium mb-8 text-[#1a1a1a]">
-              北谷和子 (Kazuko Kitatani)
-            </h3>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {filteredProjects
-                .filter(project => project.artistName === 'Kazuko Kitatani')
-                .map((project, index) => (
-                  <WorkItem
-                    key={project.id}
-                    project={project}
-                    index={index}
-                    isHovered={hoveredProject === project.id}
-                    onProjectClick={handleProjectClick}
-                    onVideoOpen={handleCardVideoOpen}
-                  />
-                ))}
-            </div>
-            {/* Kazuko Kitatani Video */}
-            <div className="mt-8">
-              <h4 className="text-lg font-medium mb-4 text-[#666]">Related Video</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/ytm5zN3xz_A" 
-                    title="Kazuko Kitatani - Memories"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
-      
-      {/* BBCO Section with Project Cards and Videos */}
-      {selectedGenre === 'RELEASES' && selectedSubCategory === 'BBCO' && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 mb-24"
-        >
-          {/* SITA */}
-          <div className="mb-20">
-            <h3 className="text-3xl md:text-4xl font-serif font-medium mb-8 text-[#1a1a1a]">
-              SITA
-            </h3>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              {filteredProjects
-                .filter(project => project.id === '24')
-                .map((project, index) => (
-                  <WorkItem
-                    key={project.id}
-                    project={project}
-                    index={index}
-                    isHovered={hoveredProject === project.id}
-                    onProjectClick={handleProjectClick}
-                    onVideoOpen={handleCardVideoOpen}
-                  />
-                ))}
-            </div>
-            {/* SITA Videos */}
-            <div className="mt-8">
-              <h4 className="text-lg font-medium mb-4 text-[#666]">Performance Highlights</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/3TUAD9bo6Ko" 
-                    title="SITA - Performance Highlight 1"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/beNtxBeqfwE" 
-                    title="SITA - Performance Highlight 2"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/NJ2_X9Ybq-I" 
-                    title="SITA - Performance Highlight 3"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/JeRUBW1QWOQ" 
-                    title="SITA - Performance Highlight 4"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-              {/* SITA Gallery Images */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {SITA_GALLERY_IMAGES.map((image, index) => (
-                  <img 
-                    key={index}
-                    src={image} 
-                    alt={`SITA Gallery ${index + 1}`} 
-                    className="w-full h-auto rounded-lg shadow-lg"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          {/* 2nd Album */}
-          <div className="mb-20">
-            <h3 className="text-3xl md:text-4xl font-serif font-medium mb-8 text-[#1a1a1a]">
-              2nd Album (In Development)
-            </h3>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              {filteredProjects
-                .filter(project => project.id === '25')
-                .map((project, index) => (
-                  <WorkItem
-                    key={project.id}
-                    project={project}
-                    index={index}
-                    isHovered={hoveredProject === project.id}
-                    onProjectClick={handleProjectClick}
-                    onVideoOpen={handleCardVideoOpen}
-                  />
-                ))}
-            </div>
-            {/* 2nd Album Videos */}
-            <div className="mt-8">
-              <h4 className="text-lg font-medium mb-4 text-[#666]">Demo Videos</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/S8RzBlb0hQo" 
-                    title="Ravel: Bolero - Arr. For an Imaginary Asia"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/s6yengQxH74" 
-                    title="For BBCO demo"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/qZHZwPZqjSk" 
-                    title="Symphony for an Imagined Asia"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
-      
-      {/* OTHER Section with Artist Names and Embedded Content */}
-      {selectedGenre === 'RELEASES' && selectedSubCategory === 'OTHER' && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 mb-24"
-        >
-          {/* JOY-S Hero Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="mb-8 max-w-md mx-auto"
-          >
-            <img 
-              src={JOYS_HERO_IMAGE} 
-              alt="JOY-S" 
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
-          </motion.div>
-
-          {/* JOY-S */}
-          <div className="mb-20">
-            <h3 className="text-3xl md:text-4xl font-serif font-medium mb-4 text-[#1a1a1a]">
-              JOY-S
-            </h3>
-            <p className="text-sm text-[#666] mb-8">Classical Pop Unit</p>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-              {filteredProjects
-                .filter(project => project.artistName === 'JOY-S')
-                .map((project, index) => (
-                  <WorkItem
-                    key={project.id}
-                    project={project}
-                    index={index}
-                    isHovered={hoveredProject === project.id}
-                    onProjectClick={handleProjectClick}
-                    onVideoOpen={handleCardVideoOpen}
-                  />
-                ))}
-            </div>
-            {/* JOY-S YouTube Videos */}
-            <div className="mt-8 mb-8">
-              <h4 className="text-lg font-medium mb-4 text-[#666]">Videos</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/alolSBasznk" 
-                    title="JOY-S - Red Thread"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/QKwqqkYws_s" 
-                    title="JOY-S Video 2"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-                <div className="aspect-video">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/zGIbyx3Sx34" 
-                    title="JOY-S Video 3"
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            </div>
-            {/* JOY-S SoundCloud */}
-            <div className="mt-8">
-              <h4 className="text-lg font-medium mb-4 text-[#666]">BLEU Teaser</h4>
-              <iframe 
-                width="100%" 
-                height="166" 
-                scrolling="no" 
-                frameBorder="no" 
-                allow="autoplay" 
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/208092275&color=%230c6689&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-              />
-            </div>
-          </div>
-        </motion.div>
-      )}
-
-      {/* More videos — the rest of the 58-video catalogue that isn't tied to
-          a specific Work entry (no workId, no title match). Folded in here
-          when /video was retired as a standalone page, so nothing is lost. */}
+      {/* Leftover videos — the rest of the 58-video catalogue that isn't tied
+          to a specific Work entry. Grouped by the same taxonomy tiers as the
+          rest of the page (folded in here when /video was retired as a
+          standalone page, per lib/videos.ts). Each tile shows its own title
+          and opens just that video, not the whole group. */}
       {leftoverVideoGroups.length > 0 && (
-        <div className="mt-16 md:mt-24 pt-12 border-t border-[#1a1a1a]/10 max-w-7xl mx-auto">
+        <div className="mt-16 md:mt-24 pt-12 border-t border-line">
           <div className="flex items-baseline justify-between mb-8">
-            <h2 className="text-2xl md:text-3xl font-serif italic text-[#1a1a1a]">{t.videoTitle}</h2>
-            <span className="text-xs font-mono text-[#666]">{leftoverVideoCount}</span>
+            <h2 className="text-[11px] uppercase tracking-[0.16em] text-ink">{t.videoTitle}</h2>
+            <span className="font-mono text-xs text-mute">{leftoverVideoCount}</span>
           </div>
           <div className="flex flex-col gap-10">
             {leftoverVideoGroups.map((group) => (
               <div key={group.key}>
-                <h4 className="text-sm font-bold uppercase tracking-widest mb-4 text-[#666]">
+                <h4 className="text-[11px] uppercase tracking-[0.16em] text-mute mb-4">
                   {group.literalLabel ?? t[group.labelKey!]}
                 </h4>
                 <div className="flex flex-wrap gap-4">
@@ -1049,22 +388,25 @@ const WorkGrid: React.FC = () => {
                     <button
                       key={video.id}
                       type="button"
-                      onClick={() => openVideoModal(group.literalLabel ?? t[group.labelKey!], group.videos)}
+                      onClick={() => openVideos(video.title, [video])}
                       aria-label={`Play video: ${video.title}`}
-                      className="relative w-40 md:w-48 aspect-video overflow-hidden border border-[#1a1a1a]/10 bg-[#e0e0e0] text-left group/video focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a1a1a]"
+                      className="relative w-40 md:w-48 text-left group/video focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
                     >
-                      <img
-                        src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
-                        alt=""
-                        aria-hidden="true"
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover/video:scale-105"
-                      />
-                      <span className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover/video:bg-black/40 transition-colors">
-                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 text-white drop-shadow-md" aria-hidden="true">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </span>
+                      <div className="relative aspect-video overflow-hidden border border-line bg-line">
+                        <img
+                          src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+                          alt=""
+                          aria-hidden="true"
+                          loading="lazy"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover/video:scale-105"
+                        />
+                        <span className="absolute inset-0 flex items-center justify-center bg-ink/25 group-hover/video:bg-ink/40 transition-colors">
+                          <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 text-paper drop-shadow-md" aria-hidden="true">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </span>
+                      </div>
+                      <p className="mt-1.5 text-xs text-mute leading-snug line-clamp-2">{video.title}</p>
                     </button>
                   ))}
                 </div>
@@ -1074,290 +416,205 @@ const WorkGrid: React.FC = () => {
         </div>
       )}
 
-      {/* Video Modal */}
       <VideoModal
-        isOpen={videoModalOpen}
-        onClose={() => setVideoModalOpen(false)}
-        videos={selectedVideos}
-        externalLink={modalExternalLink}
-        title={modalTitle}
-        galleryImages={modalGalleryImages}
-        description={modalDescription}
+        isOpen={videoModal.open}
+        onClose={() => setVideoModal((v) => ({ ...v, open: false }))}
+        videos={videoModal.videos}
+        title={videoModal.title}
+        externalLink={videoModal.externalLink}
       />
     </div>
   );
 };
 
-interface WorkItemProps {
-  project: Project;
-  index: number;
-  isHovered: boolean;
-  onProjectClick: (project: Project) => void;
-  onHover: (id: string | null) => void;
-  onVideoOpen?: (project: Project, videos: ResolvedVideo[]) => void;
+const SortHeader: React.FC<{ label: string; sortKey: SortKey; sort: SortState; onSort: (k: SortKey) => void }> = ({
+  label,
+  sortKey,
+  sort,
+  onSort,
+}) => (
+  <button
+    type="button"
+    onClick={() => onSort(sortKey)}
+    className={`text-left font-mono text-xs uppercase tracking-wide hover:text-ink transition-colors ${sort.key === sortKey ? 'text-ink' : 'text-mute'}`}
+  >
+    {label}
+    {sort.key === sortKey ? (sort.dir === 'asc' ? ' ↑' : ' ↓') : ''}
+  </button>
+);
+
+interface IndexRowProps {
+  project: Project & { indexNo: number };
+  language: 'en' | 'ja' | 'zh';
+  isOpen: boolean;
+  onToggle: () => void;
+  onHoverImage: (src: string | null) => void;
+  onOpenVideos: (title: string, videos: ResolvedVideo[], externalLink?: string) => void;
 }
 
-const WorkItem: React.FC<WorkItemProps> = ({
-  project,
-  index,
-  isHovered,
-  onHover,
-  onProjectClick,
-  onVideoOpen
-}) => {
-  const { language } = useLanguage();
-  const [imageLoaded, setImageLoaded] = React.useState(false);
-  const [imageError, setImageError] = React.useState(false);
-  const projectVideos = React.useMemo(() => getProjectVideos(project), [project]);
-
-  React.useEffect(() => {
-    setImageLoaded(false);
-    setImageError(false);
-  }, [project.id]);
-
-  const handleClick = () => {
-    onProjectClick(project);
-  };
-
-  const handleVideoThumbnailClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onVideoOpen?.(project, projectVideos);
-  };
-
-  const handleVideoThumbnailKeyDown = (e: React.KeyboardEvent) => {
-    // Stop the card's own click handler from also firing on Enter/Space.
-    e.stopPropagation();
-  };
-
-  const handleImageLoad = async (e: React.SyntheticEvent<HTMLImageElement>) => {
-    try {
-      await e.currentTarget.decode();
-      setImageLoaded(true);
-    } catch {
-      setImageLoaded(true);
-    }
-  };
+const IndexRow: React.FC<IndexRowProps> = ({ project, language, isOpen, onToggle, onHoverImage, onOpenVideos }) => {
+  const t = translations[language];
+  const title = localizedTitle(project.title, language);
+  const no = String(project.indexNo).padStart(3, '0');
+  const videoCount = getProjectVideos(project).length;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.6, delay: Math.min(index * 0.03, 0.3), ease: [0.16, 1, 0.3, 1] }}
-      className={`relative group cursor-pointer flex flex-col ${index % 2 !== 0 ? 'md:mt-32' : ''}`}
-      onMouseEnter={() => onHover(project.id)}
-      onMouseLeave={() => onHover(null)}
-      onClick={handleClick}
-      style={{ perspective: "1000px", willChange: "auto" }}
-    >
-      {/* 3D Acoustic Block Container */}
-      <motion.div 
-        className="relative w-full aspect-square mb-6 transform-style-3d overflow-hidden"
-        animate={{ 
-            rotateY: [0, -1.5, 0],
-            rotateX: [0, 0.8, 0],
-            y: [0, 3, 0] 
+    <div className="border-b border-line">
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={onToggle}
+        onMouseEnter={() => onHoverImage(project.image)}
+        onMouseLeave={() => onHoverImage(null)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onToggle();
+          }
         }}
-        transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: index * 0.4
-        }}
-        whileHover={{
-            scale: 1.03, 
-            y: -12,
-            rotateY: 0,
-            rotateX: 0,
-            transition: {
-                duration: 0.5, ease: "circOut"
-            }
-        }}
+        className="cursor-pointer text-mute hover:text-ink transition-colors"
       >
-        {/* Shadow Layer - Breathing */}
-        <motion.div 
-             className="absolute inset-0 bg-black opacity-5 shadow-2xl"
-             style={{ 
-                 transform: "translateZ(-50px) translateX(25px) translateY(25px)",
-                 filter: "blur(18px)"
-             }}
-             animate={{ opacity: [0.05, 0.12, 0.05], scale: [1, 1.08, 1] }}
-             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
-        />
-
-        {/* Depth Layer - Gradient Animation */}
-         <motion.div 
-             className="absolute inset-0 border border-white/50"
-             style={{ 
-                 transform: "translateZ(-25px) translateX(12px) translateY(12px)",
-                 backgroundSize: "400% 400%",
-                 background: "linear-gradient(120deg, #d8d8d8, #f5f5f5, #e8e8e8, #dadada, #d8d8d8)"
-             }}
-             animate={{
-                backgroundPosition: ["0% 0%", "100% 50%", "50% 100%", "0% 0%"]
-             }}
-             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        />
-
-        {/* Main Surface */}
-        <motion.div 
-            className="absolute inset-0 bg-[#f2f2f2] overflow-hidden border border-white/70 shadow-2xl"
-            style={{ transform: "translateZ(0px)" }}
-        >
-            {/* Loading placeholder */}
-            {!imageLoaded && !imageError && (
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300" />
-            )}
-            
-            <img
-                key={`project-${project.id}-${project.image}`}
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover"
-                style={{ 
-                    filter: isHovered ? "grayscale(0%) contrast(1.08) brightness(1)" : "grayscale(15%) contrast(1.05) brightness(1.08)",
-                    opacity: imageLoaded && !imageError ? (isHovered ? 1 : 0.92) : 0,
-                    mixBlendMode: "normal",
-                    imageRendering: "-webkit-optimize-contrast",
-                    backfaceVisibility: "hidden",
-                    transform: "translate3d(0,0,0)"
-                }}
-                onLoad={handleImageLoad}
-                onError={() => setImageError(true)}
-                loading="eager"
-                decoding="sync"
-            />
-            
-            {/* Breathing Overlay */}
-            <motion.div 
-                className="absolute inset-0 bg-white"
-                animate={{ opacity: [0, 0.18, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
-            />
-
-            {/* Shimmer Line Overlay */}
-            <motion.div 
-                className="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/30 to-transparent"
-                animate={{ x: ['-100%', '100%'] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 + index }}
-            />
-
-            {/* Shimmer Effect */}
-            <motion.div 
-                className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent pointer-events-none"
-                animate={{ 
-                  backgroundPosition: ['0% 0%', '100% 100%'],
-                  opacity: [0.3, 0.6, 0.3]
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
-            />
-
-            {/* Genre Badge */}
-            <div className="absolute top-4 left-4 text-[9px] font-bold uppercase tracking-widest font-mono text-white bg-[#1a1a1a]/80 px-3 py-2 backdrop-blur-md border border-white/10 shadow-lg">
-              {project.genre}
-            </div>
-
-            {/* Special Page Badge for Sen no Tsudoi and Distant Echo */}
-            {(project.id === '7' || project.id === '4-2') && (
-              <motion.div
-                className="absolute top-16 left-4 text-[9px] font-bold uppercase tracking-widest font-mono text-white bg-gradient-to-r from-purple-600 to-blue-600 px-3 py-2 backdrop-blur-md border border-white/30 shadow-lg"
-                animate={{ 
-                  boxShadow: ['0 0 10px rgba(147, 51, 234, 0.5)', '0 0 20px rgba(147, 51, 234, 0.8)', '0 0 10px rgba(147, 51, 234, 0.5)']
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                ✨ Special Page
-              </motion.div>
-            )}
-
-            {/* Link Indicator */}
-            {project.link && (
-              <motion.div 
-                className="absolute bottom-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center border border-[#1a1a1a]/10"
-                initial={{ scale: 0, opacity: 0 }}
-                whileHover={{ scale: 1.2, opacity: 1 }}
-                animate={{ 
-                  scale: isHovered ? 1 : 0,
-                  opacity: isHovered ? 1 : 0
-                }}
-                transition={{ duration: 0.3, ease: "backOut" }}
-              >
-                <svg className="w-5 h-5 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </motion.div>
-            )}
-        </motion.div>
-
-      </motion.div>
-
-      <div className="flex flex-col pt-3 md:pt-4 border-t border-[#1a1a1a]/10 border-dashed">
-        <div className="flex justify-between items-baseline mb-1 md:mb-2 opacity-100">
-            <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase font-mono text-[#666]"><ScrambleText text={project.category} useHover={false} /></span>
-            <span className="text-[10px] md:text-xs font-mono bg-[#e0e0e0] text-[#1a1a1a] px-1 rounded-sm">{project.year}</span>
+        <div className="hidden md:grid items-center h-[56px]" style={{ gridTemplateColumns: '64px 24px 1fr 260px 140px 64px' }}>
+          <span className="font-mono text-xs">{no}</span>
+          <span className="font-mono text-xs" aria-hidden={videoCount === 0}>
+            {videoCount > 0 ? '▶' : ''}
+          </span>
+          <span className="font-serif text-xl overflow-hidden text-ellipsis whitespace-nowrap pr-4">{title}</span>
+          <span className="font-mono text-xs overflow-hidden text-ellipsis whitespace-nowrap pr-4 text-mute">{project.category}</span>
+          <span className="font-mono text-xs overflow-hidden text-ellipsis whitespace-nowrap pr-4">{genreLabel(project.genre, t)}</span>
+          <span className="font-mono text-xs">{project.year}</span>
         </div>
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium tracking-tight group-hover:translate-x-1 transition-transform duration-300 text-[#1a1a1a]">
-            {typeof project.title === 'string' ? project.title : project.title[language]}
-        </h2>
-        <motion.div 
-          className="overflow-hidden"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0.6, height: 'auto' }}
-        >
-            <p className="mt-3 md:mt-4 text-xs md:text-sm max-w-md leading-relaxed opacity-70 text-[#333]">
-                {typeof project.description === 'string' ? project.description : project.description[language]}
+        <div className="md:hidden flex items-start gap-3 h-[72px] py-2">
+          <span className="font-mono text-[11px] pt-1 shrink-0">{no}</span>
+          <div className="min-w-0 flex-1">
+            <p className="font-serif text-[17px] overflow-hidden text-ellipsis whitespace-nowrap">{title}</p>
+            <p className="font-mono text-xs overflow-hidden text-ellipsis whitespace-nowrap">
+              {videoCount > 0 && <span aria-hidden="true">{'▶ '}</span>}
+              {project.category} · {genreLabel(project.genre, t)} · {project.year}
             </p>
-        </motion.div>
-
-        {/* Representative video — thumbnail with a play affordance; clicking it
-            opens VideoModal with every video for this project. Not an
-            autoplaying embed, and does not affect the card's own click. */}
-        {projectVideos.length > 0 && (
-          <button
-            type="button"
-            onClick={handleVideoThumbnailClick}
-            onKeyDown={handleVideoThumbnailKeyDown}
-            aria-label={
-              projectVideos.length > 1
-                ? `Play video: ${projectVideos[0].title} (+${projectVideos.length - 1} more)`
-                : `Play video: ${projectVideos[0].title}`
-            }
-            className="relative mt-4 w-full max-w-[220px] aspect-video overflow-hidden border border-[#1a1a1a]/10 bg-[#e0e0e0] text-left group/video focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a1a1a]"
-          >
-            <img
-              src={`https://i.ytimg.com/vi/${projectVideos[0].id}/hqdefault.jpg`}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              className="w-full h-full object-cover transition-transform duration-300 group-hover/video:scale-105"
-            />
-            <span className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover/video:bg-black/40 transition-colors">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-9 h-9 text-white drop-shadow-md" aria-hidden="true">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </span>
-            {projectVideos.length > 1 && (
-              <span className="absolute bottom-1.5 right-1.5 text-[10px] font-mono font-bold bg-black/70 text-white px-1.5 py-0.5 rounded-sm">
-                +{projectVideos.length - 1}
-              </span>
-            )}
-          </button>
-        )}
-
-        {/* SoundCloud Embed */}
-        {project.embedCode && (
-          <motion.div 
-            className="mt-6"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <div dangerouslySetInnerHTML={{ __html: project.embedCode }} />
-          </motion.div>
-        )}
+          </div>
+        </div>
       </div>
-    </motion.div>
+      <div
+        className="grid transition-[grid-template-rows] duration-[320ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] motion-reduce:duration-0"
+        style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
+      >
+        <div className="overflow-hidden">
+          <div className="py-6 md:py-8 grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 md:gap-10 text-ink">
+            <img src={project.image} alt="" className="w-full aspect-[4/3] object-cover" />
+            <ProjectDetail project={project} language={language} onOpenVideos={onOpenVideos} />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
+
+const ProjectDetail: React.FC<{
+  project: Project;
+  language: 'en' | 'ja' | 'zh';
+  onOpenVideos: (title: string, videos: ResolvedVideo[], externalLink?: string) => void;
+}> = ({ project, language, onOpenVideos }) => {
+  const description = localizedText(project.description, language);
+  const videos = getProjectVideos(project);
+  const extra = DETAIL_EXTRAS[project.id];
+  const embeds = EXTRA_EMBEDS[project.id] ?? [];
+  const linkClass = 'text-[11px] uppercase tracking-wide text-mute hover:text-ink transition-colors';
+  const title = localizedTitle(project.title, language);
+
+  return (
+    <div className="flex flex-col gap-4 max-w-2xl">
+      <p className="text-sm leading-relaxed">{description}</p>
+      {project.tags && project.tags.length > 0 && <p className="font-mono text-xs text-mute">{project.tags.join(', ')}</p>}
+      <div className="flex flex-wrap gap-x-6 gap-y-2">
+        {videos.length > 0 && (
+          <button type="button" onClick={() => onOpenVideos(title, videos, project.externalLink)} className={linkClass}>
+            Watch videos ({videos.length})
+          </button>
+        )}
+        {project.link && <LinkTo href={project.link} className={linkClass} />}
+        {project.externalLink && (
+          <a href={project.externalLink} target="_blank" rel="noopener noreferrer" className={linkClass}>
+            More info
+          </a>
+        )}
+      </div>
+      {extra?.images && extra.images.length > 0 && (
+        <div className="grid grid-cols-2 gap-2 mt-2">
+          {extra.images.map((img, i) => (
+            <img key={i} src={img} alt="" className="w-full aspect-[4/3] object-cover" />
+          ))}
+        </div>
+      )}
+      {extra?.notes?.map((note, i) => (
+        <div key={i}>
+          <p className="font-mono text-[10px] uppercase tracking-wide text-mute mb-1">{note.label}</p>
+          <p className="text-xs leading-relaxed text-mute whitespace-pre-line">{note.text[language]}</p>
+        </div>
+      ))}
+      {embeds.map((embed, i) => (
+        <div key={i}>
+          <p className="font-mono text-[10px] uppercase tracking-wide text-mute mb-1">{embed.title}</p>
+          <iframe width="100%" height="120" scrolling="no" frameBorder={0} allow="autoplay" src={embed.embedSrc} title={embed.title} />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+interface ProjectGridSectionProps {
+  projects: Project[];
+  language: 'en' | 'ja' | 'zh';
+  columnsClass: string;
+  scope: string;
+  expandedId: string | null;
+  onToggle: (id: string) => void;
+  onOpenVideos: (title: string, videos: ResolvedVideo[], externalLink?: string) => void;
+}
+
+const ProjectGridSection: React.FC<ProjectGridSectionProps> = ({ projects, language, columnsClass, expandedId, onToggle, onOpenVideos }) => (
+  <div className={`grid ${columnsClass}`}>
+    {projects.map((project) => (
+      <React.Fragment key={project.id}>
+        <GridCard project={project} language={language} onClick={() => onToggle(project.id)} />
+        {expandedId === project.id && (
+          <div style={{ gridColumn: '1 / -1' }} className="bg-paper border-b border-line">
+            <div className="py-6 md:py-8 px-3 grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 md:gap-10 text-ink">
+              <img src={project.image} alt="" className="w-full aspect-[4/3] object-cover" />
+              <ProjectDetail project={project} language={language} onOpenVideos={onOpenVideos} />
+            </div>
+          </div>
+        )}
+      </React.Fragment>
+    ))}
+  </div>
+);
+
+const GridCard: React.FC<{ project: Project; language: 'en' | 'ja' | 'zh'; onClick: () => void }> = ({ project, language, onClick }) => (
+  <div
+    role="button"
+    tabIndex={0}
+    onClick={onClick}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onClick();
+      }
+    }}
+    className="bg-paper cursor-pointer border-r border-b border-line"
+  >
+    <div className="aspect-[4/3] overflow-hidden">
+      <img src={project.image} alt="" className="w-full h-full object-cover" />
+    </div>
+    <div className="px-3 py-2 border-t border-line">
+      <p className="font-serif text-[17px] leading-tight overflow-hidden text-ellipsis whitespace-nowrap text-ink">
+        {localizedTitle(project.title, language)}
+      </p>
+      <p className="font-mono text-xs text-mute overflow-hidden text-ellipsis whitespace-nowrap">
+        {project.category} · {project.year}
+      </p>
+    </div>
+  </div>
+);
 
 export default WorkGrid;

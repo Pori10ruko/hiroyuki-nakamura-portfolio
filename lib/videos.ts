@@ -58,6 +58,49 @@ const INFERRED_WORK_ID: Record<string, string> = {
   'lI7Rq58b2Ys': '21',  // "Piano & Live Painting Concert 'Look Up At The Stars'" -> album of same title
 };
 
+// Per-project videos that exist only as hard-coded iframe blocks in the
+// pre-refactor WorkGrid.tsx (Look Up at the Stars / UN.a / JOY-S) and are not
+// part of the extracted VIDEOS catalogue in constants.ts. Read verbatim off
+// _spec/live.js's own per-project video map (`fh`) so this is production
+// fact, not invention — kept here rather than in constants.ts for the same
+// reason as INFERRED_WORK_ID above. These are exactly the 10 video ids that
+// were previously reachable only through WorkGrid's hard-coded sections.
+const EXTRA_VIDEOS: Record<string, ResolvedVideo[]> = {
+  '21': [
+    { id: 'zXDl7wiq-dQ', title: 'Look Up at the Stars - Video 1' },
+    { id: 'kHcXBKJCcP8', title: 'Look Up at the Stars - Video 2' },
+    { id: 'lXkOnMQLFsg', title: 'Look Up at the Stars - Video 3' },
+  ],
+  '25-2': [{ id: 'P7QPGLEQoOM', title: 'UN.a Embrace' }],
+  '26': [{ id: 'QH2ls79_ImA', title: 'UN.a Intersecting' }],
+  '27': [
+    { id: 'Rvki8xfQNBw', title: 'UN.a/COLOR Release Party' },
+    { id: 'U9kxsHOumeo', title: 'Kenji Hirano / UN.a COLOR' },
+  ],
+  '39-2': [{ id: 'alolSBasznk', title: 'JOY-S - Red Thread' }],
+  '39': [
+    { id: 'QKwqqkYws_s', title: 'JOY-S Video 2' },
+    { id: 'zGIbyx3Sx34', title: 'JOY-S Video 3' },
+  ],
+};
+
+// Non-YouTube embeds tied to a specific project (SoundCloud etc.) — also
+// read off _spec/live.js (`$v`). Only one entry in production: JOY-S's BLEU
+// Teaser.
+export interface ProjectEmbed {
+  title: string;
+  embedSrc: string;
+}
+export const EXTRA_EMBEDS: Record<string, ProjectEmbed[]> = {
+  '39': [
+    {
+      title: 'BLEU Teaser',
+      embedSrc:
+        'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/208092275&color=%230c6689&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true',
+    },
+  ],
+};
+
 function effectiveWorkId(v: VideoEntry): string | undefined {
   return v.workId ?? INFERRED_WORK_ID[v.id];
 }
@@ -80,10 +123,11 @@ export function getProjectVideos(project: Project): ResolvedVideo[] {
     title: v.title,
     channel: v.channel,
   }));
+  const extra = EXTRA_VIDEOS[project.id] ?? [];
 
   const seen = new Set<string>();
   const merged: ResolvedVideo[] = [];
-  for (const v of [...own, ...matched]) {
+  for (const v of [...own, ...matched, ...extra]) {
     if (seen.has(v.id)) continue;
     if (!isPublicVideo(v.id)) continue; // 限定公開は出さない
     seen.add(v.id);
