@@ -7,6 +7,7 @@ import ScrambleText from './ScrambleText';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../translations';
 import VideoModal from './VideoModal.tsx';
+import { getProjectVideos, getLeftoverVideoGroups, ResolvedVideo } from '../lib/videos';
 
 const WorkGrid: React.FC = () => {
   const { language } = useLanguage();
@@ -106,6 +107,42 @@ const WorkGrid: React.FC = () => {
       }
     }
   };
+
+  // Opens the video modal for an arbitrary title + video list. Kept separate
+  // from handleProjectClick so the card's existing whole-card click behavior
+  // (external link / legacy inline modal) is unchanged.
+  const openVideoModal = (title: string, videos: ResolvedVideo[], externalLink?: string) => {
+    setSelectedVideos(videos.map(({ id, title }) => ({ id, title })));
+    setModalExternalLink(externalLink);
+    setModalTitle(title);
+    setModalGalleryImages(undefined);
+    setModalDescription(undefined);
+    setVideoModalOpen(true);
+  };
+
+  // Used by the representative-video thumbnail on each Work card.
+  const handleCardVideoOpen = (project: Project, videos: ResolvedVideo[]) => {
+    const title = typeof project.title === 'string' ? project.title : project.title[language];
+    if (project.id === '24') {
+      setSelectedVideos(videos.map(({ id, title }) => ({ id, title })));
+      setModalExternalLink(project.externalLink);
+      setModalTitle(title);
+      setModalGalleryImages(SITA_GALLERY_IMAGES);
+      setModalDescription(SITA_DESCRIPTIONS[language]);
+      setVideoModalOpen(true);
+      return;
+    }
+    openVideoModal(title, videos, project.externalLink);
+  };
+
+  // Videos from the 58-entry catalogue that don't belong to any project
+  // (no workId, no title-based inference) — grouped so nothing is lost when
+  // the standalone /video page is folded into Work. See lib/videos.ts.
+  const leftoverVideoGroups = useMemo(() => getLeftoverVideoGroups(), []);
+  const leftoverVideoCount = useMemo(
+    () => leftoverVideoGroups.reduce((sum, g) => sum + g.videos.length, 0),
+    [leftoverVideoGroups]
+  );
 
   return (
     <div className="w-full min-h-screen px-4 md:px-12 py-32 text-[#1a1a1a]">
@@ -359,6 +396,7 @@ const WorkGrid: React.FC = () => {
               isHovered={hoveredProject === project.id}
               onHover={(id) => setHoveredProject(id)}
               onProjectClick={handleProjectClick}
+              onVideoOpen={handleCardVideoOpen}
             />
           ))}
         </div>
@@ -619,6 +657,7 @@ const WorkGrid: React.FC = () => {
                     index={index}
                     isHovered={hoveredProject === project.id}
                     onProjectClick={handleProjectClick}
+                    onVideoOpen={handleCardVideoOpen}
                   />
                 ))}
             </div>
@@ -667,6 +706,7 @@ const WorkGrid: React.FC = () => {
                     index={index}
                     isHovered={hoveredProject === project.id}
                     onProjectClick={handleProjectClick}
+                    onVideoOpen={handleCardVideoOpen}
                   />
                 ))}
             </div>
@@ -715,6 +755,7 @@ const WorkGrid: React.FC = () => {
                     index={index}
                     isHovered={hoveredProject === project.id}
                     onProjectClick={handleProjectClick}
+                    onVideoOpen={handleCardVideoOpen}
                   />
                 ))}
             </div>
@@ -762,6 +803,7 @@ const WorkGrid: React.FC = () => {
                     index={index}
                     isHovered={hoveredProject === project.id}
                     onProjectClick={handleProjectClick}
+                    onVideoOpen={handleCardVideoOpen}
                   />
                 ))}
             </div>
@@ -843,6 +885,7 @@ const WorkGrid: React.FC = () => {
                     index={index}
                     isHovered={hoveredProject === project.id}
                     onProjectClick={handleProjectClick}
+                    onVideoOpen={handleCardVideoOpen}
                   />
                 ))}
             </div>
@@ -927,6 +970,7 @@ const WorkGrid: React.FC = () => {
                     index={index}
                     isHovered={hoveredProject === project.id}
                     onProjectClick={handleProjectClick}
+                    onVideoOpen={handleCardVideoOpen}
                   />
                 ))}
             </div>
@@ -984,9 +1028,54 @@ const WorkGrid: React.FC = () => {
           </div>
         </motion.div>
       )}
-      
+
+      {/* More videos — the rest of the 58-video catalogue that isn't tied to
+          a specific Work entry (no workId, no title match). Folded in here
+          when /video was retired as a standalone page, so nothing is lost. */}
+      {leftoverVideoGroups.length > 0 && (
+        <div className="mt-16 md:mt-24 pt-12 border-t border-[#1a1a1a]/10 max-w-7xl mx-auto">
+          <div className="flex items-baseline justify-between mb-8">
+            <h2 className="text-2xl md:text-3xl font-serif italic text-[#1a1a1a]">{t.videoTitle}</h2>
+            <span className="text-xs font-mono text-[#666]">{leftoverVideoCount}</span>
+          </div>
+          <div className="flex flex-col gap-10">
+            {leftoverVideoGroups.map((group) => (
+              <div key={group.key}>
+                <h4 className="text-sm font-bold uppercase tracking-widest mb-4 text-[#666]">
+                  {group.literalLabel ?? t[group.labelKey!]}
+                </h4>
+                <div className="flex flex-wrap gap-4">
+                  {group.videos.map((video) => (
+                    <button
+                      key={video.id}
+                      type="button"
+                      onClick={() => openVideoModal(group.literalLabel ?? t[group.labelKey!], group.videos)}
+                      aria-label={`Play video: ${video.title}`}
+                      className="relative w-40 md:w-48 aspect-video overflow-hidden border border-[#1a1a1a]/10 bg-[#e0e0e0] text-left group/video focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a1a1a]"
+                    >
+                      <img
+                        src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover/video:scale-105"
+                      />
+                      <span className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover/video:bg-black/40 transition-colors">
+                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 text-white drop-shadow-md" aria-hidden="true">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Video Modal */}
-      <VideoModal 
+      <VideoModal
         isOpen={videoModalOpen}
         onClose={() => setVideoModalOpen(false)}
         videos={selectedVideos}
@@ -1005,18 +1094,21 @@ interface WorkItemProps {
   isHovered: boolean;
   onProjectClick: (project: Project) => void;
   onHover: (id: string | null) => void;
+  onVideoOpen?: (project: Project, videos: ResolvedVideo[]) => void;
 }
 
-const WorkItem: React.FC<WorkItemProps> = ({ 
-  project, 
-  index, 
-  isHovered, 
+const WorkItem: React.FC<WorkItemProps> = ({
+  project,
+  index,
+  isHovered,
   onHover,
-  onProjectClick
+  onProjectClick,
+  onVideoOpen
 }) => {
   const { language } = useLanguage();
   const [imageLoaded, setImageLoaded] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
+  const projectVideos = React.useMemo(() => getProjectVideos(project), [project]);
 
   React.useEffect(() => {
     setImageLoaded(false);
@@ -1025,6 +1117,16 @@ const WorkItem: React.FC<WorkItemProps> = ({
 
   const handleClick = () => {
     onProjectClick(project);
+  };
+
+  const handleVideoThumbnailClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onVideoOpen?.(project, projectVideos);
+  };
+
+  const handleVideoThumbnailKeyDown = (e: React.KeyboardEvent) => {
+    // Stop the card's own click handler from also firing on Enter/Space.
+    e.stopPropagation();
   };
 
   const handleImageLoad = async (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -1206,6 +1308,41 @@ const WorkItem: React.FC<WorkItemProps> = ({
                 {typeof project.description === 'string' ? project.description : project.description[language]}
             </p>
         </motion.div>
+
+        {/* Representative video — thumbnail with a play affordance; clicking it
+            opens VideoModal with every video for this project. Not an
+            autoplaying embed, and does not affect the card's own click. */}
+        {projectVideos.length > 0 && (
+          <button
+            type="button"
+            onClick={handleVideoThumbnailClick}
+            onKeyDown={handleVideoThumbnailKeyDown}
+            aria-label={
+              projectVideos.length > 1
+                ? `Play video: ${projectVideos[0].title} (+${projectVideos.length - 1} more)`
+                : `Play video: ${projectVideos[0].title}`
+            }
+            className="relative mt-4 w-full max-w-[220px] aspect-video overflow-hidden border border-[#1a1a1a]/10 bg-[#e0e0e0] text-left group/video focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a1a1a]"
+          >
+            <img
+              src={`https://i.ytimg.com/vi/${projectVideos[0].id}/hqdefault.jpg`}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover/video:scale-105"
+            />
+            <span className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover/video:bg-black/40 transition-colors">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-9 h-9 text-white drop-shadow-md" aria-hidden="true">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+            {projectVideos.length > 1 && (
+              <span className="absolute bottom-1.5 right-1.5 text-[10px] font-mono font-bold bg-black/70 text-white px-1.5 py-0.5 rounded-sm">
+                +{projectVideos.length - 1}
+              </span>
+            )}
+          </button>
+        )}
 
         {/* SoundCloud Embed */}
         {project.embedCode && (

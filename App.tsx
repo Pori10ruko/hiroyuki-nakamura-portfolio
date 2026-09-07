@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ProjectGallery from './components/ProjectGallery';
@@ -35,7 +35,7 @@ const Home: React.FC = () => {
   const t = translations[language];
 
   React.useEffect(() => {
-    document.title = 'NAKAMURA Hiroyuki | Sound Artist, Pianist, Composer';
+    document.title = 'NAKAMURA Hiroyuki | Composer · Pianist · Spatial-Audio Artist';
   }, []);
 
   return (
@@ -112,6 +112,11 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<WorkGrid />} />
+            {/* The standalone video page was folded into Work (2026-09-07) —
+                each project now shows its own videos, and the rest are
+                grouped at the bottom of /work. Old /video links still land
+                somewhere sensible. */}
+            <Route path="/video" element={<Navigate to="/work" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/academic" element={<Academic />} />
             <Route path="/contact" element={<Contact />} />

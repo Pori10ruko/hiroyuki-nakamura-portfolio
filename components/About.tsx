@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ScrambleText from './ScrambleText';
 import { useLanguage } from '../contexts/LanguageContext';
-import { translations } from '../translations';
+import { translations, NOW_ITEMS, CREDITS, PRESS, CV_PDF_URL } from '../translations';
 
 const About: React.FC = () => {
   const { language } = useLanguage();
@@ -51,11 +51,42 @@ const About: React.FC = () => {
            className="space-y-12 max-w-2xl"
         >
             <p className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed">
-                <span className="font-serif italic text-2xl md:text-3xl mr-2">NAKAMURA Hiroyuki / 中村 浩之</span> 
+                <span className="font-serif italic text-2xl md:text-3xl mr-2">NAKAMURA Hiroyuki / 中村 浩之</span>
                 <br /><br />
                 {t.aboutIntro}
             </p>
-            
+
+            {/* Now */}
+            <div className="pt-4 border-t border-[#1a1a1a]/20">
+                <h3 className="font-bold uppercase tracking-widest mb-6 text-sm">{t.nowTitle}</h3>
+                <ul className="space-y-3">
+                    {NOW_ITEMS[language].map((item, i) => (
+                        <li key={i} className="text-sm md:text-base leading-relaxed opacity-80">{item}</li>
+                    ))}
+                </ul>
+            </div>
+
+            {/* Selected credits */}
+            <div className="pt-12 border-t border-[#1a1a1a]/20">
+                <h3 className="font-bold uppercase tracking-widest mb-8 text-sm">{t.creditsTitle}</h3>
+                <dl className="border-t border-[#1a1a1a]/10">
+                    {CREDITS[language].map((row, i) => (
+                        <div key={i} className="flex flex-col sm:flex-row sm:gap-6 border-b border-[#1a1a1a]/10 py-3">
+                            <dt className="font-mono text-xs opacity-60 sm:w-28 sm:shrink-0 sm:pt-[3px]">{row.year}</dt>
+                            <dd className="text-sm opacity-80 leading-relaxed">{row.text}</dd>
+                        </div>
+                    ))}
+                </dl>
+                <a
+                    href={CV_PDF_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-5 font-mono text-xs opacity-60 hover:opacity-100 transition-opacity"
+                >
+                    {t.cvLabel} →
+                </a>
+            </div>
+
             <p className="text-sm md:text-base lg:text-lg opacity-80 leading-relaxed">
                 {t.aboutP1}
             </p>
@@ -75,6 +106,26 @@ const About: React.FC = () => {
             <p className="text-sm md:text-base lg:text-lg opacity-80 leading-relaxed">
                 {t.aboutP4}
             </p>
+
+            {/* Press */}
+            <div className="pt-12 border-t border-[#1a1a1a]/20">
+                <h3 className="font-bold uppercase tracking-widest mb-8 text-sm">{t.pressTitle}</h3>
+                <ul className="flex flex-col divide-y divide-[#1a1a1a]/10 border-t border-[#1a1a1a]/10">
+                    {PRESS.map((item) => (
+                        <li key={item.url} className="py-3">
+                            <a
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex flex-col sm:flex-row sm:gap-6 hover:opacity-50 transition-opacity"
+                            >
+                                <span className="font-mono text-xs opacity-60 sm:w-28 sm:shrink-0 sm:pt-[3px]">{item.date}</span>
+                                <span className="text-sm opacity-80">{item.label[language]}</span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
             <div className="pt-12 border-t border-[#1a1a1a]/20">
                 <h3 className="font-bold uppercase tracking-widest mb-8 text-sm">{t.services}</h3>

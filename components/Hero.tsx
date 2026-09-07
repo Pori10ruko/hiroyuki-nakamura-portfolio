@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { HERO_PHOTOS } from '../constants';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import InfiniteText from './InfiniteText';
 import AudioVisualizer from './AudioVisualizer';
@@ -13,6 +14,16 @@ const Hero: React.FC = () => {
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
   const [isHovered, setIsHovered] = useState(false);
+  // 本番と同じ挙動: ランダムな1枚から始め、9秒ごとに切り替える。reduced-motion なら静止。
+  const [heroIndex, setHeroIndex] = useState(() => Math.floor(Math.random() * HERO_PHOTOS.length));
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const id = window.setInterval(() => {
+      setHeroIndex(prev => (prev + 1) % HERO_PHOTOS.length);
+    }, 9000);
+    return () => window.clearInterval(id);
+  }, []);
 
   // 3D Tilt Logic
   const mouseX = useMotionValue(0);
@@ -153,17 +164,23 @@ const Hero: React.FC = () => {
 
                 {/* Front Face (Main Image) */}
                 <div className="absolute inset-0 bg-[#eee] translate-z-[0px] overflow-hidden border border-white/60 shadow-xl">
-                     <motion.img 
-                        src="https://picsum.photos/800/1200?random=piano" 
-                        alt="Piano Performance" 
-                        className="w-full h-full object-cover transition-all duration-700 ease-out"
+                     {HERO_PHOTOS.map((photo, i) => (
+                     <motion.img
+                        key={photo.src}
+                        src={photo.src}
+                        alt={i === heroIndex ? photo.alt : ''}
+                        aria-hidden={i === heroIndex ? undefined : true}
+                        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-linear"
                         style={{
-                            // UPDATE: Show distinct color in idle state (20% grayscale = 80% color)
                             filter: isHovered ? "grayscale(0%) contrast(1)" : "grayscale(20%) contrast(1.1)",
-                            opacity: isHovered ? 1 : 0.9,
+                            opacity: i === heroIndex ? (isHovered ? 1 : 0.9) : 0,
                             mixBlendMode: "normal"
                         }}
                     />
+                    ))}
+                    <p className="absolute left-0 right-0 bottom-0 px-3 py-2 text-[10px] leading-snug text-white bg-black/45 backdrop-blur-[1px]">
+                      {HERO_PHOTOS[heroIndex].caption[language]}
+                    </p>
                     
                     {/* Breathing Light Overlay */}
                     <motion.div 
