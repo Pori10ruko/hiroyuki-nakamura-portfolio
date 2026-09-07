@@ -521,6 +521,7 @@ const ProjectDetail: React.FC<{
   language: 'en' | 'ja' | 'zh';
   onOpenVideos: (title: string, videos: ResolvedVideo[], externalLink?: string) => void;
 }> = ({ project, language, onOpenVideos }) => {
+  const t = translations[language];
   const description = localizedText(project.description, language);
   const videos = getProjectVideos(project);
   const extra = DETAIL_EXTRAS[project.id];
@@ -533,11 +534,6 @@ const ProjectDetail: React.FC<{
       <p className="text-sm leading-relaxed">{description}</p>
       {project.tags && project.tags.length > 0 && <p className="font-mono text-xs text-mute">{project.tags.join(', ')}</p>}
       <div className="flex flex-wrap gap-x-6 gap-y-2">
-        {videos.length > 0 && (
-          <button type="button" onClick={() => onOpenVideos(title, videos, project.externalLink)} className={linkClass}>
-            Watch videos ({videos.length})
-          </button>
-        )}
         {project.link && <LinkTo href={project.link} className={linkClass} />}
         {project.externalLink && (
           <a href={project.externalLink} target="_blank" rel="noopener noreferrer" className={linkClass}>
@@ -545,6 +541,40 @@ const ProjectDetail: React.FC<{
           </a>
         )}
       </div>
+      {videos.length > 0 && (
+        <div className="mt-1">
+          <p className="font-mono text-[10px] uppercase tracking-wide text-mute mb-2">
+            {t.videoTitle} ({videos.length})
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {videos.map((video) => (
+              <button
+                key={video.id}
+                type="button"
+                onClick={() => onOpenVideos(video.title, [video], project.externalLink)}
+                aria-label={`${t.videoTitle}: ${video.title}`}
+                className="w-40 md:w-44 text-left group/v focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+              >
+                <span className="relative block aspect-video overflow-hidden border border-line bg-line">
+                  <img
+                    src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-opacity group-hover/v:opacity-80"
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                    <span className="block w-0 h-0 border-y-[7px] border-y-transparent border-l-[12px] border-l-white drop-shadow" />
+                  </span>
+                </span>
+                <span className="mt-1.5 block text-[11px] leading-snug text-mute group-hover/v:text-ink transition-colors">
+                  {video.title}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
       {extra?.images && extra.images.length > 0 && (
         <div className="grid grid-cols-2 gap-2 mt-2">
           {extra.images.map((img, i) => (
