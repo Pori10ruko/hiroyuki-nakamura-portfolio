@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+/* Four-token palette used throughout the 2026-09-06 redesign (verified
+   against _spec/live.css — 71 uses of these utilities in production). */
+@theme {
+  --color-paper: #f3efe9;
+  --color-ink: #161412;
+  --color-mute: #6f6a62;
+  --color-line: #d9d3c9;
+}

@@ -23,14 +23,14 @@
     <meta name="twitter:description" content="Composer, pianist and spatial-audio artist. Builds his own ambisonic and binaural rendering pipelines, and composes for them." />
     <meta name="twitter:image" content="https://nakamurahiroyuki.info/og-image.jpg" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist+Mono:wght@400&family=Noto+Serif+JP:wght@400&family=Noto+Serif+TC:wght@400&family=Noto+Sans+JP:wght@400&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
     <style>
       :root {
-        --bg-color: #dfdbd5;
-        --text-color: #1a1a1a;
+        --bg-color: #F3EFE9;
+        --text-color: #161412;
       }
       body {
-        font-family: 'Manrope', sans-serif;
+        font-family: 'Instrument Sans', "Noto Sans JP", sans-serif;
         background-color: var(--bg-color);
         color: var(--text-color);
         overflow-x: hidden;
@@ -40,26 +40,30 @@
         overscroll-behavior-y: none;
         -webkit-overflow-scrolling: touch;
       }
-      
+
       html {
         /* Prevent overscroll on the root element */
         overscroll-behavior: none;
       }
-      
+
       #root {
         /* Prevent touch action issues on mobile */
         touch-action: pan-y;
       }
       .font-serif {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Instrument Serif', "Noto Serif JP", serif;
       }
-      
+      .font-mono {
+        font-family: 'Geist Mono', ui-monospace, monospace;
+        font-variant-numeric: tabular-nums;
+      }
+
       /* Hide scrollbar but keep functionality */
       ::-webkit-scrollbar {
         width: 0px;
         background: transparent;
       }
-      
+
       .blend-difference {
         mix-blend-mode: difference;
       }
