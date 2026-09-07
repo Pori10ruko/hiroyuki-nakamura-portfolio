@@ -12,9 +12,12 @@
 //      made in this refactor, not part of the extracted data, and is kept
 //      separate from VIDEOS/constants.ts so it stays visible and reversible.
 //
-// Anything left over (no workId, no inferred match, no `artist` tag) is
-// grouped by its `group` field and rendered in the "leftover" video section
-// on the Work page — see getLeftoverVideoGroups(). Nothing is dropped.
+// Anything left over (no workId, no inferred match) is grouped by its
+// `group` field and rendered in a fallback video section on the Work page —
+// see getLeftoverVideoGroups(). As of 2026-09-07 every public entry resolves
+// to a project, so that section renders nothing; it is kept only as a safety
+// net so a future catalogue addition without a home is still visible rather
+// than silently dropped.
 
 import { PROJECTS, VIDEOS } from '../constants';
 import type { Project, VideoEntry } from '../types';
@@ -56,6 +59,49 @@ const INFERRED_WORK_ID: Record<string, string> = {
   'D4dLEi8udTk': '4-3', // "Piano Distance 2 ... at Tokoji Temple" -> Architecture of Sound and Light at Tokoji Temple
   'vf7puav4mYo': '4-3', // "Gymnopédie ... at Tokoji Temple" -> same
   'lI7Rq58b2Ys': '21',  // "Piano & Live Painting Concert 'Look Up At The Stars'" -> album of same title
+
+  // -------------------------------------------------------------------------
+  // 2026-09-07: the /video page's four un-homed tiers ("Piano", "Archive",
+  // "Spatial", artist "Utae") were folded into Work entries so the Work page
+  // no longer ends in a catch-all block. Sources per group:
+  //
+  // Solo Piano Works (project 23-2) — a real entry on the pre-2026-01-06 site
+  // (git 12b6db8^:constants.ts, id "23-2", RELEASES/SOLO, 2020-2024, with the
+  // SoundCloud "solo-piano" playlist), and these exact four YouTube ids were
+  // the "Solo Piano Works" block under RELEASES > SOLO until the 2026-09-06
+  // redesign (git 771b26f:components/WorkGrid.tsx ~L484). Restored, not new.
+  'bBCqNJIW4GQ': '23-2', // Piano Solo - Billie Jean
+  'QvMYUWoV2jU': '23-2', // Piano solo - STAY TUNE
+  'E-CZp4zW1oI': '23-2', // What Do You Mean?
+  'rIQDM58aX-Y': '23-2', // Over The Rainbow
+
+  // BBM Meeting (project bbm-meeting) — the 13 "BBM Meeting Vol.N" / "BBM
+  // Vol.N" talk videos are one series by their own titles. Not attached to
+  // "BBM Net Radio" (51, stand.fm audio) or "BBM Note" (41, text): nothing in
+  // the repo says they are the same programme, so the series gets its own
+  // ARCHIVE entry under its own name.
+  '3vpCefTU9NM': 'bbm-meeting', 'j_5ZA-qA5hk': 'bbm-meeting', '5b0dT0aHkOo': 'bbm-meeting',
+  'YMxvqrVLvJc': 'bbm-meeting', 'bB0AUbyJOys': 'bbm-meeting', 'q3SnQU5ztVw': 'bbm-meeting',
+  '5smfeD4qYtc': 'bbm-meeting', 'T88S3Fo2oLI': 'bbm-meeting', 'ZNTVbejToNQ': 'bbm-meeting',
+  'yhqwcs8TpPM': 'bbm-meeting', 'IlaFspjTygE': 'bbm-meeting', 'GKnVahg5A1I': 'bbm-meeting',
+  'DL2VYhvL81o': 'bbm-meeting',
+
+  // Spatial Audio — Erik Satie "Gymnopédie" (project gymnopedie-spatial). On
+  // the pre-2026-09-06 site this video was its own titled block under the
+  // SPATIAL AUDIO genre with an EN/JA note (git 771b26f:components/WorkGrid.tsx
+  // ~L410); that note is now the entry's description.
+  'azl0h7vc4eE': 'gymnopedie-spatial',
+
+  // 2026 REEL "2Ch Spatial Experience" (project reel-2026). A showreel, not a
+  // work; production only ever listed it in the /video "Spatial" tier. Given
+  // its own SPATIAL AUDIO entry so it stays reachable under the same tab.
+  'friwNAv_FTU': 'reel-2026',
+
+  // Utae / Dystopia (Official MV) -> Utae - toi toi toi (33). Owner's
+  // instruction 2026-09-07 ("For Utae, the one showing under toi toi toi can
+  // be merged"). The repo itself does not say which Utae release Dystopia
+  // belongs to — flagged in the task report.
+  'qJdK-3P7fuY': '33',
 };
 
 // Per-project videos that exist only as hard-coded iframe blocks in the
@@ -84,12 +130,16 @@ const EXTRA_VIDEOS: Record<string, ResolvedVideo[]> = {
   ],
 };
 
-// Non-YouTube embeds tied to a specific project (SoundCloud etc.) — also
-// read off _spec/live.js (`$v`). Only one entry in production: JOY-S's BLEU
-// Teaser.
+// Non-YouTube embeds tied to a specific project (SoundCloud etc.). '39' is
+// read off _spec/live.js (`$v`) — the only one in production. '23-2' is the
+// Solo Piano playlist embed that lived under RELEASES > SOLO until the
+// 2026-09-06 redesign (git 771b26f:components/WorkGrid.tsx ~L559, and the
+// entry's own `embedCode` in 12b6db8^:constants.ts) — src kept verbatim.
 export interface ProjectEmbed {
   title: string;
   embedSrc: string;
+  /** Player height in px; a playlist needs more room than a single track. */
+  height?: number;
 }
 export const EXTRA_EMBEDS: Record<string, ProjectEmbed[]> = {
   '39': [
@@ -97,6 +147,14 @@ export const EXTRA_EMBEDS: Record<string, ProjectEmbed[]> = {
       title: 'BLEU Teaser',
       embedSrc:
         'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/208092275&color=%230c6689&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true',
+    },
+  ],
+  '23-2': [
+    {
+      title: 'Solo Piano — SoundCloud playlist',
+      embedSrc:
+        'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A133465326&color=%230c6689&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true',
+      height: 450,
     },
   ],
 };
