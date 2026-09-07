@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>NAKAMURA Hiroyuki | Composer · Pianist · Spatial-Audio Artist</title>
+    <meta name="description" content="NAKAMURA Hiroyuki — composer, pianist and spatial-audio artist. Designs and builds his own ambisonic and binaural rendering pipelines, and composes for them. Piano Distance (Fluid Audio, 2026); Alone Together for Random International; DEEP FAKE — Ghost in the Machine with Rosie Kay." />
+    <link rel="canonical" href="https://nakamurahiroyuki.info/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="NAKAMURA Hiroyuki | Composer · Pianist · Spatial-Audio Artist" />
+    <meta property="og:description" content="Composer, pianist and spatial-audio artist. Builds his own ambisonic and binaural rendering pipelines, and composes for them." />
+    <meta property="og:image" content="https://nakamurahiroyuki.info/og-image.jpg" />
+    <meta property="og:url" content="https://nakamurahiroyuki.info/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="NAKAMURA Hiroyuki" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NAKAMURA Hiroyuki | Composer · Pianist · Spatial-Audio Artist" />
+    <meta name="twitter:description" content="Composer, pianist and spatial-audio artist. Builds his own ambisonic and binaural rendering pipelines, and composes for them." />
+    <meta name="twitter:image" content="https://nakamurahiroyuki.info/og-image.jpg" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist+Mono:wght@400&family=Noto+Serif+JP:wght@400&family=Noto+Serif+TC:wght@400&family=Noto+Sans+JP:wght@400&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-color: #F3EFE9;
+        --text-color: #161412;
+      }
+      body {
+        font-family: 'Instrument Sans', "Noto Sans JP", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        /* Prevent overscroll bounce on iOS */
+        overscroll-behavior-y: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      html {
+        /* Prevent overscroll on the root element */
+        overscroll-behavior: none;
+      }
+
+      #root {
+        /* Prevent touch action issues on mobile */
+        touch-action: pan-y;
+      }
+      .font-serif {
+        font-family: 'Instrument Serif', "Noto Serif JP", serif;
+      }
+      .font-mono {
+        font-family: 'Geist Mono', ui-monospace, monospace;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Hide scrollbar but keep functionality */
+      ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+      }
+
+      .blend-difference {
+        mix-blend-mode: difference;
+      }
+    </style>
+  <script type="module" crossorigin src="/assets/index-DqG9yBGi.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-HfEFAFL_.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script>
+  (function(){
+    var sent={};
+    function track(){
+      var page=location.hash.replace(/^#/,"")||"/";
+      if(sent[page])return;
+      sent[page]=1;
+      var data=JSON.stringify({page:page,referrer:document.referrer});
+      if(navigator.sendBeacon){
+        navigator.sendBeacon("/.netlify/functions/track",data);
+      }else{
+        fetch("/.netlify/functions/track",{method:"POST",body:data,keepalive:true});
+      }
+    }
+    track();
+    window.addEventListener("hashchange",track);
+  })();
+  </script>
+</body>
+</html>

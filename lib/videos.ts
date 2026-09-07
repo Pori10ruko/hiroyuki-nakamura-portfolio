@@ -30,6 +30,28 @@ export interface ResolvedVideo {
 // editorial inference made while merging the video page into Work
 // (2026-09-07) — flagged in the task report, not a verified fact from the
 // live bundle.
+// ---------------------------------------------------------------------------
+// 🔴 限定公開(unlisted)の動画は表に出さない。
+// 本番 (index-DqG9yBGi.js) は除外セット e0 と許可リスト t0 でこれを行っていた。
+// 2026-09-07 に YouTube を Cookie 無しで叩いて 11 本すべて "isUnlisted":true を実測済み。
+// 除外の理由は「リンク切れ」ではなく限定公開であること。とくに V1FxXKFxYTM は
+// DevGAMM の審査提出用コピーで、公開デモとは別物 (メモリ hobikibune_devgamm_2026)。
+// ALLOW は本番が明示的に表示していたもの＝限定公開だが載せる判断がされている。
+// ---------------------------------------------------------------------------
+const UNLISTED = new Set<string>([
+  '3TUAD9bo6Ko', 'NJ2_X9Ybq-I', 'JeRUBW1QWOQ', 'S8RzBlb0hQo', 's6yengQxH74',
+  'qZHZwPZqjSk', 'b4ADwNB-4jk', 'D4dLEi8udTk', 'Bm53cMwSr-0', '84HVNdVfJqg',
+  'UTzs9uSEbFY', 'V1FxXKFxYTM', 'lI7Rq58b2Ys', 'lmy-eChYDro',
+]);
+
+const ALLOW = new Set<string>([
+  'lI7Rq58b2Ys', 'NJ2_X9Ybq-I', 'S8RzBlb0hQo', 's6yengQxH74', 'qZHZwPZqjSk',
+]);
+
+export function isPublicVideo(id: string): boolean {
+  return !UNLISTED.has(id) || ALLOW.has(id);
+}
+
 const INFERRED_WORK_ID: Record<string, string> = {
   'D4dLEi8udTk': '4-3', // "Piano Distance 2 ... at Tokoji Temple" -> Architecture of Sound and Light at Tokoji Temple
   'vf7puav4mYo': '4-3', // "Gymnopédie ... at Tokoji Temple" -> same
@@ -63,6 +85,7 @@ export function getProjectVideos(project: Project): ResolvedVideo[] {
   const merged: ResolvedVideo[] = [];
   for (const v of [...own, ...matched]) {
     if (seen.has(v.id)) continue;
+    if (!isPublicVideo(v.id)) continue; // 限定公開は出さない
     seen.add(v.id);
     merged.push(v);
   }
@@ -104,9 +127,14 @@ const GROUP_LABEL_KEY: Record<string, LeftoverLabelKey> = {
  */
 export function getLeftoverVideoGroups(): LeftoverGroup[] {
   const assigned = new Set<string>();
-  PROJECTS.forEach((p) => getProjectVideos(p).forEach((v) => assigned.add(v.id)));
+  PROJECTS.forEach((p) => {
+    // 限定公開で除外された分も「割り当て済み」に数える（leftover へ落とさないため）
+    normalizeOwn(p).forEach((v) => assigned.add(v.id));
+    VIDEOS.filter((v) => effectiveWorkId(v) === p.id).forEach((v) => assigned.add(v.id));
+  });
 
-  const leftovers = VIDEOS.filter((v) => !assigned.has(v.id));
+  // 限定公開は leftover にも出さない（assigned に入らないので二重に効かせる）
+  const leftovers = VIDEOS.filter((v) => !assigned.has(v.id) && isPublicVideo(v.id));
 
   const groups = new Map<string, LeftoverGroup>();
   for (const v of leftovers) {
