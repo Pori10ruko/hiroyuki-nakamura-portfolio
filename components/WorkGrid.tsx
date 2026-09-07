@@ -83,10 +83,19 @@ const LinkTo: React.FC<{ href: string; className: string }> = ({ href, className
 };
 
 // Every project gets a stable chronological index number (001 = oldest),
-// independent of the current sort/display order.
+// independent of the current sort/display order. Entries with no sourced
+// year ("" or "TBA") are numbered after every dated one rather than being
+// mistaken for the oldest.
+const indexYear = (year: string): number => {
+  const n = parseYear(year);
+  return Number.isFinite(n) ? n : Number.POSITIVE_INFINITY;
+};
 const INDEXED_PROJECTS: (Project & { indexNo: number })[] = [...PROJECTS]
-  .sort((a, b) => parseYear(a.year) - parseYear(b.year))
+  .sort((a, b) => indexYear(a.year) - indexYear(b.year))
   .map((p, i) => ({ ...p, indexNo: i + 1 }));
+
+// "Category · Year", dropping the year when the entry has none.
+const metaLine = (...parts: (string | undefined)[]) => parts.filter(Boolean).join(' · ');
 
 // Extra images/notes shown in a project's expanded detail — mirrors
 // production's per-id map (`l0`), rebuilt from constants already restored
@@ -372,11 +381,10 @@ const WorkGrid: React.FC = () => {
         </div>
       )}
 
-      {/* Leftover videos — the rest of the 58-video catalogue that isn't tied
-          to a specific Work entry. Grouped by the same taxonomy tiers as the
-          rest of the page (folded in here when /video was retired as a
-          standalone page, per lib/videos.ts). Each tile shows its own title
-          and opens just that video, not the whole group. */}
+      {/* Safety net only: any catalogue video that resolves to no Work entry.
+          Empty as of 2026-09-07 — every public video now belongs to a project
+          (see INFERRED_WORK_ID in lib/videos.ts) — so this renders nothing.
+          Kept so a future addition without a home is still visible. */}
       {leftoverVideoGroups.length > 0 && (
         <div className="mt-16 md:mt-24 pt-12 border-t border-line">
           <div className="flex items-baseline justify-between mb-8">
@@ -496,7 +504,7 @@ const IndexRow: React.FC<IndexRowProps> = ({ project, language, isOpen, onToggle
             <p className="font-serif text-[17px] overflow-hidden text-ellipsis whitespace-nowrap">{title}</p>
             <p className="font-mono text-xs overflow-hidden text-ellipsis whitespace-nowrap">
               {videoCount > 0 && <span aria-hidden="true">{'▶ '}</span>}
-              {project.category} · {genreLabel(project.genre, t)} · {project.year}
+              {metaLine(project.category, genreLabel(project.genre, t), project.year)}
             </p>
           </div>
         </div>
@@ -591,7 +599,7 @@ const ProjectDetail: React.FC<{
       {embeds.map((embed, i) => (
         <div key={i}>
           <p className="font-mono text-[10px] uppercase tracking-wide text-mute mb-1">{embed.title}</p>
-          <iframe width="100%" height="120" scrolling="no" frameBorder={0} allow="autoplay" src={embed.embedSrc} title={embed.title} />
+          <iframe width="100%" height={embed.height ?? 120} scrolling="no" frameBorder={0} allow="autoplay" src={embed.embedSrc} title={embed.title} />
         </div>
       ))}
     </div>
@@ -647,7 +655,7 @@ const GridCard: React.FC<{ project: Project; language: 'en' | 'ja' | 'zh'; onCli
         {localizedTitle(project.title, language)}
       </p>
       <p className="font-mono text-xs text-mute overflow-hidden text-ellipsis whitespace-nowrap">
-        {project.category} · {project.year}
+        {metaLine(project.category, project.year)}
       </p>
     </div>
   </div>
