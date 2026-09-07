@@ -52,6 +52,8 @@ const UNLISTED = new Set<string>([
 
 const ALLOW = new Set<string>([
   'lI7Rq58b2Ys', 'NJ2_X9Ybq-I', 'S8RzBlb0hQo', 's6yengQxH74', 'qZHZwPZqjSk',
+  // VENUS Festival。限定公開だが「出してほしい」と中村さんの判断（2026-09-07）。
+  'TWYuiozIxps',
 ]);
 
 export function isPublicVideo(id: string): boolean {
@@ -190,6 +192,10 @@ const LINK_VIDEO_TITLES: Record<string, string> = {
   jWGWFkILgS4: '宿命 / XIDEN【Official MV】',
   lQ0atrk7IgA: 'closer / XIDEN【Official MV】',
   ttwOBxEhSwk: 'NOVA / XIDEN【Official MV】',
+  // 🔴 YouTube 上の実タイトルが "venus no shukusai digest demo1"。
+  // oEmbed の実測値をそのまま使っている（作文しない）。表示名を変えたいなら
+  // YouTube 側のタイトルを直すのが筋。
+  TWYuiozIxps: 'venus no shukusai digest demo1',
 };
 
 function youTubeIdFrom(url?: string): string | undefined {
