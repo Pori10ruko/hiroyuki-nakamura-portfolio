@@ -45,6 +45,9 @@ const UNLISTED = new Set<string>([
   '3TUAD9bo6Ko', 'NJ2_X9Ybq-I', 'JeRUBW1QWOQ', 'S8RzBlb0hQo', 's6yengQxH74',
   'qZHZwPZqjSk', 'b4ADwNB-4jk', 'D4dLEi8udTk', 'Bm53cMwSr-0', '84HVNdVfJqg',
   'UTzs9uSEbFY', 'V1FxXKFxYTM', 'lI7Rq58b2Ys', 'lmy-eChYDro',
+  // 作品 id 12 (VENUS Festival) の link 先。2026-09-07 実測で isUnlisted:true、
+  // 中身も "venus no shukusai digest demo1"。サムネイルとして表には出さない。
+  'TWYuiozIxps',
 ]);
 
 const ALLOW = new Set<string>([
@@ -174,6 +177,38 @@ function normalizeOwn(project: Project): ResolvedVideo[] {
  * then any VIDEOS catalogue entries that resolve (natively or by
  * inference) to this project's id. De-duplicated by video id.
  */
+// ---------------------------------------------------------------------------
+// 作品の `link` が YouTube を指しているのに、その MV が動画として登録されていない
+// ものがあった（XIDEN の5曲・YUKI『Share』）。カードを開いても映像が出ないので、
+// リンクから拾って作品の映像として扱う。
+// タイトルは 2026-09-07 に YouTube oEmbed で実取得したもの（作文していない）。
+// ---------------------------------------------------------------------------
+const LINK_VIDEO_TITLES: Record<string, string> = {
+  QSQ4U3pcvzQ: 'YUKI『Share』',
+  kqqkPzZV8b4: 'Day Opener / XIDEN【Official MV】',
+  yrwF8EyLOcA: 'accompany / XIDEN【Official MV】',
+  jWGWFkILgS4: '宿命 / XIDEN【Official MV】',
+  lQ0atrk7IgA: 'closer / XIDEN【Official MV】',
+  ttwOBxEhSwk: 'NOVA / XIDEN【Official MV】',
+};
+
+function youTubeIdFrom(url?: string): string | undefined {
+  if (!url) return undefined;
+  const m =
+    url.match(/[?&]v=([A-Za-z0-9_-]{11})/) ??
+    url.match(/youtu\.be\/([A-Za-z0-9_-]{11})/) ??
+    url.match(/\/embed\/([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : undefined;
+}
+
+/** The MV a project links to, when it is public and its real title is known. */
+function linkVideo(project: Project): ResolvedVideo | undefined {
+  const id = youTubeIdFrom(project.link) ?? youTubeIdFrom(project.externalLink);
+  if (!id || !isPublicVideo(id)) return undefined;
+  const title = LINK_VIDEO_TITLES[id];
+  return title ? { id, title } : undefined;
+}
+
 export function getProjectVideos(project: Project): ResolvedVideo[] {
   const own = normalizeOwn(project);
   const matched = VIDEOS.filter((v) => effectiveWorkId(v) === project.id).map((v) => ({
@@ -185,7 +220,8 @@ export function getProjectVideos(project: Project): ResolvedVideo[] {
 
   const seen = new Set<string>();
   const merged: ResolvedVideo[] = [];
-  for (const v of [...own, ...matched, ...extra]) {
+  const fromLink = linkVideo(project);
+  for (const v of [...own, ...matched, ...extra, ...(fromLink ? [fromLink] : [])]) {
     if (seen.has(v.id)) continue;
     if (!isPublicVideo(v.id)) continue; // 限定公開は出さない
     seen.add(v.id);
