@@ -195,7 +195,13 @@ const WorkGrid: React.FC = () => {
   const showReleaseSection = !activeGroup || activeGroup.key === 'release';
   const showRegularListing = activeGroup?.key !== 'release';
 
-  const leftoverVideoGroups = useMemo(() => getLeftoverVideoGroups(), []);
+  const allLeftoverGroups = useMemo(() => getLeftoverVideoGroups(), []);
+  // 分類を選んでいるあいだは、その分類の映像だけを出す。
+  // どの分類にも属さない tier（ソロピアノ演奏など）は「すべて」のときだけ出す。
+  const leftoverVideoGroups = useMemo(
+    () => (taxonomy === null ? allLeftoverGroups : allLeftoverGroups.filter((g) => g.tier === taxonomy)),
+    [allLeftoverGroups, taxonomy]
+  );
   const leftoverVideoCount = useMemo(
     () => leftoverVideoGroups.reduce((sum, g) => sum + g.videos.length, 0),
     [leftoverVideoGroups]

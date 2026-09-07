@@ -151,6 +151,10 @@ export interface LeftoverGroup {
   labelKey?: LeftoverLabelKey;
   /** Literal label to use instead of a translation key (artist-named groups). */
   literalLabel?: string;
+  /** The catalogue's own `group` value, so the Work page can show only the
+   *  groups that belong to the taxonomy the visitor is currently filtering by.
+   *  Tiers that match no taxonomy tab (e.g. 'piano') appear only under "All". */
+  tier: string;
   videos: ResolvedVideo[];
 }
 
@@ -195,7 +199,7 @@ export function getLeftoverVideoGroups(): LeftoverGroup[] {
     }
 
     if (!groups.has(key)) {
-      groups.set(key, { key, labelKey, literalLabel, videos: [] });
+      groups.set(key, { key, labelKey, literalLabel, tier: v.group, videos: [] });
     }
     groups.get(key)!.videos.push({ id: v.id, title: v.title, channel: v.channel });
   }
