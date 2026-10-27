@@ -236,7 +236,7 @@ const Academic: React.FC = () => {
                 />
                 <p className="text-sm opacity-70 leading-relaxed mb-4">
                     {language === 'ja'
-                      ? '主宰する「Beyond Boundary Music」を通じて、公開ワークショップの実施やブログ（note）での技術記事執筆を継続的に行っています。専門知識を広く共有し、次世代のクリエイターやアートファンとの対話を育むオープンな教育リソースとして機能しています。'
+                      ? '主宰する「Beyond Boundary Music」を通じて、公開ワークショップの実施やブログ（note）での技術記事執筆を続けています。専門知識を広く共有し、次世代のクリエイターやアートファンと対話する場にしています。'
                       : language === 'zh'
                       ? '透過主辦的「Beyond Boundary Music」平台，持續舉辦公開工作坊並在部落格（note）發表技術文章。作為開放性教育資源，廣泛分享專業知識，培育與下一代創作者及藝術愛好者的對話。'
                       : 'Through his self-produced platform, "Beyond Boundary Music," he continuously conducts public workshops and publishes technical articles on his blog (note). This serves as an open educational resource, sharing specialized knowledge widely and fostering a dialogue with the next generation of creators and art fans.'}

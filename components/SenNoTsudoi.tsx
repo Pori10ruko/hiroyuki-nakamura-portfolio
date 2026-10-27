@@ -123,7 +123,7 @@ Using almost no MIDI, Nakamura treats reverb as resonance, breathing as rhythm, 
       },
       {
         title: 'Voices in the Void',
-        text: '「自分の中にしか聞こえない声、それは歴史や記憶の産物である」ピアノの呼吸に沿う形で電子音響が進行。即興性と空間性が融合し、記憶の奥底に触れるような内面的作品。'
+        text: '「自分の中にしか聞こえない声、それは歴史や記憶の産物である」ピアノの呼吸に沿って電子音響が進行。即興性と空間性が融合し、記憶の奥底に触れるような内面的作品。'
       },
       {
         title: 'Bella',
