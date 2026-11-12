@@ -95,6 +95,13 @@ export const PRESS: Array<{ year: string; source: string; work: string; kind: L3
   },
   {
     year: '2024',
+    source: 'Headphone Commute: Video Premiere, "Voices in the Void"',
+    work: 'Sen no Tsudoi',
+    kind: { en: 'Video premiere (14 Nov 2024)', ja: 'ビデオ・プレミア(2024年11月14日)', zh: '影片首映(2024 年 11 月 14 日)' },
+    url: 'https://headphonecommute.com/2024/11/14/nakamura-hiroyuki-voices-in-the-void/',
+  },
+  {
+    year: '2024',
     source: 'Chain D.L.K.',
     work: 'Sen no Tsudoi',
     kind: { en: 'Review', ja: 'レビュー', zh: '樂評' },
