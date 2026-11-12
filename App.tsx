@@ -9,6 +9,7 @@ import NoiseOverlay from './components/NoiseOverlay';
 import About from './components/About';
 import WorkGrid from './components/WorkGrid';
 import Academic from './components/Academic';
+import Press, { SELECTIONS, PRESS } from './components/Press';
 import Contact from './components/Contact';
 import DistantEcho from './components/DistantEcho';
 import Releases from './components/Releases';
@@ -53,6 +54,28 @@ const Home: React.FC = () => {
               {t.viewAllWorks}
           </a>
       </div>
+      <section className="px-6 md:px-12 max-w-4xl mx-auto pb-32 relative z-10 text-[#1a1a1a]">
+          <h2 className="font-bold uppercase tracking-widest text-xs md:text-sm mb-6">
+              {language === 'ja' ? '掲載・選出' : language === 'zh' ? '報導・入選' : 'Press & Selections'}
+          </h2>
+          <ul className="divide-y divide-[#1a1a1a]/15 border-t border-[#1a1a1a]/20">
+              {SELECTIONS.map((s) => (
+                  <li key={s.title.en} className="py-4 flex justify-between items-baseline gap-4">
+                      <a href={s.url} target="_blank" rel="noopener noreferrer" className="interactive font-serif text-lg md:text-xl hover:opacity-50 transition-opacity">{s.title[language]} →</a>
+                      <span className="text-[10px] md:text-xs opacity-50 font-mono">{s.year}</span>
+                  </li>
+              ))}
+              {PRESS.slice(0, 2).map((p) => (
+                  <li key={p.source} className="py-4 flex justify-between items-baseline gap-4">
+                      <a href={p.url} target="_blank" rel="noopener noreferrer" className="interactive font-serif text-lg md:text-xl hover:opacity-50 transition-opacity">{p.source} →</a>
+                      <span className="text-[10px] md:text-xs opacity-50 font-mono">{p.work}</span>
+                  </li>
+              ))}
+          </ul>
+          <a href="#/press" className="inline-block mt-6 text-sm font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity">
+              {language === 'ja' ? 'すべて見る' : language === 'zh' ? '查看全部' : 'See all'}
+          </a>
+      </section>
     </>
   );
 };
@@ -114,6 +137,7 @@ const App: React.FC = () => {
             <Route path="/work" element={<WorkGrid />} />
             <Route path="/about" element={<About />} />
             <Route path="/academic" element={<Academic />} />
+            <Route path="/press" element={<Press />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/distant-echo" element={<DistantEcho />} />
             <Route path="/sen-no-tsudoi" element={<SenNoTsudoi />} />

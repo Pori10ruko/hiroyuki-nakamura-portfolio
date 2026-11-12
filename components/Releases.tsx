@@ -27,9 +27,9 @@ const RELEASES: Record<ReleaseCategory, Release[]> = {
       year: '2026',
       image: 'https://bbm-sound.com/images/piano-distance.jpg',
       description: {
-        en: 'Solo piano, composed as space. Nakamura works with a spatial-audio system he built himself — for composition, not mixing — so each sound carries a position and a distance, arriving from behind or overhead, on headphones and on just two speakers alone. After Toru Takemitsu\'s "Distance" (1961). Streaming everywhere and on Bandcamp (BBM-001, name-your-price); the handmade limited CD on Fluid Audio (UK), mastered by Ian Hawgood, is sold out.',
-        ja: 'ピアノだけで"空間"を作曲したアルバム。ミックスではなく"作曲のために"自ら設計した空間音響システムを用い、音に位置と距離を与える。ヘッドフォンでも、わずか2台のスピーカーだけでも、音は背後から、頭上から立ち現れる。武満徹〈Distance〉(1961)に着想。各配信サービスおよびBandcampで配信中（BBM-001、name-your-price）。英Fluid Audioのハンドメイド限定CD（マスタリング: Ian Hawgood）は完売。',
-        zh: '一張將鋼琴本身作為「空間」來作曲的專輯。使用自行打造的空間音響系統——為作曲而非混音而生——賦予每個聲音位置與距離；無論透過耳機，或僅憑兩支喇叭，聲音都會從背後、從頭頂浮現。靈感源自武滿徹〈Distance〉(1961)。現於各串流平台及Bandcamp發行中（BBM-001、name-your-price）。英國Fluid Audio手工限量CD（母帶: Ian Hawgood）已完售。'
+        en: 'Solo piano, composed as space. Nakamura works with a spatial-audio system he put together from many tools, commercial ones included, and shaped by ear — for composition, not mixing — so each sound carries a position and a distance, arriving from behind or overhead, on headphones and on just two speakers alone. After Toru Takemitsu\'s piano piece "Piano Distance" (1961). Streaming everywhere and on Bandcamp (BBM-001, name-your-price); the handmade limited CD on Fluid Audio (UK), mastered by Ian Hawgood, is sold out.',
+        ja: 'ピアノだけで"空間"を作曲したアルバム。ミックスではなく"作曲のために"、市販の道具も含めて組み合わせ、自分の耳で作り上げた空間音響システムを用い、音に位置と距離を与える。ヘッドフォンでも、わずか2台のスピーカーだけでも、音は背後から、頭上から立ち現れる。武満徹のピアノ曲〈ピアノ・ディスタンス〉(1961)に着想。各配信サービスおよびBandcampで配信中（BBM-001、name-your-price）。英Fluid Audioのハンドメイド限定CD（マスタリング: Ian Hawgood）は完売。',
+        zh: '一張將鋼琴本身作為「空間」來作曲的專輯。使用結合市售工具、憑自己的耳朵調校而成的空間音響系統——為作曲而非混音而生——賦予每個聲音位置與距離；無論透過耳機，或僅憑兩支喇叭，聲音都會從背後、從頭頂浮現。靈感源自武滿徹的鋼琴曲〈Piano Distance〉(1961)。現於各串流平台及Bandcamp發行中（BBM-001、name-your-price）。英國Fluid Audio手工限量CD（母帶: Ian Hawgood）已完售。'
       },
       links: {
         bandcamp: 'https://beyondboundarymusic.bandcamp.com/album/piano-distance'

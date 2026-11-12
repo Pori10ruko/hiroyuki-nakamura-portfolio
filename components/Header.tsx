@@ -27,6 +27,11 @@ const Header: React.FC = () => {
               </Link>
           </Magnetic>
           <Magnetic>
+              <Link to="/press" className="interactive relative text-xs md:text-sm uppercase tracking-widest hover:opacity-50 transition-opacity px-1 md:px-2 py-1 block">
+                  <ScrambleText text={t.press} />
+              </Link>
+          </Magnetic>
+          <Magnetic>
               <Link to="/about" className="interactive relative text-xs md:text-sm uppercase tracking-widest hover:opacity-50 transition-opacity px-1 md:px-2 py-1 block">
                   <ScrambleText text={t.about} />
               </Link>
