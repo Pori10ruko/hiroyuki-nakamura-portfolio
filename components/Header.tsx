@@ -28,6 +28,7 @@ const Header: React.FC = () => {
 
   const navLinks = [
     { to: '/work', label: t.work },
+    { to: '/press', label: t.press },
     { to: '/about', label: t.about },
     { to: '/academic', label: t.academic },
     { to: '/contact', label: t.contact },

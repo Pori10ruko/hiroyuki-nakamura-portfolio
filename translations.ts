@@ -2,6 +2,7 @@ export const translations = {
   en: {
     // Header
     work: 'Work',
+    press: 'PRESS',
     about: 'About',
     academic: 'Academic',
     contact: 'Contact',
@@ -15,9 +16,9 @@ export const translations = {
     // About
     aboutTitle: 'About',
     aboutIntro: 'a composer and pianist who treats sound as space.',
-    aboutP1: 'NAKAMURA Hiroyuki is a Tokyo-based composer and pianist who designs and builds his own ambisonic and binaural rendering pipelines, and composes for them. Trained as a pianist, he works across recordings, site-specific installation and performance.',
-    aboutP2: 'His spatial sound has been used by the London art collective Random International (Alone Together, Superblue Miami / Riyadh Art) and underpins the UK theatre work DEEP FAKE \u2014 Ghost in the Machine (supported by Arts Council England; with choreographer Rosie Kay; Birmingham Repertory Theatre, 2026). As the director of Beyond Boundary Chamber Orchestra, he staged the electric opera Festival of VENUS. All of this runs on a single spatial-audio engine of his own making \u2014 from head-tracked binaural inside headphones, to third-order ambisonic rooms where dozens of sounds hold their own positions as you walk, to two ordinary speakers tuned until they dissolve into the walls of the room.',
-    aboutP3: 'Releases include Piano Distance (Fluid Audio, UK / Beyond Boundary Music, 2026) — its title answering Toru Takemitsu\'s 1961 solo piano piece, extending ma, the charged interval between sounds, into literal space — Sen no Tsudoi (Dragon\'s Eye, 2024), and Look Up at the Stars (Youngbloods, 2023).',
+    aboutP1: 'NAKAMURA Hiroyuki is a Tokyo-based composer and pianist who shapes ambisonic and binaural spatial-audio systems by ear from many tools, commercial ones included, and composes for them. Trained as a pianist, he works across recordings, site-specific installation and performance.',
+    aboutP2: 'His spatial sound has been used by the London art collective Random International (Alone Together, Superblue Miami / Riyadh Art) and underpins the UK theatre work DEEP FAKE \u2014 Ghost in the Machine (supported by Arts Council England; with choreographer Rosie Kay; UK residency planned for 2027). As the director of Beyond Boundary Chamber Orchestra, he staged the electric opera Festival of VENUS. All of this runs on a single spatial-audio engine built in TouchDesigner \u2014 from head-tracked binaural inside headphones, to third-order ambisonic rooms where dozens of sounds hold their own positions as you walk, to two ordinary speakers tuned until they dissolve into the walls of the room.',
+    aboutP3: 'Releases include Piano Distance (Beyond Boundary Music, BBM-001, 2026; limited CD on Fluid Audio, UK) — its title answering Toru Takemitsu\'s 1961 solo piano piece, extending ma, the charged interval between sounds, into literal space — Sen no Tsudoi (Dragon\'s Eye, 2024), and Look Up at the Stars (Youngbloods, 2023).',
     aboutP3b: 'He lectures at the National University of Tainan (Taiwan) and at ESP Entertainment Tokyo, and joined Apichatpong Weerasethakul\'s workshop at Tama Art University as an instructor.',
     aboutP4: 'One question runs through everything: how does a sound hold the space it travels through? Composition, the spatial-audio engine and the visual or VR environment are made as a single continuous gesture rather than as separate stages \u2014 a way of working that has also shaped the commissions and collaborations beyond his own name. Its structural principle is ma: the interval that lets a sound, or a silence, be seen \u2014 built into the design of each work rather than applied as a motif.',
     nowTitle: 'Now',
@@ -112,6 +113,7 @@ export const translations = {
   ja: {
     // Header
     work: 'WORKS',
+    press: 'PRESS',
     about: 'ABOUT',
     academic: 'ACADEMIC',
     contact: 'CONTACT',
@@ -125,9 +127,9 @@ export const translations = {
     // About
     aboutTitle: 'ABOUT',
     aboutIntro: '音を「空間」として扱う作曲家・ピアニスト。',
-    aboutP1: '中村浩之は、東京を拠点に活動する作曲家・ピアニスト。自作のアンビソニック／バイノーラルのレンダリング・パイプラインを設計し、そのために作曲する。録音作品・サイトスペシフィックなインスタレーション・パフォーマンスを横断する。',
-    aboutP2: 'ピアニストとして出発し、作曲のための空間音響システムを自ら構築。その空間音響はロンドンのアート・コレクティブ Random International『Alone Together』（Superblue Miami / Riyadh Art）で用いられ、英国の劇場制作『DEEP FAKE — Ghost in the Machine』（Arts Council England 採択／振付 Rosie Kay／2026年 Birmingham Repertory Theatre）の核を成す。Beyond Boundary Chamber Orchestra のディレクターとして、エレクトリック・オペラ『VENUSの祝祭』を上演。これらすべては、彼が自作した単一の空間音響エンジンの上で動いている——ヘッドフォンの中のヘッドトラッキング・バイノーラルから、歩き回ると数十の音がそれぞれの位置を保つ3次アンビソニクスの部屋、そして壁に溶けて存在が消える2本のスピーカーまで。',
-    aboutP3: '作品に『Piano Distance』（Fluid Audio, UK / Beyond Boundary Music, 2026）——武満徹の1961年のピアノ曲への応答として、音と音の「間」を実際の空間へ拡張した——、『千の集い』（Dragon\'s Eye, 2024）、『Look Up at the Stars』（Youngbloods, 2023）ほか。',
+    aboutP1: '中村浩之は、東京を拠点に活動する作曲家・ピアニスト。アンビソニック／バイノーラルのレンダリング・パイプラインを設計し、そのために作曲する。録音作品・サイトスペシフィックなインスタレーション・パフォーマンスを横断する。',
+    aboutP2: 'ピアニストとして出発し、作曲のための空間音響システムを、市販の道具も含めて組み合わせながら、自分の耳で作り上げた。その空間音響はロンドンのアート・コレクティブ Random International『Alone Together』（Superblue Miami / Riyadh Art）で用いられ、英国の劇場制作『DEEP FAKE — Ghost in the Machine』（Arts Council England 採択／振付 Rosie Kay／2027年 英国レジデンシー予定）の核を成す。Beyond Boundary Chamber Orchestra のディレクターとして、エレクトリック・オペラ『VENUSの祝祭』を上演。これらすべては、彼が作り上げた単一の空間音響エンジンの上で動いている——ヘッドフォンの中のヘッドトラッキング・バイノーラルから、歩き回ると数十の音がそれぞれの位置を保つ3次アンビソニクスの部屋、そして壁に溶けて存在が消える2本のスピーカーまで。',
+    aboutP3: '作品に『Piano Distance』（Beyond Boundary Music, BBM-001, 2026／限定CDは Fluid Audio, UK）——武満徹の1961年のピアノ曲への応答として、音と音の「間」を実際の空間へ拡張した——、『千の集い』（Dragon\'s Eye, 2024）、『Look Up at the Stars』（Youngbloods, 2023）ほか。',
     aboutP3b: '国立台南大学（台湾）および ESP エンタテインメント東京で講師を務め、アピチャッポン・ウィーラセタクン氏の多摩美術大学ワークショップに講師として参加。',
     aboutP4: 'すべての作品を貫くのは、ひとつの問いである——音は、通り抜けていく空間をどう保持するのか。作曲、空間音響のエンジン、映像や VR の環境を、別々の工程ではなく一続きの身振りとしてつくる。この作り方が、自分の名義を超えた委嘱や協働の形も決めてきた。構造の原理は「間」——音や沈黙を見えるようにするための間隔であり、モチーフとして添えるのではなく、作品の設計そのものに組み込まれている。',
     nowTitle: '現在',
@@ -222,6 +224,7 @@ export const translations = {
   zh: {
     // Header
     work: 'WORKS',
+    press: 'PRESS',
     about: 'ABOUT',
     academic: 'ACADEMIC',
     contact: 'CONTACT',
@@ -235,9 +238,9 @@ export const translations = {
     // About
     aboutTitle: 'ABOUT',
     aboutIntro: '將聲音作為「空間」處理的作曲家・鋼琴家。',
-    aboutP1: '中村浩之是以東京為據點的作曲家・鋼琴家。自行設計並建構 ambisonic 與 binaural（雙耳）渲染管線，並為其作曲。橫跨錄音作品、場域特定裝置與表演。',
-    aboutP2: '由鋼琴家出發，自行打造用於作曲的空間音響系統。其空間音響被倫敦的藝術集體 Random International 採用（《Alone Together》，Superblue Miami / Riyadh Art），並支撐英國劇場製作《DEEP FAKE — Ghost in the Machine》（Arts Council England 獲選／編舞 Rosie Kay／2026 年於 Birmingham Repertory Theatre 首演）的核心。作為 Beyond Boundary Chamber Orchestra 的總監，演出電子歌劇《VENUS 之祭典》。這一切都運行在他自行打造的單一空間音響引擎之上——從耳機中的頭部追蹤雙耳聲，到行走其間、數十個聲音各自保持定位的三階 Ambisonics 空間，再到調校至溶入牆面、存在感消失的兩顆揚聲器。',
-    aboutP3: '發行作品包括《Piano Distance》（Fluid Audio, UK / Beyond Boundary Music, 2026）——回應武滿徹1961年的鋼琴獨奏曲，將音與音之間的「間」延伸為真實空間——、《千の集い》（Dragon\'s Eye, 2024）、《Look Up at the Stars》（Youngbloods, 2023）等。',
+    aboutP1: '中村浩之是以東京為據點的作曲家・鋼琴家。設計並建構 ambisonic 與 binaural（雙耳）渲染管線，並為其作曲。橫跨錄音作品、場域特定裝置與表演。',
+    aboutP2: '由鋼琴家出發，結合市售工具、憑自己的耳朵調校用於作曲的空間音響系統。其空間音響被倫敦的藝術集體 Random International 採用（《Alone Together》，Superblue Miami / Riyadh Art），並支撐英國劇場製作《DEEP FAKE — Ghost in the Machine》（Arts Council England 獲選／編舞 Rosie Kay／2027 年預計於英國駐地創作）的核心。作為 Beyond Boundary Chamber Orchestra 的總監，演出電子歌劇《VENUS 之祭典》。這一切都運行在他在 TouchDesigner 上建構的單一空間音響引擎之上——從耳機中的頭部追蹤雙耳聲，到行走其間、數十個聲音各自保持定位的三階 Ambisonics 空間，再到調校至溶入牆面、存在感消失的兩顆揚聲器。',
+    aboutP3: '發行作品包括《Piano Distance》（Beyond Boundary Music, BBM-001, 2026；限量CD：Fluid Audio, UK）——回應武滿徹1961年的鋼琴獨奏曲，將音與音之間的「間」延伸為真實空間——、《千の集い》（Dragon\'s Eye, 2024）、《Look Up at the Stars》（Youngbloods, 2023）等。',
     aboutP3b: '於國立臺南大學（臺灣）與 ESP Entertainment Tokyo 擔任講師，並以講師身分參與 Apichatpong Weerasethakul 在多摩美術大學的工作坊。',
     aboutP4: '貫穿所有作品的，是同一個問題：聲音如何承載它所穿越的空間？作曲、空間音訊引擎、影像與 VR 環境，不是分開的工序，而是一個連續的動作——這樣的工作方式，也形塑了他在個人名義之外的委託與合作。其結構原理是「間」（ma）：讓聲音或沉默得以被看見的間隔；它不是外加的母題，而是寫進每件作品的設計本身。',
     nowTitle: '近況',
